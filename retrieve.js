@@ -16,10 +16,10 @@ module.controller('multistreamController', function($scope, $sce) {
     }
 
     $scope.addStream = function() {
-      if ($scope.input != null && ($scope.streamList.length < 5)) {
+      if ($scope.input != null && ($scope.streamList.length < 5)) { //clean up create function
         var channel = $scope.input;
-        var chatUrlFormat = ($scope.chatStartUrl + $scope.input + $scope.chatEndUrl);
-        var playerUrlFormat = ($scope.playerUrl + $scope.input)
+        var chatUrlFormat = ($scope.chatStartUrl + channel + $scope.chatEndUrl);
+        var playerUrlFormat = ($scope.playerUrl + channel)
         var streamItem = { channel: channel, player: playerUrlFormat, chat: chatUrlFormat }
         $scope.streamList.push(streamItem);
         $scope.input = "";
@@ -94,11 +94,32 @@ module.controller('multistreamController', function($scope, $sce) {
 
     //URL LOADING NEED TO WORK ON
     $scope.getParam = function() {
+
+      var urlParams = new URLSearchParams(window.location.search);
+      urlStreams = urlParams.get('stream');
+      urlStreams = urlStreams.split(",");
+
+      for (channel in urlStreams) {  //clean up create function
+        if ($scope.streamList.length < 5) {
+          var channel = urlStreams[channel];
+          var chatUrlFormat = ($scope.chatStartUrl + channel + $scope.chatEndUrl);
+          var playerUrlFormat = ($scope.playerUrl + channel)
+          var streamItem = { channel: channel, player: playerUrlFormat, chat: chatUrlFormat }
+          $scope.streamList.push(streamItem);
+          $scope.toggleLayout();
+          $scope.toggleChat();
+        }
+      }
+      /*
       var parameters = loadUrl();
       console.log(parameters);
+      */
     }
 
     $scope.loadUrl = function() {
+
+
+      /*
       var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
       for (var i=0;i<url.length;i++) {
              var params = url[i].split("=");
@@ -106,5 +127,6 @@ module.controller('multistreamController', function($scope, $sce) {
               return params[1];
       }
       return false;
+      */
     }
 });
