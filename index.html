@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="multistreamApp">
+    <head>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+      <script type="text/javascript" src="retrieve.js"></script>
+      <link href="main.css" rel="stylesheet">
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Multistream Viewer</title>
+    </head>
+    <div id="controller" ng-controller="multistreamController" data-ng-init="getParam()" >
+      <body>
+        <nav id="navBar">
+          <section id="nav-container">
+            <form ng-submit="addStream()">
+              <input type="text" ng-model="input" name="" value="" placeholder="Twitch Channel" required>
+              <button id="getTwitch" href="">ADD</button>
+            </form>
+            <button id="toggleChat" href="" ng-click="setChat()"> {{ chat }} </button>
+            <ul id="streamList">
+              <li ng-repeat="stream in streamList track by $index">
+                <p> {{ stream.channel }} </p>
+                <a class="close" ng-click="deleteStream()">X</a>
+              </li>
+            </ul>
+          </section>
+        </nav>
+        <button id="navToggle" type="button" name="button" ng-click="toggleNav()"> {{ navToggle }} </button>
+        <section id="stream-container">
+          <section class="stream" ng-repeat="stream in streamList track by $index">
+            <section class="player">
+              <iframe src="{{trustSrc(stream.player)}}"
+                      frameborder="0"
+                      scrolling="no"
+                      allowfullscreen="true">
+              </iframe>
+            </section>
+            <section class="chat">
+              <iframe frameborder="0"
+                      scrolling="no"
+                      ng-src="{{trustSrc(stream.chat)}}"
+                      width="20%">
+              </iframe>
+            </section>
+            <!--
+            height="50%"
+            width="80%"
+
+            height="50%"
+            width="20%">
+            -->
+          </section>
+        </section>
+      </body>
+    </div>
+</html>

@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
+body {
+  background: #FFFFFF;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  margin: 0;
+  height: 100vh; }
+  body #controller {
+    height: 100%; }
+
+nav {
+  width: 100%;
+  background: #FF5722;
+  color: #FFFFFF;
+  height: 50px;
+  display: flex;
+  margin: 0;
+  visibility: visible; }
+  nav #nav-container {
+    padding: 0.5em;
+    display: flex;
+    width: 100%; }
+    nav #nav-container form {
+      display: flex; }
+    nav #nav-container input {
+      margin-right: 0.5em;
+      border: 0;
+      color: #757575; }
+    nav #nav-container #streamList {
+      float: right;
+      margin: 0;
+      list-style: none; }
+      nav #nav-container #streamList li {
+        float: left;
+        display: flex;
+        position: relative;
+        background: #E64A19;
+        margin-left: 0.5em;
+        padding: 0.4em; }
+        nav #nav-container #streamList li p {
+          margin: 0;
+          padding-right: 0.5em; }
+        nav #nav-container #streamList li .close {
+          font-weight: bold;
+          text-decoration: none;
+          cursor: pointer;
+          font-size: 1em;
+          transition: all 0.3s; }
+
+#stream-container {
+  min-height: calc(100vh - 50px);
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box; }
+  #stream-container .stream {
+    position: relative;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box; }
+    #stream-container .stream iframe {
+      width: 100%;
+      height: 100%; }
+    #stream-container .stream .player {
+      width: 100%;
+      height: 100%; }
+    #stream-container .stream .chat {
+      width: 100%;
+      height: 70%;
+      margin-bottom: 4px; }
+
+#navToggle {
+  position: absolute;
+  z-index: 5; }
+
+#toggleChat {
+  margin-left: 0.5em; }
+
+button {
+  background: #E64A19;
+  color: #FFFFFF;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  font-size: 1em;
+  margin: 0;
+  border: 0;
+  cursor: pointer;
+  display: block; }
