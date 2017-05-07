@@ -16,7 +16,7 @@ module.controller('multistreamController', function($scope, $sce) {
     }
 
     $scope.addStream = function() {
-      if ($scope.input != null && ($scope.streamList.length < 5)) { //clean up create function
+      if ($scope.input != null && ($scope.streamList.length < 4)) { //clean up create function
         var channel = $scope.input;
         var chatUrlFormat = ($scope.chatStartUrl + channel + $scope.chatEndUrl);
         var playerUrlFormat = ($scope.playerUrl + channel)
@@ -100,7 +100,7 @@ module.controller('multistreamController', function($scope, $sce) {
       urlStreams = urlStreams.split(",");
 
       for (channel in urlStreams) {  //clean up create function
-        if ($scope.streamList.length < 5) {
+        if ($scope.streamList.length < 4) {
           var channel = urlStreams[channel];
           var chatUrlFormat = ($scope.chatStartUrl + channel + $scope.chatEndUrl);
           var playerUrlFormat = ($scope.playerUrl + channel)
