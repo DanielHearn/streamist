@@ -36,6 +36,7 @@ nav {
         position: relative;
         background: #E64A19;
         margin-left: 0.5em;
+        text-transform: capitalize;
         padding: 0.4em; }
         nav #nav-container #streamList li p {
           margin: 0;
