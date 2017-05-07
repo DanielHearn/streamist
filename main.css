@@ -48,6 +48,7 @@ nav {
           transition: all 0.3s; }
 
 #stream-container {
+  background: #141414;
   min-height: calc(100vh - 50px);
   flex: 1 1 auto;
   display: flex;
