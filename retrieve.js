@@ -32,6 +32,7 @@ module.controller('multistreamController', function($scope, $sce) {
       $scope.streamList.splice(this.$index, 1);
       $scope.toggleLayout();
       $scope.toggleChat();
+      //add deleting url parameter
     }
 
     $scope.toggleLayout = function() {
@@ -92,6 +93,7 @@ module.controller('multistreamController', function($scope, $sce) {
       }
     }
 
+    /*
     $scope.insertParam = function(key, value) {
         //key = encodeURI(key);
         value = encodeURI(value);
