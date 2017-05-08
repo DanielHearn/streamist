@@ -9,7 +9,7 @@
       <title>Multistream Viewer</title>
     </head>
     <div id="controller" ng-controller="multistreamController">
-    <!-- data-ng-init="getParam()" --> 
+    <!-- data-ng-init="getParam()" -->
       <body>
         <nav id="navBar">
           <section id="nav-container">
@@ -29,14 +29,14 @@
         <button id="navToggle" type="button" name="button" ng-click="toggleNav()"> {{ navToggle }} </button>
         <section id="stream-container">
           <section class="stream" ng-repeat="stream in streamList track by $index">
-            <section class="player" ng-model="player">
+            <section class="player">
               <iframe src="{{trustSrc(stream.player)}}"
                       frameborder="0"
                       scrolling="no"
                       allowfullscreen="true">
               </iframe>
             </section>
-            <section class="chat" ng-model="chat">
+            <section class="chat">
               <iframe frameborder="0"
                       scrolling="no"
                       ng-src="{{trustSrc(stream.chat)}}"
