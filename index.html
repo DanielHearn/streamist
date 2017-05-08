@@ -16,7 +16,7 @@
               <input type="text" ng-model="input" name="" value="" placeholder="Twitch Channel" required>
               <button id="getTwitch" href="">ADD</button>
             </form>
-            <button id="toggleChat" href="" ng-click="setChat()"> {{ chat }} </button>
+            <button id="toggleChat" href="" ng-click="setChat()"> {{ chatButton }} </button>
             <ul id="streamList">
               <li ng-repeat="stream in streamList track by $index">
                 <p> {{ stream.channel }} </p>
@@ -28,14 +28,14 @@
         <button id="navToggle" type="button" name="button" ng-click="toggleNav()"> {{ navToggle }} </button>
         <section id="stream-container">
           <section class="stream" ng-repeat="stream in streamList track by $index">
-            <section class="player">
+            <section class="player" ng-model="player">
               <iframe src="{{trustSrc(stream.player)}}"
                       frameborder="0"
                       scrolling="no"
                       allowfullscreen="true">
               </iframe>
             </section>
-            <section class="chat">
+            <section class="chat" ng-model="chat">
               <iframe frameborder="0"
                       scrolling="no"
                       ng-src="{{trustSrc(stream.chat)}}"

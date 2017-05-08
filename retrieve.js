@@ -3,7 +3,7 @@ var module = angular.module('multistreamApp', []);
 module.controller('multistreamController', function($scope, $sce) {
     var navVisible = true;
     $scope.navToggle = "HIDE";
-    $scope.chat = "HIDE CHAT";
+    $scope.chatButton = "HIDE CHAT";
 
     $scope.streamList = [];
 
@@ -25,6 +25,7 @@ module.controller('multistreamController', function($scope, $sce) {
         $scope.input = "";
         $scope.toggleLayout();
         $scope.toggleChat();
+        $scope.insertParam("stream", channel);
       }
     }
     $scope.deleteStream = function() {
@@ -35,31 +36,34 @@ module.controller('multistreamController', function($scope, $sce) {
 
     $scope.toggleLayout = function() {
       var numOfStreams = $scope.streamList.length;
-      var streams = document.getElementsByClassName("stream");
-      var newHeight = "100%";
-      if (numOfStreams == 2) {
-          newHeight = "50%";
-      } else if (numOfStreams == 3) {
-          newHeight = "33.33%";
-      } else if (numOfStreams == 4) {
-          newHeight = "25%";
-      } else {
-          newHeight = "100%";
-      }
+      var chats = document.getElementsByClassName("chat");
       /*
+      if (numOfStreams == 1) {
+          $scope.setStyle(chats, "width", "30%");
+          $scope.setStyle(chats, "height", "100%");
+          $scope.setStyle(stream, "flex-direction", "row");
+      } else {
+          $scope.setStyle(chats, "width", "30%");
+          $scope.setStyle(chats, "height", "100%");
+          $scope.setStyle(stream, "flex-direction", "row");
+      }
+      */
+      $scope.toggleChat();
+    }
+
+    $scope.setStyle = function(elementList, style, newSetting) {
       setTimeout(function() { //Delay to ensure all elements effected
-        for (var i = 0; i <= streams.length; i++) {
-          streams[i].style.height = newHeight;
+        for (var i = 0; i <= elementList.length; i++) {
+          elementList[i].style[style] = newSetting;
         }
       },10);
-      */
     }
 
     $scope.setChat = function() {
-      if ($scope.chat == "HIDE CHAT") {
-        $scope.chat = "SHOW CHAT";
+      if ($scope.chatButton == "HIDE CHAT") {
+        $scope.chatButton = "SHOW CHAT";
       } else {
-        $scope.chat = "HIDE CHAT";
+        $scope.chatButton = "HIDE CHAT";
       }
       $scope.toggleChat();
     }
@@ -71,11 +75,7 @@ module.controller('multistreamController', function($scope, $sce) {
       } else {
         var newHeight = "70%";
       }
-      setTimeout(function() { //Delay to ensure all elements effected
-        for (var i = 0; i <= chats.length; i++) {
-          chats[i].style.height = newHeight;
-        }
-      },10);
+      $scope.setStyle(chats, "height", newHeight);
     }
 
     $scope.toggleNav = function() {
@@ -91,6 +91,32 @@ module.controller('multistreamController', function($scope, $sce) {
         navVisible= true;
       }
     }
+
+    $scope.insertParam = function(key, value) {
+        //key = encodeURI(key);
+        value = encodeURI(value);
+
+        var kvp = document.location.search.substr(1).split(',');
+
+        var i=kvp.length; var x; while(i--)
+        {
+            x = kvp[i].split('=');
+
+            //if (x[0]==key)
+          //  {
+          //      x[1] = value;
+            //    kvp[i] = x.join('=');
+          //      break;
+          //  }
+        }
+
+        if(i<0) {kvp[kvp.length] = [value].join('=');}
+
+        //this will reload the page, it's likely better to store this until finished
+        document.location.search = kvp.join(',');
+    }
+
+
 
     //URL LOADING NEED TO WORK ON
     $scope.getParam = function() {
