@@ -138,16 +138,13 @@ module.controller('multistreamController', function($scope, $sce) {
           $scope.toggleChat();
         }
       }
-      /*
       var parameters = loadUrl();
       console.log(parameters);
-      */
     }
 
     $scope.loadUrl = function() {
 
 
-      /*
       var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
       for (var i=0;i<url.length;i++) {
              var params = url[i].split("=");
@@ -155,6 +152,7 @@ module.controller('multistreamController', function($scope, $sce) {
               return params[1];
       }
       return false;
-      */
     }
+    */
+
 });
