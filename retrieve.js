@@ -25,7 +25,7 @@ module.controller('multistreamController', function($scope, $sce) {
         $scope.input = "";
         $scope.toggleLayout();
         $scope.toggleChat();
-        $scope.insertParam("stream", channel);
+        //$scope.insertParam("stream", channel);
       }
     }
     $scope.deleteStream = function() {
