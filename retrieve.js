@@ -70,8 +70,9 @@ module.controller('multistreamController', function($scope, $sce) {
     }
 
     $scope.toggleChat = function() {
+      console.log("chat toggle");
       var chats = document.getElementsByClassName("chat");
-      if ($scope.chat == "SHOW CHAT") {
+      if ($scope.chatButton == "SHOW CHAT") {
         var newHeight = "0%";
       } else {
         var newHeight = "70%";
