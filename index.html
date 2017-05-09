@@ -21,6 +21,7 @@
             <ul id="streamList">
               <li ng-repeat="stream in streamList track by $index">
                 <p> {{ stream.channel }} </p>
+                <a class="{{stream.channel}}" ng-click="refreshStream($event)">r</a>
                 <a class="close" ng-click="deleteStream()">X</a>
               </li>
             </ul>
@@ -31,6 +32,7 @@
           <section class="stream" ng-repeat="stream in streamList track by $index">
             <section class="player">
               <iframe src="{{trustSrc(stream.player)}}"
+                      id="{{stream.channel}}"
                       frameborder="0"
                       scrolling="no"
                       allowfullscreen="true">

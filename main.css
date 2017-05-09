@@ -41,12 +41,15 @@ nav {
         nav #nav-container #streamList li p {
           margin: 0;
           padding-right: 0.5em; }
-        nav #nav-container #streamList li .close {
+        nav #nav-container #streamList li a {
           font-weight: bold;
           text-decoration: none;
           cursor: pointer;
           font-size: 1em;
-          transition: all 0.3s; }
+          transition: all 0.3s;
+          margin-right: 0.5em; }
+        nav #nav-container #streamList li .refresh {
+          margin-right: 0.5em; }
 
 #stream-container {
   background: #141414;

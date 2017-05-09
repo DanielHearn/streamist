@@ -35,6 +35,11 @@ module.controller('multistreamController', function($scope, $sce) {
       //add deleting url parameter
     }
 
+    $scope.refreshStream = function(event) {
+      var iframe = document.getElementById(event.target.className);
+      iframe.src = iframe.src;
+    }
+
     $scope.toggleLayout = function() {
       var numOfStreams = $scope.streamList.length;
       var chats = document.getElementsByClassName("chat");
