@@ -12,3 +12,4 @@ Creating a list of the channels seperated with commas
 - [ ] Layout system, via buttons and flex
 - [ ] Chat selection either multiple of select one from many
 - [ ] Improve ui and colour scheme
+- [ ] Button icons
