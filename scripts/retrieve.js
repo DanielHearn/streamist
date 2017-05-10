@@ -24,20 +24,31 @@ module.controller('multistreamController', function($scope, $sce) {
         $scope.streamList.push(streamItem);
         $scope.input = "";
         $scope.toggleLayout();
-        $scope.toggleChat();
+        $scope.toggleAllChat();
         //$scope.insertParam("stream", channel);
       }
     }
     $scope.deleteStream = function() {
       $scope.streamList.splice(this.$index, 1);
       $scope.toggleLayout();
-      $scope.toggleChat();
+      $scope.toggleAllChat();
       //add deleting url parameter
     }
 
     $scope.refreshStream = function(event) {
-      var iframe = document.getElementById(event.target.className);
+      streamID = event.target.className + "player"
+      var iframe = document.getElementById(streamID);
       iframe.src = iframe.src;
+    }
+
+    $scope.toggleStreamChat = function(event) {
+      streamID = event.target.className + "chat"
+      var streamChat = document.getElementById(streamID);
+      if (streamChat.style.display == "none") {
+        streamChat.style.display = "block"
+      } else {
+        streamChat.style.display = "none"
+      }
     }
 
     $scope.toggleLayout = function() {
@@ -54,12 +65,12 @@ module.controller('multistreamController', function($scope, $sce) {
           $scope.setStyle(stream, "flex-direction", "row");
       }
       */
-      $scope.toggleChat();
+      $scope.toggleAllChat();
     }
 
     $scope.setStyle = function(elementList, style, newSetting) {
       setTimeout(function() { //Delay to ensure all elements effected
-        for (var i = 0; i <= elementList.length; i++) {
+        for (var i = 0; i < elementList.length; i++) {
           elementList[i].style[style] = newSetting;
         }
       },10);
@@ -71,18 +82,18 @@ module.controller('multistreamController', function($scope, $sce) {
       } else {
         $scope.chatButton = "HIDE CHAT";
       }
-      $scope.toggleChat();
+      $scope.toggleAllChat();
     }
 
-    $scope.toggleChat = function() {
+    $scope.toggleAllChat = function() {
       console.log("chat toggle");
       var chats = document.getElementsByClassName("chat");
       if ($scope.chatButton == "SHOW CHAT") {
-        var newHeight = "0%";
+        var newDisplay = "none";
       } else {
-        var newHeight = "70%";
+        var newDisplay = "block";
       }
-      $scope.setStyle(chats, "height", newHeight);
+      $scope.setStyle(chats, "display", newDisplay);
     }
 
     $scope.toggleNav = function() {

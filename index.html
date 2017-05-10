@@ -2,8 +2,8 @@
 <html ng-app="multistreamApp">
     <head>
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-      <script type="text/javascript" src="retrieve.js"></script>
-      <link href="main.css" rel="stylesheet">
+      <script type="text/javascript" src="scripts/retrieve.js"></script>
+      <link href="style/main.css" rel="stylesheet">
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>Multistream Viewer</title>
@@ -21,7 +21,8 @@
             <ul id="streamList">
               <li ng-repeat="stream in streamList track by $index">
                 <p> {{ stream.channel }} </p>
-                <a class="{{stream.channel}}" ng-click="refreshStream($event)">r</a>
+                <a class="{{stream.channel}}" ng-click="refreshStream($event)">R</a>
+                <a class="{{stream.channel}}" ng-click="toggleStreamChat($event)">C</a>
                 <a class="close" ng-click="deleteStream()">X</a>
               </li>
             </ul>
@@ -30,18 +31,17 @@
         <button id="navToggle" type="button" name="button" ng-click="toggleNav()"> {{ navToggle }} </button>
         <section id="stream-container">
           <section class="stream" ng-repeat="stream in streamList track by $index">
-            <section class="player">
-              <iframe src="{{trustSrc(stream.player)}}"
-                      id="{{stream.channel}}"
+            <section class="player" id="{{stream.channel}}player">
+              <iframe ng-src="{{trustSrc(stream.player)}}"
                       frameborder="0"
                       scrolling="no"
                       allowfullscreen="true">
               </iframe>
             </section>
-            <section class="chat">
-              <iframe frameborder="0"
+            <section class="chat" id="{{stream.channel}}chat">
+              <iframe ng-src="{{trustSrc(stream.chat)}}"
+                      frameborder="0"
                       scrolling="no"
-                      ng-src="{{trustSrc(stream.chat)}}"
                       width="20%">
               </iframe>
             </section>

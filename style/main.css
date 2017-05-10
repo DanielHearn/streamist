@@ -53,7 +53,7 @@ nav {
 
 #stream-container {
   background: #141414;
-  min-height: calc(100vh - 50px);
+  min-height: calc(100vh - 54px);
   flex: 1 1 auto;
   display: flex;
   flex-direction: row;
