@@ -25,14 +25,15 @@ module.controller('multistreamController', function($scope, $sce) {
         $scope.input = "";
         $scope.toggleLayout();
         $scope.toggleAllChat();
-        //$scope.insertParam("stream", channel);
+        $scope.insertParam();
       }
     }
     $scope.deleteStream = function() {
+      var removedStream = $scope.streamList[this.$index].channel
+      $scope.deleteParam(removedStream);
       $scope.streamList.splice(this.$index, 1);
       $scope.toggleLayout();
       $scope.toggleAllChat();
-      //add deleting url parameter
     }
 
     $scope.refreshStream = function(event) {
@@ -86,7 +87,6 @@ module.controller('multistreamController', function($scope, $sce) {
     }
 
     $scope.toggleAllChat = function() {
-      console.log("chat toggle");
       var chats = document.getElementsByClassName("chat");
       if ($scope.chatButton == "SHOW CHAT") {
         var newDisplay = "none";
@@ -110,58 +110,58 @@ module.controller('multistreamController', function($scope, $sce) {
       }
     }
 
-    /*
-    $scope.insertParam = function(key, value) {
-        //key = encodeURI(key);
-        value = encodeURI(value);
+    $scope.insertParam = function() {
+      var channels;
+      for (channel in $scope.streamList) {
+        channels += String($scope.streamList[channel].channel) + ",";
+      }
+      channels = channels.replace("undefined","");
+      console.log("inserted: " + channels);
+      var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?stream=' + channels;
+      window.history.pushState({path:newurl},'',newurl);
+    }
 
-        var kvp = document.location.search.substr(1).split(',');
-
-        var i=kvp.length; var x; while(i--)
-        {
-            x = kvp[i].split('=');
-
-            //if (x[0]==key)
-          //  {
-          //      x[1] = value;
-            //    kvp[i] = x.join('=');
-          //      break;
-          //  }
-        }
-
-        if(i<0) {kvp[kvp.length] = [value].join('=');}
-
-        //this will reload the page, it's likely better to store this until finished
-        document.location.search = kvp.join(',');
+    $scope.deleteParam = function(removedChannel) {
+      var channels;
+      //console.log($scope.streamList);
+      for (channel in $scope.streamList) {
+        channels += String($scope.streamList[channel].channel) + ",";
+      }
+      channels = channels.replace("undefined","");
+      channels = channels.replace(removedChannel + ",","");
+      console.log("deleting: " + removedChannel);
+      var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?stream=' + channels;
+      window.history.pushState({path:newurl},'',newurl);
     }
 
 
-
-    //URL LOADING NEED TO WORK ON
     $scope.getParam = function() {
-
       var urlParams = new URLSearchParams(window.location.search);
+      console.log(urlParams);
       urlStreams = urlParams.get('stream');
-      urlStreams = urlStreams.split(",");
-
-      for (channel in urlStreams) {  //clean up create function
-        if ($scope.streamList.length < 4) {
-          var channel = urlStreams[channel];
-          var chatUrlFormat = ($scope.chatStartUrl + channel + $scope.chatEndUrl);
-          var playerUrlFormat = ($scope.playerUrl + channel)
-          var streamItem = { channel: channel, player: playerUrlFormat, chat: chatUrlFormat }
-          $scope.streamList.push(streamItem);
-          $scope.toggleLayout();
-          $scope.toggleChat();
+      console.log(urlStreams);
+      console.log(urlStreams !== "" && urlStreams !== null);
+      if (urlStreams !== "" && urlStreams !== null) {
+        urlStreams = urlStreams.split(",");
+        for (channel in urlStreams) {  //clean up create function
+          if ($scope.streamList.length < 4) {
+            var channel = urlStreams[channel];
+            if(channel !== "") {
+              var chatUrlFormat = ($scope.chatStartUrl + channel + $scope.chatEndUrl);
+              var playerUrlFormat = ($scope.playerUrl + channel)
+              var streamItem = { channel: channel, player: playerUrlFormat, chat: chatUrlFormat }
+              $scope.streamList.push(streamItem);
+              $scope.toggleLayout();
+              $scope.toggleAllChat();
+            }
+          }
         }
       }
-      var parameters = loadUrl();
-      console.log(parameters);
+      //var parameters = $scope.loadUrl();
+      //  console.log(parameters);
     }
-
+/*
     $scope.loadUrl = function() {
-
-
       var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
       for (var i=0;i<url.length;i++) {
              var params = url[i].split("=");
@@ -170,6 +170,5 @@ module.controller('multistreamController', function($scope, $sce) {
       }
       return false;
     }
-    */
-
+*/
 });

@@ -8,8 +8,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>Multistream Viewer</title>
     </head>
-    <div id="controller" ng-controller="multistreamController">
-    <!-- data-ng-init="getParam()" -->
+    <div id="controller" ng-controller="multistreamController" data-ng-init="getParam()">
       <body>
         <nav id="navBar">
           <section id="nav-container">
@@ -31,8 +30,9 @@
         <button id="navToggle" type="button" name="button" ng-click="toggleNav()"> {{ navToggle }} </button>
         <section id="stream-container">
           <section class="stream" ng-repeat="stream in streamList track by $index">
-            <section class="player" id="{{stream.channel}}player">
+            <section class="player">
               <iframe ng-src="{{trustSrc(stream.player)}}"
+                      id="{{stream.channel}}player"
                       frameborder="0"
                       scrolling="no"
                       allowfullscreen="true">
