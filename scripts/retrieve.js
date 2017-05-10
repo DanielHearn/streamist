@@ -136,11 +136,9 @@ module.controller('multistreamController', function($scope, $sce) {
 
 
     $scope.getParam = function() {
-      var urlParams = new URLSearchParams(window.location.search);
-      console.log(urlParams);
+      var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+      var urlParams = new URLSearchParams(location.search.substring(1));
       urlStreams = urlParams.get('stream');
-      console.log(urlStreams);
-      console.log(urlStreams !== "" && urlStreams !== null);
       if (urlStreams !== "" && urlStreams !== null) {
         urlStreams = urlStreams.split(",");
         for (channel in urlStreams) {  //clean up create function
