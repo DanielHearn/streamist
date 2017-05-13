@@ -7,9 +7,10 @@ Creating a list of the channels seperated with commas
 
 ## ToDo
 - [ ] Fix screen scaling
+- [ ] Fix url system on firefox
 - [x] Url parameter system
 - [ ] Optimised and cleaner code
-- [ ] Layout system, via buttons and flex
+- [x] Layout system, via buttons and flex
 - [ ] Chat selection either multiple of select one from many
 - [ ] Improve ui and colour scheme
 - [ ] Button icons
