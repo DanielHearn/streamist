@@ -6,7 +6,7 @@
       <link href="style/main.css" rel="stylesheet">
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Multistream Viewer</title>
+      <title>Manytwitch</title>
     </head>
     <div id="controller" ng-controller="multistreamController" data-ng-init="getParam()">
       <body>
@@ -17,6 +17,13 @@
               <button id="getTwitch" href="">ADD</button>
             </form>
             <button id="toggleChat" href="" ng-click="setChat()"> {{ chatButton }} </button>
+            <select name="availableChats" ng-model="availableChats" ng-change="getMainChat()">
+              <option value="">-Select Chat-</option>
+              <option ng-repeat="stream in streamList" value="{{stream.channel}}" ng-selected="availableChats == stream.channel">{{stream.channel}}</option>
+            </select>
+            <!-- <button ng-click="selectChat()">Schat</button> -->
+            <button id="layout1" href="" ng-click="changeLayout('layout1')"> Layout1 </button>
+            <button id="layout2" href="" ng-click="changeLayout('layout2')"> Layout2 </button>
             <ul id="streamList">
               <li ng-repeat="stream in streamList track by $index">
                 <p> {{ stream.channel }} </p>
@@ -45,13 +52,13 @@
                       width="20%">
               </iframe>
             </section>
-            <!--
-            height="50%"
-            width="80%"
-
-            height="50%"
-            width="20%">
-            -->
+          </section>
+          <section id="mainChat">
+            <iframe ng-src="{{trustSrc(mainChatUrl)}}"
+                    frameborder="0"
+                    scrolling="no"
+                    width="20%">
+            </iframe>
           </section>
         </section>
       </body>

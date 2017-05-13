@@ -2,6 +2,8 @@ var module = angular.module('multistreamApp', []);
 
 module.controller('multistreamController', function($scope, $sce) {
     var navVisible = true;
+    var currentLayout = "layout1";
+
     $scope.navToggle = "HIDE";
     $scope.chatButton = "HIDE CHAT";
 
@@ -10,6 +12,8 @@ module.controller('multistreamController', function($scope, $sce) {
     $scope.playerUrl = "http://player.twitch.tv/?channel=";
     $scope.chatStartUrl = "http://www.twitch.tv/";
     $scope.chatEndUrl = "/chat";
+
+    //$scope.availableChats = "SelectChat";
 
     $scope.trustSrc = function(src) {
       return $sce.trustAsResourceUrl(src);
@@ -26,6 +30,10 @@ module.controller('multistreamController', function($scope, $sce) {
         $scope.toggleLayout();
         $scope.toggleAllChat();
         $scope.insertParam();
+        $scope.changeLayout(currentLayout);
+        if ($scope.streamList.length == 1) {
+          $scope.setMainChat();
+        }
       }
     }
     $scope.deleteStream = function() {
@@ -34,6 +42,15 @@ module.controller('multistreamController', function($scope, $sce) {
       $scope.streamList.splice(this.$index, 1);
       $scope.toggleLayout();
       $scope.toggleAllChat();
+      $scope.changeLayout(currentLayout);
+      if ($scope.streamList.length == 1) {
+        $scope.setMainChat();
+      }
+      if (currentLayout = "layout1" && $scope.streamList.length == 0) {
+          document.getElementById("mainChat").style.display = "none";
+      }
+      console.log("Delete: " + removedStream);
+      $scope.getMainChat();
     }
 
     $scope.refreshStream = function(event) {
@@ -43,29 +60,35 @@ module.controller('multistreamController', function($scope, $sce) {
     }
 
     $scope.toggleStreamChat = function(event) {
-      streamID = event.target.className + "chat"
-      var streamChat = document.getElementById(streamID);
-      if (streamChat.style.display == "none") {
-        streamChat.style.display = "block"
-      } else {
-        streamChat.style.display = "none"
+      if (currentLayout == "layout1") {
+        streamID = event.target.className + "chat";
+        var streamChat = document.getElementById(streamID);
+        if (streamChat.style.display == "none") {
+          streamChat.style.display = "block";
+        } else {
+          streamChat.style.display = "none";
+        }
       }
+    }
+
+    $scope.setMainChat = function() {
+        if ($scope.availableChats != "") {
+          $scope.availableChats = $scope.streamList[0].channel;
+          $scope.getMainChat();
+        }
+    }
+
+    $scope.getMainChat = function() {
+        if ($scope.availableChats != "") {
+          var chatUrlFormat = ($scope.chatStartUrl + $scope.availableChats + $scope.chatEndUrl);
+          $scope.mainChatUrl = chatUrlFormat;
+          console.log("Set main chat: " + $scope.availableChats);
+        }
     }
 
     $scope.toggleLayout = function() {
       var numOfStreams = $scope.streamList.length;
       var chats = document.getElementsByClassName("chat");
-      /*
-      if (numOfStreams == 1) {
-          $scope.setStyle(chats, "width", "30%");
-          $scope.setStyle(chats, "height", "100%");
-          $scope.setStyle(stream, "flex-direction", "row");
-      } else {
-          $scope.setStyle(chats, "width", "30%");
-          $scope.setStyle(chats, "height", "100%");
-          $scope.setStyle(stream, "flex-direction", "row");
-      }
-      */
       $scope.toggleAllChat();
     }
 
@@ -78,12 +101,22 @@ module.controller('multistreamController', function($scope, $sce) {
     }
 
     $scope.setChat = function() {
-      if ($scope.chatButton == "HIDE CHAT") {
-        $scope.chatButton = "SHOW CHAT";
+      if (currentLayout == "layout1") {
+        if ($scope.chatButton == "HIDE CHAT") {
+          $scope.chatButton = "SHOW CHAT";
+        } else {
+          $scope.chatButton = "HIDE CHAT";
+        }
+        $scope.toggleAllChat();
       } else {
-        $scope.chatButton = "HIDE CHAT";
+        if ($scope.chatButton == "HIDE CHAT") {
+          $scope.chatButton = "SHOW CHAT";
+          document.getElementById("mainChat").style.display = "none";
+        } else {
+          $scope.chatButton = "HIDE CHAT";
+          document.getElementById("mainChat").style.display = "block";
+        }
       }
-      $scope.toggleAllChat();
     }
 
     $scope.toggleAllChat = function() {
@@ -96,18 +129,44 @@ module.controller('multistreamController', function($scope, $sce) {
       $scope.setStyle(chats, "display", newDisplay);
     }
 
+    $scope.changeLayout = function(newLayout) {
+      var streamList = document.getElementsByClassName("stream");
+      var chatList = document.getElementsByClassName("chat");
+      if (newLayout == "layout1"){
+        currentLayout = "layout1";
+        $scope.setStyle(streamList, "flex-direction", "column");
+        $scope.setStyle(chatList, "height", "70%");
+        $scope.setStyle(chatList, "width", "100%");
+        $scope.setStyle(chatList, "display", "flex");
+        document.getElementById("mainChat").style.display = "none";
+        //document.getElementById("toggleChat").style.disabled = false;
+      } else if (newLayout == "layout2") {
+        currentLayout = "layout2";
+        $scope.setStyle(streamList, "flex-direction", "row");
+        $scope.setStyle(chatList, "height", "100%");
+        $scope.setStyle(chatList, "width", "30%");
+        $scope.setStyle(chatList, "display", "none");
+        document.getElementById("mainChat").style.display = "block";
+        //document.getElementById("toggleChat").style.disabled = true;
+      }
+      $scope.setChat();
+    }
+
     $scope.toggleNav = function() {
       if (navVisible == true) {
-        document.getElementById("navBar").style.display = "none";
-        document.getElementById("stream-container").style.minHeight = "100vh";
+        //document.getElementById("navBar").style.display = "none";
+        document.getElementById("navBar").style.maxHeight = 0;
+        //document.getElementById("stream-container").style.minHeight = "100vh";  //SORT OUT NAV SO THAT I SHOULDNT HAVE TO CHANGE, IT SHOULD FLEX
         $scope.navToggle = "SHOW"
         navVisible = false;
       } else {
-        document.getElementById("navBar").style.display = "flex";
-        document.getElementById("stream-container").style.minHeight = "calc(100vh - 50px)";
+        //document.getElementById("navBar").style.display = "flex";
+        document.getElementById("navBar").style.maxHeight = "50px";
+        //document.getElementById("stream-container").style.minHeight = "100vh";
         $scope.navToggle = "HIDE"
         navVisible= true;
       }
+      //inverse navvisible
     }
 
     $scope.insertParam = function() {
@@ -116,7 +175,6 @@ module.controller('multistreamController', function($scope, $sce) {
         channels += String($scope.streamList[channel].channel) + ",";
       }
       channels = channels.replace("undefined","");
-      console.log("inserted: " + channels);
       var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?stream=' + channels;
       window.history.pushState({path:newurl},'',newurl);
     }
@@ -129,11 +187,9 @@ module.controller('multistreamController', function($scope, $sce) {
       }
       channels = channels.replace("undefined","");
       channels = channels.replace(removedChannel + ",","");
-      console.log("deleting: " + removedChannel);
       var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?stream=' + channels;
       window.history.pushState({path:newurl},'',newurl);
     }
-
 
     $scope.getParam = function() {
       var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
@@ -141,7 +197,7 @@ module.controller('multistreamController', function($scope, $sce) {
       urlStreams = urlParams.get('stream');
       if (urlStreams !== "" && urlStreams !== null) {
         urlStreams = urlStreams.split(",");
-        for (channel in urlStreams) {  //clean up create function
+        for (channel in urlStreams) {
           if ($scope.streamList.length < 4) {
             var channel = urlStreams[channel];
             if(channel !== "") {
@@ -151,22 +207,13 @@ module.controller('multistreamController', function($scope, $sce) {
               $scope.streamList.push(streamItem);
               $scope.toggleLayout();
               $scope.toggleAllChat();
+              $scope.setMainChat();
             }
           }
         }
       }
-      //var parameters = $scope.loadUrl();
-      //  console.log(parameters);
     }
-/*
-    $scope.loadUrl = function() {
-      var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-      for (var i=0;i<url.length;i++) {
-             var params = url[i].split("=");
-             if(params[0] == param)
-              return params[1];
-      }
-      return false;
-    }
-*/
+
+    $scope.changeLayout("layout1");
+
 });

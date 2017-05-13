@@ -13,10 +13,13 @@ body {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   margin: 0;
-  height: 100vh;
+  //height: 100vh;
   //width: 100vw;
   #controller {
-    height: 100%;
+    //height: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
   }
 }
 
@@ -25,7 +28,7 @@ nav {
   background: $accent-primary;
   color: $nav-text;
   //padding: 0.5em;
-  height: 50px;
+  //height: 50px;
   display: flex;
   margin: 0;
   visibility: visible;
@@ -112,16 +115,30 @@ nav {
     }
     .chat {
       //width: 40vw;
-      width: 100%;
+      //width: 100%;
       height: 70%;
+
+      //flex: 1 1 0%;
+
       margin-bottom: 4px;
     }
+  }
+}
+
+#mainChat {
+  display: none;
+  float: right;
+  iframe {
+    width: 100%;
+    height: 100%;
   }
 }
 
 #navToggle {
   position: absolute;
   z-index: 5;
+  right: 0;
+  width: 5em;
 }
 
 #toggleChat {
@@ -134,8 +151,11 @@ button {
   padding: 0.5em 1em;
   text-decoration: none;
   font-size: 1em;
-  margin: 0;
+  margin-left: 0.5em;
   border: 0;
   cursor: pointer;
   display: block;
+  &:disabled, &[disabled] {
+    background: $text-primary;
+  }
 }
