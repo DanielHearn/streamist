@@ -7,10 +7,12 @@ Creating a list of the channels seperated with commas
 
 ## ToDo
 - [ ] Fix screen scaling
-- [ ] Fix url system on firefox
+- [ ] Fix hide chat button
+- [ ] Fix chat loading on firefox
+- [ ] Load streams after chat
+- [ ] Use css variables to avoid dom complication
 - [x] Url parameter system
 - [ ] Optimised and cleaner code
 - [x] Layout system, via buttons and flex
-- [ ] Chat selection either multiple of select one from many
 - [ ] Improve ui and colour scheme
 - [ ] Button icons

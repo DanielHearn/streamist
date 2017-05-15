@@ -126,8 +126,19 @@ nav {
 }
 
 #mainChat {
-  display: none;
+  display: flex;
+  flex-direction: column;
   float: right;
+  select {
+    width: 100%;
+    display: block;
+    font-size: 1em;
+    color: $nav-text;
+    padding: 0.5em;
+    margin: 0;
+    border: 0;
+    background: $accent-secondary;
+  }
   iframe {
     width: 100%;
     height: 100%;
