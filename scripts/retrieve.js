@@ -136,6 +136,7 @@ module.controller('multistreamController', function($scope, $sce) {
         $scope.setStyle(chatList, "height", "70%");
         $scope.setStyle(chatList, "width", "100%");
         $scope.setStyle(chatList, "display", "flex");
+        $scope.chatButton = "HIDE CHAT";
         document.getElementById("mainChat").style.display = "none";
         //$scope.setChat();
       } else if (currentLayout == "layout2" && $scope.streamList.length != 0) {
