@@ -146,6 +146,16 @@ module.controller('multistreamController', function($scope, $sce) {
         $scope.setStyle(chatList, "display", "none");
         $scope.chatButton = "HIDE CHAT";
         document.getElementById("mainChat").style.display = "flex";
+        if ($scope.streamList.length == 3) {
+          var focusStream = $scope.streamList[0].channel;
+          document.getElementById(focusStream).style.width = "100%";
+          document.getElementById(focusStream).style.flexDirection = "column";
+        }
+        else {
+          var focusStream = $scope.streamList[0].channel;
+          document.getElementById(focusStream).style.width = "initial";
+          document.getElementById(focusStream).style.flexDirection = "row";
+        }
       }
     }
 
@@ -209,7 +219,5 @@ module.controller('multistreamController', function($scope, $sce) {
         }
       }
     }
-
     $scope.changeLayout("layout1");
-
 });
