@@ -6,7 +6,15 @@
       <link href="style/main.css" rel="stylesheet">
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Manytwitch</title>
+
+      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+      <link rel="manifest" href="/manifest.json">
+      <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+      <meta name="theme-color" content="#ffffff">
+
+      <title>Many Twitch</title>
     </head>
     <div id="controller" ng-controller="multistreamController" data-ng-init="getParam()">
       <body>
@@ -31,23 +39,24 @@
         </nav>
         <button id="navToggle" type="button" name="button" ng-click="toggleNav()"> {{ navToggle }} </button>
         <section id="stream-container">
-          <section class="stream" ng-repeat="stream in streamList track by $index">
-            <section class="player">
-              <iframe ng-src="{{trustSrc(stream.player)}}"
-                      id="{{stream.channel}}player"
-                      frameborder="0"
-                      scrolling="no"
-                      allowfullscreen="true">
-              </iframe>
+          <!-- <section id="streams"> -->
+            <section class="stream" ng-repeat="stream in streamList track by $index"  id="{{stream.channel}}">
+              <section class="player" id="{{stream.channel}}player">
+                <iframe ng-src="{{trustSrc(stream.player)}}"
+                        frameborder="0"
+                        scrolling="no"
+                        allowfullscreen="true">
+                </iframe>
+              </section>
+              <section class="chat" id="{{stream.channel}}chat">
+                <iframe ng-src="{{trustSrc(stream.chat)}}"
+                        frameborder="0"
+                        scrolling="no"
+                        width="20%">
+                </iframe>
+              </section>
             </section>
-            <section class="chat" id="{{stream.channel}}chat">
-              <iframe ng-src="{{trustSrc(stream.chat)}}"
-                      frameborder="0"
-                      scrolling="no"
-                      width="20%">
-              </iframe>
-            </section>
-          </section>
+          <!-- </section> -->
           <section id="mainChat">
             <select name="availableChats" ng-model="availableChats" ng-change="getMainChat()">
               <option value="">-Select Chat-</option>
