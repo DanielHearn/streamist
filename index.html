@@ -25,13 +25,12 @@
               <button id="getTwitch" href="">ADD</button>
             </form>
             <button id="toggleChat" href="" ng-click="setChat()"> {{ chatButton }} </button>
-            <button id="layout1" href="" ng-click="changeLayout('layout1')"> Layout1 </button>
-            <button id="layout2" href="" ng-click="changeLayout('layout2')"> Layout2 </button>
+            <button id="layout1" href="" ng-click="changeLayout(2)"> Layout1 </button>
+            <button id="layout2" href="" ng-click="changeLayout(1)"> Layout2 </button>
             <ul id="streamList">
               <li ng-repeat="stream in streamList track by $index">
                 <p> {{ stream.channel }} </p>
                 <a class="{{stream.channel}}" ng-click="refreshStream($event)">R</a>
-                <a class="{{stream.channel}}" ng-click="toggleStreamChat($event)">C</a>
                 <a class="close" ng-click="deleteStream()">X</a>
               </li>
             </ul>
@@ -39,7 +38,7 @@
         </nav>
         <button id="navToggle" type="button" name="button" ng-click="toggleNav()"> {{ navToggle }} </button>
         <section id="stream-container">
-          <!-- <section id="streams"> -->
+          <section id="streams">
             <section class="stream" ng-repeat="stream in streamList track by $index"  id="{{stream.channel}}">
               <section class="player" id="{{stream.channel}}player">
                 <iframe ng-src="{{trustSrc(stream.player)}}"
@@ -56,7 +55,7 @@
                 </iframe>
               </section>
             </section>
-          <!-- </section> -->
+          </section>
           <section id="mainChat">
             <select name="availableChats" ng-model="availableChats" ng-change="getMainChat()">
               <option value="">-Select Chat-</option>

@@ -1,9 +1,28 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
+:root {
+  --bg: #FFFFFF;
+  --nav-text: #FFFFFF;
+  --nav-padding: 0.5em;
+  --text-primary: #212121;
+  --text-secondary: #757575;
+  --accent-primary: #FF5722;
+  --accent-secondary: #E64A19;
+  --mainChat-display: none;
+  --chat-display: flex;
+  --chat-height: 70%;
+  --chat-width: 100%;
+  --streams-flexDir: column;
+  --stream-width: initial;
+  --navButton-bg: var(--accent-secondary);
+  --navBar-display: flex;
+  --mainStream-width: 100%; }
+
 body {
-  background: #FFFFFF;
+  background: var(--bg);
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
-  margin: 0; }
+  margin: 0;
+  overflow: hidden; }
   body #controller {
     display: flex;
     flex-direction: column;
@@ -11,36 +30,37 @@ body {
 
 nav {
   width: 100%;
-  background: #FF5722;
-  color: #FFFFFF;
-  display: flex;
+  background: var(--accent-primary);
+  color: var(--nav-text);
+  display: var(--navBar-display);
   margin: 0;
   visibility: visible; }
   nav #nav-container {
-    padding: 0.5em;
+    padding: var(--nav-padding);
     display: flex;
     width: 100%; }
     nav #nav-container form {
       display: flex; }
     nav #nav-container input {
-      margin-right: 0.5em;
+      margin-right: var(--nav-padding);
       border: 0;
-      color: #757575; }
+      color: var(--text-secondary); }
     nav #nav-container #streamList {
       float: right;
       margin: 0;
-      list-style: none; }
+      list-style: none;
+      display: flex; }
       nav #nav-container #streamList li {
         float: left;
         display: flex;
         position: relative;
-        background: #E64A19;
-        margin-left: 0.5em;
+        background: var(--accent-secondary);
+        margin-left: var(--nav-padding);
         text-transform: capitalize;
         padding: 0.4em; }
         nav #nav-container #streamList li p {
           margin: 0;
-          padding-right: 0.5em; }
+          padding-right: var(--nav-padding); }
         nav #nav-container #streamList li a {
           font-weight: bold;
           text-decoration: none;
@@ -52,18 +72,18 @@ nav {
           margin-right: 0.5em; }
 
 #stream-container {
-  background: #141414;
-  flex-wrap: wrap;
-  min-height: calc(100vh - 54px);
+  background: #000000;
   flex: 1 1 auto;
   display: flex;
+  height: 100%;
   flex-direction: row;
   box-sizing: border-box; }
   #stream-container .stream {
     position: relative;
     flex: 1 1 auto;
     display: flex;
-    flex-direction: column;
+    width: var(--stream-width);
+    flex-direction: var(--streams-flexDir);
     box-sizing: border-box; }
     #stream-container .stream iframe {
       width: 100%;
@@ -72,38 +92,48 @@ nav {
       width: 100%;
       height: 100%; }
     #stream-container .stream .chat {
-      height: 70%;
-      margin-bottom: 4px; }
+      display: var(--chat-display);
+      height: var(--chat-height);
+      width: var(--chat-width); }
+
+#streams {
+  flex-wrap: wrap;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box; }
 
 #mainChat {
-  display: flex;
+  display: var(--mainChat-display);
   flex-direction: column;
-  float: right; }
+  float: right;
+  width: 350px; }
   #mainChat select {
     width: 100%;
     display: block;
     font-size: 1em;
-    color: #FFFFFF;
+    color: var(--nav-text);
     padding: 0.5em;
     margin: 0;
     border: 0;
-    background: #E64A19; }
+    background: var(--accent-secondary); }
   #mainChat iframe {
     width: 100%;
     height: 100%; }
 
 #navToggle {
+  background: var(--navButton-bg);
   position: absolute;
   z-index: 5;
   right: 0;
-  width: 5em; }
+  width: 8em; }
 
 #toggleChat {
   margin-left: 0.5em; }
 
 button {
-  background: #E64A19;
-  color: #FFFFFF;
+  background: var(--accent-secondary);
+  color: var(--nav-text);
   padding: 0.5em 1em;
   text-decoration: none;
   font-size: 1em;
@@ -111,5 +141,13 @@ button {
   border: 0;
   cursor: pointer;
   display: block; }
-  button:disabled, button[disabled] {
-    background: #212121; }
+
+@media screen and (max-width: 40em) {
+  nav #nav-container #streamList {
+    display: none; }
+  #layout1, #layout2 {
+    display: none; } }
+
+@media screen and (max-width: 50em) {
+  nav #nav-container #streamList {
+    display: none; } }

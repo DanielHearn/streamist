@@ -2,10 +2,15 @@ var module = angular.module('multistreamApp', []);
 
 module.controller('multistreamController', function($scope, $sce) {
     var navVisible = true;
-    var currentLayout = "layout1";
+    var currentLayout = 1;
+    var root = document.documentElement.style;
+    var hideChatText = "HIDE CHAT";
+    var showChatText = "SHOW CHAT";
+    var maxNumOfStreams = 6;
+
 
     $scope.navToggle = "HIDE";
-    $scope.chatButton = "HIDE CHAT";
+    $scope.chatButton = hideChatText;
 
     $scope.streamList = [];
 
@@ -13,24 +18,20 @@ module.controller('multistreamController', function($scope, $sce) {
     $scope.chatStartUrl = "http://www.twitch.tv/";
     $scope.chatEndUrl = "/chat";
 
-    //$scope.availableChats = "SelectChat";
-
     $scope.trustSrc = function(src) {
       return $sce.trustAsResourceUrl(src);
     }
 
     $scope.addStream = function() {
-      if ($scope.input != null && ($scope.streamList.length < 4)) { //clean up create function
+      if ($scope.input != null && ($scope.streamList.length < maxNumOfStreams)) {
         var channel = $scope.input;
         var chatUrlFormat = ($scope.chatStartUrl + channel + $scope.chatEndUrl);
         var playerUrlFormat = ($scope.playerUrl + channel)
         var streamItem = { channel: channel, player: playerUrlFormat, chat: chatUrlFormat };
         $scope.streamList.push(streamItem);
         $scope.input = "";
-        //$scope.toggleLayout();
-        $scope.toggleAllChat();
         $scope.insertParam();
-        $scope.changeLayout(currentLayout);
+        $scope.updateLayout();
         if ($scope.streamList.length == 1) {
           $scope.setMainChat();
         }
@@ -41,14 +42,13 @@ module.controller('multistreamController', function($scope, $sce) {
       var removedStream = $scope.streamList[this.$index].channel;
       $scope.deleteParam(removedStream);
       $scope.streamList.splice(this.$index, 1);
-      //$scope.toggleLayout();
-      //$scope.toggleAllChat();
-      //$scope.changeLayout(currentLayout);
-      if ($scope.streamList.length == 1) {
+      var removedChatUrl = $scope.chatStartUrl + removedStream + $scope.chatEndUrl;
+      if (removedChatUrl == $scope.mainChatUrl) {
         $scope.setMainChat();
       }
-      if (currentLayout = "layout1" && $scope.streamList.length == 0) {
-          document.getElementById("mainChat").style.display = "none";
+      $scope.updateLayout();
+      if ($scope.streamList.length == 1) {
+        $scope.setMainChat();
       }
       $scope.getMainChat();
     }
@@ -57,18 +57,6 @@ module.controller('multistreamController', function($scope, $sce) {
       streamID = event.target.className + "player"
       var iframe = document.getElementById(streamID);
       iframe.src = iframe.src;
-    }
-
-    $scope.toggleStreamChat = function(event) {
-      if (currentLayout == "layout1") {
-        streamID = event.target.className + "chat";
-        var streamChat = document.getElementById(streamID);
-        if (streamChat.style.display == "none") {
-          streamChat.style.display = "block";
-        } else {
-          streamChat.style.display = "none";
-        }
-      }
     }
 
     $scope.setMainChat = function() {
@@ -85,95 +73,108 @@ module.controller('multistreamController', function($scope, $sce) {
         }
     }
 
-    $scope.toggleLayout = function() {
-      //var numOfStreams = $scope.streamList.length;
-      //var chats = document.getElementsByClassName("chat");
-    }
-
-    $scope.setStyle = function(elementList, style, newSetting) {
-      setTimeout(function() { //Delay to ensure all elements effected
-        for (var i = 0; i < elementList.length; i++) {
-          elementList[i].style[style] = newSetting;
-        }
-      },10);
-    }
-
     $scope.setChat = function() {
-      if (currentLayout == "layout1") {
-        if ($scope.chatButton == "HIDE CHAT") {
-          $scope.chatButton = "SHOW CHAT";
+      if (currentLayout == 2) {
+        if ($scope.chatButton == hideChatText) {
+          $scope.chatButton = showChatText;
         } else {
-          $scope.chatButton = "HIDE CHAT";
+          $scope.chatButton = hideChatText;
         }
         $scope.toggleAllChat();
       } else {
-        if ($scope.chatButton == "HIDE CHAT") {
-          $scope.chatButton = "SHOW CHAT";
-          document.getElementById("mainChat").style.display = "none";
+        if ($scope.chatButton == hideChatText) {
+          $scope.chatButton = showChatText;
+          root.setProperty("--mainChat-display", "none");
         } else {
-          $scope.chatButton = "HIDE CHAT";
-          document.getElementById("mainChat").style.display = "flex";
+          $scope.chatButton = hideChatText;
+          root.setProperty("--mainChat-display", "flex");
         }
       }
     }
 
     $scope.toggleAllChat = function() {
-      var chats = document.getElementsByClassName("chat");
-      if ($scope.chatButton == "SHOW CHAT") {
+      if ($scope.chatButton == showChatText) {
         var newDisplay = "none";
       } else {
-        var newDisplay = "block";
+        var newDisplay = "flex";
       }
-      $scope.setStyle(chats, "display", newDisplay);
+      root.setProperty("--chat-display", newDisplay);
     }
 
     $scope.changeLayout = function(newLayout) {
-      var streamList = document.getElementsByClassName("stream");
-      var chatList = document.getElementsByClassName("chat");
       currentLayout = newLayout;
-      if (currentLayout == "layout1"){
-        $scope.setStyle(streamList, "flex-direction", "column");
-        $scope.setStyle(chatList, "height", "70%");
-        $scope.setStyle(chatList, "width", "100%");
-        $scope.setStyle(chatList, "display", "flex");
-        $scope.chatButton = "HIDE CHAT";
-        document.getElementById("mainChat").style.display = "none";
-        //$scope.setChat();
-      } else if (currentLayout == "layout2" && $scope.streamList.length != 0) {
-        $scope.setStyle(streamList, "flex-direction", "row");
-        $scope.setStyle(chatList, "height", "100%");
-        $scope.setStyle(chatList, "width", "30%");
-        $scope.setStyle(chatList, "display", "none");
-        $scope.chatButton = "HIDE CHAT";
-        document.getElementById("mainChat").style.display = "flex";
-        if ($scope.streamList.length == 3) {
-          var focusStream = $scope.streamList[0].channel;
-          document.getElementById(focusStream).style.width = "100%";
-          document.getElementById(focusStream).style.flexDirection = "column";
-        }
-        else {
-          var focusStream = $scope.streamList[0].channel;
-          document.getElementById(focusStream).style.width = "initial";
-          document.getElementById(focusStream).style.flexDirection = "row";
-        }
+      if (currentLayout == 2){
+        //root.setProperty("--streams-flexDir", "column");
+
+        root.setProperty("--chat-height", "70%");
+        root.setProperty("--chat-width", "100%");
+        root.setProperty("--chat-display", "flex");
+        $scope.chatButton = hideChatText;
+        root.setProperty("--mainChat-display", "none");
+
+        root.setProperty("--stream-width", "initial")
+      } else if (currentLayout == 1 && $scope.streamList.length != 0) {
+        //root.setProperty("--streams-flexDir", "row");
+        //root.setProperty("--chat-height", "100%");
+        //root.setProperty("--chat-width", "30%");
+        root.setProperty("--chat-display", "none");
+        $scope.chatButton = hideChatText;
+        root.setProperty("--mainChat-display", "flex");
+
+        root.setProperty("--stream-width", "initial")
       }
+      $scope.updateLayout();
+    }
+
+    $scope.updateLayout = function() {  //Clean up function
+    if ($scope.streamList.length != 0) {
+      var focusStream = $scope.streamList[0].channel;
+      var numOfStreams = $scope.streamList.length;
+      if (currentLayout == 1) {
+        root.setProperty("--mainStream-width", "100%");
+        if (numOfStreams == 0) {
+            root.setProperty("--mainChat-display", "none");
+        }
+        if (numOfStreams >= 1) {
+            root.setProperty("--mainChat-display", "flex");
+        }
+        if (numOfStreams == 2) {
+          root.setProperty("--stream-width", "100%");
+          root.setProperty("--mainStream-width", "initial");
+        } else if (numOfStreams == 3) {
+          document.getElementById(focusStream).style.width = "var(--mainStream-width)"
+          root.setProperty("--stream-width", "initial");
+        } else if (numOfStreams == 4) {
+          root.setProperty("--stream-width", "50%");
+          root.setProperty("--mainStream-width", "50%");
+        } else if (numOfStreams == 5) {
+          root.setProperty("--stream-width", "50%");
+          root.setProperty("--mainStream-width", "100%");
+        } else if (numOfStreams == 6) {
+          root.setProperty("--stream-width", "50%");
+          root.setProperty("--mainStream-width", "100%");
+        } else {
+          root.setProperty("--stream-width", "initial");
+          root.setProperty("--mainStream-width", "initial");
+        }
+      } else {
+        root.setProperty("--mainStream-width", "initial");
+        root.setProperty("--stream-width", "initial");
+      }
+    }
     }
 
     $scope.toggleNav = function() {
       if (navVisible == true) {
-        //document.getElementById("navBar").style.display = "none";
-        document.getElementById("navBar").style.maxHeight = 0;
-        //document.getElementById("stream-container").style.minHeight = "100vh";  //SORT OUT NAV SO THAT I SHOULDNT HAVE TO CHANGE, IT SHOULD FLEX
-        $scope.navToggle = "SHOW"
-        navVisible = false;
+        root.setProperty("--navBar-display", "none");
+        $scope.navToggle = "SHOW BAR"
+        root.setProperty("--navButton-bg", "var(--accent-primary)")
       } else {
-        //document.getElementById("navBar").style.display = "flex";
-        document.getElementById("navBar").style.maxHeight = "50px";
-        //document.getElementById("stream-container").style.minHeight = "100vh";
-        $scope.navToggle = "HIDE"
-        navVisible= true;
+        root.setProperty("--navBar-display", "flex");
+        $scope.navToggle = "HIDE BAR"
+        root.setProperty("--navButton-bg", "var(--accent-secondary)")
       }
-      //inverse navvisible
+      navVisible = !navVisible;
     }
 
     $scope.insertParam = function() {
@@ -204,20 +205,23 @@ module.controller('multistreamController', function($scope, $sce) {
       if (urlStreams !== "" && urlStreams !== null) {
         urlStreams = urlStreams.split(",");
         for (channel in urlStreams) {
-          if ($scope.streamList.length < 4) {
+          if ($scope.streamList.length < maxNumOfStreams) {
             var channel = urlStreams[channel];
             if(channel !== "") {
               var chatUrlFormat = ($scope.chatStartUrl + channel + $scope.chatEndUrl);
               var playerUrlFormat = ($scope.playerUrl + channel)
               var streamItem = { channel: channel, player: playerUrlFormat, chat: chatUrlFormat }
               $scope.streamList.push(streamItem);
-              $scope.toggleLayout();
+              //$scope.toggleLayout();
               $scope.toggleAllChat();
               $scope.setMainChat();
             }
           }
         }
       }
+      $scope.changeLayout(1);
+      $scope.updateLayout();
     }
-    $scope.changeLayout("layout1");
+    //$scope.changeLayout("layout2");
+  //  $scope.updateLayout();
 });
