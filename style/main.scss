@@ -9,14 +9,13 @@
   --accent-primary: #FF5722;
   --accent-secondary: #E64A19;
   --mainChat-display: none;
-  --chat-display: flex;
+  --chat-display: none;
   --chat-height: 70%;
   --chat-width: 100%;
   --streams-flexDir: column;
   --stream-width: initial;
   --navButton-bg: var(--accent-secondary);
   --navBar-display: flex;
-  --mainStream-width: 100%;
 }
 
 body {
@@ -40,6 +39,7 @@ nav {
   background: var(--accent-primary);
   color: var(--nav-text);
   display: var(--navBar-display);
+  height: 50px;
   margin: 0;
   visibility: visible;
   #nav-container {
@@ -52,6 +52,7 @@ nav {
     input {
       margin-right: var(--nav-padding);
       border: 0;
+      padding: 5px;
       color: var(--text-secondary);
     }
     #streamList {
@@ -64,6 +65,7 @@ nav {
         float: left;
         display: flex;
         position: relative;
+        height: 1.4em;
         //padding: 0.5em;
         background: var(--accent-secondary);
         margin-left: var(--nav-padding);
@@ -72,15 +74,10 @@ nav {
         p {
           margin: 0;
           padding-right: var(--nav-padding);
+          padding-top: 2px;
         }
-        a {
-          font-weight: bold;
-          text-decoration: none;
-          cursor: pointer;
-          font-size: 1em;
-          //padding: $nav-padding;
-          transition: all 0.3s;
-          margin-right: 0.5em;
+        img {
+          height: 1.4em;
         }
         .refresh {
           margin-right: 0.5em;
@@ -130,14 +127,27 @@ nav {
   box-sizing: border-box;
 }
 
-#mainChat {
+#mainChat-container {
   display: var(--mainChat-display);
   flex-direction: column;
   float: right;
   width: 350px;
+  #mainChat-settings {
+    display: flex;
+    background: var(--accent-primary);
+    a {
+      display: flex;
+      align-items: center;
+      padding-left: 1em;
+      padding-right: 1em;
+    }
+    img {
+      height: 1.4em;
+    }
+  }
   select {
-    width: 100%;
-    display: block;
+    width: 90%;
+    display: flex;
     font-size: 1em;
     color: var(--nav-text);
     padding: 0.5em;
@@ -151,16 +161,28 @@ nav {
   }
 }
 
+a {
+  //font-weight: bold;
+  //text-decoration: none;
+  cursor: pointer;
+  //font-size: 1em;
+  //padding: $nav-padding;
+  //transition: all 0.3s;
+  margin-right: 0.5em;
+}
+
 #navToggle {
   background: var(--navButton-bg);
-  position: absolute;
+  position: fixed;
   z-index: 5;
-  right: 0;
+  left: 0;
   width: 8em;
+  top: 48px;
+  margin: 0;
 }
 
 #toggleChat {
-  margin-left: 0.5em;
+  width: 130px;
 }
 
 button {
@@ -175,16 +197,74 @@ button {
   display: block;
 }
 
-@media screen and (max-width: 40em) {
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+//.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 45em) {
   nav #nav-container #streamList {
     display: none;
   }
-  #layout1, #layout2 {
+  .layoutButton {
     display: none;
   }
 }
 
-@media screen and (max-width: 50em) {
+@media screen and (max-width: 70em) {
   nav #nav-container #streamList {
     display: none;
   }

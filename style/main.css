@@ -8,14 +8,13 @@
   --accent-primary: #FF5722;
   --accent-secondary: #E64A19;
   --mainChat-display: none;
-  --chat-display: flex;
+  --chat-display: none;
   --chat-height: 70%;
   --chat-width: 100%;
   --streams-flexDir: column;
   --stream-width: initial;
   --navButton-bg: var(--accent-secondary);
-  --navBar-display: flex;
-  --mainStream-width: 100%; }
+  --navBar-display: flex; }
 
 body {
   background: var(--bg);
@@ -33,6 +32,7 @@ nav {
   background: var(--accent-primary);
   color: var(--nav-text);
   display: var(--navBar-display);
+  height: 50px;
   margin: 0;
   visibility: visible; }
   nav #nav-container {
@@ -44,6 +44,7 @@ nav {
     nav #nav-container input {
       margin-right: var(--nav-padding);
       border: 0;
+      padding: 5px;
       color: var(--text-secondary); }
     nav #nav-container #streamList {
       float: right;
@@ -54,20 +55,17 @@ nav {
         float: left;
         display: flex;
         position: relative;
+        height: 1.4em;
         background: var(--accent-secondary);
         margin-left: var(--nav-padding);
         text-transform: capitalize;
         padding: 0.4em; }
         nav #nav-container #streamList li p {
           margin: 0;
-          padding-right: var(--nav-padding); }
-        nav #nav-container #streamList li a {
-          font-weight: bold;
-          text-decoration: none;
-          cursor: pointer;
-          font-size: 1em;
-          transition: all 0.3s;
-          margin-right: 0.5em; }
+          padding-right: var(--nav-padding);
+          padding-top: 2px; }
+        nav #nav-container #streamList li img {
+          height: 1.4em; }
         nav #nav-container #streamList li .refresh {
           margin-right: 0.5em; }
 
@@ -103,33 +101,49 @@ nav {
   flex-direction: row;
   box-sizing: border-box; }
 
-#mainChat {
+#mainChat-container {
   display: var(--mainChat-display);
   flex-direction: column;
   float: right;
   width: 350px; }
-  #mainChat select {
-    width: 100%;
-    display: block;
+  #mainChat-container #mainChat-settings {
+    display: flex;
+    background: var(--accent-primary); }
+    #mainChat-container #mainChat-settings a {
+      display: flex;
+      align-items: center;
+      padding-left: 1em;
+      padding-right: 1em; }
+    #mainChat-container #mainChat-settings img {
+      height: 1.4em; }
+  #mainChat-container select {
+    width: 90%;
+    display: flex;
     font-size: 1em;
     color: var(--nav-text);
     padding: 0.5em;
     margin: 0;
     border: 0;
     background: var(--accent-secondary); }
-  #mainChat iframe {
+  #mainChat-container iframe {
     width: 100%;
     height: 100%; }
 
+a {
+  cursor: pointer;
+  margin-right: 0.5em; }
+
 #navToggle {
   background: var(--navButton-bg);
-  position: absolute;
+  position: fixed;
   z-index: 5;
-  right: 0;
-  width: 8em; }
+  left: 0;
+  width: 8em;
+  top: 48px;
+  margin: 0; }
 
 #toggleChat {
-  margin-left: 0.5em; }
+  width: 130px; }
 
 button {
   background: var(--accent-secondary);
@@ -142,12 +156,60 @@ button {
   cursor: pointer;
   display: block; }
 
-@media screen and (max-width: 40em) {
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px; }
+
+/* Hide default HTML checkbox */
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s; }
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s; }
+
+input:checked + .slider {
+  background-color: #2196F3; }
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3; }
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px); }
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px; }
+
+.slider.round:before {
+  border-radius: 50%; }
+
+@media screen and (max-width: 45em) {
   nav #nav-container #streamList {
     display: none; }
-  #layout1, #layout2 {
+  .layoutButton {
     display: none; } }
 
-@media screen and (max-width: 50em) {
+@media screen and (max-width: 70em) {
   nav #nav-container #streamList {
     display: none; } }

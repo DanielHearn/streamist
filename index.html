@@ -25,13 +25,19 @@
               <button id="getTwitch" href="">ADD</button>
             </form>
             <button id="toggleChat" href="" ng-click="setChat()"> {{ chatButton }} </button>
-            <button id="layout1" href="" ng-click="changeLayout(2)"> Layout1 </button>
-            <button id="layout2" href="" ng-click="changeLayout(1)"> Layout2 </button>
+            <!--
+            <label class="switch" ng-click="setChat()">
+              <input type="checkbox" checked="checked">
+              <div class="slider"></div>
+            </label>
+            -->
+            <button class="layoutButton" href="" ng-click="changeLayout('grid')"> Layout Grid</button>
+            <button class="layoutButton" href="" ng-click="changeLayout('column')"> Layout Column</button>
             <ul id="streamList">
               <li ng-repeat="stream in streamList track by $index">
                 <p> {{ stream.channel }} </p>
-                <a class="{{stream.channel}}" ng-click="refreshStream($event)">R</a>
-                <a class="close" ng-click="deleteStream()">X</a>
+                <a ng-click="refreshStream($event)"><img class="{{stream.channel}}" src="img/refresh.svg" alt="Refresh stream"></a>
+                <a ng-click="deleteStream()"><img class="icon" src="img/close.svg" alt="Close stream"></a>
               </li>
             </ul>
           </section>
@@ -40,15 +46,17 @@
         <section id="stream-container">
           <section id="streams">
             <section class="stream" ng-repeat="stream in streamList track by $index"  id="{{stream.channel}}">
-              <section class="player" id="{{stream.channel}}player">
+              <section class="player">
                 <iframe ng-src="{{trustSrc(stream.player)}}"
+                        id="{{stream.channel}}player"
                         frameborder="0"
                         scrolling="no"
                         allowfullscreen="true">
                 </iframe>
               </section>
-              <section class="chat" id="{{stream.channel}}chat">
+              <section class="chat">
                 <iframe ng-src="{{trustSrc(stream.chat)}}"
+                        id="{{stream.channel}}chat"
                         frameborder="0"
                         scrolling="no"
                         width="20%">
@@ -56,12 +64,16 @@
               </section>
             </section>
           </section>
-          <section id="mainChat">
-            <select name="availableChats" ng-model="availableChats" ng-change="getMainChat()">
-              <option value="">-Select Chat-</option>
-              <option ng-repeat="stream in streamList" value="{{stream.channel}}" ng-selected="availableChats == stream.channel">{{stream.channel}}</option>
-            </select>
-            <iframe ng-src="{{trustSrc(mainChatUrl)}}"
+          <section id="mainChat-container">
+            <section id="mainChat-settings">
+              <select name="availableChats" ng-model="availableChats" data-ng-click="getMainChat()" ng-change="getMainChat()">
+                <option value="">-Select Chat-</option>
+                <option ng-repeat="stream in streamList" value="{{stream.channel}}" ng-selected="availableChats == stream.channel">{{stream.channel}}</option>
+              </select>
+              <a ng-click="refreshMainChat()"><img src="img/refresh.svg" alt="Refresh main chat"></a>
+            </section>
+            <iframe id="mainChat"
+                    ng-src="{{trustSrc(mainChatUrl)}}"
                     frameborder="0"
                     scrolling="no"
                     width="20%">
