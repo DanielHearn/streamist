@@ -116,8 +116,9 @@ nav {
     #mainChat-container #mainChat-settings a {
       display: flex;
       align-items: center;
-      padding-left: 1em;
-      padding-right: 1em; }
+      margin: 0;
+      padding-left: 1.5em;
+      padding-right: 1.5em; }
     #mainChat-container #mainChat-settings img {
       height: 1.4em; }
   #mainChat-container select {
