@@ -190,10 +190,14 @@ module.controller('multistreamController', function($scope, $sce) {
         }
       } else {
         root.setProperty("--mainChat-display", "none");
+        root.setProperty("--mainChatButton-display", "none");
       }
     }
 
     function updateLayoutGrid(focusStream, numOfStreams, streamElementList) { //clean up
+      if (numOfStreams == 1) {
+        root.setProperty("--mainChatButton-display", "block");
+      }
       if (numOfStreams == 2) {
         root.setProperty("--stream-width", "100%");
         focusStream.style.width = "var(--stream-width)";
