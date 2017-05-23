@@ -191,10 +191,11 @@ module.controller('multistreamController', function($scope, $sce) {
       } else {
         root.setProperty("--mainChat-display", "none");
         root.setProperty("--mainChatButton-display", "none");
+        root.setProperty("--allChatButton-display", "none");
       }
     }
 
-    function updateLayoutGrid(focusStream, numOfStreams, streamElementList) { 
+    function updateLayoutGrid(focusStream, numOfStreams, streamElementList) {
       if (numOfStreams == 1) {
         root.setProperty("--mainChatButton-display", "block");
       }
