@@ -194,7 +194,7 @@ module.controller('multistreamController', function($scope, $sce) {
       }
     }
 
-    function updateLayoutGrid(focusStream, numOfStreams, streamElementList) { //clean up
+    function updateLayoutGrid(focusStream, numOfStreams, streamElementList) { 
       if (numOfStreams == 1) {
         root.setProperty("--mainChatButton-display", "block");
       }
@@ -209,7 +209,6 @@ module.controller('multistreamController', function($scope, $sce) {
         root.setProperty("--stream-width", "50%");
         setStyle(streamElementList, "width", "var(--stream-width)");
       } else if (numOfStreams == 5) {
-        //var streamElementList = document.getElementsByClassName("stream");
         root.setProperty("--stream-width", "50%");
         setStyle(streamElementList, "width", "var(--stream-width)");
         focusStream.style.width = "100%";
