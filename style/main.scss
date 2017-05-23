@@ -6,16 +6,21 @@
   --nav-padding: 0.5em;
   --text-primary: #212121;
   --text-secondary: #757575;
-  --accent-primary: #FF5722;
-  --accent-secondary: #E64A19;
+  --bg-primary: #FF5722;
+  --bg-secondary: #E64A19;
   --mainChat-display: none;
   --chat-display: none;
   --chat-height: 70%;
   --chat-width: 100%;
   --streams-flexDir: column;
   --stream-width: initial;
-  --navButton-bg: var(--accent-secondary);
+  --navButton-bg: #FF9800;
   --navBar-display: flex;
+  --navToggle-top: 2.9em;
+  --mainChatButton-display: block;
+  --mainChatButton-right: 350px;
+  --mainChatButton-top: 2.9em;
+  --allChatButton-display: none;
 }
 
 body {
@@ -24,10 +29,7 @@ body {
   font-weight: 300;
   margin: 0;
   overflow: hidden;
-  //height: 100vh;
-  //width: 100vw;
   #controller {
-    //height: 100%;
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -36,14 +38,13 @@ body {
 
 nav {
   width: 100%;
-  background: var(--accent-primary);
+  background: var(--bg-primary);
   color: var(--nav-text);
   display: var(--navBar-display);
-  height: 50px;
+  height: 3em;
   margin: 0;
   visibility: visible;
   #nav-container {
-    padding: var(--nav-padding);
     display: flex;
     width: 100%;
     form {
@@ -60,21 +61,18 @@ nav {
       margin: 0;
       list-style: none;
       display: flex;
-      //padding-left: 0.5em;
       li {
         float: left;
         display: flex;
         position: relative;
-        height: 1.4em;
-        //padding: 0.5em;
-        background: var(--accent-secondary);
+        background: var(--bg-secondary);
         margin-left: var(--nav-padding);
         text-transform: capitalize;
         padding: 0.4em;
+        align-items: center;
         p {
           margin: 0;
           padding-right: var(--nav-padding);
-          padding-top: 2px;
         }
         img {
           height: 1.4em;
@@ -89,8 +87,6 @@ nav {
 
 #stream-container {
   background: #000000;
-  //flex-wrap: wrap;
-  //min-height: calc(100vh - 54px);
   flex: 1 1 auto;
   display: flex;
   height: 100%;
@@ -134,7 +130,8 @@ nav {
   width: 350px;
   #mainChat-settings {
     display: flex;
-    background: var(--accent-primary);
+    background: var(--bg-primary);
+    height: 2.6em;
     a {
       display: flex;
       align-items: center;
@@ -153,40 +150,53 @@ nav {
     padding: 0.5em;
     margin: 0;
     border: 0;
-    background: var(--accent-secondary);
+    background: var(--bg-secondary);
   }
   iframe {
-    width: 100%;
+    width: 350px;;
     height: 100%;
   }
 }
 
 a {
-  //font-weight: bold;
-  //text-decoration: none;
   cursor: pointer;
-  //font-size: 1em;
-  //padding: $nav-padding;
-  //transition: all 0.3s;
   margin-right: 0.5em;
 }
 
-#navToggle {
+.arrowButton {
   background: var(--navButton-bg);
   position: fixed;
   z-index: 5;
+  margin: 0;
+  img {
+    height: 1.4em;
+  }
+}
+
+#navToggle {
   left: 0;
-  width: 8em;
-  top: 48px;
+  top: var(--navToggle-top);
+}
+
+#mainChatButton {
+  display: var(--mainChatButton-display);
+  right: var(--mainChatButton-right);
+  top: var(--mainChatButton-top);
   margin: 0;
 }
 
+#allChatButton {
+  display: var(--allChatButton-display);
+  align-self: center;
+  bottom: 0;
+}
+
 #toggleChat {
-  width: 130px;
+  width: 9em;
 }
 
 button {
-  background: var(--accent-secondary);
+  background: var(--bg-secondary);
   color: var(--nav-text);
   padding: 0.5em 1em;
   text-decoration: none;
@@ -197,69 +207,21 @@ button {
   display: block;
 }
 
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
-
-/* Hide default HTML checkbox */
-//.switch input {display:none;}
-
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-}
-
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-
-@media screen and (max-width: 45em) {
-  nav #nav-container #streamList {
+@media screen and (max-width: 35em) {
+  .layoutButton, #mainChatButton, #mainChat-container {
     display: none;
   }
-  .layoutButton {
+}
+
+@media screen and (max-height: 20em) {
+  .layoutButton, #mainChatButton, #mainChat-container {
+    display: none;
+  }
+}
+
+
+@media screen and (max-width: 43em) {
+  nav #nav-container #streamList {
     display: none;
   }
 }

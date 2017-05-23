@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html ng-app="multistreamApp">
     <head>
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-      <script type="text/javascript" src="scripts/retrieve.js"></script>
+      <script src="scripts/angular.min.js"></script>
+      <script type="text/javascript" src="scripts/manytwitch.js"></script>
       <link href="style/main.css" rel="stylesheet">
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,13 +24,6 @@
               <input type="text" ng-model="input" name="" value="" placeholder="Twitch Channel" required>
               <button id="getTwitch" href="">ADD</button>
             </form>
-            <button id="toggleChat" href="" ng-click="setChat()"> {{ chatButton }} </button>
-            <!--
-            <label class="switch" ng-click="setChat()">
-              <input type="checkbox" checked="checked">
-              <div class="slider"></div>
-            </label>
-            -->
             <button class="layoutButton" href="" ng-click="changeLayout('grid')"> Layout Grid</button>
             <button class="layoutButton" href="" ng-click="changeLayout('column')"> Layout Column</button>
             <ul id="streamList">
@@ -42,7 +35,8 @@
             </ul>
           </section>
         </nav>
-        <button id="navToggle" type="button" name="button" ng-click="toggleNav()"> {{ navToggle }} </button>
+        <button id="navToggle" class="arrowButton" type="button" name="button" ng-click="toggleNav()"><img id="navIcon" ng-src="{{navIcon}}" alt="Toggle navigation bar"></button>
+        <button id="allChatButton" class="arrowButton" type="button" name="button" ng-click="toggleChat()"><img id="allChatIcon" ng-src="{{allChatIcon}}" alt="Toggle all chats"></button>
         <section id="stream-container">
           <section id="streams">
             <section class="stream" ng-repeat="stream in streamList track by $index"  id="{{stream.channel}}">
@@ -64,6 +58,7 @@
               </section>
             </section>
           </section>
+          <button id="mainChatButton" class="arrowButton" type="button" name="button" ng-click="toggleChat()"><img id="mainChatIcon" ng-src="{{mainChatIcon}}" alt="Toggle main chat"></button>
           <section id="mainChat-container">
             <section id="mainChat-settings">
               <select name="availableChats" ng-model="availableChats" data-ng-click="getMainChat()" ng-change="getMainChat()">
