@@ -8,6 +8,7 @@ module.controller('multistreamController', function($scope, $sce) {
     var column = "column";
     var currentLayout = grid;
     var firstLoad = true;
+    var recentlyAdded = true;
     var navVisible = true;
     var playerUrl = "http://player.twitch.tv/?channel=";
     var chatStartUrl = "http://www.twitch.tv/";
@@ -47,6 +48,7 @@ module.controller('multistreamController', function($scope, $sce) {
         if (numOfStreams == 0){
           $scope.changeLayout(currentLayout);
         }
+        recentlyAdded = true;
       }
     }
 
@@ -155,7 +157,7 @@ module.controller('multistreamController', function($scope, $sce) {
     }
 
     function changeLayoutColumn() {
-      if (navigator.userAgent.indexOf("Firefox") > 0 && firstLoad == true) { //Ensure all chats load on firefox
+      if (navigator.userAgent.indexOf("Firefox") > 0 && (firstLoad == true || recentlyAdded == true)) { //Ensure all chats load on firefox
         reloadAllChats();
       }
       root.setProperty("--chat-height", "70%");
