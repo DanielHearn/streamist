@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 
 :root {
-  --bg: #FFFFFF;
+  --bg: #212225;
   --nav-text: #FFFFFF;
   --nav-padding: 0.5em;
   --text-primary: #212121;
@@ -24,7 +24,6 @@
 }
 
 body {
-  background: var(--bg);
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   margin: 0;
@@ -86,16 +85,24 @@ nav {
 }
 
 #stream-container {
-  background: #000000;
+  background: var(--bg);
   flex: 1 1 auto;
   display: flex;
   height: 100%;
   flex-direction: row;
   box-sizing: border-box;
+  #streams {
+    flex-wrap: wrap;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+  }
   .stream {
     position: relative;
     flex: 1 1 auto;
     display: flex;
+    background: var(--bg);
     width: var(--stream-width);
     flex-direction: var(--streams-flexDir);
     box-sizing: border-box;
@@ -115,16 +122,9 @@ nav {
   }
 }
 
-#streams {
-  flex-wrap: wrap;
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: row;
-  box-sizing: border-box;
-}
-
 #mainChat-container {
   display: var(--mainChat-display);
+  background: var(--bg);
   flex-direction: column;
   float: right;
   width: 350px;
@@ -194,6 +194,28 @@ a {
 
 #toggleChat {
   width: 9em;
+}
+
+#intro {
+  display: block;
+  align-self: center;
+  align-content: center;
+  flex-wrap: wrap;
+  color: var(--nav-text);
+  text-align: center;
+  position: fixed;
+  top: 40%;
+  p:first-child {
+    font-weight: 500;
+  }
+  p {
+    font-size: 1.1em;
+    font-weight: 300;
+  }
+  a {
+    color: var(--nav-text);
+    text-decoration: underline;
+  }
 }
 
 button {

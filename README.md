@@ -11,5 +11,6 @@ Creating a list of the channels seperated with commas
 
 
 ## Todo
+- [ ] Clean up scss file
 - [ ] Improve interface and colour scheme
 - [ ] Improve performance on initial page load, especially when streams have been loaded from the url
