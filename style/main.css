@@ -172,7 +172,9 @@ a {
   color: var(--nav-text);
   text-align: center;
   position: fixed;
-  top: 40%; }
+  top: 40%;
+  max-width: 50em;
+  padding: 0.5em; }
   #intro p:first-child {
     font-weight: 500; }
   #intro p {

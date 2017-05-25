@@ -205,6 +205,8 @@ a {
   text-align: center;
   position: fixed;
   top: 40%;
+  max-width: 50em;
+  padding: 0.5em;
   p:first-child {
     font-weight: 500;
   }
