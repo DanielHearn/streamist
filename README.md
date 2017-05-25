@@ -1,7 +1,7 @@
 # manytwitch
 ## Multiple Twitch stream viewer
 
-www.danielhearn.co.uk/manytwitch
+Live at www.danielhearn.co.uk/manytwitch
 
 Built with AngularJS and CSS Variables
 
