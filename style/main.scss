@@ -128,6 +128,7 @@ nav {
   flex-direction: column;
   float: right;
   width: 350px;
+  z-index: 1;
   #mainChat-settings {
     display: flex;
     background: var(--bg-primary);

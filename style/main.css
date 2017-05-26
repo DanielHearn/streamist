@@ -108,7 +108,8 @@ nav {
   background: var(--bg);
   flex-direction: column;
   float: right;
-  width: 350px; }
+  width: 350px;
+  z-index: 1; }
   #mainChat-container #mainChat-settings {
     display: flex;
     background: var(--bg-primary);
