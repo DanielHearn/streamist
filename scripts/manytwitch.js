@@ -247,6 +247,10 @@ module.controller('multistreamController', function($scope, $sce) {
       }
     }
 
+    $scope.clearStreams = function() {
+      $scope.streamList.length = 0;
+    }
+
     function insertParam() {
       var channels;
       for (channel in $scope.streamList) {

@@ -38,7 +38,8 @@ nav {
   display: var(--navBar-display);
   height: 3em;
   margin: 0;
-  visibility: visible; }
+  visibility: visible;
+  overflow: hidden; }
   nav #nav-container {
     display: flex;
     width: 100%; }
@@ -49,6 +50,8 @@ nav {
       border: 0;
       padding: 5px;
       color: var(--text-secondary); }
+    nav #nav-container #clearStreams {
+      display: none; }
     nav #nav-container #streamList {
       float: right;
       margin: 0;
@@ -206,7 +209,9 @@ button {
 
 @media screen and (max-width: 43em) {
   nav #nav-container #streamList {
-    display: none; } }
+    display: none; }
+  nav #nav-container #clearStreams {
+    display: block; } }
 
 @media screen and (max-width: 70em) {
   nav #nav-container #streamList {

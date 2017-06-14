@@ -43,6 +43,7 @@ nav {
   height: 3em;
   margin: 0;
   visibility: visible;
+  overflow: hidden;
   #nav-container {
     display: flex;
     width: 100%;
@@ -54,6 +55,9 @@ nav {
       border: 0;
       padding: 5px;
       color: var(--text-secondary);
+    }
+    #clearStreams {
+      display: none;
     }
     #streamList {
       float: right;
@@ -247,8 +251,13 @@ button {
 
 
 @media screen and (max-width: 43em) {
-  nav #nav-container #streamList {
-    display: none;
+  nav #nav-container {
+    #streamList {
+      display: none;
+    }
+    #clearStreams {
+      display: block;
+    }
   }
 }
 
