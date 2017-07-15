@@ -106,12 +106,14 @@ nav {
   height: 100%;
   flex-direction: row;
   box-sizing: border-box;
+  justify-content: center;
   #streams {
     flex-wrap: wrap;
     flex: 1 1 auto;
     display: flex;
     flex-direction: row;
     box-sizing: border-box;
+    z-index: 1;
   }
   .stream {
     position: relative;
@@ -219,8 +221,9 @@ a {
   flex-wrap: wrap;
   color: var(--nav-text);
   text-align: left;
-  position: fixed;
+  position: absolute;
   top: 40%;
+  z-index: 0;
   max-width: 50em;
   padding: 0.5em;
   .instructions {

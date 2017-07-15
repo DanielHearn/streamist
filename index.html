@@ -45,20 +45,20 @@
             </ul>
           </section>
         </nav>
-        <section id="intro">
-          <form ng-submit="addStream()" id="intro-form">
-            <input type="text" ng-model="input" name="" value="" placeholder="Twitch Channel" autofocus required>
-            <button id="getTwitch" href="">ADD</button>
-          </form>
-          <p class="instructions">To start enter a twitch channel and click add.</p>
-          <p>To specify a channel within the url use 'manytwitch/?stream=channel1,channel2'
-          creating a list of the channels seperated with commas.</p>
-          <p>Developed by <a href="http://www.danielhearn.co.uk">Daniel Hearn</a></p>
-          <p>Source available at <a href="https://github.com/DanielHearn/manytwitch">github.com/DanielHearn/manytwitch</a></p>
-        </section>
         <button id="navToggle" class="arrowButton" type="button" name="button" ng-click="toggleNav()"><img id="navIcon" ng-src="{{navIcon}}" alt="Toggle navigation bar"></button>
         <button id="allChatButton" class="arrowButton" type="button" name="button" ng-click="toggleChat()"><img id="allChatIcon" ng-src="{{allChatIcon}}" alt="Toggle all chats"></button>
         <section id="stream-container">
+          <section id="intro">
+            <form ng-submit="addStream()" id="intro-form">
+              <input type="text" ng-model="input" name="" value="" placeholder="Twitch Channel" autofocus required>
+              <button id="getTwitch" href="">ADD</button>
+            </form>
+            <p class="instructions">To start enter a twitch channel and click add.</p>
+            <p>To specify a channel within the url use 'manytwitch/?stream=channel1,channel2'
+            creating a list of the channels seperated with commas.</p>
+            <p>Developed by <a href="http://www.danielhearn.co.uk">Daniel Hearn</a></p>
+            <p>Source available at <a href="https://github.com/DanielHearn/manytwitch">github.com/DanielHearn/manytwitch</a></p>
+          </section>
           <section id="streams">
             <section class="stream" ng-repeat="stream in streamList track by $index"  id="{{stream.channel}}">
               <section class="player">
