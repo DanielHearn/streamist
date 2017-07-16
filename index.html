@@ -49,10 +49,6 @@
         <button id="allChatButton" class="arrowButton" type="button" name="button" ng-click="toggleChat()"><img id="allChatIcon" ng-src="{{allChatIcon}}" alt="Toggle all chats"></button>
         <section id="stream-container">
           <section id="intro">
-            <form ng-submit="addStream()" id="intro-form">
-              <input type="text" ng-model="input" name="" value="" placeholder="Twitch Channel" autofocus required>
-              <button id="getTwitch" href="">ADD</button>
-            </form>
             <p class="instructions">To start enter a twitch channel and click add.</p>
             <p>To specify a channel within the url use 'manytwitch/?stream=channel1,channel2'
             creating a list of the channels seperated with commas.</p>
