@@ -182,6 +182,7 @@ module.controller('multistreamController', function($scope, $sce) {
 
     function updateLayout() {
       if ($scope.streamList.length != 0) {
+        root.setProperty("--bg", "black");
         var numOfStreams = $scope.streamList.length;
         var streamElementList = document.getElementsByClassName("stream");
         var focusStream = streamElementList[0];
@@ -191,6 +192,7 @@ module.controller('multistreamController', function($scope, $sce) {
           updateLayoutColumn(focusStream, numOfStreams, streamElementList);
         }
       } else {
+        root.setProperty("--bg", "#5C6391");
         root.setProperty("--mainChat-display", "none");
         root.setProperty("--mainChatButton-display", "none");
         root.setProperty("--allChatButton-display", "none");

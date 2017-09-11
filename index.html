@@ -16,6 +16,8 @@
       <meta name="theme-color" content="#ffffff">
 
       <title>ManyTwitch</title>
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Raleway:300,600,700" rel="stylesheet">
       <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -28,11 +30,15 @@
     <div id="controller" ng-controller="multistreamController" data-ng-init="getParam()">
       <body>
         <nav id="navBar">
+          <label for="overlay-input" id="overlay-button"><span></span></label>
+          <label for="about-input" id="about-button"><span></span></label>
           <section id="nav-container">
+            <h1 id="logo">MT</h1>
             <form ng-submit="addStream()">
-              <input type="text" ng-model="input" name="" value="" placeholder="Twitch Channel" autofocus required>
-              <button id="getTwitch" href="">ADD</button>
+              <input id="search" type="text" ng-model="input" name="" value="" placeholder="Twitch Channel" autofocus required>
+              <button id="getTwitch" href="">Load</button>
             </form>
+            <!--
             <button id="clearStreams" href="" ng-click="clearStreams()">DEL</button>
             <button class="layoutButton" href="" ng-click="changeLayout('grid')"> Layout Grid</button>
             <button class="layoutButton" href="" ng-click="changeLayout('column')"> Layout Column</button>
@@ -43,11 +49,15 @@
                 <a ng-click="deleteStream()"><img class="icon" src="img/close.svg" alt="Close stream"></a>
               </li>
             </ul>
+            -->
           </section>
         </nav>
+        <!--
         <button id="navToggle" class="arrowButton" type="button" name="button" ng-click="toggleNav()"><img id="navIcon" ng-src="{{navIcon}}" alt="Toggle navigation bar"></button>
         <button id="allChatButton" class="arrowButton" type="button" name="button" ng-click="toggleChat()"><img id="allChatIcon" ng-src="{{allChatIcon}}" alt="Toggle all chats"></button>
+        -->
         <section id="stream-container">
+          <!--
           <section id="intro">
             <p class="instructions">To start enter a twitch channel and click add.</p>
             <p>To specify a channel within the url use 'manytwitch/?stream=channel1,channel2'
@@ -55,6 +65,7 @@
             <p>Developed by <a href="http://www.danielhearn.co.uk">Daniel Hearn</a></p>
             <p>Source available at <a href="https://github.com/DanielHearn/manytwitch">github.com/DanielHearn/manytwitch</a></p>
           </section>
+          -->
           <section id="streams">
             <section class="stream" ng-repeat="stream in streamList track by $index"  id="{{stream.channel}}">
               <section class="player">
@@ -75,7 +86,9 @@
               </section>
             </section>
           </section>
+          <!--
           <button id="mainChatButton" class="arrowButton" type="button" name="button" ng-click="toggleChat()"><img id="mainChatIcon" ng-src="{{mainChatIcon}}" alt="Toggle main chat"></button>
+          -->
           <section id="mainChat-container">
             <section id="mainChat-settings">
               <select name="availableChats" ng-model="availableChats" data-ng-click="getMainChat()" ng-change="getMainChat()">
