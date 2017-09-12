@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html ng-app="multistreamApp">
+    <head>
+
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="Multiple Twitch stream viewer with multiple optimized layouts and a modern interface.">
+      <title>ManyTwitch</title>
+
+      <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+      <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
+      <link rel="manifest" href="favicons/manifest.json">
+      <link rel="mask-icon" href="favicons/safari-pinned-tab.svg" color="#5bbad5">
+      <meta name="theme-color" content="#ffffff">
+
+      <script src="js/angular.min.js"></script>
+      <script src="js/main.min.js"></script>
+
+      <link rel="stylesheet" href="css/main.min.css">
+
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Raleway:300,600,700" rel="stylesheet">
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-80868144-1', 'auto');
+        ga('send', 'pageview');
+      </script>
+    </head>
+    <div id="controller" ng-controller="multistreamController" data-ng-init="getParam()">
+      <body>
+        <nav id="navBar">
+          <label for="overlay-input" id="overlay-button"><span></span></label>
+          <label for="about-input" id="about-button"><span></span></label>
+          <section id="nav-container">
+            <h1 id="logo">MT</h1>
+            <form ng-submit="addStream()">
+              <input id="search" type="text" ng-model="input" name="" value="" placeholder="Twitch Channel" autofocus required>
+              <button id="getTwitch" href="">Load</button>
+            </form>
+            <!--
+            <button id="clearStreams" href="" ng-click="clearStreams()">DEL</button>
+            <button class="layoutButton" href="" ng-click="changeLayout('grid')"> Layout Grid</button>
+            <button class="layoutButton" href="" ng-click="changeLayout('column')"> Layout Column</button>
+            <ul id="streamList">
+              <li ng-repeat="stream in streamList track by $index">
+                <p> {{ stream.channel }} </p>
+                <a ng-click="refreshStream($event)"><img class="{{stream.channel}}" src="img/refresh.svg" alt="Refresh stream"></a>
+                <a ng-click="deleteStream()"><img class="icon" src="img/close.svg" alt="Close stream"></a>
+              </li>
+            </ul>
+            -->
+          </section>
+        </nav>
+        <!--
+        <button id="navToggle" class="arrowButton" type="button" name="button" ng-click="toggleNav()"><img id="navIcon" ng-src="{{navIcon}}" alt="Toggle navigation bar"></button>
+        <button id="allChatButton" class="arrowButton" type="button" name="button" ng-click="toggleChat()"><img id="allChatIcon" ng-src="{{allChatIcon}}" alt="Toggle all chats"></button>
+        -->
+        <section id="stream-container">
+          <!--
+          <section id="intro">
+            <p class="instructions">To start enter a twitch channel and click add.</p>
+            <p>To specify a channel within the url use 'manytwitch/?stream=channel1,channel2'
+            creating a list of the channels seperated with commas.</p>
+            <p>Developed by <a href="http://www.danielhearn.co.uk">Daniel Hearn</a></p>
+            <p>Source available at <a href="https://github.com/DanielHearn/manytwitch">github.com/DanielHearn/manytwitch</a></p>
+          </section>
+          -->
+          <section id="streams">
+            <section class="stream" ng-repeat="stream in streamList track by $index"  id="{{stream.channel}}">
+              <section class="player">
+                <iframe ng-src="{{trustSrc(stream.player)}}"
+                        id="{{stream.channel}}player"
+                        frameborder="0"
+                        scrolling="no"
+                        allowfullscreen="true">
+                </iframe>
+              </section>
+              <section class="chat">
+                <iframe ng-src="{{trustSrc(stream.chat)}}"
+                        id="{{stream.channel}}chat"
+                        frameborder="0"
+                        scrolling="no"
+                        width="20%">
+                </iframe>
+              </section>
+            </section>
+          </section>
+          <!--
+          <button id="mainChatButton" class="arrowButton" type="button" name="button" ng-click="toggleChat()"><img id="mainChatIcon" ng-src="{{mainChatIcon}}" alt="Toggle main chat"></button>
+          -->
+          <section id="mainChat-container">
+            <section id="mainChat-settings">
+              <select name="availableChats" ng-model="availableChats" data-ng-click="getMainChat()" ng-change="getMainChat()">
+                <option value="">-Select Chat-</option>
+                <option ng-repeat="stream in streamList" value="{{stream.channel}}" ng-selected="availableChats == stream.channel">{{stream.channel}}</option>
+              </select>
+              <a ng-click="refreshMainChat()"><img src="img/refresh.svg" alt="Refresh main chat"></a>
+            </section>
+            <iframe id="mainChat"
+                    ng-src="{{trustSrc(mainChatUrl)}}"
+                    frameborder="0"
+                    scrolling="no"
+                    width="20%">
+            </iframe>
+          </section>
+        </section>
+      </body>
+    </div>
+</html>
