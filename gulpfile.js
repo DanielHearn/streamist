@@ -11,28 +11,24 @@ var cssnano = require('gulp-cssnano');
 var gulpIf = require('gulp-if');
 var browserSync = require('browser-sync').create();
 
-const scssSource = 'app/style/scss/*.scss';
-const cssDest = 'app/style/css';
+const scssSource = 'app/scss/*.scss';
+const cssDest = 'app/css';
 
-gulp.task('sass', function(){
-  return gulp.src(scssSource) // Gets all files ending with .scss in app/scss
-    .pipe(sass())
-    .pipe(uncss({
-        html: ['app/index.html']
-    }))
+gulp.task('sass', function() {
+  return gulp.src(scssSource)
+    .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest(cssDest))
-    .pipe(browserSync.reload({
-      stream: true
-    }))
-});
+    //.pipe(gulp.dest('dist/css'))
+    .pipe(browserSync.stream());
+})
 
 gulp.task('browserSync', function() {
   browserSync.init({
     server: {
-      baseDir: 'dist'
+      baseDir: 'app'
     },
   })
-})
+});
 
 gulp.task('useref', function(){
   return gulp.src('app/*.html')
@@ -44,25 +40,41 @@ gulp.task('useref', function(){
 
 gulp.task('images', function(){
   return gulp.src('app/img/*.+(png|jpg|jpeg|gif|svg)')
-  .pipe(cache(imagemin()))
-  .pipe(gulp.dest('dist/img'))
+    .pipe(cache(imagemin()))
+    .pipe(gulp.dest('dist/img'))
 });
 
-
 gulp.task('favicons', function(){
-  return gulp.src('app/favicons/*.+(png|jpg|jpeg|gif|svg)')
-  .pipe(cache(imagemin()))
+  return gulp.src('app/favicons/*.+(png|jpg|jpeg|gif|svg|ico|xml|json)')
+  .pipe(gulpIf('*.+(png|jpg|jpeg|gif|svg)', cache(imagemin())))
   .pipe(gulp.dest('dist/favicons'))
 });
 
-gulp.task('watch', ['browserSync', 'sass', 'useref', 'images', 'favicons'], function (){
+gulp.task('clean', function() {
+  return del.sync('dist').then(function(cb) {
+    return cache.clearAll(cb);
+  });
+})
+
+gulp.task('clean:dist', function() {
+  return del.sync(['dist/**/*']);
+});
+
+gulp.task('watch', ['browserSync', 'sass', 'images', 'favicons'], function (){
   gulp.watch(scssSource, ['sass']);
-  gulp.watch('app/*.html', browserSync.reload);
+  gulp.watch('app/*.html').on('change', browserSync.reload);
   gulp.watch('app/js/*.js', browserSync.reload);
 })
 
-gulp.task('default', function (callback) {
-  runSequence(['watch'],
+gulp.task('build', function (callback) {
+  runSequence('clean:dist',
+    ['sass', 'useref', 'images', 'favicons'],
+    callback
+  )
+})
+
+gulp.task('default', function(callback) {
+  runSequence(['sass', 'browserSync'], 'watch',
     callback
   )
 })

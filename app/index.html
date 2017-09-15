@@ -21,9 +21,9 @@
       <script type="text/javascript" src="js/manytwitch.js"></script>
       <!-- endbuild -->
 
-      <!--build:css css/main.min.css-->
+      <!--build:css css/main.css -->
       <link href="css/main.css" rel="stylesheet">
-      <!--endbuild-->
+      <!-- endbuild -->
 
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css?family=Raleway:300,600,700" rel="stylesheet">
@@ -38,14 +38,27 @@
     </head>
     <div id="controller" ng-controller="multistreamController" data-ng-init="getParam()">
       <body>
+        <label for="overlay-input" id="overlay-button" ng-click="toggleMenu()"><span></span></label>
         <nav id="navBar">
-          <label for="overlay-input" id="overlay-button"><span></span></label>
-          <label for="about-input" id="about-button"><span></span></label>
+          <div id="right-buttons">
+            <label for="help-input" id="help-button" ng-click="toggleHelp()">
+              <svg width="48" height="48">
+                <path
+                   d="m 26,38 h -4 v -4 h 4 z m 4.13,-15.49 -1.79,1.84 C 26.9,25.79 26,27 26,30 h -4 v -1 c 0,-2.21 0.9,-4.21 2.34,-5.66 l 2.49,-2.52 C 27.55,20.1 28,19.1 28,18 c 0,-2.21 -1.79,-4 -4,-4 -2.21,0 -4,1.79 -4,4 h -4 c 0,-4.42 3.58,-8 8,-8 4.42,0 8,3.58 8,8 0,1.76 -0.71,3.35 -1.87,4.51 z" />
+              </svg>
+            </label>
+            <label for="fullscreen-input" id="fullscreen-button" ng-click="toggleFullscreen()">
+              <svg width="48" height="48">
+                <path
+                   d="M14 28h-4v10h10v-4h-6v-6zm-4-8h4v-6h6v-4H10v10zm24 14h-6v4h10V28h-4v6zm-6-24v4h6v6h4V10H28z" />
+              </svg>
+            </label>
+          </div>
           <section id="nav-container">
             <h1 id="logo">MT</h1>
             <form ng-submit="addStream()">
-              <input id="search" type="text" ng-model="input" name="" value="" placeholder="Twitch Channel" autofocus required>
-              <button id="getTwitch" href="">Load</button>
+              <input class="search" type="text" ng-model="input" name="" value="" placeholder="Twitch Channel" autofocus required>
+              <button class="getTwitch" href="">Load</button>
             </form>
             <!--
             <button id="clearStreams" href="" ng-click="clearStreams()">DEL</button>
@@ -65,6 +78,38 @@
         <button id="navToggle" class="arrowButton" type="button" name="button" ng-click="toggleNav()"><img id="navIcon" ng-src="{{navIcon}}" alt="Toggle navigation bar"></button>
         <button id="allChatButton" class="arrowButton" type="button" name="button" ng-click="toggleChat()"><img id="allChatIcon" ng-src="{{allChatIcon}}" alt="Toggle all chats"></button>
         -->
+        <section id="settings-menu">
+          <section id="settings-container">
+            <h2>Settings</h2>
+            <section>
+              <h3>Streams</h3>
+              <form ng-submit="addStream()">
+                <input class="search" type="text" ng-model="input" name="" value="" placeholder="Twitch Channel" autofocus required>
+                <button class="getTwitch" href="">Load</button>
+              </form>
+              <ul id="streamList">
+                <li ng-repeat="stream in streamList track by $index">
+                  <p> {{ stream.channel }} </p>
+                  <div class="stream-settings">
+                    <button ng-click="refreshStream($event)"><img class="{{stream.channel}}" src="img/refresh.svg" alt="Refresh stream"></button>
+                    <button ng-click="deleteStream()"><img class="icon" src="img/close.svg" alt="Close stream"></button>
+                  </div>
+                </li>
+              </ul>
+            </section>
+            <section>
+              <h3>Layouts</h3>
+              <button type="button" ng-click="toggleFullscreen()">Fullscreen</button>
+            </section>
+            <section>
+              <h3>Chat</h3>
+            </section>
+            <section>
+              <h3>Usage</h3>
+            </section>
+          </section>
+        </section>
+        <section id="overlay"></section>
         <section id="stream-container">
           <!--
           <section id="intro">
@@ -95,16 +140,13 @@
               </section>
             </section>
           </section>
-          <!--
-          <button id="mainChatButton" class="arrowButton" type="button" name="button" ng-click="toggleChat()"><img id="mainChatIcon" ng-src="{{mainChatIcon}}" alt="Toggle main chat"></button>
-          -->
           <section id="mainChat-container">
             <section id="mainChat-settings">
               <select name="availableChats" ng-model="availableChats" data-ng-click="getMainChat()" ng-change="getMainChat()">
                 <option value="">-Select Chat-</option>
                 <option ng-repeat="stream in streamList" value="{{stream.channel}}" ng-selected="availableChats == stream.channel">{{stream.channel}}</option>
               </select>
-              <a ng-click="refreshMainChat()"><img src="img/refresh.svg" alt="Refresh main chat"></a>
+              <button ng-click="refreshMainChat()"><img src="img/refresh.svg" alt="Refresh main chat"></button>
             </section>
             <iframe id="mainChat"
                     ng-src="{{trustSrc(mainChatUrl)}}"

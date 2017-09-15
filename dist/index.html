@@ -17,7 +17,7 @@
       <script src="js/angular.min.js"></script>
       <script src="js/main.min.js"></script>
 
-      <link rel="stylesheet" href="css/main.min.css">
+      <link rel="stylesheet" href="css/main.css">
 
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css?family=Raleway:300,600,700" rel="stylesheet">
@@ -34,9 +34,9 @@
       <body>
         <nav id="navBar">
           <label for="overlay-input" id="overlay-button"><span></span></label>
-          <label for="about-input" id="about-button"><span></span></label>
+          <label for="fullscreen-input" id="fullscreen-button"><svg src="img/fullscreen_open.svg"></svg></label>
           <section id="nav-container">
-            <h1 id="logo">MT</h1>
+            <h1 id="logo">MadaT</h1>
             <form ng-submit="addStream()">
               <input id="search" type="text" ng-model="input" name="" value="" placeholder="Twitch Channel" autofocus required>
               <button id="getTwitch" href="">Load</button>

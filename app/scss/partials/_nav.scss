@@ -15,6 +15,7 @@ nav {
   display: var(--navBar-display);
   height: 3.2em;
   margin: 0;
+  z-index: 6;
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
@@ -24,48 +25,16 @@ nav {
     display: flex;
     align-items: center;
     //width: 100%;
-    form {
-      display: flex;
-      height: 2.3em;
-      #search {
-        max-width: 10em;
-        user-select: text;
-        cursor: text;
-        color: var(--input-color);
-      }
-    }
     button, input {
       margin-top: 0;
       margin-bottom: 0;
-      font-size: 1em;
     }
     #clearStreams {
       display: none;
     }
-    #streamList {
-      float: right;
-      margin: 0;
-      list-style: none;
-      display: flex;
-      li {
-        float: left;
-        display: flex;
-        position: relative;
-        background: var(--bg-secondary);
-        margin-left: var(--nav-padding);
-        text-transform: capitalize;
-        padding: 0.4em;
-        align-items: center;
-        p {
-          margin: 0;
-          padding-right: var(--nav-padding);
-        }
-        img {
-          height: 1.4em;
-        }
-        .refresh {
-          margin-right: 0.5em;
-        }
+    form {
+      input, button {
+        height: initial;
       }
     }
   }
@@ -93,42 +62,20 @@ nav {
   width: 9em;
 }
 
-#about-button {
+#right-buttons {
   position: absolute;
   right: 1.1em;
   top: 0;
-  padding: 1.4em 1em;
-  z-index: 5;
-  cursor: pointer;
-  user-select: none;
-  span {
-      height: 4px;
-      width: 4px;
-      background-color: white;
-      position: relative;
-      display: block;
-      border-radius: 50%;
-      transition: all .2s ease-in-out;
-      &:before {
-        top: -10px;
-        visibility: visible;
-      }
-      &:after {
-        top: 10px;
-      }
-      &:before, &:after {
-        height: 4px;
-        width: 4px;
-        background-color: white;
-        position: absolute;
-        content: "";
-        border-radius: 50%;
-        transition: all .2s ease-in-out;
-      }
+  label {
+    //padding: 1.4em 1em;
+    padding: 0;
+    z-index: 2;
+    cursor: pointer;
+    user-select: none;
+    svg {
+      fill: #fff;
     }
-    &:hover span, &:hover span:before, &:hover span:after {
-      //background: #333332;
-    }
+  }
 }
 
 #overlay-button {
@@ -136,7 +83,8 @@ nav {
   left: 1em;
   top: 0;
   padding: 1.4em 1em;
-  z-index: 5;
+  z-index: 7;
+  background: var(--bg-primary);
   cursor: pointer;
   user-select: none;
   span {
@@ -166,6 +114,22 @@ nav {
       //background: #333332;
     }
 }
+
+#overlay-button.active {
+  &:hover span, span{
+    background: transparent;
+  }
+  span {
+    &:before {
+      transform: rotate(45deg) translate(7px, 7px);
+      opacity: 1;
+    }
+    &:after {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+  }
+}
+
 
 input[type=checkbox] {
   display: none;

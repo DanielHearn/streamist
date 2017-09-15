@@ -20,6 +20,8 @@ module.controller('multistreamController', function($scope, $sce) {
     var navButtonOffset = "2.9em";
     var mainChatVisibility = true;
     var allChatVisibility = true;
+    var fullscreen = false;
+    var menuOpen = false;
 
     $scope.streamList = [];
     $scope.navIcon = upIcon;
@@ -146,6 +148,35 @@ module.controller('multistreamController', function($scope, $sce) {
       }
       setChat();
       updateLayout();
+    }
+
+    $scope.toggleHelp = function() {
+      console.log("Toggle Help");
+    }
+
+    $scope.toggleMenu = function() {
+      console.log("Toggle Menu");
+      document.getElementById("overlay-button").classList.toggle("active");
+      menuOpen = !menuOpen;
+      if(menuOpen) {
+        root.setProperty("--settings-display", "block");
+        root.setProperty("--overlay-display", "block");
+        root.setProperty("--overlay-opacity", "0.5");
+      } else {
+        root.setProperty("--settings-display", "none");
+        root.setProperty("--overlay-display", "none");
+        root.setProperty("--overlay-opacity", "0");
+      }
+    }
+
+    $scope.toggleFullscreen = function() {
+      console.log("Toggle Fullscreen");
+      fullscreen = !fullscreen;
+      if(fullscreen) {
+        root.setProperty("--navBar-display", "none");
+      } else {
+        root.setProperty("--navBar-display", "flex");
+      }
     }
 
     function changeLayoutGrid() {

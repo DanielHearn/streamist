@@ -10,6 +10,7 @@
   height: 100%;
   flex-direction: var(--streamContainer-flexDir);
   justify-content: center;
+  z-index: 1;
   transition: background 0.2s;
   #streams {
     @include stream-flex;

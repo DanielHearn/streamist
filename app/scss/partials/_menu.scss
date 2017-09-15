@@ -1,0 +1,81 @@
+#settings-menu {
+  display: var(--settings-display);
+  position: absolute;
+  left: 0;
+  top: 3em;
+  width: 40em;
+  z-index: 5;
+  height: calc(100vh - 3em);
+  background: var(--light-background);
+  overflow-y: scroll;
+  #settings-container {
+    display: flex;
+    flex-wrap: wrap;
+    h2 {
+      text-align: center;
+      text-transform: uppercase;
+      padding: 0.5em 0;
+      width: 100%;
+      color: var(--dark-background);
+    }
+    section {
+      box-sizing: border-box;
+      padding: calc(var(--nav-padding)*2);
+      width: 50%;
+      h3 {
+        font-size: 1.5em;
+      }
+      button {
+        margin-left: 0;
+      }
+      #streamList {
+        //float: right;
+        margin: 0;
+        margin-top: 0.4em;
+        padding-left: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        li {
+          //float: left;
+          width: 80%;
+          display: flex;
+          //position: relative;
+          background: var(--bg-secondary);
+          color: var(--nav-text);
+          margin-left: var(--nav-padding);
+          text-transform: capitalize;
+          padding: 0.4em;
+          margin: 0.4em 0;
+          align-items: center;
+          p {
+            margin: 0;
+            padding-right: var(--nav-padding);
+          }
+          .stream-settings {
+            flex-wrap: wrap;
+            display: flex;
+            margin-left: auto;
+          }
+          img {
+            height: 1.4em;
+          }
+          .refresh {
+            margin-right: 0.5em;
+          }
+        }
+      }
+    }
+  }
+}
+
+#overlay {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 4;
+  background: var(--bg);
+  display: var(--overlay-display);
+  opacity: var(--overlay-opacity);
+  transition: opacity 0.4s;
+}

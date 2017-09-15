@@ -7,8 +7,11 @@
   --text-secondary: #757575;
   --bg-primary: #4D5481;
   --bg-secondary: #474D73;
+  --light-background: #EFEFEF;
+  --dark-background: #404040;
   --input-color: #d0d0d0;
-  --input-padding: 0.2em 1.5em;
+  --input-font-size: 1em;
+  --input-padding: 0.5em 1.5em;
   --mainChat-display: none;
   --chat-display: none;
   --chat-height: 70%;
@@ -23,11 +26,15 @@
   --mainChatButton-right: 350px;
   --mainChatButton-top: 2.9em;
   --allChatButton-display: none;
+  --settings-display: none;
+  --overlay-display: none;
+  --overlay-opacity: 0;
 }
 
 @import 'partials/nav';
 @import 'partials/chat';
 @import 'partials/streams';
+@import 'partials/menu';
 @import 'partials/media-queries';
 
 body {
@@ -47,6 +54,7 @@ body {
     background: var(--bg-secondary);
     margin-right: var(--nav-padding);
     margin-left: 0;
+    font-size: var(--input-font-size);
     border: 0;
     padding: var(--input-padding);
     border-radius: 0;
@@ -58,13 +66,13 @@ body {
     color: var(--nav-text);
     padding: var(--input-padding);
     text-decoration: none;
-    font-size: 1em;
+    font-size: var(--input-font-size);
     margin-left: 0.5em;
     border: 0;
     cursor: pointer;
     display: block;
   }
-  h1 {
+  h1, h2 {
     font-family: 'Raleway', sans-serif;
     font-size: 2.25em;
     font-weight: 700;
@@ -73,9 +81,22 @@ body {
     padding-right: var(--nav-padding);
     color: var(--nav-text);
   }
-  a {
+  button {
     cursor: pointer;
     margin-right: 0.5em;
+  }
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    .search {
+      max-width: 10em;
+      user-select: text;
+      cursor: text;
+      color: var(--input-color);
+    }
+    input, button {
+      margin-left: 0;
+    }
   }
 }
 
@@ -87,7 +108,6 @@ body {
   color: var(--nav-text);
   text-align: left;
   position: absolute;
-  z-index: 0;
   max-width: 50em;
   padding: 0.5em;
   z-index: 1;

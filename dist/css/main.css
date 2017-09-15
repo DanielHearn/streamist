@@ -7,11 +7,9 @@
   --text-secondary: #757575;
   --bg-primary: #4D5481;
   --bg-secondary: #474D73;
-  --light-background: #EFEFEF;
-  --dark-background: #404040;
   --input-color: #d0d0d0;
   --input-font-size: 1em;
-  --input-padding: 0.5em 1.5em;
+  --input-padding: 0.2em 1.5em;
   --mainChat-display: none;
   --chat-display: none;
   --chat-height: 70%;
@@ -25,19 +23,16 @@
   --mainChatButton-display: none;
   --mainChatButton-right: 350px;
   --mainChatButton-top: 2.9em;
-  --allChatButton-display: none;
-  --settings-display: none;
-  --overlay-display: none;
-  --overlay-opacity: 0; }
+  --allChatButton-display: none; }
 
 nav {
   width: 100%;
+  opacity: 0;
   background: var(--bg-primary);
   color: var(--nav-text);
   display: var(--navBar-display);
   height: 3.2em;
   margin: 0;
-  z-index: 6;
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
@@ -46,13 +41,40 @@ nav {
   nav #nav-container {
     display: flex;
     align-items: center; }
+    nav #nav-container form {
+      display: flex;
+      height: 2.3em; }
+      nav #nav-container form #search {
+        max-width: 10em;
+        user-select: text;
+        cursor: text;
+        color: var(--input-color); }
     nav #nav-container button, nav #nav-container input {
       margin-top: 0;
       margin-bottom: 0; }
     nav #nav-container #clearStreams {
       display: none; }
-    nav #nav-container form input, nav #nav-container form button {
-      height: initial; }
+    nav #nav-container #streamList {
+      float: right;
+      margin: 0;
+      list-style: none;
+      display: flex; }
+      nav #nav-container #streamList li {
+        float: left;
+        display: flex;
+        position: relative;
+        background: var(--bg-secondary);
+        margin-left: var(--nav-padding);
+        text-transform: capitalize;
+        padding: 0.4em;
+        align-items: center; }
+        nav #nav-container #streamList li p {
+          margin: 0;
+          padding-right: var(--nav-padding); }
+        nav #nav-container #streamList li img {
+          height: 1.4em; }
+        nav #nav-container #streamList li .refresh {
+          margin-right: 0.5em; }
 
 #navToggle {
   left: 0;
@@ -72,25 +94,50 @@ nav {
 #toggleChat {
   width: 9em; }
 
-#right-buttons {
+#fullscreen-button {
   position: absolute;
   right: 1.1em;
-  top: 0; }
-  #right-buttons label {
-    padding: 0;
-    z-index: 2;
-    cursor: pointer;
-    user-select: none; }
-    #right-buttons label svg {
-      fill: #fff; }
+  top: 0;
+  padding: 1.4em 1em;
+  z-index: 5;
+  cursor: pointer;
+  user-select: none;
+  /*
+  span {
+      height: 4px;
+      width: 4px;
+      background-color: white;
+      position: relative;
+      display: block;
+      border-radius: 50%;
+      transition: all .2s ease-in-out;
+      &:before {
+        top: -10px;
+        visibility: visible;
+      }
+      &:after {
+        top: 10px;
+      }
+      &:before, &:after {
+        height: 4px;
+        width: 4px;
+        background-color: white;
+        position: absolute;
+        content: "";
+        border-radius: 50%;
+        transition: all .2s ease-in-out;
+      }
+    }
+    &:hover span, &:hover span:before, &:hover span:after {
+      //background: #333332;
+    }*/ }
 
 #overlay-button {
   position: absolute;
   left: 1em;
   top: 0;
   padding: 1.4em 1em;
-  z-index: 7;
-  background: var(--bg-primary);
+  z-index: 5;
   cursor: pointer;
   user-select: none; }
   #overlay-button span {
@@ -112,16 +159,6 @@ nav {
       position: absolute;
       content: "";
       transition: all .2s ease-in-out; }
-
-#overlay-button.active:hover span, #overlay-button.active span {
-  background: transparent; }
-
-#overlay-button.active span:before {
-  transform: rotate(45deg) translate(7px, 7px);
-  opacity: 1; }
-
-#overlay-button.active span:after {
-  transform: rotate(-45deg) translate(7px, -7px); }
 
 input[type=checkbox] {
   display: none; }
@@ -186,7 +223,7 @@ input:focus:-ms-input-placeholder {
     display: flex;
     background: var(--bg-primary);
     height: 2.8em; }
-    #mainChat-container #mainChat-settings button {
+    #mainChat-container #mainChat-settings a {
       background: var(--accent);
       display: flex;
       align-items: center;
@@ -224,7 +261,6 @@ input:focus:-ms-input-placeholder {
   height: 100%;
   flex-direction: var(--streamContainer-flexDir);
   justify-content: center;
-  z-index: 1;
   transition: background 0.2s; }
   #stream-container #streams {
     background: var(--bg);
@@ -253,84 +289,10 @@ input:focus:-ms-input-placeholder {
       height: var(--chat-height);
       width: var(--chat-width); }
 
-#settings-menu {
-  display: var(--settings-display);
-  position: absolute;
-  left: 0;
-  top: 3em;
-  width: 40em;
-  z-index: 5;
-  height: calc(100vh - 3em);
-  background: var(--light-background);
-  overflow-y: scroll; }
-  #settings-menu #settings-container {
-    display: flex;
-    flex-wrap: wrap; }
-    #settings-menu #settings-container h2 {
-      text-align: center;
-      text-transform: uppercase;
-      padding: 0.5em 0;
-      width: 100%;
-      color: var(--dark-background); }
-    #settings-menu #settings-container section {
-      box-sizing: border-box;
-      padding: calc(var(--nav-padding)*2);
-      width: 50%; }
-      #settings-menu #settings-container section h3 {
-        font-size: 1.5em; }
-      #settings-menu #settings-container section button {
-        margin-left: 0; }
-      #settings-menu #settings-container section #streamList {
-        margin: 0;
-        margin-top: 0.4em;
-        padding-left: 0;
-        list-style: none;
-        display: flex;
-        flex-wrap: wrap; }
-        #settings-menu #settings-container section #streamList li {
-          width: 80%;
-          display: flex;
-          background: var(--bg-secondary);
-          color: var(--nav-text);
-          margin-left: var(--nav-padding);
-          text-transform: capitalize;
-          padding: 0.4em;
-          margin: 0.4em 0;
-          align-items: center; }
-          #settings-menu #settings-container section #streamList li p {
-            margin: 0;
-            padding-right: var(--nav-padding); }
-          #settings-menu #settings-container section #streamList li .stream-settings {
-            flex-wrap: wrap;
-            display: flex;
-            margin-left: auto; }
-          #settings-menu #settings-container section #streamList li img {
-            height: 1.4em; }
-          #settings-menu #settings-container section #streamList li .refresh {
-            margin-right: 0.5em; }
-
-#overlay {
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  z-index: 4;
-  background: var(--bg);
-  display: var(--overlay-display);
-  opacity: var(--overlay-opacity);
-  transition: opacity 0.4s; }
-
-@media screen and (max-width: 45em) {
-  body nav #nav-container form #search {
-    max-width: 7.5em; }
-  body #settings-menu {
-    width: 100vw; }
-    body #settings-menu #settings-container section {
-      width: 100%; } }
-
 @media screen and (max-width: 35em) {
-  body #overlay-button {
+  body nav #overlay-button {
     left: 0.3em; }
-  body nav #right-buttons {
+  body nav #about-button {
     right: 0.5em; }
   body nav #nav-container h1 {
     padding-right: 0; }
@@ -348,6 +310,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   margin: 0;
+  opacity: 0;
   overflow: hidden; }
   body #controller {
     display: flex;
@@ -376,7 +339,7 @@ body {
     border: 0;
     cursor: pointer;
     display: block; }
-  body h1, body h2 {
+  body h1 {
     font-family: 'Raleway', sans-serif;
     font-size: 2.25em;
     font-weight: 700;
@@ -384,19 +347,9 @@ body {
     letter-spacing: 2px;
     padding-right: var(--nav-padding);
     color: var(--nav-text); }
-  body button {
+  body a {
     cursor: pointer;
     margin-right: 0.5em; }
-  body form {
-    display: flex;
-    flex-wrap: wrap; }
-    body form .search {
-      max-width: 10em;
-      user-select: text;
-      cursor: text;
-      color: var(--input-color); }
-    body form input, body form button {
-      margin-left: 0; }
 
 #intro {
   display: flex;
@@ -406,6 +359,7 @@ body {
   color: var(--nav-text);
   text-align: left;
   position: absolute;
+  z-index: 0;
   max-width: 50em;
   padding: 0.5em;
   z-index: 1; }

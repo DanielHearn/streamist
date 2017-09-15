@@ -1,10 +1,28 @@
+@media screen and (max-width: 45em) {
+  body {
+    nav #nav-container {
+       form {
+         #search {
+           max-width: 7.5em;
+         }
+       }
+    }
+    #settings-menu {
+      width: 100vw;
+      #settings-container section {
+        width: 100%;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 35em) {
   body {
+    #overlay-button {
+      left: 0.3em;
+    }
     nav {
-      #overlay-button {
-        left: 0.3em;
-      }
-      #about-button {
+      #right-buttons {
         right: 0.5em;
       }
       #nav-container {
