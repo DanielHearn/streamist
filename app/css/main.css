@@ -1,31 +1,30 @@
 :root {
-  --bg: #5C6391;
-  --accent: #F39C12;
-  --nav-text: #FFFFFF;
+  --accent-color: #F39C12;
+  --nav-text-color: #FFFFFF;
   --nav-padding: 0.5em;
-  --text-primary: #212121;
-  --text-secondary: #757575;
-  --bg-primary: #4D5481;
-  --bg-secondary: #474D73;
-  --light-background: #EFEFEF;
-  --dark-background: #404040;
+  --text-primary-color: #212121;
+  --text-secondary-color: #757575;
+  --bg-primary-color: #474D73;
+  --bg-secondary-color: #5C6391;
+  --light-grey-color: #EFEFEF;
+  --dark-grey-color: #404040;
   --input-color: #d0d0d0;
   --input-font-size: 1em;
   --input-padding: 0.5em 1.5em;
-  --mainChat-display: none;
-  --chat-display: none;
-  --chat-height: 70%;
-  --chat-width: 100%;
   --streamContainer-flexDir: row;
   --streams-flexDir: column;
   --stream-width: initial;
-  --navButton-bg: #FF9800;
+  --navButton-bg-color: #FF9800;
   --navBar-display: flex;
   --navToggle-top: 2.9em;
+  --mainChat-display: none;
   --mainChatButton-display: none;
   --mainChatButton-right: 350px;
   --mainChatButton-top: 2.9em;
   --allChatButton-display: none;
+  --chat-display: none;
+  --chat-height: 70%;
+  --chat-width: 100%;
   --settings-display: none;
   --settings-top: 3em;
   --settings-height: calc(100vh - 3em);
@@ -34,8 +33,8 @@
 
 nav {
   width: 100%;
-  background: var(--bg-primary);
-  color: var(--nav-text);
+  background: var(--bg-primary-color);
+  color: var(--nav-text-color);
   display: var(--navBar-display);
   height: 3.2em;
   margin: 0;
@@ -56,23 +55,11 @@ nav {
     nav #nav-container form input, nav #nav-container form button {
       height: initial; }
 
-#navToggle {
-  left: 0;
-  top: var(--navToggle-top); }
-
 #mainChatButton {
   display: var(--mainChatButton-display);
   right: var(--mainChatButton-right);
   top: var(--mainChatButton-top);
   margin: 0; }
-
-#allChatButton {
-  display: var(--allChatButton-display);
-  align-self: center;
-  bottom: 0; }
-
-#toggleChat {
-  width: 9em; }
 
 #right-buttons {
   position: absolute;
@@ -93,11 +80,11 @@ nav {
   top: 0;
   padding: 1.35em 1em;
   z-index: 7;
-  background: var(--bg-primary);
+  background: var(--bg-primary-color);
   cursor: pointer;
   user-select: none; }
   #overlay-button span {
-    height: 3px;
+    height: 2px;
     width: 35px;
     background-color: white;
     position: relative;
@@ -109,7 +96,7 @@ nav {
     #overlay-button span:after {
       top: 10px; }
     #overlay-button span:before, #overlay-button span:after {
-      height: 3px;
+      height: 2px;
       width: 35px;
       background-color: white;
       position: absolute;
@@ -144,53 +131,53 @@ input[type=checkbox]:checked ~ #overlay-button span:after {
 
 ::-webkit-input-placeholder {
   /* Chrome */
-  color: var(--nav-text);
-  opacity: 0.75; }
+  color: var(--nav-text-color);
+  opacity: 0.6; }
 
 :-ms-input-placeholder {
   /* IE 10+ */
-  color: var(--nav-text);
-  opacity: 0.75; }
+  color: var(--nav-text-color);
+  opacity: 0.6; }
 
 ::-moz-placeholder {
   /* Firefox 19+ */
-  color: var(--nav-text);
-  opacity: 0.75; }
+  color: var(--nav-text-color);
+  opacity: 0.6; }
 
 :-moz-placeholder {
   /* Firefox 4 - 18 */
-  color: var(--nav-text);
-  opacity: 0.75; }
+  color: var(--nav-text-color);
+  opacity: 0.6; }
 
 input:focus::-webkit-input-placeholder {
-  color: var(--text-secondary);
+  color: var(--text-secondary-color);
   transition: all 0.2s; }
 
 input:focus:-moz-placeholder {
-  color: var(--text-secondary);
+  color: var(--text-secondary-color);
   transition: all 0.2s; }
 
 input:focus::-moz-placeholder {
-  color: var(--text-secondary);
+  color: var(--text-secondary-color);
   transition: all 0.2s; }
 
 input:focus:-ms-input-placeholder {
-  color: var(--text-secondary);
+  color: var(--text-secondary-color);
   transition: all 0.2s; }
 
 #mainChat-container {
   display: var(--mainChat-display);
-  background: var(--bg);
+  background: var(--bg-secondary-color);
   flex-direction: column;
   float: right;
   width: 350px;
   z-index: 1; }
   #mainChat-container #mainChat-settings {
     display: flex;
-    background: var(--bg-primary);
+    background: var(--bg-primary-color);
     height: 2.8em; }
     #mainChat-container #mainChat-settings button {
-      background: var(--accent);
+      background: var(--accent-color);
       display: flex;
       align-items: center;
       margin: 0;
@@ -203,18 +190,18 @@ input:focus:-ms-input-placeholder {
     width: 90%;
     display: flex;
     font-size: 1em;
-    color: var(--nav-text);
+    color: var(--nav-text-color);
     padding: 0.5em;
     margin: 0;
     border: 0;
-    background: var(--bg-secondary); }
+    background: var(--bg-secondary-color); }
     #mainChat-container select:hover {
-      background: var(--bg-secondary); }
+      background: var(--bg-secondary-color); }
     #mainChat-container select option {
-      background: var(--bg-primary);
+      background: var(--bg-primary-color);
       padding: var(--nav-padding); }
       #mainChat-container select option:hover {
-        background: var(--bg-secondary); }
+        background: var(--bg-secondary-color); }
   #mainChat-container iframe {
     width: 350px;
     height: 100%; }
@@ -264,13 +251,12 @@ input:focus:-ms-input-placeholder {
   width: 40em;
   z-index: 5;
   height: var(--settings-height);
-  background: var(--light-background);
-  overflow-y: scroll; }
+  background: var(--light-grey-color); }
   #settings-menu #settings-container {
     display: flex;
     flex-wrap: wrap; }
     #settings-menu #settings-container h2, #settings-menu #settings-container h3, #settings-menu #settings-container p {
-      color: var(--dark-background); }
+      color: var(--dark-grey-color); }
     #settings-menu #settings-container h2 {
       text-align: center;
       text-transform: uppercase;
@@ -288,6 +274,23 @@ input:focus:-ms-input-placeholder {
         margin-left: 0; }
       #settings-menu #settings-container section .search {
         max-width: 8em; }
+      #settings-menu #settings-container section select {
+        font-family: 'Open Sans', sans-serif;
+        display: flex;
+        font-size: 1em;
+        color: var(--nav-text-color);
+        padding: 0.5em;
+        margin: 0;
+        margin-bottom: 0.5em;
+        border: 0;
+        background: var(--bg-secondary-color); }
+        #settings-menu #settings-container section select:hover {
+          background: var(--bg-secondary-color); }
+        #settings-menu #settings-container section select option {
+          background: var(--bg-primary-color);
+          padding: var(--nav-padding); }
+          #settings-menu #settings-container section select option:hover {
+            background: var(--bg-secondary-color); }
       #settings-menu #settings-container section #streamList {
         margin: 0;
         margin-top: 0.4em;
@@ -298,25 +301,26 @@ input:focus:-ms-input-placeholder {
         #settings-menu #settings-container section #streamList li {
           width: 80%;
           display: flex;
-          background: var(--bg-secondary);
-          color: var(--nav-text);
+          background: var(--bg-secondary-color);
+          color: var(--nav-text-color);
           margin-left: var(--nav-padding);
           text-transform: capitalize;
-          padding: 0.4em;
+          padding: 0.5em 1em;
           margin: 0.4em 0;
           align-items: center; }
           #settings-menu #settings-container section #streamList li p {
             margin: 0;
             padding-right: var(--nav-padding);
-            color: var(--nav-text); }
+            color: var(--nav-text-color); }
           #settings-menu #settings-container section #streamList li .stream-settings {
             flex-wrap: wrap;
             display: flex;
             margin-left: auto; }
             #settings-menu #settings-container section #streamList li .stream-settings button {
+              display: flex;
               padding: 0.25em 0.5em; }
           #settings-menu #settings-container section #streamList li img {
-            height: 1.4em; }
+            height: 1.5em; }
           #settings-menu #settings-container section #streamList li .refresh {
             margin-right: 0.5em; }
 
@@ -329,6 +333,10 @@ input:focus:-ms-input-placeholder {
   display: var(--overlay-display);
   opacity: var(--overlay-opacity);
   transition: opacity 0.4s; }
+
+@media screen and (max-height: 75em) {
+  body #settings-menu {
+    overflow-y: scroll; } }
 
 @media screen and (max-width: 45em) {
   body nav #nav-container form #search {
@@ -364,18 +372,18 @@ body {
     -webkit-appearance: none;
     -moz-appearance: none;
     font-family: 'Open Sans', sans-serif;
-    background: var(--bg-secondary);
+    background: var(--bg-secondary-color);
     margin-right: var(--nav-padding);
     margin-left: 0;
     font-size: var(--input-font-size);
     border: 0;
     padding: var(--input-padding);
     border-radius: 0;
-    color: var(--nav-text); }
+    color: var(--nav-text-color); }
   body button {
     font-family: 'Open Sans', sans-serif;
-    background: var(--accent);
-    color: var(--nav-text);
+    background: var(--accent-color);
+    color: var(--nav-text-color);
     padding: var(--input-padding);
     text-decoration: none;
     font-size: var(--input-font-size);
@@ -390,7 +398,7 @@ body {
     margin: 0;
     letter-spacing: 2px;
     padding-right: var(--nav-padding);
-    color: var(--nav-text); }
+    color: var(--nav-text-color); }
   body button {
     cursor: pointer;
     margin-right: 0.5em; }
@@ -405,7 +413,7 @@ body {
     body form input, body form button {
       margin-left: 0; }
   body a {
-    color: var(--accent);
+    color: var(--accent-color);
     font-weight: 600;
     text-decoration: none; }
     body a:visited {
@@ -416,7 +424,7 @@ body {
   align-self: center;
   align-content: center;
   flex-wrap: wrap;
-  color: var(--nav-text);
+  color: var(--nav-text-colo);
   text-align: left;
   position: absolute;
   max-width: 50em;
@@ -428,5 +436,5 @@ body {
     font-size: 1.1em;
     font-weight: 300; }
   #intro a {
-    color: var(--nav-text);
+    color: var(--nav-text-color);
     text-decoration: underline; }

@@ -1,31 +1,30 @@
 :root {
-  --bg: #5C6391;
-  --accent: #F39C12;
-  --nav-text: #FFFFFF;
+  --accent-color: #F39C12;
+  --nav-text-color: #FFFFFF;
   --nav-padding: 0.5em;
-  --text-primary: #212121;
-  --text-secondary: #757575;
-  --bg-primary: #4D5481;
-  --bg-secondary: #474D73;
-  --light-background: #EFEFEF;
-  --dark-background: #404040;
+  --text-primary-color: #212121;
+  --text-secondary-color: #757575;
+  --bg-primary-color: #474D73;
+  --bg-secondary-color: #5C6391;
+  --light-grey-color: #EFEFEF;
+  --dark-grey-color: #404040;
   --input-color: #d0d0d0;
   --input-font-size: 1em;
   --input-padding: 0.5em 1.5em;
-  --mainChat-display: none;
-  --chat-display: none;
-  --chat-height: 70%;
-  --chat-width: 100%;
   --streamContainer-flexDir: row;
   --streams-flexDir: column;
   --stream-width: initial;
-  --navButton-bg: #FF9800;
+  --navButton-bg-color: #FF9800;
   --navBar-display: flex;
   --navToggle-top: 2.9em;
+  --mainChat-display: none;
   --mainChatButton-display: none;
   --mainChatButton-right: 350px;
   --mainChatButton-top: 2.9em;
   --allChatButton-display: none;
+  --chat-display: none;
+  --chat-height: 70%;
+  --chat-width: 100%;
   --settings-display: none;
   --settings-top: 3em;
   --settings-height: calc(100vh - 3em);
@@ -53,19 +52,19 @@ body {
     -webkit-appearance: none;
     -moz-appearance: none;
     font-family: 'Open Sans', sans-serif;
-    background: var(--bg-secondary);
+    background: var(--bg-secondary-color);
     margin-right: var(--nav-padding);
     margin-left: 0;
     font-size: var(--input-font-size);
     border: 0;
     padding: var(--input-padding);
     border-radius: 0;
-    color: var(--nav-text);
+    color: var(--nav-text-color);
   }
   button {
     font-family: 'Open Sans', sans-serif;
-    background: var(--accent);
-    color: var(--nav-text);
+    background: var(--accent-color);
+    color: var(--nav-text-color);
     padding: var(--input-padding);
     text-decoration: none;
     font-size: var(--input-font-size);
@@ -81,7 +80,7 @@ body {
     margin: 0;
     letter-spacing: 2px;
     padding-right: var(--nav-padding);
-    color: var(--nav-text);
+    color: var(--nav-text-color);
   }
   button {
     cursor: pointer;
@@ -101,7 +100,7 @@ body {
     }
   }
   a {
-    color: var(--accent);
+    color: var(--accent-color);
     font-weight: 600;
     text-decoration: none;
     &:visited {
@@ -115,7 +114,7 @@ body {
   align-self: center;
   align-content: center;
   flex-wrap: wrap;
-  color: var(--nav-text);
+  color: var(--nav-text-colo);
   text-align: left;
   position: absolute;
   max-width: 50em;
@@ -129,7 +128,7 @@ body {
     font-weight: 300;
   }
   a {
-    color: var(--nav-text);
+    color: var(--nav-text-color);
     text-decoration: underline;
   }
 }

@@ -1,17 +1,17 @@
 @mixin nav-text-color {
-  color: var(--nav-text);
-  opacity: 0.75;
+  color: var(--nav-text-color);
+  opacity: 0.6;
 }
 
 @mixin nav-placeholder-color {
-   color: var(--text-secondary);
+   color: var(--text-secondary-color);
    transition: all 0.2s;
 }
 
 nav {
   width: 100%;
-  background: var(--bg-primary);
-  color: var(--nav-text);
+  background: var(--bg-primary-color);
+  color: var(--nav-text-color);
   display: var(--navBar-display);
   height: 3.2em;
   margin: 0;
@@ -40,26 +40,11 @@ nav {
   }
 }
 
-#navToggle {
-  left: 0;
-  top: var(--navToggle-top);
-}
-
 #mainChatButton {
   display: var(--mainChatButton-display);
   right: var(--mainChatButton-right);
   top: var(--mainChatButton-top);
   margin: 0;
-}
-
-#allChatButton {
-  display: var(--allChatButton-display);
-  align-self: center;
-  bottom: 0;
-}
-
-#toggleChat {
-  width: 9em;
 }
 
 #right-buttons {
@@ -87,11 +72,11 @@ nav {
   top: 0;
   padding: 1.35em 1em;
   z-index: 7;
-  background: var(--bg-primary);
+  background: var(--bg-primary-color);
   cursor: pointer;
   user-select: none;
   span {
-      height: 3px;
+      height: 2px;
       width: 35px;
       background-color: white;
       position: relative;
@@ -105,7 +90,7 @@ nav {
         top: 10px;
       }
       &:before, &:after {
-        height: 3px;
+        height: 2px;
         width: 35px;
         background-color: white;
         position: absolute;

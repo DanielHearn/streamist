@@ -1,16 +1,16 @@
 #mainChat-container {
   display: var(--mainChat-display);
-  background: var(--bg);
+  background: var(--bg-secondary-color);
   flex-direction: column;
   float: right;
   width: 350px;
   z-index: 1;
   #mainChat-settings {
     display: flex;
-    background: var(--bg-primary);
+    background: var(--bg-primary-color);
     height: 2.8em;
     button {
-      background: var(--accent);
+      background: var(--accent-color);
       display: flex;
       align-items: center;
       margin: 0;
@@ -26,19 +26,19 @@
     width: 90%;
     display: flex;
     font-size: 1em;
-    color: var(--nav-text);
+    color: var(--nav-text-color);
     padding: 0.5em;
     margin: 0;
     border: 0;
-    background: var(--bg-secondary);
+    background: var(--bg-secondary-color);
     &:hover {
-      background: var(--bg-secondary);
+      background: var(--bg-secondary-color);
     }
     option {
-      background: var(--bg-primary);
+      background: var(--bg-primary-color);
       padding: var(--nav-padding);
       &:hover {
-        background: var(--bg-secondary);
+        background: var(--bg-secondary-color);
       }
     }
   }

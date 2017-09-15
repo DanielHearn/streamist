@@ -6,13 +6,13 @@
   width: 40em;
   z-index: 5;
   height: var(--settings-height);
-  background: var(--light-background);
-  overflow-y: scroll;
+  background: var(--light-grey-color);
+  //overflow-y: scroll;
   #settings-container {
     display: flex;
     flex-wrap: wrap;
     h2, h3, p {
-      color: var(--dark-background);
+      color: var(--dark-grey-color);
     }
     h2 {
       text-align: center;
@@ -36,6 +36,28 @@
       .search {
         max-width: 8em;
       }
+      select {
+        font-family: 'Open Sans', sans-serif;
+        //width: 90%;
+        display: flex;
+        font-size: 1em;
+        color: var(--nav-text-color);
+        padding: 0.5em;
+        margin: 0;
+        margin-bottom: 0.5em;
+        border: 0;
+        background: var(--bg-secondary-color);
+        &:hover {
+          background: var(--bg-secondary-color);
+        }
+        option {
+          background: var(--bg-primary-color);
+          padding: var(--nav-padding);
+          &:hover {
+            background: var(--bg-secondary-color);
+          }
+        }
+      }
       #streamList {
         //float: right;
         margin: 0;
@@ -49,28 +71,29 @@
           width: 80%;
           display: flex;
           //position: relative;
-          background: var(--bg-secondary);
-          color: var(--nav-text);
+          background: var(--bg-secondary-color);
+          color: var(--nav-text-color);
           margin-left: var(--nav-padding);
           text-transform: capitalize;
-          padding: 0.4em;
+          padding: 0.5em 1em;
           margin: 0.4em 0;
           align-items: center;
           p {
             margin: 0;
             padding-right: var(--nav-padding);
-            color: var(--nav-text);
+            color: var(--nav-text-color);
           }
           .stream-settings {
             flex-wrap: wrap;
             display: flex;
             margin-left: auto;
             button {
+              display: flex;
               padding: 0.25em 0.5em;
             }
           }
           img {
-            height: 1.4em;
+            height: 1.5em;
           }
           .refresh {
             margin-right: 0.5em;

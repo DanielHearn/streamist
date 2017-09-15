@@ -13,20 +13,21 @@ module.controller('multistreamController', function($scope, $sce) {
     var playerUrl = "http://player.twitch.tv/?channel=";
     var chatStartUrl = "http://www.twitch.tv/";
     var chatEndUrl = "/chat";
-    var upIcon = "img/up.svg";
+    /*var upIcon = "img/up.svg";
     var downIcon = "img/down.svg";
     var leftIcon = "img/left.svg";
     var rightIcon = "img/right.svg";
-    var navButtonOffset = "2.9em";
+    var navButtonOffset = "2.9em";*/
     var mainChatVisibility = true;
     var allChatVisibility = true;
     var fullscreen = false;
     var menuOpen = false;
 
     $scope.streamList = [];
+    $scope.availableLayouts = "grid";/*
     $scope.navIcon = upIcon;
     $scope.mainChatIcon = rightIcon;
-    $scope.allChatIcon = downIcon;
+    $scope.allChatIcon = downIcon;*/
 
     $scope.trustSrc = function(src) {
       return $sce.trustAsResourceUrl(src);
@@ -45,10 +46,10 @@ module.controller('multistreamController', function($scope, $sce) {
         var numOfStreams = $scope.streamList.length;
         if (numOfStreams == 1) {
           setMainChat()
-          $scope.changeLayout(currentLayout);
+          changeLayout(currentLayout);
         }
         if (numOfStreams == 0){
-          $scope.changeLayout(currentLayout);
+          changeLayout(currentLayout);
         }
         recentlyAdded = true;
       }
@@ -110,20 +111,20 @@ module.controller('multistreamController', function($scope, $sce) {
     function setChat() {
       if (currentLayout == column) {
         if (allChatVisibility == true) {
-          $scope.allChatIcon = downIcon;
-          root.setProperty("-allChatButton-display", "flex");
+          //$scope.allChatIcon = downIcon;
+          //root.setProperty("-allChatButton-display", "flex");
         } else {
-          $scope.allChatIcon = upIcon;
-          root.setProperty("-allChatButton-display", "none");
+          //$scope.allChatIcon = upIcon;
+          //root.setProperty("-allChatButton-display", "none");
         }
         toggleAllChat();
       } else {
         if (mainChatVisibility == true) {
-          $scope.mainChatIcon = rightIcon;
+          //$scope.mainChatIcon = rightIcon;
           root.setProperty("--mainChatButton-right", "350px");
           root.setProperty("--mainChat-display", "flex");
         } else {
-          $scope.mainChatIcon = leftIcon;
+          //$scope.mainChatIcon = leftIcon;
           root.setProperty("--mainChatButton-right", "0");
           root.setProperty("--mainChat-display", "none");
         }
@@ -139,7 +140,7 @@ module.controller('multistreamController', function($scope, $sce) {
       root.setProperty("--chat-display", newDisplay);
     }
 
-    $scope.changeLayout = function(newLayout) {
+    function changeLayout(newLayout) {
       currentLayout = newLayout;
       if (currentLayout == grid){
         changeLayoutGrid();
@@ -169,18 +170,33 @@ module.controller('multistreamController', function($scope, $sce) {
       }
     }
 
+    $scope.setLayout = function() {
+        if ($scope.availableLayouts != "") {
+          console.log($scope.availableLayouts);
+          changeLayout($scope.availableLayouts);
+        }
+    }
+
     $scope.toggleFullscreen = function() {
       console.log("Toggle Fullscreen");
       fullscreen = !fullscreen;
       if(fullscreen) {
-        root.setProperty("--navBar-display", "none");
-        root.setProperty("--settings-top", "0");
-        root.setProperty("--settings-height", "100vh");
+        enableFullscreen();
       } else {
-        root.setProperty("--navBar-display", "flex");
-        root.setProperty("--settings-top", "3em");
-        root.setProperty("--settings-height", "calc(100vh - 3em)");
+        disableFullscreen();
       }
+    }
+
+    function enableFullscreen() {
+      root.setProperty("--navBar-display", "none");
+      root.setProperty("--settings-top", "0");
+      root.setProperty("--settings-height", "100vh");
+    }
+
+    function disableFullscreen() {
+      root.setProperty("--navBar-display", "flex");
+      root.setProperty("--settings-top", "3em");
+      root.setProperty("--settings-height", "calc(100vh - 3em)");
     }
 
     function changeLayoutGrid() {
@@ -227,6 +243,7 @@ module.controller('multistreamController', function($scope, $sce) {
           updateLayoutColumn(focusStream, numOfStreams, streamElementList);
         }
       } else {
+        disableFullscreen();
         root.setProperty("--bg", "#5C6391");
         root.setProperty("--mainChat-display", "none");
         root.setProperty("--mainChatButton-display", "none");
@@ -268,7 +285,7 @@ module.controller('multistreamController', function($scope, $sce) {
           elementList[i].style[style] = newSetting;
       }
     }
-
+    /*
     $scope.toggleNav = function() {
       navVisible = !navVisible;
       if (navVisible == true) {
@@ -282,7 +299,7 @@ module.controller('multistreamController', function($scope, $sce) {
         root.setProperty("--navToggle-top", 0);
         root.setProperty("--mainChatButton-top", 0);
       }
-    }
+    }*/
 
     $scope.clearStreams = function() {
       $scope.streamList.length = 0;
@@ -329,6 +346,6 @@ module.controller('multistreamController', function($scope, $sce) {
           }
         }
       }
-      setTimeout(function(){ $scope.changeLayout(grid); }, 20);
+      setTimeout(function(){ changeLayout(grid); }, 20);
     }
 });

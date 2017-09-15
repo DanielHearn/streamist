@@ -1,3 +1,12 @@
+@media screen and (max-height: 75em) {
+  body {
+    #settings-menu {
+      overflow-y: scroll;
+    }
+  }
+}
+
+
 @media screen and (max-width: 45em) {
   body {
     nav #nav-container {
