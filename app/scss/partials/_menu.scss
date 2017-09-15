@@ -2,21 +2,26 @@
   display: var(--settings-display);
   position: absolute;
   left: 0;
-  top: 3em;
+  top: var(--settings-top);
   width: 40em;
   z-index: 5;
-  height: calc(100vh - 3em);
+  height: var(--settings-height);
   background: var(--light-background);
   overflow-y: scroll;
   #settings-container {
     display: flex;
     flex-wrap: wrap;
+    h2, h3, p {
+      color: var(--dark-background);
+    }
     h2 {
       text-align: center;
       text-transform: uppercase;
       padding: 0.5em 0;
       width: 100%;
-      color: var(--dark-background);
+    }
+    #about {
+      width: 100%;
     }
     section {
       box-sizing: border-box;
@@ -27,6 +32,9 @@
       }
       button {
         margin-left: 0;
+      }
+      .search {
+        max-width: 8em;
       }
       #streamList {
         //float: right;
@@ -51,11 +59,15 @@
           p {
             margin: 0;
             padding-right: var(--nav-padding);
+            color: var(--nav-text);
           }
           .stream-settings {
             flex-wrap: wrap;
             display: flex;
             margin-left: auto;
+            button {
+              padding: 0.25em 0.5em;
+            }
           }
           img {
             height: 1.4em;

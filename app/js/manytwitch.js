@@ -174,8 +174,12 @@ module.controller('multistreamController', function($scope, $sce) {
       fullscreen = !fullscreen;
       if(fullscreen) {
         root.setProperty("--navBar-display", "none");
+        root.setProperty("--settings-top", "0");
+        root.setProperty("--settings-height", "100vh");
       } else {
         root.setProperty("--navBar-display", "flex");
+        root.setProperty("--settings-top", "3em");
+        root.setProperty("--settings-height", "calc(100vh - 3em)");
       }
     }
 

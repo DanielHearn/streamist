@@ -27,6 +27,8 @@
   --mainChatButton-top: 2.9em;
   --allChatButton-display: none;
   --settings-display: none;
+  --settings-top: 3em;
+  --settings-height: calc(100vh - 3em);
   --overlay-display: none;
   --overlay-opacity: 0;
 }
@@ -96,6 +98,14 @@ body {
     }
     input, button {
       margin-left: 0;
+    }
+  }
+  a {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+    &:visited {
+      text-decoration: none;
     }
   }
 }

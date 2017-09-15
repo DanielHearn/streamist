@@ -64,7 +64,9 @@ nav {
 
 #right-buttons {
   position: absolute;
-  right: 1.1em;
+  //right: 1.1em;
+  padding-right: 0.5em;
+  right: 0;
   top: 0;
   label {
     //padding: 1.4em 1em;
@@ -80,9 +82,10 @@ nav {
 
 #overlay-button {
   position: absolute;
-  left: 1em;
+  //left: 1em;
+  left: 0;
   top: 0;
-  padding: 1.4em 1em;
+  padding: 1.35em 1em;
   z-index: 7;
   background: var(--bg-primary);
   cursor: pointer;

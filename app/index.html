@@ -40,6 +40,7 @@
       <body>
         <label for="overlay-input" id="overlay-button" ng-click="toggleMenu()"><span></span></label>
         <nav id="navBar">
+          <!--
           <div id="right-buttons">
             <label for="help-input" id="help-button" ng-click="toggleHelp()">
               <svg width="48" height="48">
@@ -54,6 +55,7 @@
               </svg>
             </label>
           </div>
+          -->
           <section id="nav-container">
             <h1 id="logo">MT</h1>
             <form ng-submit="addStream()">
@@ -107,9 +109,13 @@
             <section>
               <h3>Usage</h3>
             </section>
+            <section id="about">
+              <h2>About</h2>
+              <p>Developed my <a href="#">Daniel Hearn</a>, source available on <a href="#">GitHub</a>.</p>
+            </section>
           </section>
         </section>
-        <section id="overlay"></section>
+        <section id="overlay" ng-click="toggleMenu()"></section>
         <section id="stream-container">
           <!--
           <section id="intro">
