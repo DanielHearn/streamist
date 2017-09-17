@@ -20,6 +20,9 @@
       width: 100vw;
       #settings-container section {
         width: 100%;
+        #streamList li {
+          width: 75%;
+        }
       }
     }
   }
@@ -42,6 +45,9 @@
          display: none;
        }
      }
+    }
+    #settings-menu #settings-container section  #streamList li {
+      width: 100%;
     }
     #stream-container {
       flex-direction: column;

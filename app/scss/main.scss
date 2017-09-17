@@ -31,6 +31,7 @@
   --settings-height: calc(100vh - 3em);
   --overlay-display: none;
   --overlay-opacity: 0;
+  --modal-display: none;
 }
 
 @import 'partials/nav';
@@ -38,6 +39,7 @@
 @import 'partials/streams';
 @import 'partials/menu';
 @import 'partials/media-queries';
+@import 'partials/modal';
 
 body {
   font-family: 'Open Sans', sans-serif;

@@ -30,7 +30,8 @@
   --settings-top: 3em;
   --settings-height: calc(100vh - 3em);
   --overlay-display: none;
-  --overlay-opacity: 0; }
+  --overlay-opacity: 0;
+  --modal-display: none; }
 
 nav {
   width: 100%;
@@ -300,13 +301,16 @@ input:focus:-ms-input-placeholder {
           margin-right: 0.5em; }
       #settings-menu #settings-container section #streamList {
         margin: 0;
-        margin-top: 0.4em;
-        padding-left: 0;
+        margin-top: 1em;
+        padding: 0 0.5em;
         list-style: none;
         display: flex;
-        flex-wrap: wrap; }
+        flex-wrap: wrap;
+        justify-content: left;
+        background: var(--input-color); }
         #settings-menu #settings-container section #streamList li {
-          width: 80%;
+          width: 100%;
+          box-sizing: border-box;
           display: flex;
           user-select: none;
           background: var(--bg-secondary-color);
@@ -316,26 +320,33 @@ input:focus:-ms-input-placeholder {
           padding: 0.5em 1em;
           margin: 0.4em 0;
           align-items: center; }
-          #settings-menu #settings-container section #streamList li span {
-            height: 2em;
+          #settings-menu #settings-container section #streamList li .handle {
+            height: 100%;
             width: 1.5em;
-            display: flex;
-            justify-content: center;
             position: relative;
-            display: block;
-            cursor: pointer;
-            margin-right: 0.5em; }
-            #settings-menu #settings-container section #streamList li span:before {
-              top: 0.6em;
-              visibility: visible; }
-            #settings-menu #settings-container section #streamList li span:after {
-              top: 1.4em; }
-            #settings-menu #settings-container section #streamList li span:before, #settings-menu #settings-container section #streamList li span:after {
-              height: 3px;
-              width: 1.5em;
+            display: flex;
+            align-items: center;
+            margin-right: 0.5em;
+            cursor: pointer; }
+            #settings-menu #settings-container section #streamList li .handle span {
+              width: 100%;
+              height: 2px;
               background: var(--nav-text-color);
-              position: absolute;
-              content: ""; }
+              display: flex;
+              justify-content: center;
+              position: relative;
+              display: block; }
+              #settings-menu #settings-container section #streamList li .handle span:before {
+                top: 0.4em;
+                visibility: visible; }
+              #settings-menu #settings-container section #streamList li .handle span:after {
+                top: -0.4em; }
+              #settings-menu #settings-container section #streamList li .handle span:before, #settings-menu #settings-container section #streamList li .handle span:after {
+                height: 2px;
+                width: 1.5em;
+                background: var(--nav-text-color);
+                position: absolute;
+                content: ""; }
           #settings-menu #settings-container section #streamList li p {
             margin: 0;
             padding-right: var(--nav-padding);
@@ -352,21 +363,27 @@ input:focus:-ms-input-placeholder {
           #settings-menu #settings-container section #streamList li .refresh {
             margin-right: 0.5em; }
 
-/* The switch - the box around the slider */
 .switch {
   position: relative;
   display: inline-block;
   width: 50px;
   height: 16px; }
+  .switch input {
+    display: none; }
+    .switch input:checked + .slider:before {
+      background-color: var(--accent-color);
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px); }
+    .switch inputinput:focus + .slider {
+      box-shadow: 0 0 1px #2196F3; }
+    .switch input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3; }
 
-/* Hide default HTML checkbox */
-.switch input {
-  display: none; }
-
-/* The slider */
 .slider {
   position: absolute;
   cursor: pointer;
+  border-radius: 34px;
   top: 0;
   left: 0;
   right: 0;
@@ -374,35 +391,17 @@ input:focus:-ms-input-placeholder {
   background-color: #ccc;
   -webkit-transition: .4s;
   transition: .4s; }
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 25px;
-  width: 25px;
-  top: -0.3em;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
-  background-color: var(--nav-background-color); }
-
-input:checked + .slider:before {
-  background-color: var(--accent-color); }
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3; }
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px); }
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px; }
-
-.slider.round:before {
-  border-radius: 50%; }
+  .slider:before {
+    position: absolute;
+    border-radius: 50%;
+    content: "";
+    height: 25px;
+    width: 25px;
+    top: -0.3em;
+    background-color: white;
+    -webkit-transition: .3s;
+    transition: .3s;
+    background-color: var(--nav-background-color); }
 
 #overlay {
   width: 100vw;
@@ -424,13 +423,17 @@ input:checked + .slider:before {
   body #settings-menu {
     width: 100vw; }
     body #settings-menu #settings-container section {
-      width: 100%; } }
+      width: 100%; }
+      body #settings-menu #settings-container section #streamList li {
+        width: 75%; } }
 
 @media screen and (max-width: 35em) {
   body nav #nav-container h1 {
     padding-right: 0; }
   body nav #nav-container form {
     display: none; }
+  body #settings-menu #settings-container section #streamList li {
+    width: 100%; }
   body #stream-container {
     flex-direction: column; }
     body #stream-container #mainChat-container {
@@ -438,6 +441,19 @@ input:checked + .slider:before {
       height: 50%; }
       body #stream-container #mainChat-container #mainChat {
         width: 100%; } }
+
+#modal {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0; }
+  #modal #modal-header {
+    background: var(--bg-primary-color);
+    padding: var(--input-padding); }
+    #modal #modal-header h4 {
+      color: var(--nav-text-color); }
 
 body {
   font-family: 'Open Sans', sans-serif;

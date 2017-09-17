@@ -37,7 +37,7 @@
         ga('send', 'pageview');
       </script>
     </head>
-    <div id="controller" ng-controller="multistreamController" data-ng-init="getParam()">
+    <div id="controller" ng-controller="multistreamController" data-ng-init="loadApp()">
       <body>
         <label for="overlay-input" id="overlay-button" ng-click="toggleMenu()"><span></span></label>
         <nav id="navBar">
@@ -76,7 +76,9 @@
               </form>
               <ul id="streamList" sv-root sv-part="streamList">
                 <li ng-repeat="stream in streamList track by $index" sv-element>
-                  <span sv-handle></span>
+                  <div class="handle" sv-handle>
+                    <span></span>
+                  </div>
                   <p> {{ stream.channel }} </p>
                   <div class="stream-settings">
                     <button ng-click="refreshStream($event)"><img class="{{stream.channel}}" src="img/refresh.svg" alt="Refresh stream"></button>
@@ -98,11 +100,9 @@
                   <span class="slider round" ng-click="toggleFullscreen()"></span>
                 </label>
               </div>
-              <!--<button type="button" ng-click="toggleFullscreen()">Fullscreen</button>-->
             </section>
             <section>
               <h3>Chat</h3>
-              <!--id="allChatButton" class="arrowButton" // <img id="allChatIcon" ng-src="{{allChatIcon}}" alt="Toggle all chats">-->
               <div class="switch-container">
                 <p>Chat Visibility</p>
                 <label class="switch">
@@ -110,7 +110,6 @@
                   <span class="slider round" ng-click="toggleChat()"></span>
                 </label>
               </div>
-              <!--<button type="button" name="button" ng-click="toggleChat()">Toggle Chat</button> -->
             </section>
             <section>
               <h3>Usage</h3>
@@ -123,15 +122,15 @@
         </section>
         <section id="overlay" ng-click="toggleMenu()"></section>
         <section id="stream-container">
-          <!--
-          <section id="intro">
-            <p class="instructions">To start enter a twitch channel and click add.</p>
-            <p>To specify a channel within the url use 'manytwitch/?stream=channel1,channel2'
-            creating a list of the channels seperated with commas.</p>
-            <p>Developed by <a href="http://www.danielhearn.co.uk">Daniel Hearn</a></p>
-            <p>Source available at <a href="https://github.com/DanielHearn/manytwitch">github.com/DanielHearn/manytwitch</a></p>
+          <section id="modal">
+            <div id="modal-header">
+              <h4>{{ modalHeading }}</h4>
+            </div>
+            <div id="modal-content">
+              <p>{{ modalText }}</p>
+              <button type="button" name="yes" ng-click="acceptModal" ng-if="modalType == welcomeFirst">Continue</button>
+            </div>
           </section>
-          -->
           <section id="streams">
             <section class="stream" ng-repeat="stream in streamList track by $index"  id="{{stream.channel}}">
               <section class="player">

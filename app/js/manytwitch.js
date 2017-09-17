@@ -262,26 +262,28 @@ module.controller('multistreamController', function($scope, $sce) {
       }
     }
 
-    /*
-    $scope.toggleNav = function() {
-      navVisible = !navVisible;
-      if (navVisible == true) {
-        root.setProperty("--navBar-display", "flex");
-        $scope.navIcon = upIcon;
-        root.setProperty("--navToggle-top", navButtonOffset);
-        root.setProperty("--mainChatButton-top", navButtonOffset);
-      } else {
-        root.setProperty("--navBar-display", "none");
-        $scope.navIcon = downIcon;
-        root.setProperty("--navToggle-top", 0);
-        root.setProperty("--mainChatButton-top", 0);
+    $scope.loadModal = function(modalType) {
+      switch($scope.modalType) {
+        case "welcomeFirst":
+          console.log("Welcome First");
+          root.setProperty("--modal-display", "block");
+          $scope.modalHeader = "Welcome To Manytwitch";
+          break;
+        case "welcomeBack":
+          console.log("Welcome Back");
+          root.setProperty("--modal-display", "block");
+          $scope.modalHeader = "Welcome Back";
+          break;
       }
-    }*/
+    }
 
-    /*
-    $scope.clearStreams = function() {
-      $scope.streamList.length = 0;
-    }*/
+    $scope.loadApp = function() {
+      if($scope.getParam()) {
+        setMainChat();
+      }
+      setTimeout(function(){ changeLayout(grid); }, 20);
+      $scope.loadModal("welcomeFirst");
+    }
 
     function insertParam() {
       var channels;
@@ -318,12 +320,11 @@ module.controller('multistreamController', function($scope, $sce) {
               var playerUrlFormat = (playerUrl + channel)
               var streamItem = { channel: channel, player: playerUrlFormat, chat: chatUrlFormat }
               $scope.streamList.push(streamItem);
-              //toggleAllChat();
-              setMainChat()
+              return true;
             }
           }
         }
       }
-      setTimeout(function(){ changeLayout(grid); }, 20);
+      return false;
     }
 });

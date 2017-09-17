@@ -1,0 +1,13 @@
+#modal {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  display: var(--modal-display);
+  #modal-header {
+    background: var(--bg-primary-color);
+    padding: var(--input-padding);
+    h4 {
+      color: var(--nav-text-color);
+    }
+  }
+}
