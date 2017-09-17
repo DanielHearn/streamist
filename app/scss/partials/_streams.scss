@@ -1,0 +1,40 @@
+@mixin stream-flex {
+  background: var(--bg-secondary-color);
+  flex: 1 1 auto;
+  display: flex;
+  box-sizing: border-box;
+}
+
+#stream-container {
+  @include stream-flex;
+  height: 100%;
+  flex-direction: var(--streamContainer-flexDir);
+  justify-content: center;
+  z-index: 1;
+  transition: background 0.2s;
+  #streams {
+    @include stream-flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  .stream {
+    @include stream-flex;
+    position: relative;
+    width: var(--stream-width);
+    flex-direction: var(--streams-flexDir);
+    z-index: 2;
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
+    .player {
+      width: 100%;
+      height: 100%;
+    }
+    .chat {
+      display: var(--chat-display);
+      height: var(--chat-height);
+      width: var(--chat-width);
+    }
+  }
+}
