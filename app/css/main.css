@@ -2,6 +2,7 @@
   --accent-color: #F39C12;
   --nav-text-color: #FFFFFF;
   --nav-padding: 0.5em;
+  --nav-background-color: #4D5481;
   --text-primary-color: #212121;
   --text-secondary-color: #757575;
   --bg-primary-color: #474D73;
@@ -33,7 +34,7 @@
 
 nav {
   width: 100%;
-  background: var(--bg-primary-color);
+  background: var(--nav-background-color);
   color: var(--nav-text-color);
   display: var(--navBar-display);
   height: 3.2em;
@@ -80,7 +81,7 @@ nav {
   top: 0;
   padding: 1.35em 1em;
   z-index: 7;
-  background: var(--bg-primary-color);
+  background: var(--nav-background-color);
   cursor: pointer;
   user-select: none; }
   #overlay-button span {
@@ -167,7 +168,7 @@ input:focus:-ms-input-placeholder {
 
 #mainChat-container {
   display: var(--mainChat-display);
-  background: var(--bg-secondary-color);
+  background: var(--bg-primary-color);
   flex-direction: column;
   float: right;
   width: 350px;
@@ -207,7 +208,7 @@ input:focus:-ms-input-placeholder {
     height: 100%; }
 
 #stream-container {
-  background: var(--bg);
+  background: var(--bg-secondary-color);
   flex: 1 1 auto;
   display: flex;
   box-sizing: border-box;
@@ -217,14 +218,14 @@ input:focus:-ms-input-placeholder {
   z-index: 1;
   transition: background 0.2s; }
   #stream-container #streams {
-    background: var(--bg);
+    background: var(--bg-secondary-color);
     flex: 1 1 auto;
     display: flex;
     box-sizing: border-box;
     flex-wrap: wrap;
     flex-direction: row; }
   #stream-container .stream {
-    background: var(--bg);
+    background: var(--bg-secondary-color);
     flex: 1 1 auto;
     display: flex;
     box-sizing: border-box;
@@ -283,11 +284,11 @@ input:focus:-ms-input-placeholder {
         margin: 0;
         margin-bottom: 0.5em;
         border: 0;
-        background: var(--bg-secondary-color); }
+        background: var(--bg-primary-color); }
         #settings-menu #settings-container section select:hover {
-          background: var(--bg-secondary-color); }
+          background: var(--bg-primary-color); }
         #settings-menu #settings-container section select option {
-          background: var(--bg-primary-color);
+          background: var(--bg-secondary-color);
           padding: var(--nav-padding); }
           #settings-menu #settings-container section select option:hover {
             background: var(--bg-secondary-color); }
@@ -301,6 +302,7 @@ input:focus:-ms-input-placeholder {
         #settings-menu #settings-container section #streamList li {
           width: 80%;
           display: flex;
+          user-select: none;
           background: var(--bg-secondary-color);
           color: var(--nav-text-color);
           margin-left: var(--nav-padding);
@@ -308,6 +310,26 @@ input:focus:-ms-input-placeholder {
           padding: 0.5em 1em;
           margin: 0.4em 0;
           align-items: center; }
+          #settings-menu #settings-container section #streamList li span {
+            height: 2em;
+            width: 1.5em;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            display: block;
+            cursor: pointer;
+            margin-right: 0.5em; }
+            #settings-menu #settings-container section #streamList li span:before {
+              top: 0.6em;
+              visibility: visible; }
+            #settings-menu #settings-container section #streamList li span:after {
+              top: 1.4em; }
+            #settings-menu #settings-container section #streamList li span:before, #settings-menu #settings-container section #streamList li span:after {
+              height: 3px;
+              width: 1.5em;
+              background: var(--nav-text-color);
+              position: absolute;
+              content: ""; }
           #settings-menu #settings-container section #streamList li p {
             margin: 0;
             padding-right: var(--nav-padding);
@@ -324,12 +346,64 @@ input:focus:-ms-input-placeholder {
           #settings-menu #settings-container section #streamList li .refresh {
             margin-right: 0.5em; }
 
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px; }
+
+/* Hide default HTML checkbox */
+.switch input {
+  display: none; }
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s; }
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s; }
+
+input:checked + .slider {
+  background-color: #2196F3; }
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3; }
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px); }
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px; }
+
+.slider.round:before {
+  border-radius: 50%; }
+
 #overlay {
   width: 100vw;
   height: 100vh;
   position: absolute;
   z-index: 4;
-  background: var(--bg);
+  background: var(--nav-background-color);
   display: var(--overlay-display);
   opacity: var(--overlay-opacity);
   transition: opacity 0.4s; }
@@ -372,7 +446,7 @@ body {
     -webkit-appearance: none;
     -moz-appearance: none;
     font-family: 'Open Sans', sans-serif;
-    background: var(--bg-secondary-color);
+    background: var(--bg-primary-color);
     margin-right: var(--nav-padding);
     margin-left: 0;
     font-size: var(--input-font-size);

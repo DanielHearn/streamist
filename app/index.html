@@ -25,6 +25,7 @@
       <link href="css/main.css" rel="stylesheet">
       <!-- endbuild -->
 
+      <script type="text/javascript" src="js/angular-sortable-view.min.js"></script>
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css?family=Raleway:300,600,700" rel="stylesheet">
       <script>
@@ -73,8 +74,9 @@
                 <input class="search" type="text" ng-model="input" name="" value="" placeholder="Twitch Channel" autofocus required>
                 <button class="getTwitch" href="">Load</button>
               </form>
-              <ul id="streamList">
-                <li ng-repeat="stream in streamList track by $index">
+              <ul id="streamList" sv-root sv-part="streamList">
+                <li ng-repeat="stream in streamList track by $index" sv-element>
+                  <span sv-handle></span>
                   <p> {{ stream.channel }} </p>
                   <div class="stream-settings">
                     <button ng-click="refreshStream($event)"><img class="{{stream.channel}}" src="img/refresh.svg" alt="Refresh stream"></button>
@@ -89,12 +91,20 @@
                 <option value="grid" selected>Grid Layout</option>
                 <option value="column">Column Layout</option>
               </select>
-              <button type="button" ng-click="toggleFullscreen()">Fullscreen</button>
+              <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider round" ng-click="toggleFullscreen()"></span>
+              </label>
+              <!--<button type="button" ng-click="toggleFullscreen()">Fullscreen</button>-->
             </section>
             <section>
               <h3>Chat</h3>
               <!--id="allChatButton" class="arrowButton" // <img id="allChatIcon" ng-src="{{allChatIcon}}" alt="Toggle all chats">-->
-              <button type="button" name="button" ng-click="toggleChat()">Toggle Chat</button>
+              <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider round" ng-click="toggleChat()"></span>
+              </label>
+              <!--<button type="button" name="button" ng-click="toggleChat()">Toggle Chat</button> -->
             </section>
             <section>
               <h3>Usage</h3>

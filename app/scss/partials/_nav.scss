@@ -10,7 +10,7 @@
 
 nav {
   width: 100%;
-  background: var(--bg-primary-color);
+  background: var(--nav-background-color);
   color: var(--nav-text-color);
   display: var(--navBar-display);
   height: 3.2em;
@@ -72,7 +72,7 @@ nav {
   top: 0;
   padding: 1.35em 1em;
   z-index: 7;
-  background: var(--bg-primary-color);
+  background: var(--nav-background-color);
   cursor: pointer;
   user-select: none;
   span {

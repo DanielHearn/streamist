@@ -18,7 +18,6 @@ gulp.task('sass', function() {
   return gulp.src(scssSource)
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest(cssDest))
-    //.pipe(gulp.dest('dist/css'))
     .pipe(browserSync.stream());
 })
 

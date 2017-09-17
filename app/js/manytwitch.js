@@ -1,4 +1,4 @@
-var module = angular.module('multistreamApp', []);
+var module = angular.module('multistreamApp', ['angular-sortable-view']);
 
 module.controller('multistreamController', function($scope, $sce) {
     var root = document.documentElement.style;
@@ -24,7 +24,8 @@ module.controller('multistreamController', function($scope, $sce) {
     var menuOpen = false;
 
     $scope.streamList = [];
-    $scope.availableLayouts = "grid";/*
+    $scope.availableLayouts = currentLayout;
+    /*
     $scope.navIcon = upIcon;
     $scope.mainChatIcon = rightIcon;
     $scope.allChatIcon = downIcon;*/
@@ -110,13 +111,13 @@ module.controller('multistreamController', function($scope, $sce) {
 
     function setChat() {
       if (currentLayout == column) {
-        if (allChatVisibility == true) {
+        /*if (allChatVisibility == true) {
           //$scope.allChatIcon = downIcon;
           //root.setProperty("-allChatButton-display", "flex");
         } else {
           //$scope.allChatIcon = upIcon;
           //root.setProperty("-allChatButton-display", "none");
-        }
+        }*/
         toggleAllChat();
       } else {
         if (mainChatVisibility == true) {
@@ -156,7 +157,7 @@ module.controller('multistreamController', function($scope, $sce) {
     }
 
     $scope.toggleMenu = function() {
-      console.log("Toggle Menu");
+      //console.log("Toggle Menu");
       document.getElementById("overlay-button").classList.toggle("active");
       menuOpen = !menuOpen;
       if(menuOpen) {
@@ -178,7 +179,7 @@ module.controller('multistreamController', function($scope, $sce) {
     }
 
     $scope.toggleFullscreen = function() {
-      console.log("Toggle Fullscreen");
+      //console.log("Toggle Fullscreen");
       fullscreen = !fullscreen;
       if(fullscreen) {
         enableFullscreen();
@@ -285,6 +286,7 @@ module.controller('multistreamController', function($scope, $sce) {
           elementList[i].style[style] = newSetting;
       }
     }
+
     /*
     $scope.toggleNav = function() {
       navVisible = !navVisible;
@@ -301,9 +303,10 @@ module.controller('multistreamController', function($scope, $sce) {
       }
     }*/
 
+    /*
     $scope.clearStreams = function() {
       $scope.streamList.length = 0;
-    }
+    }*/
 
     function insertParam() {
       var channels;

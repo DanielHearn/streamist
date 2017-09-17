@@ -2,6 +2,7 @@
   --accent-color: #F39C12;
   --nav-text-color: #FFFFFF;
   --nav-padding: 0.5em;
+  --nav-background-color: #4D5481;
   --text-primary-color: #212121;
   --text-secondary-color: #757575;
   --bg-primary-color: #474D73;
@@ -52,7 +53,7 @@ body {
     -webkit-appearance: none;
     -moz-appearance: none;
     font-family: 'Open Sans', sans-serif;
-    background: var(--bg-secondary-color);
+    background: var(--bg-primary-color);
     margin-right: var(--nav-padding);
     margin-left: 0;
     font-size: var(--input-font-size);
