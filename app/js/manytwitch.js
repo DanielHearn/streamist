@@ -13,22 +13,14 @@ module.controller('multistreamController', function($scope, $sce) {
     var playerUrl = "http://player.twitch.tv/?channel=";
     var chatStartUrl = "http://www.twitch.tv/";
     var chatEndUrl = "/chat";
-    /*var upIcon = "img/up.svg";
-    var downIcon = "img/down.svg";
-    var leftIcon = "img/left.svg";
-    var rightIcon = "img/right.svg";
-    var navButtonOffset = "2.9em";*/
-    var mainChatVisibility = true;
-    var allChatVisibility = true;
+
+    var chatVisiblity = true;
+
     var fullscreen = false;
     var menuOpen = false;
 
     $scope.streamList = [];
     $scope.availableLayouts = currentLayout;
-    /*
-    $scope.navIcon = upIcon;
-    $scope.mainChatIcon = rightIcon;
-    $scope.allChatIcon = downIcon;*/
 
     $scope.trustSrc = function(src) {
       return $sce.trustAsResourceUrl(src);
@@ -101,44 +93,18 @@ module.controller('multistreamController', function($scope, $sce) {
     }
 
     $scope.toggleChat = function() {
-      if (currentLayout == column) {
-        allChatVisibility = !allChatVisibility;
-      } else {
-        mainChatVisibility = !mainChatVisibility;
-      }
-      setChat();
-    }
-
-    function setChat() {
-      if (currentLayout == column) {
-        /*if (allChatVisibility == true) {
-          //$scope.allChatIcon = downIcon;
-          //root.setProperty("-allChatButton-display", "flex");
-        } else {
-          //$scope.allChatIcon = upIcon;
-          //root.setProperty("-allChatButton-display", "none");
-        }*/
-        toggleAllChat();
-      } else {
-        if (mainChatVisibility == true) {
-          //$scope.mainChatIcon = rightIcon;
-          root.setProperty("--mainChatButton-right", "350px");
+      chatVisiblity = !chatVisiblity;
+      //console.log(chatVisiblity);
+      if(chatVisiblity) {
+        if(currentLayout == grid) {
           root.setProperty("--mainChat-display", "flex");
         } else {
-          //$scope.mainChatIcon = leftIcon;
-          root.setProperty("--mainChatButton-right", "0");
-          root.setProperty("--mainChat-display", "none");
+          root.setProperty("--chat-display", "flex");
         }
-      }
-    }
-
-    function toggleAllChat() {
-      if (allChatVisibility == false) {
-        var newDisplay = "none";
       } else {
-        var newDisplay = "flex";
+        root.setProperty("--mainChat-display", "none");
+        root.setProperty("--chat-display", "none");
       }
-      root.setProperty("--chat-display", newDisplay);
     }
 
     function changeLayout(newLayout) {
@@ -148,7 +114,7 @@ module.controller('multistreamController', function($scope, $sce) {
       } else if (currentLayout == column) {
         changeLayoutColumn();
       }
-      setChat();
+      //setChat();
       updateLayout();
     }
 
@@ -173,7 +139,6 @@ module.controller('multistreamController', function($scope, $sce) {
 
     $scope.setLayout = function() {
         if ($scope.availableLayouts != "") {
-          console.log($scope.availableLayouts);
           changeLayout($scope.availableLayouts);
         }
     }
@@ -201,10 +166,12 @@ module.controller('multistreamController', function($scope, $sce) {
     }
 
     function changeLayoutGrid() {
+      if(chatVisiblity) {
+        root.setProperty("--mainChat-display", "flex");
+      }
       root.setProperty("--chat-display", "none");
-      root.setProperty("--mainChat-display", "flex");
-      root.setProperty("--mainChatButton-display", "block");
-      root.setProperty("--allChatButton-display", "none");
+      //root.setProperty("--chat-display", "none");
+      //root.setProperty("--mainChat-display", "flex");
       root.setProperty("--stream-width", "initial");
     }
 
@@ -214,10 +181,14 @@ module.controller('multistreamController', function($scope, $sce) {
       }
       root.setProperty("--chat-height", "70%");
       root.setProperty("--chat-width", "100%");
-      root.setProperty("--chat-display", "flex");
+      if(chatVisiblity) {
+        root.setProperty("--chat-display", "flex");
+      }
       root.setProperty("--mainChat-display", "none");
-      root.setProperty("--mainChatButton-display", "none");
-      root.setProperty("--allChatButton-display", "block");
+      //root.setProperty("--chat-display", "flex");
+      //root.setProperty("--mainChat-display", "none");
+
+
       root.setProperty("--stream-width", "initial")
     }
 
@@ -246,15 +217,19 @@ module.controller('multistreamController', function($scope, $sce) {
       } else {
         disableFullscreen();
         root.setProperty("--bg", "#5C6391");
-        root.setProperty("--mainChat-display", "none");
-        root.setProperty("--mainChatButton-display", "none");
-        root.setProperty("--allChatButton-display", "none");
+        if(chatVisiblity) {
+
+        } else {
+          root.setProperty("--mainChat-display", "none");
+          root.setProperty("--mainChatButton-display", "none");
+          root.setProperty("--allChatButton-display", "none");
+        }
       }
     }
 
     function updateLayoutGrid(focusStream, numOfStreams, streamElementList) {
       if (numOfStreams == 1) {
-        root.setProperty("--mainChatButton-display", "block");
+        //root.setProperty("--mainChatButton-display", "block");
       }
       if (numOfStreams == 2) {
         root.setProperty("--stream-width", "100%");
@@ -343,7 +318,7 @@ module.controller('multistreamController', function($scope, $sce) {
               var playerUrlFormat = (playerUrl + channel)
               var streamItem = { channel: channel, player: playerUrlFormat, chat: chatUrlFormat }
               $scope.streamList.push(streamItem);
-              toggleAllChat();
+              //toggleAllChat();
               setMainChat()
             }
           }

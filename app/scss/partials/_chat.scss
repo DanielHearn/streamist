@@ -1,6 +1,6 @@
 #mainChat-container {
   display: var(--mainChat-display);
-  background: var(--bg-primary-color);
+  background: var(--bg-secondary-color);
   flex-direction: column;
   float: right;
   width: 350px;
@@ -30,12 +30,12 @@
     padding: 0.5em;
     margin: 0;
     border: 0;
-    background: var(--bg-secondary-color);
+    background: var(--bg-primary-color);
     &:hover {
-      background: var(--bg-secondary-color);
+      background: var(--bg-primary-color);
     }
     option {
-      background: var(--bg-primary-color);
+      background: var(--bg-secondary-color);
       padding: var(--nav-padding);
       &:hover {
         background: var(--bg-secondary-color);

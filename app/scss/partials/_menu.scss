@@ -29,6 +29,7 @@
       width: 50%;
       h3 {
         font-size: 1.5em;
+        width: 100%;
       }
       button {
         margin-left: 0;
@@ -56,6 +57,13 @@
           &:hover {
             background: var(--bg-secondary-color);
           }
+        }
+      }
+      .switch-container {
+        display: flex;
+        align-items: center;
+        p {
+          margin-right: 0.5em;
         }
       }
       #streamList {
@@ -134,8 +142,8 @@
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 50px;
+  height: 16px;
 }
 
 /* Hide default HTML checkbox */
@@ -157,17 +165,19 @@
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
+  height: 25px;
+  width: 25px;
+  //left: 4px;
+  //bottom: 4px;
+  top: -0.3em;
   background-color: white;
   -webkit-transition: .4s;
   transition: .4s;
+  background-color: var(--nav-background-color);
 }
 
-input:checked + .slider {
-  background-color: #2196F3;
+input:checked + .slider:before {
+  background-color: var(--accent-color);
 }
 
 input:focus + .slider {
@@ -194,7 +204,7 @@ input:checked + .slider:before {
   height: 100vh;
   position: absolute;
   z-index: 4;
-  background: var(--nav-background-color);
+  background: #000;
   display: var(--overlay-display);
   opacity: var(--overlay-opacity);
   transition: opacity 0.4s;
