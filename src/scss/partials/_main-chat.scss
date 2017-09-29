@@ -18,11 +18,7 @@
   min-height: 2.8em; //Fix height issue on resize
 }
 
-.chat__container {
-  height: 100%;
-}
-
-.chat__iframe {
-  width: 100%;
-  height: 100%;
+.chat__container, .chat__iframe {
+  @include display-flex;
+  flex: 1 1 auto;
 }

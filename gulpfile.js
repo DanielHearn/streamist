@@ -36,7 +36,8 @@ gulp.task('useref', function(){
   return gulp.src('src/*.html')
     .pipe(useref())
     .pipe(gulpIf('*.js', gulp.dest('dist')))
-    .pipe(gulpIf('*.css', cssnano({zindex: false})))
+    //.pipe(gulpIf('*.css', cssnano({zindex: false})))
+    .pipe(gulpIf('*.css', gulp.dest('dist')))
     .pipe(gulp.dest('dist'))
 });
 

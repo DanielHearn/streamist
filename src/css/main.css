@@ -87,12 +87,10 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   height: 2.8em;
   min-height: 2.8em; }
 
-.chat__container {
-  height: 100%; }
-
-.chat__iframe {
-  width: 100%;
-  height: 100%; }
+.chat__container, .chat__iframe {
+  display: -webkit-flex;
+  display: flex;
+  flex: 1 1 auto; }
 
 .controller__streams {
   --streamContainer-flexDir: row;
@@ -133,13 +131,14 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   z-index: 2; }
 
 .stream__player, .player__iframe {
-  width: 100%;
-  height: 100%; }
+  display: -webkit-flex;
+  display: flex;
+  flex: 1 1 auto; }
 
 .stream__chat {
   display: var(--chat-display);
-  height: var(--chat-height);
-  width: var(--chat-width); }
+  flex: 1 1 auto;
+  flex-basis: 0; }
 
 .setting--streamOptions {
   box-sizing: border-box;
@@ -479,7 +478,6 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
       margin: 0; }
 
 .button {
-  -webkit-appearance: none;
   border-radius: 0;
   font-family: 'Open Sans', sans-serif;
   background: var(--accent-color);
@@ -494,7 +492,6 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   display: block; }
 
 .button--secondary {
-  -webkit-appearance: none;
   border-radius: 0;
   font-family: 'Open Sans', sans-serif;
   background: var(--accent-color);
@@ -510,7 +507,6 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   background: var(--dark-grey-color); }
 
 .button--modal {
-  -webkit-appearance: none;
   border-radius: 0;
   font-family: 'Open Sans', sans-serif;
   background: var(--accent-color);
@@ -526,7 +522,6 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   margin: 0 0.5em; }
 
 .button--setting {
-  -webkit-appearance: none;
   border-radius: 0;
   font-family: 'Open Sans', sans-serif;
   background: var(--accent-color);
@@ -559,7 +554,6 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
     height: 90%; }
 
 .button--small {
-  -webkit-appearance: none;
   border-radius: 0;
   font-family: 'Open Sans', sans-serif;
   background: var(--accent-color);
@@ -661,7 +655,6 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   flex-wrap: wrap; }
 
 .form__search {
-  -webkit-appearance: none;
   border-radius: 0;
   -moz-appearance: none;
   font-family: 'Open Sans', sans-serif;
@@ -673,7 +666,6 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   padding: var(--input-padding);
   border-radius: 0;
   color: var(--nav-text-color);
-  -webkit-appearance: none;
   border-radius: 0;
   max-width: 10em;
   user-select: text;
@@ -681,7 +673,6 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   color: var(--input-color); }
 
 .form__search--settings {
-  -webkit-appearance: none;
   border-radius: 0;
   -moz-appearance: none;
   font-family: 'Open Sans', sans-serif;
@@ -693,7 +684,6 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   padding: var(--input-padding);
   border-radius: 0;
   color: var(--nav-text-color);
-  -webkit-appearance: none;
   border-radius: 0;
   max-width: 10em;
   user-select: text;
@@ -702,7 +692,6 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   max-width: 8em; }
 
 .setting__select--chat {
-  -webkit-appearance: none;
   border-radius: 0;
   display: -webkit-flex;
   display: flex;
@@ -723,7 +712,6 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
       background: var(--bg-secondary-color); }
 
 .setting__select--settings {
-  -webkit-appearance: none;
   border-radius: 0;
   display: -webkit-flex;
   display: flex;
@@ -744,7 +732,6 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
       background: var(--bg-secondary-color); }
 
 .button--chat {
-  -webkit-appearance: none;
   border-radius: 0;
   font-family: 'Open Sans', sans-serif;
   background: var(--accent-color);
