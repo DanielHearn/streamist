@@ -63,7 +63,7 @@
             <h2 class="search__logo">MT</h2>
             <form class="search__form" ng-submit="addStreamFromInput()">
               <input class="form__search" type="text" ng-model="channelInput" name="" value="" placeholder="Twitch Channel" autofocus required>
-              <button class="button form__load" href="">Load</button>
+              <button class="button" href="">Load</button>
             </form>
           </section>
         </nav>
@@ -75,8 +75,8 @@
             <section class="setting--streamOptions">
               <h3 class="setting__title">Streams</h3>
               <form class="setting__form" ng-submit="addStreamFromInput()">
-                <input class="form__search" type="text" ng-model="channelInput" name="" value="" placeholder="Twitch Channel" required>
-                <button class="button form__load" href="">Load</button>
+                <input class="form__search--settings" type="text" ng-model="channelInput" name="" value="" placeholder="Twitch Channel" required>
+                <button class="button" href="">Load</button>
               </form>
               <p class="setting__text">{{ streamListInfo }}</p>
               <ul class="setting__streams" sv-root sv-part="streamList">
@@ -95,7 +95,7 @@
                   </div>
                 </li>
               </ul>
-              <button class="button" ng-click="clearStreams()">Clear Streams</button>
+              <button class="button--setting" ng-click="clearStreams()">Clear Streams</button>
             </section>
 
             <section class="setting--layoutOptions">
@@ -104,7 +104,7 @@
                 <option class="select__option" value="grid" selected>Grid Layout</option>
                 <option class="select__option" value="column">Column Layout</option>
               </select>
-              <button class="button" type="button" name="toggleFullscreen" ng-click="toggleFullscreen()">Toggle Fullscreen</button>
+              <button class="button--setting" type="button" name="toggleFullscreen" ng-click="toggleFullscreen()">Toggle Fullscreen</button>
               <div class="setting__switch">
                 <p class="switch__title">Minimise interface</p>
                 <label class="switch">
@@ -145,8 +145,8 @@
             </div>
             <div class="modal__content">
               <p class="content__text">Welcome to Manytwitch, a multipleTwitch stream viewer.</p>
-              <p class="content__text">To add a twitch channel enter it into the bar and click load.</p>
-              <p class="content__text">Open the settings to reorder streams, change the layout and configure the user interface.</p>
+              <p class="content__text">To watch a twitch channel enter the channel name into the search bar and click load.</p>
+              <p class="content__text">Open the settings on the top left to reorder streams, change the layout and configure the user interface.</p>
               <div class="modal__buttons">
                 <button class="button--modal" type="button" name="yes" ng-click="acceptModalGeneric()">Continue</button>
               </div>
@@ -172,8 +172,8 @@
               <h4 class="header__title">Help</h4>
             </div>
             <div class="modal__content">
-              <p class="content__text">To add a twitch channel enter it into the bar and click load.</p>
-              <p class="content__text">Open the settings to reorder streams, change the layout and configure the user interface.</p>
+              <p class="content__text">To watch a twitch channel enter the channel name into the search bar and click load.</p>
+              <p class="content__text">Open the settings on the top left to reorder streams, change the layout and configure the user interface.</p>
               <div class="modal__buttons">
                 <button class="button--modal" type="button" name="yes" ng-click="acceptModalGeneric()">Close</button>
               </div>

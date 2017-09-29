@@ -73,7 +73,7 @@
   text-align: center;
 }
 
-.form__search {
+.form__search--settings {
   max-width: 8em;
 }
 
@@ -82,6 +82,8 @@
   align-items: center;
   .switch__title {
     margin-right: 0.5em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
   }
 }
 
@@ -95,50 +97,53 @@
   flex-wrap: wrap;
   justify-content: left;
   background: var(--input-color);
-  .streams__stream {
-    width: 100%;
-    box-sizing: border-box;
-    display: flex;
-    user-select: none;
-    background: var(--bg-secondary-color);
-    color: var(--nav-text-color);
-    margin-left: var(--nav-padding);
-    text-transform: capitalize;
-    padding: 0.5em 1em;
-    margin: 0.4em 0;
-    align-items: center;
-    .stream__handle {
-      height: 100%;
-      width: 1.5em;
-      position: relative;
-      display: flex;
-      align-items: center;
-      margin-right: 0.5em;
-      cursor: pointer;
-      .handle {
-        width: 100%;
-        height: 2px;
-        background: var(--nav-text-color);
-        display: flex;
-        justify-content: center;
-        position: relative;
-        display: block;
-        &:before {
-          top: 0.4em;
-          visibility: visible;
-        }
-        &:after {
-          top: -0.4em;
-        }
-        &:before, &:after {
-          height: 2px;
-          width: 1.5em;
-          background: var(--nav-text-color);
-          position: absolute;
-          content: "";
-        }
-      }
-    }
+}
+
+.streams__stream {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  user-select: none;
+  background: var(--bg-secondary-color);
+  color: var(--nav-text-color);
+  margin-left: var(--nav-padding);
+  text-transform: capitalize;
+  padding: 0.5em 1em;
+  margin: 0.4em 0;
+  align-items: center;
+}
+
+.stream__handle {
+  height: 100%;
+  width: 1.5em;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-right: 0.5em;
+  cursor: pointer;
+}
+
+.handle {
+  width: 100%;
+  height: 2px;
+  background: var(--nav-text-color);
+  display: flex;
+  justify-content: center;
+  position: relative;
+  display: block;
+  &:before {
+    top: 0.4em;
+    visibility: visible;
+  }
+  &:after {
+    top: -0.4em;
+  }
+  &:before, &:after {
+    height: 2px;
+    width: 1.5em;
+    background: var(--nav-text-color);
+    position: absolute;
+    content: "";
   }
 }
 

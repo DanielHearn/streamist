@@ -12,6 +12,12 @@
   margin: 0 0.5em;
 }
 
+.button--setting {
+  @include button;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
 .button--help {
   padding: 0;
   z-index: 2;
@@ -139,6 +145,12 @@
 .form__search {
   @include input;
   @include search;
+}
+
+.form__search--settings {
+  @include input;
+  @include search;
+  max-width: 8em;
 }
 
 .setting__select--chat {
