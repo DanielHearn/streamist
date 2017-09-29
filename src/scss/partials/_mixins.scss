@@ -22,7 +22,13 @@
   pointer-events: auto;
 }
 
+@mixin overwriteSafariStyle {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
 @mixin button {
+  @include overwriteSafariStyle;
   font-family: 'Open Sans', sans-serif;
   background: var(--accent-color);
   color: var(--nav-text-color);
@@ -37,7 +43,7 @@
 }
 
 @mixin input {
-  -webkit-appearance: none;
+  @include overwriteSafariStyle;
   -moz-appearance: none;
   font-family: 'Open Sans', sans-serif;
   background: var(--bg-primary-color);
@@ -51,6 +57,7 @@
 }
 
 @mixin select {
+  @include overwriteSafariStyle;
   font-family: 'Open Sans', sans-serif;
   display: flex;
   font-size: 1em;
@@ -72,6 +79,7 @@
 }
 
 @mixin search {
+  @include overwriteSafariStyle;
   max-width: 10em;
   user-select: text;
   cursor: text;

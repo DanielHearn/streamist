@@ -10,6 +10,9 @@ var uglify = require('gulp-uglify');
 var cssnano = require('gulp-cssnano');
 var gulpIf = require('gulp-if');
 var browserSync = require('browser-sync').create();
+var ghpages = require('gh-pages');
+var path = require('path');
+
 
 const scssSource = 'src/scss/*.scss';
 const cssDest = 'src/css';
@@ -32,7 +35,6 @@ gulp.task('browserSync', function() {
 gulp.task('useref', function(){
   return gulp.src('src/*.html')
     .pipe(useref())
-    //.pipe(gulpIf('*.js', uglify({ mangle: false })))
     .pipe(gulpIf('*.js', gulp.dest('dist')))
     .pipe(gulpIf('*.css', cssnano({zindex: false})))
     .pipe(gulp.dest('dist'))

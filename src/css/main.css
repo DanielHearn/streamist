@@ -448,6 +448,8 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
       margin: 0; }
 
 .button {
+  -webkit-appearance: none;
+  border-radius: 0;
   font-family: 'Open Sans', sans-serif;
   background: var(--accent-color);
   color: var(--nav-text-color);
@@ -461,6 +463,8 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   display: block; }
 
 .button--secondary {
+  -webkit-appearance: none;
+  border-radius: 0;
   font-family: 'Open Sans', sans-serif;
   background: var(--accent-color);
   color: var(--nav-text-color);
@@ -475,6 +479,8 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   background: var(--dark-grey-color); }
 
 .button--modal {
+  -webkit-appearance: none;
+  border-radius: 0;
   font-family: 'Open Sans', sans-serif;
   background: var(--accent-color);
   color: var(--nav-text-color);
@@ -489,6 +495,8 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   margin: 0 0.5em; }
 
 .button--setting {
+  -webkit-appearance: none;
+  border-radius: 0;
   font-family: 'Open Sans', sans-serif;
   background: var(--accent-color);
   color: var(--nav-text-color);
@@ -517,6 +525,8 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
     height: 90%; }
 
 .button--small {
+  -webkit-appearance: none;
+  border-radius: 0;
   font-family: 'Open Sans', sans-serif;
   background: var(--accent-color);
   color: var(--nav-text-color);
@@ -616,6 +626,7 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
 
 .form__search {
   -webkit-appearance: none;
+  border-radius: 0;
   -moz-appearance: none;
   font-family: 'Open Sans', sans-serif;
   background: var(--bg-primary-color);
@@ -626,6 +637,8 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   padding: var(--input-padding);
   border-radius: 0;
   color: var(--nav-text-color);
+  -webkit-appearance: none;
+  border-radius: 0;
   max-width: 10em;
   user-select: text;
   cursor: text;
@@ -633,6 +646,7 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
 
 .form__search--settings {
   -webkit-appearance: none;
+  border-radius: 0;
   -moz-appearance: none;
   font-family: 'Open Sans', sans-serif;
   background: var(--bg-primary-color);
@@ -643,6 +657,8 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   padding: var(--input-padding);
   border-radius: 0;
   color: var(--nav-text-color);
+  -webkit-appearance: none;
+  border-radius: 0;
   max-width: 10em;
   user-select: text;
   cursor: text;
@@ -650,6 +666,8 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   max-width: 8em; }
 
 .setting__select--chat {
+  -webkit-appearance: none;
+  border-radius: 0;
   font-family: 'Open Sans', sans-serif;
   display: flex;
   font-size: 1em;
@@ -668,6 +686,8 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
       background: var(--bg-secondary-color); }
 
 .setting__select--settings {
+  -webkit-appearance: none;
+  border-radius: 0;
   font-family: 'Open Sans', sans-serif;
   display: flex;
   font-size: 1em;
@@ -686,6 +706,8 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
       background: var(--bg-secondary-color); }
 
 .button--chat {
+  -webkit-appearance: none;
+  border-radius: 0;
   font-family: 'Open Sans', sans-serif;
   background: var(--accent-color);
   color: var(--nav-text-color);
