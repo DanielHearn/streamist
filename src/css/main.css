@@ -203,9 +203,6 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
 .about__content {
   text-align: center; }
 
-.form__search--settings {
-  max-width: 8em; }
-
 .setting__switch {
   display: flex;
   align-items: center; }
