@@ -155,12 +155,24 @@
 
 .setting__select--chat {
   @include select;
-  width: 90%;
+  width: 100%;
+  height: 100%;
 }
 
 .setting__select--settings {
   @include select;
+  position: relative;
   margin-bottom: 0.5em;
+}
+
+.setting__dropdown--chat {
+  @include dropdown-container;
+  width: 100%;
+}
+
+.setting__dropdown--settings {
+  @include dropdown-container;
+  width: 12em;
 }
 
 .button--chat {

@@ -43,13 +43,15 @@
   pointer-events: auto;
 }
 
-@mixin overwriteSafariStyle {
-  //-webkit-appearance: none;
+@mixin overwriteBrowserStyles {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   border-radius: 0;
 }
 
 @mixin button {
-  @include overwriteSafariStyle;
+  @include overwriteBrowserStyles;
   font-family: 'Open Sans', sans-serif;
   background: var(--accent-color);
   color: var(--nav-text-color);
@@ -64,7 +66,7 @@
 }
 
 @mixin input {
-  @include overwriteSafariStyle;
+  @include overwriteBrowserStyles;
   -moz-appearance: none;
   font-family: 'Open Sans', sans-serif;
   background: var(--bg-primary-color);
@@ -78,15 +80,18 @@
 }
 
 @mixin select {
-  @include overwriteSafariStyle;
+  @include overwriteBrowserStyles;
   @include display-flex;
   font-family: 'Open Sans', sans-serif;
   font-size: 1em;
   color: var(--nav-text-color);
   padding: 0.5em;
+  width: 100%;
   margin: 0;
   border: 0;
   background: var(--bg-primary-color);
+  height: 2.8em;
+  box-sizing: border-box;
   &:hover {
     background: var(--bg-primary-color);
   }
@@ -99,8 +104,27 @@
   }
 }
 
+@mixin dropdown-container {
+  position: relative;
+  //width: 12em;
+  &:after {
+    content: "▼";
+    color: var(--nav-text-color);
+    position: absolute;
+    z-index: 1;
+    text-align: center;
+    pointer-events: none;
+    height: 50%;
+    overflow: auto;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    right: 0.75em;
+  }
+}
+
 @mixin search {
-  @include overwriteSafariStyle;
+  @include overwriteBrowserStyles;
   max-width: 10em;
   user-select: text;
   cursor: text;
