@@ -1,15 +1,15 @@
 .controller__streams {
-  @include stream-flex;
   --streamContainer-flexDir: row;
   --streams-flexDir: column;
   --stream-width: initial;
   --chat-display: none;
   --chat-height: 70%;
   --chat-width: 100%;
+  @include stream-flex;
+  @include justify-content-center;
   background: var(--bg-secondary-color);
   height: 100%;
   flex-direction: var(--streamContainer-flexDir);
-  justify-content: center;
   z-index: 1;
   transition: background 0.2s;
 }

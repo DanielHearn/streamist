@@ -25,6 +25,9 @@
   --modal-return-display: none;
   --modal-help-display: none;
   --modal-offline-display: none;
+  @include display-flex;
+  @include align-items-center;
+  @include justify-content-center;
   position: absolute;
   top: 0;
   left: 0;
@@ -32,9 +35,6 @@
   bottom: 0;
   margin: auto;
   z-index: 9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 100%;
   width: 100%;
   text-align: center;
@@ -53,15 +53,15 @@
 }
 
 .modal__buttons {
-  display: flex;
+  @include display-flex;
 }
 
 .modal__content {
-  display: flex;
+  @include display-flex;
+  @include align-items-center;
+  @include justify-content-center;
   flex: 1 1 auto;
   padding: 1em 1.5em;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
 }
 

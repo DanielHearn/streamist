@@ -12,7 +12,7 @@
 }
 
 .chat__setting {
-  display: flex;
+  @include display-flex;
   background: var(--bg-primary-color);
   height: 2.8em;
   min-height: 2.8em; //Fix height issue on resize

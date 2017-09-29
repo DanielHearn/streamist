@@ -19,14 +19,14 @@
 }
 
 .button--help {
+  @include display-flex;
+  @include align-items-center;
+  @include justify-content-center;
   padding: 0;
   z-index: 2;
   cursor: pointer;
   height: 100%;
   user-select: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   .icon--help {
     width: 90%;
     height: 90%;
@@ -35,7 +35,7 @@
 
 .button--small {
   @include button;
-  display: flex;
+  @include display-flex;
   margin-right: 0.5em;
   padding: 0.25em 0.5em;
 }
@@ -165,7 +165,7 @@
 
 .button--chat {
   @include button;
-  display: flex;
+  @include display-flex;
   margin: 0;
   padding-left: 1.5em;
   padding-right: 1.5em;

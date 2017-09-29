@@ -1,3 +1,24 @@
+@mixin display-flex {
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin align-items-center {
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+@mixin justify-content-center {
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+@mixin justify-content-left {
+  -webkit-justify-content: left;
+  justify-content: left;
+}
+
+
 @mixin nav-input-text-color {
   color: var(--nav-text-color);
   opacity: 0.6;
@@ -58,8 +79,8 @@
 
 @mixin select {
   @include overwriteSafariStyle;
+  @include display-flex;
   font-family: 'Open Sans', sans-serif;
-  display: flex;
   font-size: 1em;
   color: var(--nav-text-color);
   padding: 0.5em;
@@ -106,11 +127,12 @@
 }
 
 @mixin searchform {
-  display: flex;
+  @include display-flex;
   flex-wrap: wrap;
 }
 
 @mixin stream-flex {
+  @include display-flex;
   flex: 1 1 auto;
   display: flex;
   box-sizing: border-box;

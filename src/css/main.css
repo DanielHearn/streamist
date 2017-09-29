@@ -17,6 +17,10 @@
   --navButton-bg-color: #FF9800;
   --navBar-display: flex;
   --navToggle-top: 2.9em;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
   width: 100%;
   background: var(--nav-background-color);
   color: var(--nav-text-color);
@@ -26,12 +30,12 @@
   margin: 0;
   z-index: 6;
   box-sizing: border-box;
-  justify-content: center;
-  align-items: center;
   overflow: hidden; }
 
 .nav__search {
+  display: -webkit-flex;
   display: flex;
+  -webkit-align-items: center;
   align-items: center; }
 
 .search__logo {
@@ -77,6 +81,7 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   z-index: 1; }
 
 .chat__setting {
+  display: -webkit-flex;
   display: flex;
   background: var(--bg-primary-color);
   height: 2.8em;
@@ -90,23 +95,28 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   height: 100%; }
 
 .controller__streams {
-  flex: 1 1 auto;
-  display: flex;
-  box-sizing: border-box;
   --streamContainer-flexDir: row;
   --streams-flexDir: column;
   --stream-width: initial;
   --chat-display: none;
   --chat-height: 70%;
   --chat-width: 100%;
+  display: -webkit-flex;
+  display: flex;
+  flex: 1 1 auto;
+  display: flex;
+  box-sizing: border-box;
+  -webkit-justify-content: center;
+  justify-content: center;
   background: var(--bg-secondary-color);
   height: 100%;
   flex-direction: var(--streamContainer-flexDir);
-  justify-content: center;
   z-index: 1;
   transition: background 0.2s; }
 
 .streams__container {
+  display: -webkit-flex;
+  display: flex;
   flex: 1 1 auto;
   display: flex;
   box-sizing: border-box;
@@ -114,6 +124,8 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   flex-direction: row; }
 
 .stream {
+  display: -webkit-flex;
+  display: flex;
   flex: 1 1 auto;
   display: flex;
   box-sizing: border-box;
@@ -172,6 +184,7 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   background: var(--light-grey-color); }
 
 .settings__container {
+  display: -webkit-flex;
   display: flex;
   flex-wrap: wrap; }
 
@@ -204,7 +217,9 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   text-align: center; }
 
 .setting__switch {
+  display: -webkit-flex;
   display: flex;
+  -webkit-align-items: center;
   align-items: center; }
   .setting__switch .switch__title {
     margin-right: 0.5em;
@@ -212,20 +227,23 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
     margin-bottom: 0.5em; }
 
 .setting__streams {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: left;
+  justify-content: left;
   margin: 0;
   margin-top: 1em;
   margin-bottom: 1em;
   padding: 0 0.5em;
   list-style: none;
-  display: flex;
   flex-wrap: wrap;
-  justify-content: left;
   background: var(--input-color); }
 
 .streams__stream {
+  display: -webkit-flex;
+  display: flex;
   width: 100%;
   box-sizing: border-box;
-  display: flex;
   user-select: none;
   background: var(--bg-secondary-color);
   color: var(--nav-text-color);
@@ -236,20 +254,23 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   align-items: center; }
 
 .stream__handle {
+  display: -webkit-flex;
+  display: flex;
   height: 100%;
   width: 1.5em;
   position: relative;
-  display: flex;
   align-items: center;
   margin-right: 0.5em;
   cursor: pointer; }
 
 .handle {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
   width: 100%;
   height: 2px;
   background: var(--nav-text-color);
-  display: flex;
-  justify-content: center;
   position: relative;
   display: block; }
   .handle:before {
@@ -270,8 +291,9 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   color: var(--nav-text-color); }
 
 .stream__settings {
-  flex-wrap: wrap;
+  display: -webkit-flex;
   display: flex;
+  flex-wrap: wrap;
   margin-left: auto; }
 
 .icon--settings {
@@ -370,6 +392,12 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   --modal-return-display: none;
   --modal-help-display: none;
   --modal-offline-display: none;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
   position: absolute;
   top: 0;
   left: 0;
@@ -377,9 +405,6 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   bottom: 0;
   margin: auto;
   z-index: 9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 100%;
   width: 100%;
   text-align: center;
@@ -395,14 +420,18 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   margin: 0; }
 
 .modal__buttons {
+  display: -webkit-flex;
   display: flex; }
 
 .modal__content {
+  display: -webkit-flex;
   display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
   flex: 1 1 auto;
   padding: 1em 1.5em;
-  justify-content: center;
-  align-items: center;
   flex-direction: column; }
 
 .content__text {
@@ -411,7 +440,10 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
 
 .controller__intro {
   --intro-zindex: 2;
+  display: -webkit-flex;
   display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
   margin: auto;
   position: absolute;
   box-sizing: border-box;
@@ -421,14 +453,16 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   right: 0;
   z-index: var(--intro-zindex);
   position: absolute;
-  justify-content: center;
   width: 100%;
   height: 10em;
   padding: 0.5em; }
   .controller__intro .intro__content {
+    display: -webkit-flex;
     display: flex;
-    justify-content: center;
+    -webkit-align-items: center;
     align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
     flex-wrap: wrap;
     text-align: center;
     color: var(--nav-text-color); }
@@ -512,14 +546,17 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   margin-bottom: 1em; }
 
 .button--help {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
   padding: 0;
   z-index: 2;
   cursor: pointer;
   height: 100%;
-  user-select: none;
-  display: flex;
-  justify-content: center;
-  align-items: center; }
+  user-select: none; }
   .button--help .icon--help {
     width: 90%;
     height: 90%; }
@@ -538,6 +575,7 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   align-items: center;
   user-select: none;
   display: block;
+  display: -webkit-flex;
   display: flex;
   margin-right: 0.5em;
   padding: 0.25em 0.5em; }
@@ -621,6 +659,7 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
     background-color: var(--nav-background-color); }
 
 .search__form, .setting__form {
+  display: -webkit-flex;
   display: flex;
   flex-wrap: wrap; }
 
@@ -668,8 +707,9 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
 .setting__select--chat {
   -webkit-appearance: none;
   border-radius: 0;
-  font-family: 'Open Sans', sans-serif;
+  display: -webkit-flex;
   display: flex;
+  font-family: 'Open Sans', sans-serif;
   font-size: 1em;
   color: var(--nav-text-color);
   padding: 0.5em;
@@ -688,8 +728,9 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
 .setting__select--settings {
   -webkit-appearance: none;
   border-radius: 0;
-  font-family: 'Open Sans', sans-serif;
+  display: -webkit-flex;
   display: flex;
+  font-family: 'Open Sans', sans-serif;
   font-size: 1em;
   color: var(--nav-text-color);
   padding: 0.5em;
@@ -719,6 +760,7 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   align-items: center;
   user-select: none;
   display: block;
+  display: -webkit-flex;
   display: flex;
   margin: 0;
   padding-left: 1.5em;
@@ -768,6 +810,7 @@ input:invalid {
   overflow: hidden; }
 
 .app__controller {
+  display: -webkit-flex;
   display: flex;
   flex-direction: column;
   height: 100vh;

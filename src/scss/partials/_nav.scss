@@ -4,6 +4,8 @@
   --navButton-bg-color: #FF9800;
   --navBar-display: flex;
   --navToggle-top: 2.9em;
+  @include align-items-center;
+  @include justify-content-center;
   width: 100%;
   background: var(--nav-background-color);
   color: var(--nav-text-color);
@@ -13,14 +15,12 @@
   margin: 0;
   z-index: 6;
   box-sizing: border-box;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
 }
 
 .nav__search {
-  display: flex;
-  align-items: center;
+  @include display-flex;
+  @include align-items-center;
 }
 
 .search__logo {
