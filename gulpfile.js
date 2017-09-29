@@ -82,6 +82,12 @@ gulp.task('default', function(callback) {
   )
 })
 
-gulp.task('deploy', function() {
+gulp.task('deploytopages', function() {
   ghpages.publish('dist', function(err) {});
+});
+
+gulp.task('deploy', function(callback) {
+  runSequence(['build'], 'deploytopages',
+    callback
+  )
 });

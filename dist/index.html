@@ -90,10 +90,12 @@
 
             <section class="setting--layoutOptions">
               <h3 class="setting__title">Layouts</h3>
-              <select class="setting__select--settings" name="availableLayouts" ng-model="availableLayouts" ng-change="setLayout()">
-                <option class="select__option" value="grid" selected>Grid Layout</option>
-                <option class="select__option" value="column">Column Layout</option>
-              </select>
+              <div class="setting__dropdown--settings">
+                <select class="setting__select--settings" name="availableLayouts" ng-model="availableLayouts" ng-change="setLayout()">
+                  <option class="select__option" value="grid" selected>Grid Layout</option>
+                  <option class="select__option" value="column">Column Layout</option>
+                </select>
+              </div>
               <button class="button--setting" type="button" name="toggleFullscreen" ng-click="toggleFullscreen()">Toggle Fullscreen</button>
               <div class="setting__switch">
                 <p class="switch__title">Minimise interface</p>
@@ -204,10 +206,12 @@
 
           <section class="streams__chat">
             <section class="chat__setting">
-              <select class="setting__select--chat" name="availableChats" ng-model="availableChats" data-ng-click="getMainChat()" ng-change="getMainChat()">
-                <option class="select__option" value="">-Select Chat-</option>
-                <option class="select__option" ng-repeat="stream in streamList" value="{{stream.channel}}" ng-selected="availableChats == stream.channel">{{stream.channel}}</option>
-              </select>
+              <div class="setting__dropdown--chat">
+                <select class="setting__select--chat" name="availableChats" ng-model="availableChats" data-ng-click="getMainChat()" ng-change="getMainChat()">
+                  <option class="select__option" value="">-Select Chat-</option>
+                  <option class="select__option" ng-repeat="stream in streamList" value="{{stream.channel}}" ng-selected="availableChats == stream.channel">{{stream.channel}}</option>
+                </select>
+              </div>
               <button class="button--chat" ng-click="refreshMainChat()">
                 <img class="icon--chat" src="img/refresh.svg" alt="Refresh main chat">
               </button>
