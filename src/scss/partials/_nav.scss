@@ -1,0 +1,59 @@
+@import "mixins";
+
+.controller__nav {
+  --navButton-bg-color: #FF9800;
+  --navBar-display: flex;
+  --navToggle-top: 2.9em;
+  width: 100%;
+  background: var(--nav-background-color);
+  color: var(--nav-text-color);
+  display: var(--navBar-display);
+  height: 3.2em;
+  min-height: 3.2em; //Fix height issue on resize
+  margin: 0;
+  z-index: 6;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.nav__search {
+  display: flex;
+  align-items: center;
+}
+
+.search__logo {
+  @include heading;
+}
+
+.nav__buttons {
+  position: absolute;
+  padding-right: 0.5em;
+  right: 0;
+  top: 0;
+  height: 3em;
+}
+
+input[type=checkbox] {
+  display: none;
+}
+
+input[type=checkbox]:checked ~ .controller___nav {
+  visibility: visible;
+}
+
+input[type=checkbox]:checked ~ .button--overlay {
+  &:hover span, span{
+    background: transparent;
+  }
+  span {
+    &:before {
+      transform: rotate(45deg) translate(7px, 7px);
+      opacity: 1;
+    }
+    &:after {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+  }
+}

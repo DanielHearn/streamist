@@ -1,0 +1,48 @@
+:root {
+  --accent-color: #F39C12;
+  --nav-text-color: #FFFFFF;
+  --nav-padding: 0.5em;
+  --nav-background-color: #4D5481;
+  --text-primary-color: #212121;
+  --text-secondary-color: #757575;
+  --bg-primary-color: #474D73;
+  --bg-secondary-color: #5C6391;
+  --light-grey-color: #EFEFEF;
+  --dark-grey-color: #404040;
+  --input-color: #d0d0d0;
+  --input-font-size: 1em;
+  --input-padding: 0.5em 1.5em;
+}
+
+@import 'partials/nav';
+@import 'partials/main-chat';
+@import 'partials/streams';
+@import 'partials/menu';
+@import 'partials/media-queries';
+@import 'partials/modal';
+@import 'partials/intro';
+@import "partials/mixins";
+@import 'partials/inputs';
+
+.app {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  margin: 0;
+  overflow: hidden;
+}
+
+.app__controller {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+.link {
+  @include link;
+}
+
+.content__text--bold {
+  @include text-color;
+  font-weight: bold;
+}

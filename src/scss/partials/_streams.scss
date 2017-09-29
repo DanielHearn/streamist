@@ -1,0 +1,41 @@
+.controller__streams {
+  @include stream-flex;
+  --streamContainer-flexDir: row;
+  --streams-flexDir: column;
+  --stream-width: initial;
+  --chat-display: none;
+  --chat-height: 70%;
+  --chat-width: 100%;
+  background: var(--bg-secondary-color);
+  height: 100%;
+  flex-direction: var(--streamContainer-flexDir);
+  justify-content: center;
+  z-index: 1;
+  transition: background 0.2s;
+}
+
+.streams__container {
+  @include stream-flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.stream {
+  @include stream-flex;
+  position: relative;
+  background: black;
+  width: var(--stream-width);
+  flex-direction: var(--streams-flexDir);
+  z-index: 2;
+}
+
+.stream__player, .player__iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.stream__chat {
+  display: var(--chat-display);
+  height: var(--chat-height);
+  width: var(--chat-width);
+}

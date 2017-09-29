@@ -1,0 +1,172 @@
+@import "mixins";
+
+@mixin setting {
+  box-sizing: border-box;
+  padding: calc(var(--nav-padding)*2);
+  width: 50%;
+}
+
+.setting--streamOptions {
+  @include setting;
+}
+
+.setting--layoutOptions {
+  @include setting;
+}
+
+.setting--chatOptions {
+  @include setting;
+}
+
+.setting--usageOptions {
+  @include setting;
+}
+
+.setting--about {
+  @include setting;
+  width: 100%;
+}
+
+.controller__settings {
+  --settings-display: none;
+  --settings-top: 3em;
+  --settings-height: calc(100vh - 3em);
+  display: var(--settings-display);
+  position: absolute;
+  left: 0;
+  top: var(--settings-top);
+  width: 40em;
+  z-index: 5;
+  height: var(--settings-height);
+  background: var(--light-grey-color);
+}
+
+.settings__container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.settings__title, .about__heading {
+  @include heading;
+  text-align: center;
+  text-transform: uppercase;
+  @include text-color;
+  padding: 0.5em 0;
+  width: 100%;
+}
+
+.setting__title {
+  @include text-color;
+  font-size: 1.5em;
+  width: 100%;
+}
+
+.setting__text, .switch__title, .about__content {
+  @include text-color;
+}
+
+.stream__name {
+  color: var(--nav-text-color);
+}
+
+.about__content {
+  text-align: center;
+}
+
+.form__search {
+  max-width: 8em;
+}
+
+.setting__switch {
+  display: flex;
+  align-items: center;
+  .switch__title {
+    margin-right: 0.5em;
+  }
+}
+
+.setting__streams {
+  margin: 0;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 0 0.5em;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  background: var(--input-color);
+  .streams__stream {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    user-select: none;
+    background: var(--bg-secondary-color);
+    color: var(--nav-text-color);
+    margin-left: var(--nav-padding);
+    text-transform: capitalize;
+    padding: 0.5em 1em;
+    margin: 0.4em 0;
+    align-items: center;
+    .stream__handle {
+      height: 100%;
+      width: 1.5em;
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin-right: 0.5em;
+      cursor: pointer;
+      .handle {
+        width: 100%;
+        height: 2px;
+        background: var(--nav-text-color);
+        display: flex;
+        justify-content: center;
+        position: relative;
+        display: block;
+        &:before {
+          top: 0.4em;
+          visibility: visible;
+        }
+        &:after {
+          top: -0.4em;
+        }
+        &:before, &:after {
+          height: 2px;
+          width: 1.5em;
+          background: var(--nav-text-color);
+          position: absolute;
+          content: "";
+        }
+      }
+    }
+  }
+}
+
+.stream__name {
+  margin: 0;
+  padding-right: var(--nav-padding);
+  color: var(--nav-text-color);
+}
+.stream__settings {
+  flex-wrap: wrap;
+  display: flex;
+  margin-left: auto;
+}
+.icon--settings {
+  height: 1.5em;
+  //margin-right: 0.5em;
+}
+
+.controller__overlay {
+  --overlay-display: none;
+  --overlay-opacity: 0;
+  --overlay-zindex: 4;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: var(--overlay-zindex);
+  background: #000;
+  display: var(--overlay-display);
+  opacity: var(--overlay-opacity);
+  transition: opacity 0.4s;
+}

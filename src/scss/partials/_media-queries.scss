@@ -1,0 +1,52 @@
+@media screen and (max-height: 75em) {
+  .controller__settings {
+    overflow-y: scroll;
+  }
+}
+
+@media screen and (min-width: 45em) {
+  .setting__form .form__search{
+    margin-bottom: 0.5em;
+  }
+}
+
+@media screen and (max-width: 45em) {
+  .setting__form .form__search {
+    max-width: 7.5em;
+  }
+  .controller__settings {
+    width: 100vw;
+    .settings__container section {
+      width: 100%;
+      .streams__stream {
+        width: 75%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 35em) {
+  .nav__search {
+    .search__logo {
+      padding-right: 0;
+    }
+    .search__form {
+      display: none;
+    }
+  }
+  .controller__settings .settings__container section .streams__stream {
+   width: 100%;
+  }
+  .controller__streams{
+    flex-direction: column;
+    .streams__chat {
+      width: 100%;
+      height: 46%;
+      min-height: 46%;
+      z-index: 5;
+      .chat__iframe {
+        width: 100%;
+      }
+    }
+  }
+}
