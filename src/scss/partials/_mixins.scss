@@ -35,7 +35,7 @@
 
 @mixin modal {
   margin: auto;
-  position: absolute;
+  //position: absolute;
   z-index: 11;
   max-width: 24em;
   background: var(--light-grey-color);
