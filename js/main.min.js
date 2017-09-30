@@ -306,7 +306,8 @@ module.controller('multistreamController', function($scope, $sce) {
       }
       if(menuOpen) {
         $scope.toggleMenu();
-      } else if(helpOpen) {
+      } 
+      if(helpOpen) {
         $scope.toggleHelp();
       }
     }
