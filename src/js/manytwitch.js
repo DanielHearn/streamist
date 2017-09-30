@@ -219,7 +219,6 @@ module.controller('multistreamController', function($scope, $sce) {
     function updateLayout() {
       if (!streamListEmpty()) {
         $scope.noStreams = false;
-        $scope.streamListInfo = "Drag to reorder streams";
         controller__intro.setProperty("--intro-zindex", "1");
         var numOfStreams = getStreamListLength();
         var streamElementList = document.getElementsByClassName("stream");
