@@ -22,7 +22,7 @@
 }
 
 
-.chat__container, .chat__iframe {
+.chat__container, .chat__iframe, .chat__iframe--main {
   @include display-flex;
   flex: 1 1 auto;
 }

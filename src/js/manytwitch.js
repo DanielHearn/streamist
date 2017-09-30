@@ -143,7 +143,7 @@ module.controller('multistreamController', function($scope, $sce) {
     }
 
     $scope.refreshMainChat = function() {
-      var iframe = document.querySelector(".chat__iframe");
+      var iframe = document.querySelector(".chat__iframe--main");
       iframe.src = iframe.src;
     }
 
@@ -480,7 +480,7 @@ module.controller('multistreamController', function($scope, $sce) {
       if($scope.getURLParam()) {
         setMainChat();
       } else {
-        $scope.streamListInfo = "No streams to edit";
+        //$scope.streamListInfo = "No streams to edit";
       }
       setTimeout(function(){ changeLayout(grid); }, 20);
       if ((localStorage.getItem("first-visit") == null) && streamListEmpty()) {
@@ -515,7 +515,7 @@ module.controller('multistreamController', function($scope, $sce) {
 
     $scope.clearStreams = function() {
       $scope.streamList.length = 0;
-      $scope.streamListInfo = "No streams to edit";
+      //$scope.streamListInfo = "No streams to edit";
       var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
       window.history.pushState({path:newurl},'',newurl);
       $scope.clearStorage();

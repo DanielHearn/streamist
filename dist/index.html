@@ -68,23 +68,25 @@
                 <input class="form__search--settings" type="text" ng-model="channelInput" name="" value="" placeholder="Twitch Channel" required>
                 <button class="button" href="">Load</button>
               </form>
-              <p class="setting__text">{{ streamListInfo }}</p>
-              <ul class="setting__streams" sv-root sv-part="streamList">
-                <li class="streams__stream" ng-repeat="stream in streamList track by $index" sv-element>
-                  <div class="stream__handle" sv-handle>
-                    <span class="handle"></span>
-                  </div>
-                  <p class="stream__name"> {{ stream.channel }} </p>
-                  <div class="stream__settings">
-                    <button class="button--small" ng-click="refreshStream($event)">
-                      <img class="icon--settings" src="img/refresh.svg" alt="Refresh stream">
-                    </button>
-                    <button class="button--small" ng-click="deleteStream()">
-                      <img class="icon--settings" src="img/close.svg" alt="Close stream">
-                    </button>
-                  </div>
-                </li>
-              </ul>
+              <section ng-if="!noStreams">
+                <p class="setting__text">{{ streamListInfo }}</p>
+                <ul class="setting__streams" sv-root sv-part="streamList">
+                  <li class="streams__stream" ng-repeat="stream in streamList track by $index" sv-element>
+                    <div class="stream__handle" sv-handle>
+                      <span class="handle"></span>
+                    </div>
+                    <p class="stream__name"> {{ stream.channel }} </p>
+                    <div class="stream__settings">
+                      <button class="button--small" ng-click="refreshStream($event)">
+                        <img class="icon--settings" src="img/refresh.svg" alt="Refresh stream">
+                      </button>
+                      <button class="button--small" ng-click="deleteStream()">
+                        <img class="icon--settings" src="img/close.svg" alt="Close stream">
+                      </button>
+                    </div>
+                  </li>
+                </ul>
+              </section>
               <button class="button--setting" ng-click="clearStreams()">Clear Streams</button>
             </section>
 
@@ -108,6 +110,17 @@
 
             <section class="setting--chatOptions">
               <h3 class="setting__title">Chat</h3>
+              <section ng-if="gridLayout" class="chat__setting--settings">
+                <div class="setting__dropdown--chat">
+                  <select class="setting__select--chat" name="availableChats" ng-model="availableChats" data-ng-click="getMainChat()" ng-change="getMainChat()">
+                    <option class="select__option" value="">-Select Chat-</option>
+                    <option class="select__option" ng-repeat="stream in streamList" value="{{stream.channel}}" ng-selected="availableChats == stream.channel">{{stream.channel}}</option>
+                  </select>
+                </div>
+                <button class="button--chat" ng-click="refreshMainChat()">
+                  <img class="icon--chat" src="img/refresh.svg" alt="Refresh main chat">
+                </button>
+              </section>
               <div class="setting__switch">
                 <p class="switch__title">Chat Visibility</p>
                 <label class="switch">
@@ -206,7 +219,7 @@
           </section>
 
           <section class="streams__chat">
-            <section class="chat__setting">
+            <section class="chat__setting--chat">
               <div class="setting__dropdown--chat">
                 <select class="setting__select--chat" name="availableChats" ng-model="availableChats" data-ng-click="getMainChat()" ng-change="getMainChat()">
                   <option class="select__option" value="">-Select Chat-</option>
