@@ -13,7 +13,6 @@ var browserSync = require('browser-sync').create();
 var ghpages = require('gh-pages');
 var path = require('path');
 
-
 const scssSource = 'src/scss/*.scss';
 const cssDest = 'src/css';
 
@@ -37,7 +36,6 @@ gulp.task('useref', function(){
     .pipe(useref())
     .pipe(gulpIf('*.js', gulp.dest('dist')))
     .pipe(gulpIf('*.css', cssnano({zindex: false})))
-    //.pipe(gulpIf('*.css', gulp.dest('dist')))
     .pipe(gulp.dest('dist'))
 });
 

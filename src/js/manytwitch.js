@@ -238,7 +238,6 @@ module.controller('multistreamController', function($scope, $sce) {
         }
       } else {
         $scope.noStreams = true;
-        //$scope.streamListInfo = "No streams to edit";
         controller__intro.setProperty("--intro-zindex", "2");
         app__controller.setProperty("--bg", "#5C6391");
         if(chatVisiblity) {
@@ -479,8 +478,6 @@ module.controller('multistreamController', function($scope, $sce) {
     $scope.loadApp = function() {
       if($scope.getURLParam()) {
         setMainChat();
-      } else {
-        //$scope.streamListInfo = "No streams to edit";
       }
       setTimeout(function(){ changeLayout(grid); }, 20);
       if ((localStorage.getItem("first-visit") == null) && streamListEmpty()) {
@@ -515,7 +512,6 @@ module.controller('multistreamController', function($scope, $sce) {
 
     $scope.clearStreams = function() {
       $scope.streamList.length = 0;
-      //$scope.streamListInfo = "No streams to edit";
       var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
       window.history.pushState({path:newurl},'',newurl);
       $scope.clearStorage();
