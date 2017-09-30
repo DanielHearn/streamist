@@ -33,6 +33,8 @@ module.controller('multistreamController', function($scope, $sce) {
 
     $scope.streamList = [];
     $scope.availableLayouts = currentLayout;
+    $scope.gridLayout = true;
+    $scope.noStreams = true;
     $scope.modalType = "welcomeFirst";
 
     $scope.trustSrc = function(src) {
@@ -217,6 +219,7 @@ module.controller('multistreamController', function($scope, $sce) {
 
     function updateLayout() {
       if (!streamListEmpty()) {
+        $scope.noStreams = false;
         $scope.streamListInfo = "Drag to reorder streams";
         controller__intro.setProperty("--intro-zindex", "1");
         var numOfStreams = getStreamListLength();
@@ -235,7 +238,8 @@ module.controller('multistreamController', function($scope, $sce) {
           }
         }
       } else {
-        $scope.streamListInfo = "No streams to edit";
+        $scope.noStreams = true;
+        //$scope.streamListInfo = "No streams to edit";
         controller__intro.setProperty("--intro-zindex", "2");
         app__controller.setProperty("--bg", "#5C6391");
         if(chatVisiblity) {
@@ -341,7 +345,13 @@ module.controller('multistreamController', function($scope, $sce) {
     }
 
     $scope.setLayout = function() {
-      if ($scope.availableLayouts != "") {
+      const newLayout = $scope.availableLayouts;
+      if (newLayout!= "") {
+        if(newLayout === grid) {
+          $scope.gridLayout = true;
+        } else {
+          $scope.gridLayout = false;
+        }
         changeLayout($scope.availableLayouts);
       }
     }

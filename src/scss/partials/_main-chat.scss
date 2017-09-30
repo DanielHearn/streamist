@@ -11,12 +11,16 @@
   z-index: 1;
 }
 
-.chat__setting {
-  @include display-flex;
-  background: var(--bg-primary-color);
-  height: 2.8em;
-  min-height: 2.8em; //Fix height issue on resize
+.chat__setting--chat {
+  @include chat-setting;
 }
+
+.chat__setting--settings {
+  @include chat-setting;
+  margin-bottom: 0.5em;
+  max-width: 20em;
+}
+
 
 .chat__container, .chat__iframe {
   @include display-flex;

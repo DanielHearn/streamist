@@ -81,12 +81,21 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   min-width: 300px;
   z-index: 1; }
 
-.chat__setting {
+.chat__setting--chat {
   display: -webkit-flex;
   display: flex;
   background: var(--bg-primary-color);
   height: 2.8em;
   min-height: 2.8em; }
+
+.chat__setting--settings {
+  display: -webkit-flex;
+  display: flex;
+  background: var(--bg-primary-color);
+  height: 2.8em;
+  min-height: 2.8em;
+  margin-bottom: 0.5em;
+  max-width: 20em; }
 
 .chat__container, .chat__iframe {
   display: -webkit-flex;
@@ -344,7 +353,9 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
       min-height: 46%;
       z-index: 5; }
       .controller__streams .streams__chat .chat__iframe {
-        width: 100%; } }
+        width: 100%; }
+    .controller__streams .chat__setting--chat {
+      display: none; } }
 
 .modal--welcome {
   margin: auto;
@@ -738,7 +749,8 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   height: 2.8em;
   box-sizing: border-box;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  margin-bottom: 0; }
   .setting__select--chat:hover {
     background: var(--bg-primary-color); }
   .setting__select--chat .select__option {
