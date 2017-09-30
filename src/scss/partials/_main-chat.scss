@@ -19,8 +19,8 @@
   @include chat-setting;
   margin-bottom: 0.5em;
   max-width: 20em;
+  display: var(--dropdown-chat-display);
 }
-
 
 .chat__container, .chat__iframe, .chat__iframe--main {
   @include display-flex;

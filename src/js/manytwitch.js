@@ -33,7 +33,6 @@ module.controller('multistreamController', function($scope, $sce) {
 
     $scope.streamList = [];
     $scope.availableLayouts = currentLayout;
-    $scope.gridLayout = true;
     $scope.noStreams = true;
     $scope.modalType = "welcomeFirst";
 
@@ -306,7 +305,7 @@ module.controller('multistreamController', function($scope, $sce) {
       }
       if(menuOpen) {
         $scope.toggleMenu();
-      } 
+      }
       if(helpOpen) {
         $scope.toggleHelp();
       }
@@ -349,9 +348,9 @@ module.controller('multistreamController', function($scope, $sce) {
       const newLayout = $scope.availableLayouts;
       if (newLayout!= "") {
         if(newLayout === grid) {
-          $scope.gridLayout = true;
+          app__controller.setProperty("--dropdown-chat-display", "flex");
         } else {
-          $scope.gridLayout = false;
+          app__controller.setProperty("--dropdown-chat-display", "none");
         }
         changeLayout($scope.availableLayouts);
       }

@@ -12,7 +12,8 @@
   --dark-grey-color: #404040;
   --input-color: #d0d0d0;
   --input-font-size: 1em;
-  --input-padding: 0.5em 1.5em; }
+  --input-padding: 0.5em 1.5em;
+  --dropdown-chat-display: flex; }
 
 .controller__nav {
   --navButton-bg-color: #FF9800;
@@ -95,7 +96,8 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   height: 2.8em;
   min-height: 2.8em;
   margin-bottom: 0.5em;
-  max-width: 20em; }
+  max-width: 20em;
+  display: var(--dropdown-chat-display); }
 
 .chat__container, .chat__iframe, .chat__iframe--main {
   display: -webkit-flex;

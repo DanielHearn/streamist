@@ -36,6 +36,12 @@
     <body class="app" ng-app="multistreamApp">
       <div class="app__controller" ng-controller="multistreamController" data-ng-init="loadApp()">
 
+        <label class="button--overlay" ng-click="toggleMenu()">
+          <span class="icon--overlay"></span>
+        </label>
+
+        <section class="controller__overlay" ng-click="toggleOverlay()"></section>
+
         <nav class="controller__nav">
           <div class="nav__buttons">
             <label class="button--help" for="help-input" ng-click="toggleHelp()">
@@ -51,12 +57,6 @@
             </form>
           </section>
         </nav>
-
-        <label class="button--overlay" ng-click="toggleMenu()">
-          <span class="icon--overlay"></span>
-        </label>
-
-        <section class="controller__overlay" ng-click="toggleOverlay()"></section>
 
         <section class="controller__settings">
           <section class="settings__container">
