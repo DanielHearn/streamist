@@ -63,6 +63,7 @@
 
 .setting__text, .switch__title, .about__content {
   @include text-color;
+  @include normal-text;
 }
 
 .stream__name {
@@ -148,11 +149,13 @@
   padding-right: var(--nav-padding);
   color: var(--nav-text-color);
 }
+
 .stream__settings {
   @include display-flex;
   flex-wrap: wrap;
   margin-left: auto;
 }
+
 .icon--settings {
   height: 1.5em;
   //margin-right: 0.5em;

@@ -10,28 +10,34 @@
   top: 0; left: 0; bottom: 0; right: 0;
   z-index: var(--intro-zindex);
   position: absolute;
-  //max-width: 50em;
   width: 100%;
   height: 10em;
   padding: 0.5em;
-  .intro__content {
-    @include display-flex;
-    @include align-items-center;
-    @include justify-content-center;
-    flex-wrap: wrap;
-    text-align: center;
-    color: var(--nav-text-color);
-    .intro__title, .intro__subheading {
-      width: 100%;
-      //padding-right: var(--nav-padding);
-    }
-    .intro__title {
-      @include heading;
-    }
-    .intro__subheading {
-      font-size: 1.75em;
-      font-weight: 500;
-      margin: 0;
-    }
-  }
+}
+
+.intro__content {
+  @include display-flex;
+  @include align-items-center;
+  @include justify-content-center;
+  flex-wrap: wrap;
+  text-align: center;
+  color: var(--nav-text-color);
+}
+
+.intro__title, .intro__subheading {
+  width: 100%;
+}
+
+.intro__title {
+  @include heading;
+}
+
+.intro__subheading {
+  font-size: 1.75em;
+  font-weight: 500;
+  margin: 0.5em 0;
+}
+
+.intro__text {
+  @include normal-text;
 }

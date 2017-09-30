@@ -43,6 +43,11 @@
   pointer-events: auto;
 }
 
+@mixin normal-text {
+  font-size: 1em;
+  font-weight: normal;
+}
+
 @mixin overwriteBrowserStyles {
   -webkit-appearance: none;
   -moz-appearance: none;

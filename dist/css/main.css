@@ -346,7 +346,6 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
 
 .modal--welcome {
   margin: auto;
-  position: absolute;
   z-index: 11;
   max-width: 24em;
   background: var(--light-grey-color);
@@ -356,7 +355,6 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
 
 .modal--return {
   margin: auto;
-  position: absolute;
   z-index: 11;
   max-width: 24em;
   background: var(--light-grey-color);
@@ -366,7 +364,6 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
 
 .modal--help {
   margin: auto;
-  position: absolute;
   z-index: 11;
   max-width: 24em;
   background: var(--light-grey-color);
@@ -376,7 +373,6 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
 
 .modal--offline {
   margin: auto;
-  position: absolute;
   z-index: 11;
   max-width: 24em;
   background: var(--light-grey-color);
@@ -396,14 +392,9 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   -webkit-justify-content: center;
   justify-content: center;
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
   z-index: 9;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   text-align: center;
   pointer-events: none; }
 
