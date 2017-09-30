@@ -69,7 +69,7 @@
                 <button class="button" href="">Load</button>
               </form>
               <section ng-if="!noStreams">
-                <p class="setting__text">{{ streamListInfo }}</p>
+                <p class="setting__text">Drag to reorder streams.</p>
                 <ul class="setting__streams" sv-root sv-part="streamList">
                   <li class="streams__stream" ng-repeat="stream in streamList track by $index" sv-element>
                     <div class="stream__handle" sv-handle>
