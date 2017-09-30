@@ -26,6 +26,7 @@
 
 .search__logo {
   @include heading;
+  padding-right: var(--nav-padding);
 }
 
 .nav__buttons {

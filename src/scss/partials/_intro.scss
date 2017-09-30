@@ -29,6 +29,10 @@
 }
 
 .intro__title {
+  padding-right: 0;
+}
+
+.intro__title {
   @include heading;
 }
 
