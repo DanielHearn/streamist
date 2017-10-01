@@ -52,15 +52,15 @@ module.controller('multistreamController', function($scope, $sce) {
 
     function addStream(channel) {
       if (channel != null && (getStreamListLength() < maxNumOfStreams)) {
-        var chatUrlFormat = (chatStartUrl + channel + chatEndUrl);
-        var playerUrlFormat = (playerUrl + channel)
-        var streamItem = { channel: channel, player: playerUrlFormat, chat: chatUrlFormat };
+        const chatUrlFormat = (chatStartUrl + channel + chatEndUrl);
+        const playerUrlFormat = (playerUrl + channel)
+        const streamItem = { channel: channel, player: playerUrlFormat, chat: chatUrlFormat };
         $scope.streamList.push(streamItem);
         clearChannelInput();
         storeStreams();
         insertURLParam();
         updateLayout();
-        var numOfStreams = getStreamListLength();
+        const numOfStreams = getStreamListLength();
         if (numOfStreams === 0) {
           changeLayout(currentLayout);
         } else if (numOfStreams === 1){
@@ -108,7 +108,7 @@ module.controller('multistreamController', function($scope, $sce) {
     }
 
     function storeStreams() {
-      var lastSession = [];
+      const lastSession = [];
       for (channel in $scope.streamList) {
         lastSession.push($scope.streamList[channel].channel);
       }
@@ -116,11 +116,11 @@ module.controller('multistreamController', function($scope, $sce) {
     }
 
     $scope.deleteStream = function() {
-      var removedStream = $scope.streamList[this.$index].channel;
+      const removedStream = $scope.streamList[this.$index].channel;
       deleteURLParam(removedStream);
       $scope.streamList.splice(this.$index, 1);
-      var removedChatUrl = chatStartUrl + removedStream + chatEndUrl;
-      var numOfStreams = getStreamListLength();
+      const removedChatUrl = chatStartUrl + removedStream + chatEndUrl;
+      const numOfStreams = getStreamListLength();
       storeStreams();
       if (removedChatUrl == $scope.mainChatUrl && numOfStreams > 0 || numOfStreams == 1) {
         setMainChat()
@@ -134,15 +134,15 @@ module.controller('multistreamController', function($scope, $sce) {
 
     $scope.refreshStream = function(event) {
       streamID = "." + $scope.streamList[this.$index].channel + "player";
-      var streamFrame = document.querySelector(streamID);
+      const streamFrame = document.querySelector(streamID);
       streamFrame.src = streamFrame.src;
       chatID = "." + $scope.streamList[this.$index].channel + "chat";
-      var chatFrame = document.querySelector(chatID);
+      const chatFrame = document.querySelector(chatID);
       chatFrame.src = chatFrame.src;
     }
 
     $scope.refreshMainChat = function() {
-      var iframe = document.querySelector(".chat__iframe--main");
+      const iframe = document.querySelector(".chat__iframe--main");
       iframe.src = iframe.src;
     }
 
@@ -155,7 +155,7 @@ module.controller('multistreamController', function($scope, $sce) {
 
     $scope.getMainChat = function() {
         if (availableChatsNotEmpty()) {
-          var chatUrlFormat = (chatStartUrl + $scope.availableChats + chatEndUrl);
+          const chatUrlFormat = (chatStartUrl + $scope.availableChats + chatEndUrl);
           $scope.mainChatUrl = chatUrlFormat;
         }
     }
@@ -208,7 +208,7 @@ module.controller('multistreamController', function($scope, $sce) {
     function reloadAllChats() {
       for (channel in $scope.streamList) {
         streamID = "." + $scope.streamList[channel].channel + "chat";
-        var iframe = document.querySelector(streamID);
+        const iframe = document.querySelector(streamID);
         if (iframe != null) {
           iframe.src = iframe.src;
         }
@@ -220,9 +220,9 @@ module.controller('multistreamController', function($scope, $sce) {
       if (!streamListEmpty()) {
         $scope.noStreams = false;
         controller__intro.setProperty("--intro-zindex", "1");
-        var numOfStreams = getStreamListLength();
-        var streamElementList = document.getElementsByClassName("stream");
-        var focusStream = streamElementList[0];
+        const numOfStreams = getStreamListLength();
+        const streamElementList = document.getElementsByClassName("stream");
+        const focusStream = streamElementList[0];
         if (currentLayout === grid) {
           updateLayoutGrid(focusStream, numOfStreams, streamElementList);
         } else {
@@ -277,7 +277,7 @@ module.controller('multistreamController', function($scope, $sce) {
     }
 
     function setStyle(elementList, style, newSetting) {
-      for (var i = 0; i <= (elementList.length-1); i++) {
+      for (let i = 0; i <= (elementList.length-1); i++) {
           elementList[i].style[style] = newSetting;
       }
     }
@@ -511,42 +511,42 @@ module.controller('multistreamController', function($scope, $sce) {
 
     $scope.clearStreams = function() {
       $scope.streamList.length = 0;
-      var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+      const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname;
       window.history.pushState({path:newurl},'',newurl);
       $scope.clearStorage();
       updateLayout();
     }
 
     function insertURLParam() {
-      var channels;
+      let channels;
       for (channel in $scope.streamList) {
         channels += String($scope.streamList[channel].channel) + ",";
       }
       channels = channels.replace("undefined","");
-      var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?stream=' + channels;
+      const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?stream=' + channels;
       window.history.pushState({path:newurl},'',newurl);
     }
 
     function deleteURLParam(removedChannel) {
-      var channels;
+      let channels;
       for (channel in $scope.streamList) {
         channels += String($scope.streamList[channel].channel) + ",";
       }
       channels = channels.replace("undefined","");
       channels = channels.replace(removedChannel + ",","");
-      var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?stream=' + channels;
+      const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?stream=' + channels;
       window.history.pushState({path:newurl},'',newurl);
     }
 
     $scope.getURLParam = function() {
-      var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-      var urlParams = new URLSearchParams(location.search.substring(1));
+      const url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+      const urlParams = new URLSearchParams(location.search.substring(1));
       urlStreams = urlParams.get('stream');
       if (urlStreams !== "" && urlStreams !== null) {
         urlStreams = urlStreams.split(",");
         for (channel in urlStreams) {
+          var channel = urlStreams[channel];
           if (getStreamListLength() < maxNumOfStreams) {
-            var channel = urlStreams[channel];
             if(channel !== "") {
               addStream(channel);
             }
