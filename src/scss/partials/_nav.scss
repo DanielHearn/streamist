@@ -12,11 +12,11 @@
   display: var(--navBar-display);
   height: 3.2em;
   min-height: 3.2em; //Fix height issue on resize
+  -webkit-transform: translate3d(0,0,0); //Fix safari z-index issue with overlay
   margin: 0;
   z-index: 6;
   box-sizing: border-box;
   overflow: hidden;
-  //position: absolute;
 }
 
 .nav__search {
