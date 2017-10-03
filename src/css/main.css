@@ -177,7 +177,8 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   box-sizing: border-box;
   padding: calc(var(--nav-padding)*2);
   width: 50%;
-  width: 100%; }
+  width: 100%;
+  padding-bottom: 2.5em; }
 
 .controller__settings {
   --settings-display: none;
