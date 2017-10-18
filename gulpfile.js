@@ -69,7 +69,7 @@ gulp.task('build', function (callback) {
 })
 
 gulp.task('default', function(callback) {
-  runSequence(['sass', 'browserSync'], 'watch',
+  runSequence(['sass'], 'watch',
     callback
   )
 })
