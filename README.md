@@ -16,7 +16,7 @@ To specify a channel within the url use 'manytwitch/?stream=channel1,channel2' c
 
 ### Dependencies
 - angular-sortable-view to handle AngularJS model updating on list reorder.
-- screenfull for quick and clean access to browser fullscreen api.
+- screenfull.js for quick and clean access to browser fullscreen api.
 
 ### Gulp tasks
 - Watch: Use browsersync to reload files and compiles scss.
