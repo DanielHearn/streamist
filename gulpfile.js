@@ -16,13 +16,6 @@ var path = require('path');
 const scssSource = 'src/scss/*.scss';
 const cssDest = 'src/css';
 
-gulp.task('sass', function() {
-  return gulp.src(scssSource)
-    .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest(cssDest))
-    .pipe(browserSync.stream());
-})
-
 gulp.task('browserSync', function() {
   browserSync.init({
     server: {
@@ -30,6 +23,13 @@ gulp.task('browserSync', function() {
     },
   })
 });
+
+gulp.task('sass', function() {
+  return gulp.src(scssSource)
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest(cssDest))
+    .pipe(browserSync.stream());
+})
 
 gulp.task('useref', function(){
   return gulp.src('src/*.html')
@@ -51,12 +51,6 @@ gulp.task('favicons', function(){
   .pipe(gulp.dest('dist/favicons'))
 });
 
-gulp.task('clean', function() {
-  return del.sync('dist').then(function(cb) {
-    return cache.clearAll(cb);
-  });
-})
-
 gulp.task('clean:dist', function() {
   return del.sync(['dist/**/*']);
 });
@@ -75,7 +69,7 @@ gulp.task('build', function (callback) {
 })
 
 gulp.task('default', function(callback) {
-  runSequence(['sass', 'browserSync'], 'watch',
+  runSequence(['sass'], 'watch',
     callback
   )
 })
