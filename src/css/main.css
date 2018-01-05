@@ -493,7 +493,8 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
 
 .intro__text {
   font-size: 1em;
-  font-weight: normal; }
+  font-weight: normal;
+  max-width: 40em; }
 
 .button {
   -webkit-appearance: none;

@@ -44,4 +44,5 @@
 
 .intro__text {
   @include normal-text;
+  max-width: 40em;
 }
