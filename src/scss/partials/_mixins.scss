@@ -68,6 +68,10 @@
   align-items: center;
   user-select: none;
   display: block;
+  transition: background 0.15s ease-in-out;
+  &:hover {
+    background: var(--accent-secondary-color)
+  }
 }
 
 @mixin input {
@@ -137,7 +141,6 @@
 }
 
 @mixin heading {
-  font-family: 'Raleway', sans-serif;
   font-size: 2.25em;
   font-weight: 700;
   margin: 0;
@@ -149,8 +152,12 @@
   color: var(--accent-color);
   font-weight: 600;
   text-decoration: none;
+  transition: color 0.15s ease-in-out;
   &:visited {
     text-decoration: none;
+  }
+  &:hover {
+    color: var(--accent-secondary-color);
   }
 }
 
