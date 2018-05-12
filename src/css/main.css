@@ -1,6 +1,7 @@
 @charset "UTF-8";
 :root {
-  --accent-color: #F39C12;
+  --accent-color: #ffa91f;
+  --accent-secondary-color: #ea9000;
   --nav-text-color: #FFFFFF;
   --nav-padding: 0.5em;
   --nav-background-color: #4D5481;
@@ -42,7 +43,6 @@
   align-items: center; }
 
 .search__logo {
-  font-family: 'Raleway', sans-serif;
   font-size: 2.25em;
   font-weight: 700;
   margin: 0;
@@ -199,7 +199,6 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   flex-wrap: wrap; }
 
 .settings__title, .about__heading {
-  font-family: 'Raleway', sans-serif;
   font-size: 2.25em;
   font-weight: 700;
   margin: 0;
@@ -217,15 +216,13 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   width: 100%; }
 
 .setting__text, .switch__title, .about__content {
+  text-align: left;
   color: var(--dark-grey-color);
   font-size: 1em;
   font-weight: normal; }
 
 .stream__name {
   color: var(--nav-text-color); }
-
-.about__content {
-  text-align: center; }
 
 .setting__switch {
   display: -webkit-flex;
@@ -281,15 +278,14 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   justify-content: center;
   width: 100%;
   height: 2px;
+  top: -10%;
   background: var(--nav-text-color);
   position: relative;
   display: block; }
   .handle:before {
     top: 0.4em;
     visibility: visible; }
-  .handle:after {
-    top: -0.4em; }
-  .handle:before, .handle:after {
+  .handle:before {
     height: 2px;
     width: 1.5em;
     background: var(--nav-text-color);
@@ -358,7 +354,13 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
       .controller__streams .streams__chat .chat__iframe {
         width: 100%; }
     .controller__streams .chat__setting--chat {
-      display: none; } }
+      display: none; }
+  .intro__text {
+    display: none; } }
+
+@media screen and (min-width: 35em) {
+  .intro__text--mobile {
+    display: none; } }
 
 .modal--welcome {
   margin: auto;
@@ -480,7 +482,6 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   padding-right: 0; }
 
 .intro__title {
-  font-family: 'Raleway', sans-serif;
   font-size: 2.25em;
   font-weight: 700;
   margin: 0;
@@ -512,7 +513,10 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   cursor: pointer;
   align-items: center;
   user-select: none;
-  display: block; }
+  display: block;
+  transition: background 0.15s ease-in-out; }
+  .button:hover {
+    background: var(--accent-secondary-color); }
 
 .button--secondary {
   -webkit-appearance: none;
@@ -530,7 +534,10 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   align-items: center;
   user-select: none;
   display: block;
+  transition: background 0.15s ease-in-out;
   background: var(--dark-grey-color); }
+  .button--secondary:hover {
+    background: var(--accent-secondary-color); }
 
 .button--modal {
   -webkit-appearance: none;
@@ -548,7 +555,10 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   align-items: center;
   user-select: none;
   display: block;
+  transition: background 0.15s ease-in-out;
   margin: 0 0.5em; }
+  .button--modal:hover {
+    background: var(--accent-secondary-color); }
 
 .button--setting {
   -webkit-appearance: none;
@@ -566,8 +576,11 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   align-items: center;
   user-select: none;
   display: block;
+  transition: background 0.15s ease-in-out;
   margin-top: 1em;
   margin-bottom: 1em; }
+  .button--setting:hover {
+    background: var(--accent-secondary-color); }
 
 .button--help {
   display: -webkit-flex;
@@ -601,10 +614,13 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   align-items: center;
   user-select: none;
   display: block;
+  transition: background 0.15s ease-in-out;
   display: -webkit-flex;
   display: flex;
   margin-right: 0.5em;
   padding: 0.25em 0.5em; }
+  .button--small:hover {
+    background: var(--accent-secondary-color); }
 
 .button--overlay {
   position: absolute;
@@ -843,11 +859,14 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   align-items: center;
   user-select: none;
   display: block;
+  transition: background 0.15s ease-in-out;
   display: -webkit-flex;
   display: flex;
   margin: 0;
   padding-left: 1.5em;
   padding-right: 1.5em; }
+  .button--chat:hover {
+    background: var(--accent-secondary-color); }
   .button--chat .icon--chat {
     height: 1.4em; }
 
@@ -902,9 +921,12 @@ input:invalid {
 .link {
   color: var(--accent-color);
   font-weight: 600;
-  text-decoration: none; }
+  text-decoration: none;
+  transition: color 0.15s ease-in-out; }
   .link:visited {
     text-decoration: none; }
+  .link:hover {
+    color: var(--accent-secondary-color); }
 
 .content__text--bold {
   color: var(--dark-grey-color);

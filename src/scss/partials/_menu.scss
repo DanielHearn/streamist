@@ -63,16 +63,13 @@
 }
 
 .setting__text, .switch__title, .about__content {
+  text-align: left;
   @include text-color;
   @include normal-text;
 }
 
 .stream__name {
   color: var(--nav-text-color);
-}
-
-.about__content {
-  text-align: center;
 }
 
 .setting__switch {
@@ -126,6 +123,7 @@
   @include justify-content-center;
   width: 100%;
   height: 2px;
+  top: -10%;
   background: var(--nav-text-color);
   position: relative;
   display: block;
@@ -133,10 +131,7 @@
     top: 0.4em;
     visibility: visible;
   }
-  &:after {
-    top: -0.4em;
-  }
-  &:before, &:after {
+  &:before {
     height: 2px;
     width: 1.5em;
     background: var(--nav-text-color);
