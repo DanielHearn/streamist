@@ -8,8 +8,8 @@ module.controller('multistreamController', function($scope, $sce) {
     let currentLayout = grid;
     let firstLoad = true;
     let recentlyAdded = true;
-    const playerUrl = "http://player.twitch.tv/?channel=";
-    const chatStartUrl = "http://www.twitch.tv/";
+    const playerUrl = "https://player.twitch.tv/?channel=";
+    const chatStartUrl = "https://www.twitch.tv/embed/";
     const chatEndUrl = "/chat";
 
     let chatVisiblity = true;
@@ -35,6 +35,7 @@ module.controller('multistreamController', function($scope, $sce) {
     $scope.availableLayouts = currentLayout;
     $scope.noStreams = true;
     $scope.modalType = "welcomeFirst";
+    $scope.mainChatUrl = ''
 
     $scope.trustSrc = function(src) {
       return $sce.trustAsResourceUrl(src);

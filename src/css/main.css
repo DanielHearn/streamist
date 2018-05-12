@@ -470,6 +470,7 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   justify-content: center;
   flex-wrap: wrap;
   text-align: center;
+  align-items: baseline;
   color: var(--nav-text-color); }
 
 .intro__title, .intro__subheading {
