@@ -44,7 +44,7 @@
 
 .search__logo {
   font-size: 2.25em;
-  font-weight: 700;
+  font-weight: 800;
   margin: 0;
   letter-spacing: 2px;
   color: var(--nav-text-color);
@@ -200,7 +200,7 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
 
 .settings__title, .about__heading {
   font-size: 2.25em;
-  font-weight: 700;
+  font-weight: 800;
   margin: 0;
   letter-spacing: 2px;
   color: var(--nav-text-color);
@@ -218,7 +218,7 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
 .setting__text, .switch__title, .about__content {
   text-align: left;
   color: var(--dark-grey-color);
-  font-size: 1em;
+  font-size: 1.1em;
   font-weight: normal; }
 
 .stream__name {
@@ -441,6 +441,8 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   flex-direction: column; }
 
 .content__text {
+  font-size: 1.1em;
+  font-weight: normal;
   flex-wrap: wrap;
   color: var(--dark-grey-color); }
 
@@ -483,7 +485,7 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
 
 .intro__title {
   font-size: 2.25em;
-  font-weight: 700;
+  font-weight: 800;
   margin: 0;
   letter-spacing: 2px;
   color: var(--nav-text-color); }
@@ -494,7 +496,7 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   margin: 0.5em 0; }
 
 .intro__text {
-  font-size: 1em;
+  font-size: 1.1em;
   font-weight: normal;
   max-width: 40em; }
 
@@ -509,6 +511,7 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   padding: var(--input-padding);
   text-decoration: none;
   font-size: var(--input-font-size);
+  font-weight: 400;
   border: 0;
   cursor: pointer;
   align-items: center;
@@ -529,6 +532,7 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   padding: var(--input-padding);
   text-decoration: none;
   font-size: var(--input-font-size);
+  font-weight: 400;
   border: 0;
   cursor: pointer;
   align-items: center;
@@ -550,6 +554,7 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   padding: var(--input-padding);
   text-decoration: none;
   font-size: var(--input-font-size);
+  font-weight: 400;
   border: 0;
   cursor: pointer;
   align-items: center;
@@ -571,6 +576,7 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   padding: var(--input-padding);
   text-decoration: none;
   font-size: var(--input-font-size);
+  font-weight: 400;
   border: 0;
   cursor: pointer;
   align-items: center;
@@ -609,6 +615,7 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   padding: var(--input-padding);
   text-decoration: none;
   font-size: var(--input-font-size);
+  font-weight: 400;
   border: 0;
   cursor: pointer;
   align-items: center;
@@ -854,6 +861,7 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   padding: var(--input-padding);
   text-decoration: none;
   font-size: var(--input-font-size);
+  font-weight: 400;
   border: 0;
   cursor: pointer;
   align-items: center;
@@ -906,7 +914,7 @@ input:invalid {
   box-shadow: none; }
 
 .app {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Nunito Sans', sans-serif;
   font-weight: 400;
   margin: 0;
   overflow: hidden; }
