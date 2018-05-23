@@ -101,7 +101,7 @@ module.controller('multistreamController', function($scope, $sce) {
     }
 
     function availableChatsNotEmpty() {
-      if($scope.availableChats != ("" || null || undefined || "undefined")) {
+      if($scope.availableChats != (" " || "" || null || undefined || "undefined")) {
         return true;
       } else {
         return false;
