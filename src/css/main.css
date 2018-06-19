@@ -368,8 +368,7 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   max-width: 24em;
   background: var(--light-grey-color);
   text-align: center;
-  pointer-events: auto;
-  display: var(--modal-welcome-display); }
+  pointer-events: auto; }
 
 .modal--return {
   margin: auto;
@@ -377,8 +376,7 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   max-width: 24em;
   background: var(--light-grey-color);
   text-align: center;
-  pointer-events: auto;
-  display: var(--modal-return-display); }
+  pointer-events: auto; }
 
 .modal--help {
   margin: auto;
@@ -386,8 +384,7 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   max-width: 24em;
   background: var(--light-grey-color);
   text-align: center;
-  pointer-events: auto;
-  display: var(--modal-help-display); }
+  pointer-events: auto; }
 
 .modal--offline {
   margin: auto;
@@ -395,14 +392,9 @@ input[type=checkbox]:checked ~ .button--overlay span:after {
   max-width: 24em;
   background: var(--light-grey-color);
   text-align: center;
-  pointer-events: auto;
-  display: var(--modal-offline-display); }
+  pointer-events: auto; }
 
 .controller__modals {
-  --modal-welcome-display: none;
-  --modal-return-display: none;
-  --modal-help-display: none;
-  --modal-offline-display: none;
   display: -webkit-flex;
   display: flex;
   -webkit-align-items: center;

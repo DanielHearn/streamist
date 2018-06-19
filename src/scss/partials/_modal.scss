@@ -2,29 +2,21 @@
 
 .modal--welcome {
   @include modal;
-  display: var(--modal-welcome-display);
 }
 
 .modal--return {
   @include modal;
-  display: var(--modal-return-display);
 }
 
 .modal--help {
   @include modal;
-  display: var(--modal-help-display);
 }
 
 .modal--offline {
   @include modal;
-  display: var(--modal-offline-display);
 }
 
 .controller__modals {
-  --modal-welcome-display: none;
-  --modal-return-display: none;
-  --modal-help-display: none;
-  --modal-offline-display: none;
   @include display-flex;
   @include align-items-center;
   @include justify-content-center;

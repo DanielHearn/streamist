@@ -75,7 +75,7 @@ gulp.task('default', function(callback) {
 })
 
 gulp.task('deploytopages', function() {
-  ghpages.publish('dist', function(err) {});
+  ghpages.publish('dist', function(err) {console.log(err)});
 });
 
 gulp.task('deploy', function(callback) {
