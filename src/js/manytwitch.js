@@ -35,6 +35,7 @@ angular.module('multistreamApp', ['angular-sortable-view'])
     $scope.availableLayouts = currentLayout;
     $scope.noStreams = true;
     $scope.modalType = "welcomeFirst";
+    $scope.mainChatUrl = ''
 
     $scope.trustSrc = function(src) {
       return $sce.trustAsResourceUrl(src);
@@ -100,7 +101,7 @@ angular.module('multistreamApp', ['angular-sortable-view'])
     }
 
     function availableChatsNotEmpty() {
-      if($scope.availableChats != ("" || null || undefined || "undefined")) {
+      if($scope.availableChats != (" " || "" || null || undefined || "undefined")) {
         return true;
       } else {
         return false;

@@ -21,6 +21,7 @@
   @include justify-content-center;
   flex-wrap: wrap;
   text-align: center;
+  align-items: baseline;
   color: var(--nav-text-color);
 }
 

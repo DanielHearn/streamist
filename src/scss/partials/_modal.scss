@@ -53,6 +53,7 @@
 }
 
 .content__text {
+  @include normal-text;
   flex-wrap: wrap;
   color: var(--dark-grey-color);
 }
