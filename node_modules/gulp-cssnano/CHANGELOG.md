@@ -1,3 +1,8 @@
+# 2.1.3
+
+* Drops deprecated gulp-util dependency (thanks @demurgos).
+* Replaces `new Buffer(x)` with `Buffer.from(x)` in newer Node environments.
+
 # 2.1.2
 
 * Fixes an issue where gulp-cssnano was not passing on sourcemap errors and was
