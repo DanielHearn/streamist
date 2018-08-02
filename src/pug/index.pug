@@ -1,0 +1,21 @@
+html
+    head
+        link(href='css/main.css', rel='stylesheet')
+    body
+        #manytwitch
+            form.list-add(name="newStream", v-on:submit.prevent="addStream")
+                input(type="text", name="newStreamInput", required, placeholder="Enter a stream", v-model="newStreamName")
+                button#addStreamButton(type="submit")  Add Stream
+            #streams(v-for="stream in currentStreams")
+                div.stream-controls
+                    p {{ stream.streamName }}
+                    button(@click="removeStream(stream.index)") Remove
+                div.stream-main
+                    div.stream-player(:id="stream.embedPlayerID")
+                    div.stream-chat
+                        iframe(frameborder="0", scrolling="no", :id="stream.embedChatID", :src="stream.embedChatSrc",
+                            height="500", width="350")
+        script(src="https://embed.twitch.tv/embed/v1.js")
+        script(src="js/vue.js")
+        script(src="js/manytwitch.js")
+
