@@ -1,18 +1,16 @@
-var gulp = require('gulp')
-var uncss = require('gulp-uncss')
-var sass = require('gulp-sass')
-var useref = require('gulp-useref')
-var del = require('del')
-var runSequence = require('run-sequence')
-var cache = require('gulp-cache')
-var imagemin = require('gulp-imagemin')
-var uglify = require('gulp-uglify')
-var cssnano = require('gulp-cssnano')
-var gulpIf = require('gulp-if')
-var pug = require('gulp-pug')
-var browserSync = require('browser-sync').create()
-var ghpages = require('gh-pages')
-var path = require('path')
+const gulp = require('gulp')
+const sass = require('gulp-sass')
+const useref = require('gulp-useref')
+const del = require('del')
+const runSequence = require('run-sequence')
+const cache = require('gulp-cache')
+const imagemin = require('gulp-imagemin')
+const cssnano = require('gulp-cssnano')
+const gulpIf = require('gulp-if')
+const pug = require('gulp-pug')
+const browserSync = require('browser-sync').create()
+const ghpages = require('gh-pages')
+const babel = require('gulp-babel')
 
 const scssSource = 'src/scss/*.scss'
 const cssDest = 'src/css'
@@ -44,11 +42,20 @@ gulp.task('pug', function buildHTML () {
   }
 })
 
+gulp.task('js', function () {
+  return gulp.src([
+    'node_modules/babel-polyfill/dist/polyfill.js',
+    'dist/js/*.js'
+  ])
+    .pipe(babel({
+      presets: ['env']
+    }))
+    .pipe(gulp.dest('dist/js'))
+})
+
 gulp.task('useref', function () {
-  return gulp.src('src/*.html')
+  return gulp.src('src/**/*.+(html|css|js|png|jpg|jpeg|gif|svg|ico|xml|json)')
     .pipe(useref())
-    .pipe(gulpIf('*.js', gulp.dest('dist')))
-    .pipe(gulpIf('*.css', cssnano({zindex: false})))
     .pipe(gulp.dest('dist'))
 })
 
@@ -77,7 +84,7 @@ gulp.task('watch', ['browserSync', 'sass'], function () {
 
 gulp.task('build', function (callback) {
   runSequence('clean:dist',
-    ['pug', 'sass', 'images', 'favicons'], 'useref',
+    ['pug', 'sass', 'images', 'favicons'], 'useref', 'js',
     callback
   )
 })
