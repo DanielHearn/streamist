@@ -1,21 +1,32 @@
-html
-    head
-        link(href='css/main.css', rel='stylesheet')
-    body
-        #manytwitch
-            form.list-add(name="newStream", v-on:submit.prevent="addStream")
-                input(type="text", name="newStreamInput", required, placeholder="Enter a stream", v-model="newStreamName")
-                button#addStreamButton(type="submit")  Add Stream
-            #streams(v-for="stream in currentStreams")
-                div.stream-controls
-                    p {{ stream.streamName }}
-                    button(@click="removeStream(stream.index)") Remove
-                div.stream-main
-                    div.stream-player(:id="stream.embedPlayerID")
-                    div.stream-chat
-                        iframe(frameborder="0", scrolling="no", :id="stream.embedChatID", :src="stream.embedChatSrc",
-                            height="500", width="350")
-        script(src="https://embed.twitch.tv/embed/v1.js")
-        script(src="js/vue.js")
-        script(src="js/manytwitch.js")
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    title Manytwitch - Multiple Twitch Stream Viewer
+    meta(name="description", content="Manytwitch is a multiple Twitch stream viewer ")
+    link(rel='stylesheet', href='css/main.css')
+  body
+    #manytwitch
+      nav
+        button(@click='toggleMenu') MENU
+        stream-history(v-bind:history='history', v-on:load-selected-history="loadSelectedHistory")
+        button(@click='toggleChat')  Toggle Chat
+        form.list-add(name='newStream', v-on:submit.prevent='addStreamFromNav')
+          input(type='text', name='newStreamInput', required='required', placeholder='Enter a stream', v-model='newStreamName')
+          button#addStreamButton(type='submit')  Add Stream
+      #main
+        menu-container(v-bind:options='options')
+        streams(v-bind:streams='currentStreams', v-on:update-streams='updateStreams')
+        chats(v-bind:streams='currentStreams', v-bind:options='options')
+    // TODO
+    // Fix remove stream
+    // Fix remove stream errors
+    // Fix remove chat -- removes all with name, use indexes
+    // Fix reload chat -- need index in object
+    // Refresh chat button
+    // Reorder chat buttons, up, down
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js')
+    script(src='https://embed.twitch.tv/embed/v1.js')
+    script(src='js/manytwitch.js')
+    script(src='js/polyfill.js')
 
