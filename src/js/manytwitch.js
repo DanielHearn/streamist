@@ -52,7 +52,7 @@ Vue.component('stream-controls', {
     }
   },
   template: `<div class="stream-controls">
-              <a class="url" v-bind:href="streamUrl" target="_blank">{{ stream.streamName }}</a>
+              <a class="url" :href="streamUrl" target="_blank">{{ stream.streamName }}</a>
               <remove-button v-on:remove="remove"></remove-button>
               <refresh-button v-on:refresh="refresh"></refresh-button>
              </div>`,
@@ -67,9 +67,15 @@ Vue.component('stream-controls', {
 })
 
 Vue.component('stream', {
-  props: ['stream'],
+  props: ['streams', 'stream', 'options'],
+  data: function () {
+    return {
+      playerEmbed: {},
+      player: {}
+    }
+  },
   template: `<div class="stream">
-              <stream-controls v-bind:stream="stream" v-on:remove="remove" v-on:refresh="refresh"></stream-controls>
+              <stream-controls :stream="stream" v-on:remove="remove" v-on:refresh="refresh"></stream-controls>
               <div class="stream-main">
                 <div class="stream-player" :id="stream.embedPlayerID"></div>
               </div>
@@ -85,10 +91,14 @@ Vue.component('stream', {
     },
     displayStream: function () {
       console.log('Display stream: ' + this.stream.streamName)
-      new Twitch.Embed(this.stream.embedPlayerID, {
+      const options = {
         channel: this.stream.streamName,
-        layout: 'video'
-      })
+        layout: 'video',
+        allowfullscreen: false,
+        theme: 'dark'
+      }
+      this.playerEmbed = new Twitch.Embed(this.stream.embedPlayerID, options)
+      this.player = this.playerEmbed.getPlayer()
     }
   },
   created: function () {
@@ -100,9 +110,9 @@ Vue.component('stream', {
 })
 
 Vue.component('streams', {
-  props: ['streams'],
+  props: ['streams', 'options'],
   template: `<div class="streams">
-              <stream v-for="stream in streams" :key="stream.index" v-bind:stream="stream" v-on:remove-stream="removeStream"></stream>
+              <stream v-for="stream in streams" :key="stream.index" :stream="stream" :streams="streams" :options="options" v-on:remove-stream="removeStream"></stream>
              </div>`,
   methods: {
     removeStream: function (removedStream) {
@@ -119,7 +129,7 @@ Vue.component('chat', {
   props: ['streams', 'chat', 'removeAvailable'],
   data: function () {
     return {
-      newChatName: this.chat,
+      newChatName: this.chat.streamName,
       chatVisible: false
     }
   },
@@ -127,8 +137,11 @@ Vue.component('chat', {
               <select v-model="newChatName" v-on:change="loadChat">
                   <option v-for="stream in streams">{{ stream.streamName }}</option>
               </select>
-              <remove-button v-if="removeAvailable" v-on:remove="remove"></remove-button>
-              <iframe frameborder="0" scrolling="no" :id="'embed-chat-' + chat" :src="'https://www.twitch.tv/embed/' + chat + '/chat'"></iframe>
+              <div class="chat-controls">
+                <remove-button v-if="removeAvailable" v-on:remove="remove"></remove-button>
+                <refresh-button v-on:refresh="refresh"></refresh-button>
+              </div>
+              <iframe frameborder="0" scrolling="no" v-if="chatVisible" :id="'embed-chat-' + chat.streamName" :src="'https://www.twitch.tv/embed/' + chat.streamName + '/chat'"></iframe>
              </div>`,
   methods: {
     loadChat: function () {
@@ -136,6 +149,13 @@ Vue.component('chat', {
     },
     remove: function () {
       this.$emit('remove-chat', this.chat)
+    },
+    refresh: function () {
+      this.chatVisible = false
+      const data = this
+      setTimeout(function () {
+        data.chatVisible = true
+      }, 10)
     }
   },
   mounted: function () {
@@ -170,51 +190,86 @@ Vue.component('chats', {
   },
   template: `<div class="chats" v-if="chatsAvailable">
               <button v-if="streams.length" :disabled="maxChats" @click="addChat"> Add Chat </button>
-              <chat v-for="chat in chats" :streams="streams" :chat="chat" :remove-available="removeAvailable" v-on:load-chat="loadChat" v-on:remove-chat="removeChat"></chat>
+              <chat v-for="chat in chats" :streams="streams" :chat="chat" :key="chat.index" :remove-available="removeAvailable" v-on:load-chat="loadChat" v-on:remove-chat="removeChat"></chat>
              </div>`,
   methods: {
     removeChat: function (removedChat) {
-      console.log('Remove chat: ' + removedChat)
-      /* console.log(this.chats)
-      this.chats.forEach(chat => console.log(chat.id))
-      const newChats = this.chats.filter(chat => chat.id !== removedChat.id)
+      const newChats = this.chats.filter(chat => chat.index !== removedChat.index)
       this.chats = newChats
-      console.log(this.chats) */
     },
     loadChat: function (currentChat, newChatName) {
-      console.log(currentChat + ', ' + newChatName)
-      if (currentChat !== newChatName) {
-        if (!(newChatName in this.chats)) {
-          console.log('Loaded: ' + newChatName)
-          console.log(this.chats)
-          const chatIndex = this.chats.indexOf(currentChat)
-          Vue.set(this.chats, chatIndex, newChatName)
-          console.log(this.chats)
-        }
-      }
+      const chatIndex = this.chats.indexOf(currentChat)
+      Vue.set(this.chats, chatIndex, this.createChatObject(newChatName))
     },
     addChat: function () {
-      let streamName
-      if (this.streams.length > 1 && this.chats.length > 0) {
-        streamName = this.streams[this.streams.length - 1].streamName
-      } else {
-        streamName = this.streams[0].streamName
-      }
-      console.log('Added chat: ' + streamName)
+      let chat = this.getNewChatName()
       if (this.chats.length < this.streams.length) {
-        this.chats = this.chats.concat([streamName])
+        this.chats = this.chats.concat([chat])
       }
+    },
+    getNewChatName: function () {
+      if (this.streams.length > 1 && this.chats.length > 0) {
+        return this.createChatObject(this.streams[this.streams.length - 1].streamName)
+      } else {
+        return this.createChatObject(this.streams[0].streamName)
+      }
+    },
+    createChatObject: function (streamName) {
+      const chat = {}
+      chat.streamName = streamName
+      chat.index = this.chats.length
+      return chat
     }
   }
 })
 
+Vue.component('history-options', {
+  template: `<div class="option">
+              <p>HISTORY OPTIONS<p>
+            </div>`
+})
+
+Vue.component('preset-options', {
+  template: `<div class="option">
+              <p>PRESET OPTIONS<p>
+            </div>`
+})
+
+Vue.component('setting-options', {
+  template: `<div class="option">
+              <p>SETTINGS<p>
+            </div>`
+})
+
 Vue.component('menu-container', {
   props: ['options'],
-  template: `<div class="menu" v-bind:class="{visible: options.menuVisible}">
-              <div class="menu-content">
-                <p class="menu-title">Settings</p>
+  data: function () {
+    return {
+      optionCats: ['History', 'Presets', 'Settings'],
+      currentOptionCat: ''
+    }
+  },
+  template: `<div class="menu-container" :class="{visible: options.menuVisible}">
+              <div class="menu">
+                <div class="menu-content">
+                  <button v-for="cat in optionCats" :key="cat" @click="loadOptionCat(cat)">{{ cat }}</button>
+                </div>
               </div>
-            </div>`
+              <div class="menu-options">
+                <history-options v-if="currentOptionCat === 'History'"></history-options>
+                <preset-options v-if="currentOptionCat === 'Presets'"></preset-options>
+                <setting-options v-if="currentOptionCat === 'Settings'"></setting-options>
+              <div>
+            </div>`,
+  methods: {
+    loadOptionCat: function (cat) {
+      if (cat === this.currentOptionCat) {
+        this.currentOptionCat = ''
+      } else {
+        this.currentOptionCat = cat
+      }
+    }
+  }
 })
 
 const manytwitch = new Vue({
@@ -226,7 +281,8 @@ const manytwitch = new Vue({
       history: [],
       options: {
         chatVisible: true,
-        menuVisible: false
+        menuVisible: true,
+        startMuted: true
       }
     }
   },

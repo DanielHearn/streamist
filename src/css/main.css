@@ -199,11 +199,13 @@ p {
 
 nav {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-content: center;
   padding: 1em;
   flex: 1 auto;
   color: #fefefe; }
+  nav .nav-center {
+    display: flex; }
 
 #main {
   display: flex;
@@ -221,22 +223,26 @@ nav {
       display: flex;
       flex: 1 auto;
       flex-direction: column; }
+      #main .chats .stream-chat .chat-controls {
+        display: flex;
+        justify-content: space-evenly;
+        background: #5c6391; }
       #main .chats .stream-chat iframe {
         display: flex;
         flex: 1 auto; }
-  #main .menu {
+  #main .menu-container {
     display: none;
     background: #555; }
-    #main .menu .menu-content {
-      color: #fefefe; }
-      #main .menu .menu-content .menu-title {
-        font-size: 1.25em;
-        font-weight: 600; }
-    #main .menu.visible {
+    #main .menu-container .menu {
+      width: 8em; }
+      #main .menu-container .menu .menu-content {
+        color: #fefefe; }
+        #main .menu-container .menu .menu-content button {
+          width: 100%; }
+    #main .menu-container.visible {
       display: flex;
       justify-content: center;
-      align-content: flex-start;
-      width: 75%; }
+      align-content: flex-start; }
 
 .list-add {
   display: flex;

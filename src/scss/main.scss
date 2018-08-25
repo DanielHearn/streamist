@@ -49,11 +49,14 @@ p {
 
 nav {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-content: center;
   padding: 1em;
   flex: 1 auto;
   color: $white;
+  .nav-center {
+    display: flex;
+  }
 }
 
 #main {
@@ -73,27 +76,33 @@ nav {
       display: flex;
       flex: 1 auto;
       flex-direction: column;
+      .chat-controls {
+        display: flex;
+        justify-content: space-evenly;
+        background: $blue;
+      }
       iframe {
         display: flex;
         flex: 1 auto;
       }
     }
   }
-  .menu {
+  .menu-container {
     display: none;
     background: $grey;
-    .menu-content {
-      color: $white;
-      .menu-title {
-        font-size: $heading-size;
-        font-weight: $heading-weight;
+    .menu {
+      width: 8em;
+      .menu-content {
+        color: $white;
+        button {
+          width: 100%;
+        }
       }
     }
     &.visible {
       display: flex;
       justify-content: center;
       align-content: flex-start;
-      width: 75%;
     }
   }
 }
