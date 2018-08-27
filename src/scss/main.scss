@@ -62,6 +62,12 @@ nav {
   .nav-center {
     display: flex;
   }
+  .nav-right {
+    display: flex;
+    button {
+      margin: 0 0.5em;
+    }
+  }
 }
 
 #main {
@@ -111,6 +117,9 @@ nav {
         width: 20em;
         padding: $content-padding;
         color: $white;
+        .text-heading {
+          margin: 0;
+        }
       }
     }
     &.visible {

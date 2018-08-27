@@ -206,6 +206,10 @@ nav {
   color: #fefefe; }
   nav .nav-center {
     display: flex; }
+  nav .nav-right {
+    display: flex; }
+    nav .nav-right button {
+      margin: 0 0.5em; }
 
 #main {
   display: flex;
@@ -246,6 +250,8 @@ nav {
         width: 20em;
         padding: 1em;
         color: #fefefe; }
+        #main .menu-container .menu-options .option .text-heading {
+          margin: 0; }
     #main .menu-container.visible {
       display: flex;
       justify-content: center;

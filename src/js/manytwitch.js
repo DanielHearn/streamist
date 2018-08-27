@@ -226,8 +226,7 @@ Vue.component('stream-history-controls', {
   },
   computed: {
     orderedHistory: function () {
-      console.log(this.streamHistory)
-      return this.streamHistory.reverse()
+      return this.streamHistory.slice().reverse()
     }
   },
   template: `<div class="stream-history" v-if="streamHistory">
@@ -408,6 +407,11 @@ const manytwitch = new Vue({
     setHistory: function (streamHistory) {
       this.streamHistory = streamHistory
       localStorage.setItem('streamHistory', JSON.stringify(streamHistory))
+    },
+    toggleFullscreen: function () {
+      if (screenfull.enabled) {
+        screenfull.toggle()
+      }
     }
   },
   mounted: function () {
