@@ -16,34 +16,6 @@ Vue.component('refresh-button', {
   }
 })
 
-Vue.component('stream-history', {
-  props: ['history'],
-  data: function () {
-    return {
-      selectedHistory: ''
-    }
-  },
-  computed: {
-    historyDisabled: function () {
-      return this.history.length === 0
-    },
-    orderedHistory: function () {
-      return this.history.reverse()
-    }
-  },
-  template: `<div class="stream-history" v-if="history">
-              <select v-model="selectedHistory" v-on:change="loadSelectedHistory" :disabled="historyDisabled">
-                <option v-for="stream in orderedHistory">{{ stream }}</option>
-              </select>
-             </div>`,
-  methods: {
-    loadSelectedHistory: function () {
-      console.log('Load', this.selectedHistory)
-      this.$emit('load-selected-history', this.selectedHistory)
-    }
-  }
-})
-
 Vue.component('stream-controls', {
   props: ['stream'],
   computed: {
@@ -223,40 +195,117 @@ Vue.component('chats', {
   }
 })
 
+Vue.component('stream-history-listing', {
+  props: ['stream', 'currentDate'],
+  computed: {
+    timeAdded: function () {
+      return moment(this.stream.dateAdded).fromNow()
+    }
+  },
+  template: `<div class="history-listing">
+                  <p class="text-sub-heading">{{ stream.streamName }}</p>
+                  <div class="listing-details">
+                    <p>Added: {{ timeAdded }}</p>
+                    <button @click="loadSelectedHistory">Add Stream</button>
+                  </div>
+              </div>`,
+  methods: {
+    loadSelectedHistory: function () {
+      this.$emit('load-selected-history', this.stream.streamName)
+    }
+  }
+})
+
+Vue.component('stream-history-controls', {
+  props: ['streamHistory'],
+  data: function () {
+    return {
+      selectedHistory: '',
+      currentDate: new Date()
+    }
+  },
+  computed: {
+    orderedHistory: function () {
+      console.log(this.streamHistory)
+      return this.streamHistory.reverse()
+    }
+  },
+  template: `<div class="stream-history" v-if="streamHistory">
+              <ul class="history-list">
+                <stream-history-listing 
+                    v-for="stream in orderedHistory" 
+                    :stream="stream" 
+                    :current-date="currentDate"
+                    v-on:load-selected-history="loadSelectedHistory"
+                    ></stream-history-listing>
+              </ul>
+              <button @click="clearHistory">Clear History</butto>
+             </div>`,
+  methods: {
+    loadSelectedHistory: function (streamName) {
+      this.$emit('load-selected-history', streamName)
+    },
+    clearHistory: function () {
+      this.$emit('clear-history')
+    }
+  }
+})
+
 Vue.component('history-options', {
+  props: ['streamHistory'],
   template: `<div class="option">
-              <p>HISTORY OPTIONS<p>
-            </div>`
+              <p class="text-heading">Stream History</p>
+              <stream-history-controls :stream-history="streamHistory" v-on:load-selected-history="loadSelectedHistory" v-on:clear-history="clearHistory"></stream-history-controls>
+            </div>`,
+  methods: {
+    loadSelectedHistory: function (streamName) {
+      this.$emit('load-selected-history', streamName)
+    },
+    clearHistory: function () {
+      this.$emit('clear-history')
+    }
+  }
 })
 
 Vue.component('preset-options', {
   template: `<div class="option">
-              <p>PRESET OPTIONS<p>
+              <p class="text-heading">Presets</p>
             </div>`
 })
 
 Vue.component('setting-options', {
   template: `<div class="option">
-              <p>SETTINGS<p>
+              <p class="text-heading">Settings</p>
             </div>`
 })
 
 Vue.component('menu-container', {
-  props: ['options'],
+  props: ['options', 'streamHistory'],
   data: function () {
     return {
-      optionCats: ['History', 'Presets', 'Settings'],
       currentOptionCat: ''
     }
   },
   template: `<div class="menu-container" :class="{visible: options.menuVisible}">
               <div class="menu">
                 <div class="menu-content">
-                  <button v-for="cat in optionCats" :key="cat" @click="loadOptionCat(cat)">{{ cat }}</button>
+                  <button @click="loadOptionCat('History')">
+                    <i class="material-icons">history</i>
+                    <p>History</p>
+                  </button>
+                  <button @click="loadOptionCat('Presets')">
+                    <i class="material-icons">view_module</i>
+                    <p>Presets</p>
+                  </button>
+                  <button @click="loadOptionCat('Settings')">
+                    <i class="material-icons">settings</i>
+                    <p>Settings</p>
+                  </button>
                 </div>
               </div>
               <div class="menu-options">
-                <history-options v-if="currentOptionCat === 'History'"></history-options>
+                <history-options v-if="currentOptionCat === 'History'"                         :stream-history="streamHistory" v-on:load-selected-history="loadSelectedHistory"
+                v-on:clear-history="clearHistory"></history-options>
                 <preset-options v-if="currentOptionCat === 'Presets'"></preset-options>
                 <setting-options v-if="currentOptionCat === 'Settings'"></setting-options>
               <div>
@@ -268,6 +317,12 @@ Vue.component('menu-container', {
       } else {
         this.currentOptionCat = cat
       }
+    },
+    loadSelectedHistory: function (streamName) {
+      this.$emit('load-selected-history', streamName)
+    },
+    clearHistory: function () {
+      this.$emit('clear-history')
     }
   }
 })
@@ -278,7 +333,7 @@ const manytwitch = new Vue({
     return {
       newStreamName: '',
       currentStreams: [],
-      history: [],
+      streamHistory: [],
       options: {
         chatVisible: true,
         menuVisible: true,
@@ -301,14 +356,9 @@ const manytwitch = new Vue({
       console.log('Add Stream')
       const stream = this.createStreamObject(streamName)
       this.currentStreams = this.currentStreams.concat([stream])
-      console.log(this.history)
-      if (this.history.length < 5) {
-        this.history = this.history.concat([streamName])
-      } else {
-        const newHistory = this.history.slice(1, this.history.length).concat([streamName])
-        this.history = newHistory
-      }
-      this.setHistory()
+      console.log(this.streamHistory)
+      this.addStreamToHistory(streamName)
+      this.setHistory(this.streamHistory)
     },
     createStreamObject: function (streamName) {
       const stream = {}
@@ -327,20 +377,37 @@ const manytwitch = new Vue({
       console.log(this.options.menuVisible)
       this.options.menuVisible = !this.options.menuVisible
     },
+    addStreamToHistory: function (streamName) {
+      const stream = {}
+      stream.streamName = streamName
+      stream.dateAdded = new Date()
+      if (this.streamHistory.length < 5) {
+        this.streamHistory = this.streamHistory.concat([stream])
+      } else {
+        this.streamHistory = this.streamHistory.slice(1, this.streamHistory.length).concat([stream])
+      }
+    },
+    clearHistory: function () {
+      this.setHistory([])
+    },
     loadSelectedHistory: function (streamName) {
-      console.log(streamName)
       this.addStream(streamName)
     },
     loadHistory: function () {
-      const history = localStorage.getItem('streamHistory')
-      if (history) {
-        this.history = history.replace(/^\[|\]$/g, '').replace(/(['"])/g, '').split(',')
-        console.log(this.history)
+      const streamHistory = localStorage.getItem('streamHistory')
+      if (streamHistory) {
+        const parsedHistory = JSON.parse(streamHistory)
+        for (let stream of parsedHistory) {
+          console.log(stream.dateAdded)
+          stream.dateAdded = new Date(stream.dateAdded)
+        }
+        this.streamHistory = parsedHistory
+        console.log(this.streamHistory)
       }
     },
-    setHistory: function () {
-      localStorage.setItem('streamHistory', JSON.stringify(this.history))
-      console.log(localStorage.getItem('streamHistory'))
+    setHistory: function (streamHistory) {
+      this.streamHistory = streamHistory
+      localStorage.setItem('streamHistory', JSON.stringify(streamHistory))
     }
   },
   mounted: function () {

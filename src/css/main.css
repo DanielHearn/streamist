@@ -195,13 +195,13 @@ p {
   height: 100%;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 14fr; }
+  grid-template-rows: 4em 14fr; }
 
 nav {
   display: flex;
   justify-content: space-between;
   align-content: center;
-  padding: 1em;
+  padding: 0.5em;
   flex: 1 auto;
   color: #fefefe; }
   nav .nav-center {
@@ -236,22 +236,28 @@ nav {
     #main .menu-container .menu {
       width: 8em; }
       #main .menu-container .menu .menu-content {
-        color: #fefefe; }
+        color: #fefefe;
+        width: 8em; }
         #main .menu-container .menu .menu-content button {
           width: 100%; }
+    #main .menu-container .menu-options {
+      background: #616161; }
+      #main .menu-container .menu-options .option {
+        width: 20em;
+        padding: 1em;
+        color: #fefefe; }
     #main .menu-container.visible {
       display: flex;
       justify-content: center;
       align-content: flex-start; }
 
+.stream-history ul {
+  padding: 0;
+  margin: 0; }
+
 .list-add {
   display: flex;
   margin: 0; }
-
-input, button {
-  padding: 1em 1.5em;
-  font-size: 1em;
-  font-weight: 600; }
 
 select {
   padding: 0.8em 1.25em; }
@@ -295,14 +301,22 @@ select {
         flex: 1 1 auto;
         width: 100%; }
 
+input, button {
+  padding: 0.75em 1.25em;
+  font-size: 1em;
+  font-weight: 600; }
+  input p, button p {
+    font-size: 1em;
+    font-weight: 600; }
+
 button {
   transition: background 0.25s ease-in-out;
-  background: #ffa91f;
+  background: #f1a52b;
   color: #fefefe;
   border: 0;
   cursor: pointer; }
   button:hover {
-    background: #f09f1e; }
+    background: #e0961f; }
   button:disabled {
     background: grey;
     cursor: not-allowed; }
@@ -315,3 +329,22 @@ button {
   text-decoration: underline; }
   .url:visited {
     color: #fefefe; }
+
+.text-heading {
+  font-size: 1.25em;
+  font-weight: 600; }
+
+.text-sub-heading {
+  font-size: 1.1em;
+  font-weight: 600; }
+
+.stream-history .history-list {
+  padding-bottom: 1em; }
+  .stream-history .history-list .history-listing {
+    padding: 1em;
+    border-bottom: 2px solid #555; }
+    .stream-history .history-list .history-listing .listing-details {
+      display: flex;
+      flex-direction: row; }
+      .stream-history .history-list .history-listing .listing-details p {
+        padding-right: 1em; }

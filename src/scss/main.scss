@@ -3,17 +3,22 @@
 $bg-colour: #efefef;
 $blue: #5c6391;
 $blue-dark: #474d73;
-$accent: #ffa91f;
-$accent-dark: #f09f1e;
+$accent: #f1a52b;
+$accent-dark: #e0961f;
 $dark: #222;
 $grey: #555;
+$grey-light: #616161;
 $white: #fefefe;
 
 $p-size: 1em;
 $heading-size: 1.25em;
 $heading-weight: 600;
+$sub-heading-size: 1.1em;
+$sub-heading-weight: 600;
 
 $transition-time: 0.25s;
+
+$content-padding: 1em;
 
 @import 'partials/normalize';
 
@@ -44,14 +49,14 @@ p {
   height: 100%;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 14fr;
+  grid-template-rows: 4em 14fr;
 }
 
 nav {
   display: flex;
   justify-content: space-between;
   align-content: center;
-  padding: 1em;
+  padding: $content-padding/2;
   flex: 1 auto;
   color: $white;
   .nav-center {
@@ -94,9 +99,18 @@ nav {
       width: 8em;
       .menu-content {
         color: $white;
+        width: 8em;
         button {
           width: 100%;
         }
+      }
+    }
+    .menu-options {
+      background: $grey-light;
+      .option {
+        width: 20em;
+        padding: $content-padding;
+        color: $white;
       }
     }
     &.visible {
@@ -107,15 +121,16 @@ nav {
   }
 }
 
+.stream-history {
+  ul {
+    padding: 0;
+    margin: 0;
+  }
+}
+
 .list-add {
   display: flex;  
   margin: 0;
-}
-
-input, button {
-  padding: 1em 1.5em;
-  font-size: 1em;
-  font-weight: 600;
 }
 
 select {
@@ -127,7 +142,7 @@ select {
 }
 
 .stream-controls {
-  padding: 1em;
+  padding: $content-padding;
 }
 
 .streams {
@@ -171,6 +186,16 @@ select {
   }
 }
 
+input, button {
+  padding: 0.75em 1.25em;
+  font-size: 1em;
+  font-weight: 600;
+  p {
+    font-size: 1em;
+    font-weight: 600;
+  }
+}
+
 button {
   @include transition(background);
   background: $accent;
@@ -195,5 +220,33 @@ button {
   text-decoration: underline;
   &:visited {
     color: $white;
+  }
+}
+
+.text-heading {
+  font-size: $heading-size;
+  font-weight: $heading-weight;
+}
+
+.text-sub-heading {
+  font-size: $sub-heading-size;
+  font-weight: $sub-heading-weight;
+}
+
+
+.stream-history {
+  .history-list {
+    padding-bottom: $content-padding;
+    .history-listing {
+      padding: $content-padding;
+      border-bottom: 2px solid $grey;
+      .listing-details {
+        display: flex;
+        flex-direction: row;
+        p {
+          padding-right: $content-padding;
+        }
+      }
+    }
   }
 }

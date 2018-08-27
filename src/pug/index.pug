@@ -5,27 +5,43 @@ html(lang='en')
     title Manytwitch - Multiple Twitch Stream Viewer
     meta(name="description", content="Manytwitch is a multiple Twitch stream viewer ")
     link(rel='stylesheet', href='css/main.css')
+    link(href="https://fonts.googleapis.com/icon?family=Material+Icons",
+      rel="stylesheet")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
   body
     #manytwitch
       nav
-        button(@click='toggleMenu') MENU
+        button(@click='toggleMenu') 
+          i.material-icons menu
         div.nav-center
-          stream-history(:history='history', v-on:load-selected-history="loadSelectedHistory")
-          form.list-add(name='newStream', v-on:submit.prevent='addStreamFromNav')
-            input(type='text', name='newStreamInput', required='required', placeholder='Enter a stream', v-model='newStreamName')
+          form.list-add(name='newStream', 
+                        v-on:submit.prevent='addStreamFromNav')
+            input(type='text', 
+                  name='newStreamInput', 
+                  required='required', 
+                  placeholder='Enter a stream', 
+                  v-model='newStreamName')
             button#addStreamButton(type='submit')  Add Stream
         button(@click='toggleChat')  Toggle Chat
       #main
-        menu-container(v-bind:options='options')
-        streams(:streams='currentStreams', v-on:update-streams='updateStreams', :options='options')
-        chats(:streams='currentStreams', :options='options')
+        menu-container(:options='options', 
+                      :stream-history="streamHistory",
+                       v-on:load-selected-history="loadSelectedHistory", 
+                       v-on:clear-history="clearHistory")
+        streams(:streams='currentStreams', 
+                v-on:update-streams='updateStreams', 
+                :options='options')
+        chats(:streams='currentStreams', 
+              :options='options')
     // TODO
     // Fix frameURI error spam
     // Reorder chat buttons, up, down
     // Reorder stream buttons
-    // Menu sections
+    // Fullscreen button
+    // Move to single stream object i.e include date added
     script(src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js')
     script(src='https://embed.twitch.tv/embed/v1.js')
+    script(src='js/moment.js')
     script(src='js/manytwitch.js')
     script(src='js/polyfill.js')
 
