@@ -288,15 +288,15 @@ Vue.component('menu-container', {
   template: `<div class="menu-container" :class="{visible: options.menuVisible}">
               <div class="menu">
                 <div class="menu-content">
-                  <button @click="loadOptionCat('History')">
+                  <button @click="loadOptionCat('History')" :class="{active: currentOptionCat === 'History'}">
                     <i class="material-icons">history</i>
                     <p>History</p>
                   </button>
-                  <button @click="loadOptionCat('Presets')">
+                  <button @click="loadOptionCat('Presets')" :class="{active: currentOptionCat === 'Presets'}">
                     <i class="material-icons">view_module</i>
                     <p>Presets</p>
                   </button>
-                  <button @click="loadOptionCat('Settings')">
+                  <button @click="loadOptionCat('Settings')" :class="{active: currentOptionCat === 'Settings'}">
                     <i class="material-icons">settings</i>
                     <p>Settings</p>
                   </button>
@@ -354,8 +354,7 @@ const manytwitch = new Vue({
     addStream: function (streamName) {
       console.log('Add Stream')
       const stream = this.createStreamObject(streamName)
-      this.currentStreams = this.currentStreams.concat([stream])
-      console.log(this.streamHistory)
+      this.updateStreams(this.currentStreams.concat([stream]))
       this.addStreamToHistory(streamName)
       this.setHistory(this.streamHistory)
     },
@@ -368,6 +367,7 @@ const manytwitch = new Vue({
     },
     updateStreams: function (updatedStreams) {
       this.currentStreams = updatedStreams
+      this.insertURLParam()
     },
     toggleChat: function () {
       this.options.chatVisible = !this.options.chatVisible
@@ -412,10 +412,35 @@ const manytwitch = new Vue({
       if (screenfull.enabled) {
         screenfull.toggle()
       }
+    },
+    insertURLParam: function () {
+      let channelString = ''
+      for (const channel in this.currentStreams) {
+        channelString += String(this.currentStreams[channel].streamName) + ','
+      }
+      channelString = channelString.replace('undefined', '')
+      const newurl = window.location.protocol + '//' + window.location.host + window.location.pathname + '?stream=' + channelString
+      window.history.pushState({path: newurl}, '', newurl)
+    },
+    getURLParam: function () {
+      const urlParams = new URLSearchParams(window.location.search.substring(1))
+      let urlStreams = urlParams.get('stream')
+      if (urlStreams !== '' && urlStreams !== null) {
+        urlStreams = urlStreams.split(',')
+        for (const channel in urlStreams) {
+          const newChannel = urlStreams[channel]
+          if (newChannel !== '') {
+            this.addStream(newChannel)
+          }
+        }
+        return true
+      }
+      return false
     }
   },
   mounted: function () {
     console.log('Manytwitch Created')
     this.loadHistory()
+    this.getURLParam()
   }
 })

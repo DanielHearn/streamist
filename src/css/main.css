@@ -244,6 +244,8 @@ nav {
         width: 8em; }
         #main .menu-container .menu .menu-content button {
           width: 100%; }
+          #main .menu-container .menu .menu-content button.active {
+            background: #d38c19; }
     #main .menu-container .menu-options {
       background: #616161; }
       #main .menu-container .menu-options .option {
@@ -354,3 +356,37 @@ button {
       flex-direction: row; }
       .stream-history .history-list .history-listing .listing-details p {
         padding-right: 1em; }
+
+.button-menu {
+  padding: 1.25em 0.5em;
+  z-index: 5;
+  cursor: pointer; }
+  .button-menu span {
+    height: 3px;
+    width: 35px;
+    background-color: #fefefe;
+    position: relative;
+    display: block;
+    transition: background 0.25s ease-in-out, opacity 0.25s ease-in-out; }
+    .button-menu span:before {
+      top: -10px;
+      visibility: visible; }
+    .button-menu span:after {
+      top: 10px; }
+    .button-menu span:before, .button-menu span:after {
+      height: 3px;
+      width: 35px;
+      background-color: #fefefe;
+      position: absolute;
+      content: "";
+      transition: all .2s ease-in-out; }
+
+.button-menu.active:hover span, .button-menu.active span {
+  background: transparent; }
+
+.button-menu.active span:before {
+  transform: rotate(45deg) translate(7px, 7px);
+  opacity: 1; }
+
+.button-menu.active span:after {
+  transform: rotate(-45deg) translate(7px, -7px); }

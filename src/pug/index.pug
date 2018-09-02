@@ -19,8 +19,8 @@ html(lang='en')
   body
     #manytwitch
       nav
-        button(@click='toggleMenu') 
-          i.material-icons menu
+        a.button-menu(@click='toggleMenu', :class="{active: options.menuVisible}") 
+          span
         div.nav-center
           form.list-add(name='newStream', 
                         v-on:submit.prevent='addStreamFromNav')
@@ -48,7 +48,6 @@ html(lang='en')
     // Fix frameURI error spam
     // Reorder chat buttons, up, down
     // Reorder stream buttons
-    // Fullscreen button
     // Move to single stream object i.e include date added
     script(src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js')
     script(src='https://embed.twitch.tv/embed/v1.js')
