@@ -84,7 +84,7 @@ Vue.component('stream', {
 Vue.component('streams', {
   props: ['streams', 'options'],
   template: `<div class="streams">
-              <stream v-for="stream in streams" :key="stream.index" :stream="stream" :streams="streams" :options="options" v-on:remove-stream="removeStream"></stream>
+              <stream v-for="stream in streams" :key="stream.embedPlayerID" :stream="stream" :streams="streams" :options="options" v-on:remove-stream="removeStream"></stream>
              </div>`,
   methods: {
     removeStream: function (removedStream) {
@@ -107,7 +107,7 @@ Vue.component('chat', {
   },
   template: `<div class="stream-chat">
               <select v-model="newChatName" v-on:change="loadChat">
-                  <option v-for="stream in streams">{{ stream.streamName }}</option>
+                  <option v-for="stream in streams" :key="stream.embedPlayerID">{{ stream.streamName }}</option>
               </select>
               <div class="chat-controls">
                 <remove-button v-if="removeAvailable" v-on:remove="remove"></remove-button>
@@ -199,6 +199,8 @@ Vue.component('stream-history-listing', {
   props: ['stream', 'currentDate'],
   computed: {
     timeAdded: function () {
+      // Show time since add
+      // TODO: Add own function to achieve the same
       return moment(this.stream.dateAdded).fromNow()
     }
   },
@@ -266,10 +268,170 @@ Vue.component('history-options', {
   }
 })
 
+Vue.component('preset-listing', {
+  props: ['preset'],
+  data: function () {
+    return {
+      orderedStreams: this.preset.streams,
+      newPresetStreamName: '',
+      editMode: false
+    }
+  },
+  watch: {
+    'preset.streams' () {
+      this.orderedStreams = this.preset.streams
+    },
+    'orderedStreams' () {
+      const tempPreset = this.preset
+      tempPreset.streams = this.orderedStreams
+      this.$emit('update-preset', tempPreset)
+    }
+  },
+  template: `<li>
+              <div>
+                <p>{{ preset.name }}</p>
+                <button @click="loadPreset">Load</button>
+                <button @click="toggleEditMode">Edit</button>
+                <button @click="deletePreset">Delete</button>
+              </div>
+              <div v-if="editMode">
+                <form 
+                  class="list-add"
+                  name="newPresetStream" 
+                  v-on:submit.prevent="newPresetStream">
+                  <input 
+                    type="text"
+                    name="newPresetStreamInput"
+                    required="required"
+                    placeholder="Stream Name"
+                    v-model="newPresetStreamName">
+                  <button type="submit">Add Stream</button>
+                </form>  
+                <ul>
+                  <draggable v-model="orderedStreams" @start="drag=true" @end="drag=false">
+                    <li
+                      class="draggable"
+                      v-for="(stream, index) in orderedStreams"
+                      :stream="stream">
+                      <p> {{ stream }}</p> 
+                      <button @click="deleteStreamFromPreset(index)">Delete</button>
+                    </li>
+                  </draggable>
+                </ul>
+              </div>
+            </li>`,
+  methods: {
+    deleteStreamFromPreset: function (index) {
+      const tempPreset = this.preset
+      tempPreset.streams.splice(index, 1)
+      this.$emit('update-preset', tempPreset)
+    },
+    loadPreset: function () {
+      this.$emit('load-preset', this.preset)
+    },
+    deletePreset: function () {
+      this.$emit('delete-preset', this.preset)
+    },
+    toggleEditMode: function () {
+      this.editMode = !this.editMode
+    },
+    newPresetStream: function (e) {
+      e.preventDefault()
+      if (!this.newPresetStreamName) {
+        return false
+      }
+      const newPresetStreamName = this.newPresetStreamName
+      this.newPresetStreamName = ''
+      const updatedPreset = this.preset
+      updatedPreset.streams = updatedPreset.streams.concat([newPresetStreamName])
+      this.$emit('update-preset', updatedPreset)
+    }
+  }
+})
+
+// TODO: Hide other edits on edit open
 Vue.component('preset-options', {
+  props: ['streamPresets', 'currentStreams'],
+  data: function () {
+    return {
+      newPresetName: ''
+    }
+  },
   template: `<div class="option">
               <p class="text-heading">Presets</p>
-            </div>`
+              <form class="list-add"
+                name="newPreset" 
+                v-on:submit.prevent="createPreset">
+                <input type="text"
+                  name="newPresetInput"
+                  required="required"
+                  placeholder="Preset Name"
+                  v-model="newPresetName">
+                <button type="submit">Create Preset</button>
+              </form>  
+              <ul class="preset-list">
+                <preset-listing
+                  v-for="preset in streamPresets"
+                  :preset="preset"
+                  v-on:load-preset="loadPreset"
+                  v-on:update-preset="updatePreset"
+                  v-on:delete-preset="deletePreset">
+                </preset-listing>
+              </ul>
+              <button @click="saveCurrentAsPreset">Save Streams as Preset</button>
+            </div>`,
+  methods: {
+    deletePreset: function (removedPreset) {
+      const newPresets = this.streamPresets.filter(preset => preset.index !== removedPreset.index)
+      this.updatePresets(newPresets)
+    },
+    loadPreset: function (preset) {
+      this.$emit('load-preset', preset)
+    },
+    saveCurrentAsPreset: function () {
+      const presetName = `Preset ${this.streamPresets.length + 1}`
+      const newPreset = this.createEmptyPreset(presetName, [])
+      newPreset.streams = this.currentStreams.map(stream => stream.streamName)
+      const newPresets = this.streamPresets.concat(newPreset)
+      this.updatePresets(newPresets)
+    },
+    createPresetObject: function (presetName, presetStreams) {
+      const newPreset = {
+        name: presetName,
+        streams: presetStreams,
+        index: this.streamPresets.length
+      }
+      return newPreset
+    },
+    createEmptyPreset: function (presetName) {
+      return this.createPresetObject(presetName, [])
+    },
+    updatePreset: function (updatedPreset) {
+      const tempPresets = this.streamPresets
+      for (const preset in tempPresets) {
+        if (preset.index === updatedPreset.index) {
+          preset.streams = updatedPreset.streams
+        }
+      }
+      this.updatePresets(tempPresets)
+    },
+    updatePresets: function (newPresets) {
+      this.$emit('update-presets', newPresets)
+    },
+    createPreset: function (e) {
+      e.preventDefault()
+      if (!this.newPresetName) {
+        return false
+      }
+      const presetName = this.newPresetName
+      this.newPresetName = ''
+      console.log(this.streamPresets)
+      const newPreset = this.createEmptyPreset(presetName)
+      const newPresets = this.streamPresets.concat(newPreset)
+      console.log(newPresets)
+      this.updatePresets(newPresets)
+    }
+  }
 })
 
 Vue.component('setting-options', {
@@ -279,7 +441,7 @@ Vue.component('setting-options', {
 })
 
 Vue.component('menu-container', {
-  props: ['options', 'streamHistory'],
+  props: ['options', 'currentStreams', 'streamHistory', 'streamPresets'],
   data: function () {
     return {
       currentOptionCat: ''
@@ -303,13 +465,28 @@ Vue.component('menu-container', {
                 </div>
               </div>
               <div class="menu-options">
-                <history-options v-if="currentOptionCat === 'History'"                         :stream-history="streamHistory" v-on:load-selected-history="loadSelectedHistory"
-                v-on:clear-history="clearHistory"></history-options>
-                <preset-options v-if="currentOptionCat === 'Presets'"></preset-options>
-                <setting-options v-if="currentOptionCat === 'Settings'"></setting-options>
+                <history-options 
+                  v-if="currentOptionCat === 'History'" 
+                  :stream-history="streamHistory" 
+                  v-on:load-selected-history="loadSelectedHistory"
+                  v-on:clear-history="clearHistory"
+                ></history-options>
+                <preset-options 
+                  v-if="currentOptionCat === 'Presets'"
+                  :stream-presets="streamPresets"
+                  :current-streams="currentStreams"
+                  v-on:update-presets="updatePresets"
+                  v-on:load-preset="loadPreset"
+                ></preset-options>
+                <setting-options
+                  v-if="currentOptionCat === 'Settings'"
+                ></setting-options>
               <div>
             </div>`,
   methods: {
+    loadPreset: function (preset) {
+      this.$emit('load-preset', preset)
+    },
     loadOptionCat: function (cat) {
       if (cat === this.currentOptionCat) {
         this.currentOptionCat = ''
@@ -322,6 +499,9 @@ Vue.component('menu-container', {
     },
     clearHistory: function () {
       this.$emit('clear-history')
+    },
+    updatePresets: function (newPresets) {
+      this.$emit('update-presets', newPresets)
     }
   }
 })
@@ -333,6 +513,7 @@ const manytwitch = new Vue({
       newStreamName: '',
       currentStreams: [],
       streamHistory: [],
+      streamPresets: [],
       options: {
         chatVisible: true,
         menuVisible: true,
@@ -392,11 +573,34 @@ const manytwitch = new Vue({
     loadSelectedHistory: function (streamName) {
       this.addStream(streamName)
     },
+    loadPresets: function () {
+      const streamPresets = localStorage.getItem('streamPresets')
+      if (streamPresets) {
+        this.streamPresets = JSON.parse(streamPresets)
+      }
+    },
+    loadPreset: function (preset) {
+      console.log('Loading Preset', preset)
+      this.currentStreams = []
+      console.log(preset.streams)
+      for (const stream of preset.streams) {
+        this.addStream(stream)
+      }
+    },
+    setPresets: function (presets) {
+      this.parsedPresets = presets
+      console.log('Storing presets')
+      localStorage.setItem('streamPresets', JSON.stringify(presets))
+    },
+    updatePresets: function (newPresets) {
+      this.streamPresets = newPresets
+      this.setPresets(this.streamPresets)
+    },
     loadHistory: function () {
       const streamHistory = localStorage.getItem('streamHistory')
       if (streamHistory) {
         const parsedHistory = JSON.parse(streamHistory)
-        for (let stream of parsedHistory) {
+        for (const stream of parsedHistory) {
           console.log(stream.dateAdded)
           stream.dateAdded = new Date(stream.dateAdded)
         }
@@ -441,6 +645,7 @@ const manytwitch = new Vue({
   mounted: function () {
     console.log('Manytwitch Created')
     this.loadHistory()
+    this.loadPresets()
     this.getURLParam()
   }
 })

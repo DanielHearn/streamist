@@ -249,11 +249,13 @@ nav {
     #main .menu-container .menu-options {
       background: #616161; }
       #main .menu-container .menu-options .option {
-        width: 20em;
+        min-width: 20em;
         padding: 1em;
         color: #fefefe; }
         #main .menu-container .menu-options .option .text-heading {
           margin: 0; }
+        #main .menu-container .menu-options .option input {
+          padding: 0.25em 0.75em; }
     #main .menu-container.visible {
       display: flex;
       justify-content: center;
@@ -308,6 +310,9 @@ select {
         display: flex;
         flex: 1 1 auto;
         width: 100%; }
+
+.draggable {
+  cursor: pointer; }
 
 input, button {
   padding: 0.75em 1.25em;

@@ -118,11 +118,14 @@ nav {
     .menu-options {
       background: $grey-light;
       .option {
-        width: 20em;
+        min-width: 20em;
         padding: $content-padding;
         color: $white;
         .text-heading {
           margin: 0;
+        }
+        input {
+          padding: 0.25em 0.75em;
         }
       }
     }
@@ -197,6 +200,9 @@ select {
       }
     }
   }
+}
+
+  cursor: pointer;
 }
 
 input, button {
