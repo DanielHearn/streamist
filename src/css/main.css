@@ -386,6 +386,11 @@ button {
       content: "";
       transition: all .2s ease-in-out; }
 
+.preset-list {
+  background: #616161; }
+  .preset-list .ghost {
+    background: #808080; }
+
 .button-menu.active:hover span, .button-menu.active span {
   background: transparent; }
 

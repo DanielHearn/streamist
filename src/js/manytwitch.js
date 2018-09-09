@@ -274,10 +274,16 @@ Vue.component('preset-listing', {
     return {
       orderedStreams: this.preset.streams,
       newPresetStreamName: '',
+      presetName: this.preset.name,
       editMode: false
     }
   },
   watch: {
+    presetName: function () {
+      const tempPreset = this.preset
+      tempPreset.name = this.presetName
+      this.$emit('update-preset', tempPreset)
+    },
     'preset.streams' () {
       this.orderedStreams = this.preset.streams
     },
@@ -289,7 +295,7 @@ Vue.component('preset-listing', {
   },
   template: `<li>
               <div>
-                <p>{{ preset.name }}</p>
+                <input type="text" contenteditable="true" v-model="presetName"></input>
                 <button @click="loadPreset">Load</button>
                 <button @click="toggleEditMode">Edit</button>
                 <button @click="deletePreset">Delete</button>
@@ -308,7 +314,11 @@ Vue.component('preset-listing', {
                   <button type="submit">Add Stream</button>
                 </form>  
                 <ul>
-                  <draggable v-model="orderedStreams" @start="drag=true" @end="drag=false">
+                  <draggable 
+                    v-model="orderedStreams" 
+                    @start="drag=true" 
+                    @end="drag=false"
+                    :options="{ghostClass:'ghost'}">
                     <li
                       class="draggable"
                       v-for="(stream, index) in orderedStreams"
@@ -410,6 +420,7 @@ Vue.component('preset-options', {
       const tempPresets = this.streamPresets
       for (const preset in tempPresets) {
         if (preset.index === updatedPreset.index) {
+          preset.name = updatedPreset.name
           preset.streams = updatedPreset.streams
         }
       }
