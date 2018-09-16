@@ -229,6 +229,9 @@ Vue.component('stream-history-controls', {
   computed: {
     orderedHistory: function () {
       return this.streamHistory.slice().reverse()
+    },
+    presetsAvailable: function () {
+      return this.streamHistory.length > 0
     }
   },
   template: `<div class="stream-history" v-if="streamHistory">
@@ -240,7 +243,7 @@ Vue.component('stream-history-controls', {
                     v-on:load-selected-history="loadSelectedHistory"
                     ></stream-history-listing>
               </ul>
-              <button @click="clearHistory">Clear History</butto>
+              <button @click="clearHistory" :disabled="!presetsAvailable">Clear History</butto>
              </div>`,
   methods: {
     loadSelectedHistory: function (streamName) {
@@ -360,11 +363,23 @@ Vue.component('preset-listing', {
 })
 
 // TODO: Hide other edits on edit open
+// TODO: Import presets - text box and button
+// TODO: Export presets
 Vue.component('preset-options', {
   props: ['streamPresets', 'currentStreams'],
   data: function () {
     return {
-      newPresetName: ''
+      newPresetName: '',
+      importPresetsOpened: false,
+      importedPresets: JSON.stringify(this.streamPresets)
+    }
+  },
+  computed: {
+    presetsDisabled: function () {
+      return this.streamPresets.length === 0
+    },
+    stringifiedPresets: function () {
+      return JSON.stringify(this.streamPresets)
     }
   },
   template: `<div class="option">
@@ -377,7 +392,7 @@ Vue.component('preset-options', {
                   required="required"
                   placeholder="Preset Name"
                   v-model="newPresetName">
-                <button type="submit">Create Preset</button>
+                <button type="submit">Create</button>
               </form>  
               <ul class="preset-list">
                 <preset-listing
@@ -389,8 +404,54 @@ Vue.component('preset-options', {
                 </preset-listing>
               </ul>
               <button @click="saveCurrentAsPreset">Save Streams as Preset</button>
+              <button @click="clearPresets" :disabled="presetsDisabled">Clear Presets</button>
+              <button @click="exportPresets" :disabled="presetsDisabled">Export Presets</button>
+              <button @click="importPresets">Import Presets</button>
+              <div :class="{hidden: !importPresetsOpened}">
+                <textarea v-model="importedPresets"></textarea>
+                <button @click="applyImportedPresets">Apply Presets</button>
+              </div>
             </div>`,
   methods: {
+    copyToClipboard: function (str) {
+      const el = document.createElement('textarea') // Create a <textarea> element
+      el.value = str // Set its value to the string that you want copied
+      el.setAttribute('readonly', '') // Make it readonly to be tamper-proof
+      el.style.position = 'absolute'
+      el.style.left = '-9999px' // Move outside the screen to make it invisible
+      document.body.appendChild(el) // Append the <textarea> element to the HTML document
+      const selected =
+        document.getSelection().rangeCount > 0 // Check if there is any content selected previously
+          ? document.getSelection().getRangeAt(0) // Store selection if found
+          : false // Mark as false to know no selection existed before
+      el.select() // Select the <textarea> content
+      document.execCommand('copy') // Copy - only works as a result of a user action (e.g. click events)
+      document.body.removeChild(el) // Remove the <textarea> element
+      if (selected) { // If a selection existed before copying
+        document.getSelection().removeAllRanges() // Unselect everything on the HTML document
+        document.getSelection().addRange(selected) // Restore the original selection
+      }
+    },
+    applyImportedPresets: function () {
+      console.log('Apply Presets')
+      // TODO: Add more validation, array of objects
+      // TODO: Handle indexing here, change to be correctly ordered
+      try {
+        // TODO: Notification popup saying applied presets
+        this.updatePresets(JSON.parse(this.importedPresets))
+      } catch (e) {
+        // TODO: Notification error
+      }
+    },
+    importPresets: function () {
+      console.log('Import Presets')
+      this.importPresetsOpened = !this.importPresetsOpened
+    },
+    exportPresets: function () {
+      console.log('Export Presets')
+      this.copyToClipboard(this.stringifiedPresets)
+      // TODO: Notification popup saying exported to clipboard
+    },
     deletePreset: function (removedPreset) {
       const newPresets = this.streamPresets.filter(preset => preset.index !== removedPreset.index)
       this.updatePresets(newPresets)
@@ -441,6 +502,9 @@ Vue.component('preset-options', {
       const newPresets = this.streamPresets.concat(newPreset)
       console.log(newPresets)
       this.updatePresets(newPresets)
+    },
+    clearPresets: function () {
+      this.updatePresets([])
     }
   }
 })

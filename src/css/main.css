@@ -334,8 +334,16 @@ button {
     background: grey;
     cursor: not-allowed; }
 
+textarea {
+  resize: none;
+  width: 100%;
+  min-height: 5em; }
+
 .visible {
   display: flex; }
+
+.hidden {
+  display: none; }
 
 .url {
   color: #fefefe;
