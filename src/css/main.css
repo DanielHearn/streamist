@@ -251,7 +251,9 @@ nav {
       #main .menu-container .menu-options .option {
         min-width: 20em;
         padding: 1em;
-        color: #fefefe; }
+        color: #fefefe;
+        display: flex;
+        flex-direction: column; }
         #main .menu-container .menu-options .option .text-heading {
           margin: 0; }
         #main .menu-container .menu-options .option input {

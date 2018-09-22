@@ -122,6 +122,8 @@ nav {
         min-width: 20em;
         padding: $content-padding;
         color: $white;
+        display: flex;
+        flex-direction: column;
         .text-heading {
           margin: 0;
         }

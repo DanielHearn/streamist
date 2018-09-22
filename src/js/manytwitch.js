@@ -439,6 +439,7 @@ Vue.component('preset-options', {
       try {
         // TODO: Notification popup saying applied presets
         this.updatePresets(JSON.parse(this.importedPresets))
+        this.importPresetsOpened = false
       } catch (e) {
         // TODO: Notification error
       }
@@ -515,6 +516,12 @@ Vue.component('setting-options', {
             </div>`
 })
 
+Vue.component('about', {
+  template: `<div class="option">
+              <p class="text-heading">About</p>
+            </div>`
+})
+
 Vue.component('menu-container', {
   props: ['options', 'currentStreams', 'streamHistory', 'streamPresets'],
   data: function () {
@@ -537,6 +544,10 @@ Vue.component('menu-container', {
                     <i class="material-icons">settings</i>
                     <p>Settings</p>
                   </button>
+                  <button @click="loadOptionCat('About')" :class="{active: currentOptionCat === 'About'}">
+                    <i class="material-icons">info</i>
+                    <p>About</p>
+                  </button>
                 </div>
               </div>
               <div class="menu-options">
@@ -556,6 +567,9 @@ Vue.component('menu-container', {
                 <setting-options
                   v-if="currentOptionCat === 'Settings'"
                 ></setting-options>
+                <about
+                  v-if="currentOptionCat === 'About'"
+                ></about>
               <div>
             </div>`,
   methods: {
