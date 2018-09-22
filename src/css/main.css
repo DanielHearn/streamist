@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700,800");
+@import url("https://fonts.googleapis.com/css?family=Poppins:500,600,700");
 /** Noramlize cross browser CSS
 /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
 html {
@@ -174,21 +174,185 @@ template {
 [hidden] {
   display: none; }
 
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  padding: 0.5em;
+  flex: 1 auto;
+  color: #FEFEFE;
+  background: #8452e4; }
+  nav input {
+    max-width: 10em; }
+  nav div {
+    display: flex;
+    flex-direction: row;
+    align-items: center; }
+  nav .nav-right button {
+    margin: 0 0.5em; }
+
+input, button {
+  border-radius: 3px;
+  padding: 0.75em 1em;
+  font-size: 1em;
+  font-weight: 600; }
+  input p, button p {
+    font-size: 1em;
+    font-weight: 600; }
+
+input {
+  background: #DEDEDE;
+  border: none; }
+
+form input {
+  border-radius: 3px 0 0 3px; }
+
+form button {
+  border-radius: 0 3px 3px 0; }
+
+button {
+  transition: background 0.25s ease-in-out;
+  color: #FEFEFE;
+  border: 0;
+  cursor: pointer;
+  letter-spacing: 0.04em; }
+  button:disabled {
+    background: grey;
+    cursor: not-allowed; }
+    button:disabled:hover {
+      background: grey; }
+  button.material-icons {
+    padding: 0.40em 0.7em; }
+
+.button--fill {
+  width: 100%; }
+
+.button--green {
+  background: #1DD1A1; }
+  .button--green:hover {
+    background: #10AC84; }
+
+.button--purple {
+  background: #8452e4; }
+  .button--purple:hover {
+    background: #7D48E4; }
+
+textarea {
+  resize: none;
+  width: 100%;
+  min-height: 5em; }
+
+select {
+  padding: 0.75em 1.25em;
+  background: #DEDEDE; }
+  select, select option {
+    font-size: 1em;
+    font-weight: 600; }
+
+.button-menu {
+  padding: 1.25em 1em;
+  z-index: 5;
+  cursor: pointer;
+  border-radius: 3px; }
+  .button-menu span {
+    height: 3px;
+    width: 35px;
+    background-color: #FEFEFE;
+    position: relative;
+    display: block;
+    transition: background 0.25s ease-in-out, opacity 0.25s ease-in-out; }
+    .button-menu span:before {
+      top: -10px;
+      visibility: visible; }
+    .button-menu span:after {
+      top: 10px; }
+    .button-menu span:before, .button-menu span:after {
+      height: 3px;
+      width: 35px;
+      background-color: #FEFEFE;
+      position: absolute;
+      content: "";
+      transition: all .2s ease-in-out; }
+
+.button-menu.active:hover span, .button-menu.active span {
+  background: transparent; }
+
+.button-menu.active span:before {
+  transform: rotate(45deg) translate(7px, 7px);
+  opacity: 1; }
+
+.button-menu.active span:after {
+  transform: rotate(-45deg) translate(7px, -7px); }
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 2.5em;
+  height: 1em;
+  margin: 0 0.5em; }
+  .switch .switch input {
+    display: none; }
+  .switch .slider {
+    border-radius: 3px;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #DEDEDE;
+    -webkit-transition: .4s;
+    transition: .4s; }
+  .switch .slider:before {
+    border-radius: 3px;
+    position: absolute;
+    content: "";
+    height: 1.5em;
+    width: 1.25em;
+    bottom: -0.25em;
+    background-color: #1DD1A1;
+    transition: background 0.25s ease-in-out, transform 0.25s ease-in-out; }
+  .switch input:checked + .slider:before {
+    background-color: #10AC84; }
+  .switch input:checked + .slider:before {
+    transform: translateX(1.3em); }
+
+.title {
+  font-size: 2.5em;
+  font-weight: 700;
+  margin: 0;
+  padding-right: 0.75em; }
+
+.text {
+  font-size: 1em;
+  font-weight: 500; }
+
+.text-heading {
+  font-size: 1.25em;
+  font-weight: 600; }
+
+.text-sub-heading {
+  font-size: 1.125em;
+  font-weight: 600; }
+
+.sub-text {
+  font-size: 1em;
+  font-weight: 500; }
+
+.text--green {
+  color: #1DD1A1; }
+
 body {
-  font-family: 'Open Sans', sans-serif;
-  background: #5c6391;
+  font-family: 'Poppins', sans-serif;
+  background: #222222;
   display: flex;
   margin: 0;
   width: 100vw;
   height: 100vh;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  color: #222; }
-
-p {
-  font-size: 1em;
-  font-weight: 400; }
+  flex-direction: column; }
 
 #manytwitch {
   width: 100%;
@@ -197,25 +361,11 @@ p {
   grid-template-columns: 1fr;
   grid-template-rows: 4em 14fr; }
 
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-  padding: 0.5em;
-  flex: 1 auto;
-  color: #fefefe; }
-  nav .nav-center {
-    display: flex; }
-  nav .nav-right {
-    display: flex; }
-    nav .nav-right button {
-      margin: 0 0.5em; }
-
 #main {
   display: flex;
   flex: 1 auto;
   flex-direction: row;
-  background: #222; }
+  background: #222222; }
   #main .streams {
     display: flex;
     flex: 1 auto; }
@@ -223,41 +373,50 @@ nav {
     display: flex;
     flex: 1 auto;
     flex-direction: column; }
+    #main .chats .add-chat-container {
+      background: #4A4A4A; }
     #main .chats .stream-chat {
       display: flex;
       flex: 1 auto;
-      flex-direction: column; }
+      flex-direction: column;
+      background: #1DD1A1; }
       #main .chats .stream-chat .chat-controls {
         display: flex;
-        justify-content: space-evenly;
-        background: #5c6391; }
+        justify-content: space-evenly; }
+        #main .chats .stream-chat .chat-controls button {
+          width: 100%; }
       #main .chats .stream-chat iframe {
         display: flex;
         flex: 1 auto; }
   #main .menu-container {
     display: none;
-    background: #555; }
+    background: #8452e4; }
     #main .menu-container .menu {
-      width: 8em; }
+      width: 7em; }
       #main .menu-container .menu .menu-content {
-        color: #fefefe;
-        width: 8em; }
+        color: #FEFEFE;
+        width: 7em; }
         #main .menu-container .menu .menu-content button {
           width: 100%; }
           #main .menu-container .menu .menu-content button.active {
-            background: #d38c19; }
+            background: #7D48E4; }
     #main .menu-container .menu-options {
-      background: #616161; }
+      background: #FEFEFE;
+      max-width: 20em; }
       #main .menu-container .menu-options .option {
-        min-width: 20em;
+        width: 20em;
         padding: 1em;
-        color: #fefefe;
+        color: #222222;
         display: flex;
+        box-sizing: border-box;
         flex-direction: column; }
         #main .menu-container .menu-options .option .text-heading {
-          margin: 0; }
+          text-align: center;
+          margin-top: 0; }
         #main .menu-container .menu-options .option input {
-          padding: 0.25em 0.75em; }
+          padding: 0.25em 0.75em;
+          width: 100%;
+          box-sizing: border-box; }
     #main .menu-container.visible {
       display: flex;
       justify-content: center;
@@ -270,12 +429,6 @@ nav {
 .list-add {
   display: flex;
   margin: 0; }
-
-select {
-  padding: 0.8em 1.25em; }
-  select, select option {
-    font-size: 1em;
-    font-weight: 600; }
 
 .stream-controls {
   padding: 1em; }
@@ -292,14 +445,14 @@ select {
   flex: 1 1 auto;
   flex-direction: column;
   position: relative;
-  color: #fefefe; }
+  color: #FEFEFE; }
   .stream .stream-controls {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center; }
     .stream .stream-controls p, .stream .stream-controls button {
-      margin: 0 0.5em; }
+      margin: 0 0.25em; }
   .stream .stream-main {
     display: flex;
     flex-direction: row;
@@ -316,31 +469,6 @@ select {
 .draggable {
   cursor: pointer; }
 
-input, button {
-  padding: 0.75em 1.25em;
-  font-size: 1em;
-  font-weight: 600; }
-  input p, button p {
-    font-size: 1em;
-    font-weight: 600; }
-
-button {
-  transition: background 0.25s ease-in-out;
-  background: #f1a52b;
-  color: #fefefe;
-  border: 0;
-  cursor: pointer; }
-  button:hover {
-    background: #e0961f; }
-  button:disabled {
-    background: grey;
-    cursor: not-allowed; }
-
-textarea {
-  resize: none;
-  width: 100%;
-  min-height: 5em; }
-
 .visible {
   display: flex; }
 
@@ -348,65 +476,35 @@ textarea {
   display: none; }
 
 .url {
-  color: #fefefe;
+  color: #FEFEFE;
   text-decoration: underline; }
   .url:visited {
-    color: #fefefe; }
-
-.text-heading {
-  font-size: 1.25em;
-  font-weight: 600; }
-
-.text-sub-heading {
-  font-size: 1.1em;
-  font-weight: 600; }
+    color: #FEFEFE; }
 
 .stream-history .history-list {
   padding-bottom: 1em; }
   .stream-history .history-list .history-listing {
-    padding: 1em;
-    border-bottom: 2px solid #555; }
+    padding: 1em 0;
+    border-bottom: 2px solid #DEDEDE; }
     .stream-history .history-list .history-listing .listing-details {
       display: flex;
-      flex-direction: row; }
+      flex-direction: row;
+      justify-content: space-between; }
       .stream-history .history-list .history-listing .listing-details p {
         padding-right: 1em; }
 
-.button-menu {
-  padding: 1.25em 0.5em;
-  z-index: 5;
-  cursor: pointer; }
-  .button-menu span {
-    height: 3px;
-    width: 35px;
-    background-color: #fefefe;
-    position: relative;
-    display: block;
-    transition: background 0.25s ease-in-out, opacity 0.25s ease-in-out; }
-    .button-menu span:before {
-      top: -10px;
-      visibility: visible; }
-    .button-menu span:after {
-      top: 10px; }
-    .button-menu span:before, .button-menu span:after {
-      height: 3px;
-      width: 35px;
-      background-color: #fefefe;
-      position: absolute;
-      content: "";
-      transition: all .2s ease-in-out; }
-
 .preset-list {
-  background: #616161; }
+  background: #FEFEFE;
+  list-style: none;
+  padding-left: 0; }
+  .preset-list ul {
+    list-style: none;
+    padding-left: 0; }
+    .preset-list ul li {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5em 0; }
   .preset-list .ghost {
-    background: #808080; }
-
-.button-menu.active:hover span, .button-menu.active span {
-  background: transparent; }
-
-.button-menu.active span:before {
-  transform: rotate(45deg) translate(7px, 7px);
-  opacity: 1; }
-
-.button-menu.active span:after {
-  transform: rotate(-45deg) translate(7px, -7px); }
+    background: #DEDEDE; }

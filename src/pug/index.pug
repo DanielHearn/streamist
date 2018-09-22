@@ -19,9 +19,10 @@ html(lang='en')
   body
     #manytwitch
       nav
-        a.button-menu(@click='toggleMenu', :class="{active: options.menuVisible}") 
+        a.button-menu.button--green(@click='toggleMenu', :class="{active: options.menuVisible}") 
           span
         div.nav-center
+          h2.title MT
           form.list-add(name='newStream', 
                         v-on:submit.prevent='addStreamFromNav')
             input(type='text', 
@@ -29,11 +30,15 @@ html(lang='en')
                   required='required', 
                   placeholder='Enter a stream', 
                   v-model='newStreamName')
-            button#addStreamButton(type='submit') Add
+            button#addStreamButton.button--green(type='submit') Add
         div.nav-right
-          button(@click='toggleFullscreen') 
+          button.button--green(@click='toggleFullscreen') 
             i.material-icons fullscreen
-          button(@click='toggleChat')  Toggle Chat
+          div 
+            p.sub-text Show Chat
+            label.switch
+              input(type="checkbox", checked, @click='toggleChat')
+              span.slider
       #main
         menu-container(:options='options', 
                       :stream-history="streamHistory",

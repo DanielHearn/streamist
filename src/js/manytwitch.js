@@ -1,5 +1,5 @@
 Vue.component('remove-button', {
-  template: `<button @click="remove">Remove</button>`,
+  template: `<button class="button--green material-icons" @click="remove">delete</button>`,
   methods: {
     remove: function () {
       this.$emit('remove')
@@ -8,10 +8,28 @@ Vue.component('remove-button', {
 })
 
 Vue.component('refresh-button', {
-  template: `<button @click="refresh">Refresh</button>`,
+  template: `<button class="button--green material-icons" @click="refresh">refresh</button>`,
   methods: {
     refresh: function () {
       this.$emit('refresh')
+    }
+  }
+})
+
+Vue.component('edit-button', {
+  template: `<button class="button--green material-icons" @click="edit">edit</button>`,
+  methods: {
+    edit: function () {
+      this.$emit('edit')
+    }
+  }
+})
+
+Vue.component('load-button', {
+  template: `<button class="button--green material-icons" @click="load">play_arrow</button>`,
+  methods: {
+    load: function () {
+      this.$emit('load')
     }
   }
 })
@@ -161,7 +179,9 @@ Vue.component('chats', {
     }
   },
   template: `<div class="chats" v-if="chatsAvailable">
-              <button v-if="streams.length" :disabled="maxChats" @click="addChat"> Add Chat </button>
+              <div class="add-chat-container">
+                <button class="button--green button--fill" v-if="streams.length" :disabled="maxChats" @click="addChat"> Add Chat </button>
+              </div>
               <chat v-for="chat in chats" :streams="streams" :chat="chat" :key="chat.index" :remove-available="removeAvailable" v-on:load-chat="loadChat" v-on:remove-chat="removeChat"></chat>
              </div>`,
   methods: {
@@ -207,8 +227,8 @@ Vue.component('stream-history-listing', {
   template: `<div class="history-listing">
                   <p class="text-sub-heading">{{ stream.streamName }}</p>
                   <div class="listing-details">
-                    <p>Added: {{ timeAdded }}</p>
-                    <button @click="loadSelectedHistory">Add Stream</button>
+                    <p class="sub-text">Added: {{ timeAdded }}</p>
+                    <button class="button--green" @click="loadSelectedHistory">Add</button>
                   </div>
               </div>`,
   methods: {
@@ -230,11 +250,12 @@ Vue.component('stream-history-controls', {
     orderedHistory: function () {
       return this.streamHistory.slice().reverse()
     },
-    presetsAvailable: function () {
+    historyAvailable: function () {
       return this.streamHistory.length > 0
     }
   },
   template: `<div class="stream-history" v-if="streamHistory">
+              <p class="text" v-if="!historyAvailable">No streams in history</p>
               <ul class="history-list">
                 <stream-history-listing 
                     v-for="stream in orderedHistory" 
@@ -243,7 +264,7 @@ Vue.component('stream-history-controls', {
                     v-on:load-selected-history="loadSelectedHistory"
                     ></stream-history-listing>
               </ul>
-              <button @click="clearHistory" :disabled="!presetsAvailable">Clear History</butto>
+              <button class="button--green" @click="clearHistory" :disabled="!historyAvailable">Clear History</butto>
              </div>`,
   methods: {
     loadSelectedHistory: function (streamName) {
@@ -299,9 +320,9 @@ Vue.component('preset-listing', {
   template: `<li>
               <div>
                 <input type="text" contenteditable="true" v-model="presetName"></input>
-                <button @click="loadPreset">Load</button>
-                <button @click="toggleEditMode">Edit</button>
-                <button @click="deletePreset">Delete</button>
+                <load-button v-on:load="loadPreset"></load-button>
+                <edit-button v-on:edit="toggleEditMode"></edit-button>
+                <remove-button v-on:remove="deletePreset"></remove-button>
               </div>
               <div v-if="editMode">
                 <form 
@@ -314,7 +335,7 @@ Vue.component('preset-listing', {
                     required="required"
                     placeholder="Stream Name"
                     v-model="newPresetStreamName">
-                  <button type="submit">Add Stream</button>
+                  <button class="button--green" type="submit">Add Stream</button>
                 </form>  
                 <ul>
                   <draggable 
@@ -326,8 +347,9 @@ Vue.component('preset-listing', {
                       class="draggable"
                       v-for="(stream, index) in orderedStreams"
                       :stream="stream">
+                      <span class="material-icons handle text--green">drag_handle</span>
                       <p> {{ stream }}</p> 
-                      <button @click="deleteStreamFromPreset(index)">Delete</button>
+                      <remove-button v-on:remove="deleteStreamFromPreset(index)"></remove-button>
                     </li>
                   </draggable>
                 </ul>
@@ -363,8 +385,6 @@ Vue.component('preset-listing', {
 })
 
 // TODO: Hide other edits on edit open
-// TODO: Import presets - text box and button
-// TODO: Export presets
 Vue.component('preset-options', {
   props: ['streamPresets', 'currentStreams'],
   data: function () {
@@ -392,8 +412,9 @@ Vue.component('preset-options', {
                   required="required"
                   placeholder="Preset Name"
                   v-model="newPresetName">
-                <button type="submit">Create</button>
+                <button class="button--green" type="submit">Create</button>
               </form>  
+              <p class="text" v-if="presetsDisabled">No presets saved</p>
               <ul class="preset-list">
                 <preset-listing
                   v-for="preset in streamPresets"
@@ -403,13 +424,13 @@ Vue.component('preset-options', {
                   v-on:delete-preset="deletePreset">
                 </preset-listing>
               </ul>
-              <button @click="saveCurrentAsPreset">Save Streams as Preset</button>
-              <button @click="clearPresets" :disabled="presetsDisabled">Clear Presets</button>
-              <button @click="exportPresets" :disabled="presetsDisabled">Export Presets</button>
-              <button @click="importPresets">Import Presets</button>
+              <button class="button--green" @click="saveCurrentAsPreset">Save Streams as Preset</button>
+              <button class="button--green" @click="clearPresets" :disabled="presetsDisabled">Clear Presets</button>
+              <button class="button--green" @click="exportPresets" :disabled="presetsDisabled">Export Presets</button>
+              <button class="button--green" @click="importPresets">Import Presets</button>
               <div :class="{hidden: !importPresetsOpened}">
                 <textarea v-model="importedPresets"></textarea>
-                <button @click="applyImportedPresets">Apply Presets</button>
+                <button class="button--green" @click="applyImportedPresets">Apply Presets</button>
               </div>
             </div>`,
   methods: {
@@ -532,19 +553,19 @@ Vue.component('menu-container', {
   template: `<div class="menu-container" :class="{visible: options.menuVisible}">
               <div class="menu">
                 <div class="menu-content">
-                  <button @click="loadOptionCat('History')" :class="{active: currentOptionCat === 'History'}">
+                  <button class="button--purple" @click="loadOptionCat('History')" :class="{active: currentOptionCat === 'History'}">
                     <i class="material-icons">history</i>
                     <p>History</p>
                   </button>
-                  <button @click="loadOptionCat('Presets')" :class="{active: currentOptionCat === 'Presets'}">
+                  <button class="button--purple" @click="loadOptionCat('Presets')" :class="{active: currentOptionCat === 'Presets'}">
                     <i class="material-icons">view_module</i>
                     <p>Presets</p>
                   </button>
-                  <button @click="loadOptionCat('Settings')" :class="{active: currentOptionCat === 'Settings'}">
+                  <button class="button--purple" @click="loadOptionCat('Settings')" :class="{active: currentOptionCat === 'Settings'}">
                     <i class="material-icons">settings</i>
                     <p>Settings</p>
                   </button>
-                  <button @click="loadOptionCat('About')" :class="{active: currentOptionCat === 'About'}">
+                  <button class="button--purple" @click="loadOptionCat('About')" :class="{active: currentOptionCat === 'About'}">
                     <i class="material-icons">info</i>
                     <p>About</p>
                   </button>

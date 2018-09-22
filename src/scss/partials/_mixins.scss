@@ -1,0 +1,7 @@
+@mixin transition($transition...) {
+    transition: $transition;
+}
+
+@mixin border-radius {
+    border-radius: $content-border-radius;
+}

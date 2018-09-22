@@ -1,0 +1,30 @@
+.title {
+    font-size: $title-size;
+    font-weight: $title-weight;
+    margin: 0;
+    padding-right: 0.75em;
+}
+  
+.text {
+    font-size: $text-size;
+    font-weight: $text-weight;
+}
+  
+.text-heading {
+    font-size: $heading-size;
+    font-weight: $heading-weight;
+}
+  
+.text-sub-heading {
+    font-size: $sub-heading-size;
+    font-weight: $sub-heading-weight;
+}
+  
+.sub-text {
+    font-size: $sub-text-size;
+    font-weight: $sub-text-weight;
+}
+
+.text--green {
+    color: $green-light;
+}

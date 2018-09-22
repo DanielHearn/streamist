@@ -1,36 +1,39 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700,800');
+@import url('https://fonts.googleapis.com/css?family=Poppins:500,600,700');
 
-$bg-colour: #efefef;
-$blue: #5c6391;
-$blue-dark: #474d73;
-$accent: #f1a52b;
-$accent-dark: #e0961f;
-$accent-darker: #d38c19;
-$dark: #222;
-$grey: #555;
-$grey-light: #616161;
-$grey-lighter: #808080;
-$white: #fefefe;
+$white: #FEFEFE;
+$off-white: #DEDEDE;
+$grey: #4A4A4A;
+$black: #222222;
+$green-light: #1DD1A1;
+$green-dark: #10AC84;
+$purple-light: #8452e4;
+$purple-dark: #7D48E4;
 
-$p-size: 1em;
+$title-size: 2.5em;
+$title-weight: 700;
 $heading-size: 1.25em;
 $heading-weight: 600;
-$sub-heading-size: 1.1em;
+$sub-heading-size: 1.125em;
 $sub-heading-weight: 600;
+$text-size: 1em;
+$text-weight: 500;
+$sub-text-size: 1em;
+$sub-text-weight: 500;
 
 $transition-time: 0.25s;
 
 $content-padding: 1em;
+$content-border-radius: 3px;
 
 @import 'partials/normalize';
-
-@mixin transition($transition...) {
-  transition: $transition;
-}
+@import 'partials/mixins';
+@import 'partials/nav';
+@import 'partials/inputs';
+@import 'partials/text';
 
 body {
-  font-family: 'Open Sans', sans-serif;
-  background: $blue;
+  font-family: 'Poppins', sans-serif;
+  background: $black;
   display: flex;
   margin: 0;
   width: 100vw;
@@ -38,12 +41,6 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  color: $dark;
-}
-
-p {
-  font-size: $p-size;
-  font-weight: 400;
 }
 
 #manytwitch {
@@ -54,29 +51,11 @@ p {
   grid-template-rows: 4em 14fr;
 }
 
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-  padding: $content-padding/2;
-  flex: 1 auto;
-  color: $white;
-  .nav-center {
-    display: flex;
-  }
-  .nav-right {
-    display: flex;
-    button {
-      margin: 0 0.5em;
-    }
-  }
-}
-
 #main {
   display: flex;
   flex: 1 auto;
   flex-direction: row;
-  background: $dark;
+  background: $black;
   .streams {
     display: flex;
     flex: 1 auto;
@@ -85,14 +64,20 @@ nav {
     display: flex;
     flex: 1 auto;
     flex-direction: column;
+    .add-chat-container {
+      background: $grey;
+    }
     .stream-chat {
       display: flex;
       flex: 1 auto;
       flex-direction: column;
+      background: $green-light;
       .chat-controls {
         display: flex;
         justify-content: space-evenly;
-        background: $blue;
+        button {
+          width: 100%;
+        }
       }
       iframe {
         display: flex;
@@ -102,33 +87,38 @@ nav {
   }
   .menu-container {
     display: none;
-    background: $grey;
+    background: $purple-light;
     .menu {
-      width: 8em;
+      width: 7em;
       .menu-content {
         color: $white;
-        width: 8em;
+        width: 7em;
         button {
           width: 100%;
           &.active {
-            background: $accent-darker;
+            background: $purple-dark;
           }
         }
       }
     }
     .menu-options {
-      background: $grey-light;
+      background: $white;
+      max-width: 20em;
       .option {
-        min-width: 20em;
+        width: 20em;
         padding: $content-padding;
-        color: $white;
+        color: $black;
         display: flex;
+        box-sizing: border-box;
         flex-direction: column;
         .text-heading {
-          margin: 0;
+          text-align: center;
+          margin-top: 0;
         }
         input {
           padding: 0.25em 0.75em;
+          width: 100%;
+          box-sizing: border-box;
         }
       }
     }
@@ -150,14 +140,6 @@ nav {
 .list-add {
   display: flex;  
   margin: 0;
-}
-
-select {
-  padding: 0.8em 1.25em;
-  &, option {
-    font-size: 1em;
-    font-weight: 600;
-  }
 }
 
 .stream-controls {
@@ -184,7 +166,7 @@ select {
     justify-content: flex-start;
     align-items: center;
     p, button {
-      margin: 0 0.5em;
+      margin: 0 0.25em;
     }
   }
   .stream-main {
@@ -209,36 +191,6 @@ select {
   cursor: pointer;
 }
 
-input, button {
-  padding: 0.75em 1.25em;
-  font-size: 1em;
-  font-weight: 600;
-  p {
-    font-size: 1em;
-    font-weight: 600;
-  }
-}
-
-button {
-  @include transition(background $transition-time ease-in-out);
-  background: $accent;
-  color: $white;
-  border: 0;
-  cursor: pointer;
-  &:hover {
-    background: $accent-dark;
-  }
-  &:disabled {
-    background: grey;
-    cursor: not-allowed;
-  }
-}
-
-textarea {
-  resize: none;
-  width: 100%;
-  min-height: 5em;
-}
 
 .visible {
   display: flex;
@@ -256,26 +208,16 @@ textarea {
   }
 }
 
-.text-heading {
-  font-size: $heading-size;
-  font-weight: $heading-weight;
-}
-
-.text-sub-heading {
-  font-size: $sub-heading-size;
-  font-weight: $sub-heading-weight;
-}
-
-
 .stream-history {
   .history-list {
     padding-bottom: $content-padding;
     .history-listing {
-      padding: $content-padding;
-      border-bottom: 2px solid $grey;
+      padding: $content-padding 0;
+      border-bottom: 2px solid $off-white;
       .listing-details {
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
         p {
           padding-right: $content-padding;
         }
@@ -284,54 +226,22 @@ textarea {
   }
 }
 
-
-.button-menu {
-  padding: 1.25em 0.5em;
-  z-index: 5;
-  cursor: pointer;
-  span {
-      height: 3px;
-      width: 35px;
-      background-color: $white;
-      position: relative;
-      display: block;
-      @include transition(background $transition-time ease-in-out, opacity $transition-time ease-in-out);
-      &:before {
-        top: -10px;
-        visibility: visible;
-      }
-      &:after {
-        top: 10px;
-      }
-      &:before, &:after {
-          height: 3px;
-          width: 35px;
-          background-color: $white;
-          position: absolute;
-          content: "";
-          transition: all .2s ease-in-out;
-      }
-    }
-}
-
 .preset-list {
-  background: $grey-light;
+  background: $white;
+  list-style: none;
+  padding-left: 0;
+  ul {
+    list-style: none;
+    padding-left: 0;
+    li {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5em 0;
+    }
+  }
   .ghost {
-    background: $grey-lighter;
-  }
-}
-
-.button-menu.active {
-  &:hover span, span{
-    background: transparent;
-  }
-  span {
-    &:before {
-      transform: rotate(45deg) translate(7px, 7px);
-      opacity: 1;
-    }
-    &:after {
-      transform: rotate(-45deg) translate(7px, -7px);
-    }
+    background: $off-white;
   }
 }
