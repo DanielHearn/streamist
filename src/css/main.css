@@ -343,6 +343,9 @@ select {
 .text--green {
   color: #1DD1A1; }
 
+.text--white {
+  color: #FEFEFE; }
+
 body {
   font-family: 'Poppins', sans-serif;
   background: #222222;
@@ -430,9 +433,6 @@ body {
   display: flex;
   margin: 0; }
 
-.stream-controls {
-  padding: 1em; }
-
 .streams {
   display: flex;
   flex: 1 auto;
@@ -446,11 +446,21 @@ body {
   flex-direction: column;
   position: relative;
   color: #FEFEFE; }
-  .stream .stream-controls {
+  .stream:hover .stream-controls {
     display: flex;
+    opacity: 1; }
+  .stream .stream-controls {
+    border-radius: 3px;
+    position: absolute;
+    display: none;
     flex-direction: row;
     justify-content: flex-start;
-    align-items: center; }
+    align-items: center;
+    background: #1DD1A1;
+    padding: 0.5em;
+    right: 1em;
+    top: 1em;
+    opacity: 0; }
     .stream .stream-controls p, .stream .stream-controls button {
       margin: 0 0.25em; }
   .stream .stream-main {
@@ -508,3 +518,9 @@ body {
       padding: 0.5em 0; }
   .preset-list .ghost {
     background: #DEDEDE; }
+
+.draggable {
+  user-select: none; }
+
+.handle {
+  padding: 0.5em; }

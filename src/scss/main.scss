@@ -142,10 +142,6 @@ body {
   margin: 0;
 }
 
-.stream-controls {
-  padding: $content-padding;
-}
-
 .streams {
   display: flex;
   flex: 1 auto;
@@ -160,11 +156,22 @@ body {
   flex-direction: column;
   position: relative;
   color: $white;
-  .stream-controls {
+  &:hover .stream-controls {
     display: flex;
+    opacity: 1;
+  }
+  .stream-controls {
+    @include border-radius;
+    position: absolute;
+    display: none;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    background: $green-light;
+    padding: $content-padding/2;
+    right: 1em;
+    top: 1em;
+    opacity: 0;
     p, button {
       margin: 0 0.25em;
     }
@@ -244,4 +251,12 @@ body {
   .ghost {
     background: $off-white;
   }
+}
+
+.draggable {
+  user-select: none;
+}
+
+.handle {
+  padding: $content-padding/2;
 }

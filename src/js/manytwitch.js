@@ -42,6 +42,7 @@ Vue.component('stream-controls', {
     }
   },
   template: `<div class="stream-controls">
+              <span class="material-icons handle text--white">drag_handle</span>  
               <a class="url" :href="streamUrl" target="_blank">{{ stream.streamName }}</a>
               <remove-button v-on:remove="remove"></remove-button>
               <refresh-button v-on:refresh="refresh"></refresh-button>
@@ -57,7 +58,7 @@ Vue.component('stream-controls', {
 })
 
 Vue.component('stream', {
-  props: ['streams', 'stream', 'options'],
+  props: ['stream', 'options'],
   data: function () {
     return {
       playerEmbed: {},
@@ -101,13 +102,35 @@ Vue.component('stream', {
 
 Vue.component('streams', {
   props: ['streams', 'options'],
-  template: `<div class="streams">
-              <stream v-for="stream in streams" :key="stream.embedPlayerID" :stream="stream" :streams="streams" :options="options" v-on:remove-stream="removeStream"></stream>
-             </div>`,
+  data: function () {
+    return {
+      orderedStreams: this.streams.slice()
+    }
+  },
+  watch: {
+    'streams': function () {
+      console.log('update orderedstreams from streams')
+      if (this.orderedStreams !== this.streams) {
+        this.orderedStreams = this.streams.slice()
+      }
+    },
+    'orderedStreams': function () {
+      console.log('Ordered Streams:', this.orderedStreams)
+      this.$emit('update-streams', this.orderedStreams)
+    }
+  },
+  template: `<draggable 
+              class="streams"
+              v-model="orderedStreams" 
+              @start="drag=true" 
+              @end="drag=false"
+              :options="{ghostClass:'ghost'}">
+                <stream class="draggable" v-for="stream in orderedStreams" :key="stream.embedPlayerID" :stream="stream" :options="options" v-on:remove-stream="removeStream"></stream>
+              </draggable>`,
   methods: {
     removeStream: function (removedStream) {
       // Remove stream with matching streamIndex from currentStreams
-      const newStreams = this.streams.filter(stream => stream !== removedStream)
+      const newStreams = this.orderedStreams.filter(stream => stream !== removedStream)
       this.$emit('update-streams', newStreams)
     }
   },
@@ -172,8 +195,8 @@ Vue.component('chats', {
     }
   },
   watch: {
-    'streams' () {
-      if (this.streams.length === 1) {
+    'streams': function () {
+      if (this.streams.length > 0 && this.chats.length === 0) {
         this.addChat()
       }
     }
@@ -303,15 +326,15 @@ Vue.component('preset-listing', {
     }
   },
   watch: {
-    presetName: function () {
+    'presetName': function () {
       const tempPreset = this.preset
       tempPreset.name = this.presetName
       this.$emit('update-preset', tempPreset)
     },
-    'preset.streams' () {
+    'preset.streams': function () {
       this.orderedStreams = this.preset.streams
     },
-    'orderedStreams' () {
+    'orderedStreams': function () {
       const tempPreset = this.preset
       tempPreset.streams = this.orderedStreams
       this.$emit('update-preset', tempPreset)
@@ -395,6 +418,9 @@ Vue.component('preset-options', {
     }
   },
   computed: {
+    noStreams: function () {
+      return this.currentStreams.length === 0
+    },
     presetsDisabled: function () {
       return this.streamPresets.length === 0
     },
@@ -424,7 +450,7 @@ Vue.component('preset-options', {
                   v-on:delete-preset="deletePreset">
                 </preset-listing>
               </ul>
-              <button class="button--green" @click="saveCurrentAsPreset">Save Streams as Preset</button>
+              <button class="button--green" @click="saveCurrentAsPreset" :disabled="noStreams">Save Streams as Preset</button>
               <button class="button--green" @click="clearPresets" :disabled="presetsDisabled">Clear Presets</button>
               <button class="button--green" @click="exportPresets" :disabled="presetsDisabled">Export Presets</button>
               <button class="button--green" @click="importPresets">Import Presets</button>
