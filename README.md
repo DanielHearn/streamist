@@ -6,14 +6,22 @@ Live at www.danielhearn.co.uk/manytwitch
 Built with VueJS, SCSS,and gulp for workflow tools.
 Hosted on github pages.
 
+## Features
+- Watch multiple twitch streams and chats
+- Recent history
+- Stream presets -> For quick acess to regularly watched streams
+
 To specify a channel within the url use 'manytwitch/?stream=channel1,channel2' creating a list of the channels seperated with commas.
 
 ![GitHub Logo](readme-assets/manytwitch1.png)
 
-## Features
-- Watch multiple twitch streams and chats
-- Recent history
-- Stream presets 
+## TODO
+- Favourite streams
+- Chat reordering
+- Improved styling with consistently design components
+- Mobile support
+- Notifications
+- Home page content via the Twitch API
 
 ## Dependencies
 - vue draggable to handle model updating on list reorder with drag and drop.
