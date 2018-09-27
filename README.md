@@ -3,7 +3,7 @@
 
 Live at www.danielhearn.co.uk/manytwitch
 
-Built with VueJS, SCSS,and gulp for workflow tools.
+Built with VueJS, SCSS,and gulp for workflow automation.
 Hosted on github pages.
 
 ## Features
@@ -16,7 +16,6 @@ To specify a channel within the url use 'manytwitch/?stream=channel1,channel2' c
 ![GitHub Logo](readme-assets/manytwitch1.png)
 
 ## TODO
-- Favourite streams
 - Chat reordering
 - Improved styling with consistently design components
 - Mobile support
@@ -26,6 +25,7 @@ To specify a channel within the url use 'manytwitch/?stream=channel1,channel2' c
 ## Dependencies
 - vue draggable to handle model updating on list reorder with drag and drop.
 - screenfull.js for quick and clean access to browser fullscreen api.
+- moment for readable relative date for stream history
 
 ## Gulp tasks
 - Watch: Use browsersync to reload files and compiles pug and scss.
