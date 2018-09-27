@@ -8,7 +8,7 @@ Hosted on github pages.
 
 ## Features
 - Watch multiple twitch streams and chats
-- Recent history
+- Recent stream history
 - Stream presets -> For quick acess to regularly watched streams
 
 To specify a channel within the url use 'manytwitch/?stream=channel1,channel2' creating a list of the channels seperated with commas.
