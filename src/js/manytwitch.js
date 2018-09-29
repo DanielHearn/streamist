@@ -7,6 +7,15 @@ Vue.component('remove-button', {
   }
 })
 
+Vue.component('close-button', {
+  template: `<button class="button--green material-icons" @click="close"">close</button>`,
+  methods: {
+    close: function () {
+      this.$emit('close')
+    }
+  }
+})
+
 Vue.component('refresh-button', {
   template: `<button class="button--green material-icons" @click="refresh">refresh</button>`,
   methods: {
@@ -330,6 +339,7 @@ Vue.component('stream-history-controls', {
 Vue.component('history-options', {
   props: ['streamHistory'],
   template: `<div class="option">
+              <close-button v-on:close="closeOptions" title="Close Settings"></close-button>
               <p class="text-heading">Stream History</p>
               <stream-history-controls :stream-history="streamHistory" v-on:load-selected-history="loadSelectedHistory" v-on:clear-history="clearHistory"></stream-history-controls>
             </div>`,
@@ -339,6 +349,9 @@ Vue.component('history-options', {
     },
     clearHistory: function () {
       this.$emit('clear-history')
+    },
+    closeOptions: function () {
+      this.$emit('close-options')
     }
   }
 })
@@ -457,6 +470,7 @@ Vue.component('preset-options', {
     }
   },
   template: `<div class="option">
+              <close-button v-on:close="closeOptions" title="Close Settings"></close-button>
               <p class="text-heading">Presets</p>
               <form class="input-form"
                 name="newPreset" 
@@ -581,22 +595,37 @@ Vue.component('preset-options', {
     },
     clearPresets: function () {
       this.updatePresets([])
+    },
+    closeOptions: function () {
+      this.$emit('close-options')
     }
   }
 })
 
 Vue.component('setting-options', {
   template: `<div class="option">
+              <close-button v-on:close="closeOptions" title="Close Settings"></close-button>
               <p class="text-heading">Settings</p>
-            </div>`
+            </div>`,
+  methods: {
+    closeOptions: function () {
+      this.$emit('close-options')
+    }
+  }
 })
 
 Vue.component('about', {
   template: `<div class="option">
+              <close-button v-on:close="closeOptions" title="Close Settings"></close-button>
               <p class="text-heading">About</p>
               <p class="text">Developed by <a class="text-link" href="http://danielhearn.co.uk" target="_blank">Daniel Hearn</a>, source available on <a class="text-link" href="https://github.com/DanielHearn/manytwitch" target="_blank">GitHub</a> (contributions welcome!).</p>
               <p class="text">For feature suggestions and bug reports, email them to <a class="text-link" href="mailto:manytwitch@danielhearn.co.uk" target="_blank">manytwitch@danielhearn.co.uk</a>.</p>
-            </div>`
+            </div>`,
+  methods: {
+    closeOptions: function () {
+      this.$emit('close-options')
+    }
+  }
 })
 
 Vue.component('menu-container', {
@@ -633,6 +662,7 @@ Vue.component('menu-container', {
                   :stream-history="streamHistory" 
                   v-on:load-selected-history="loadSelectedHistory"
                   v-on:clear-history="clearHistory"
+                  v-on:close-options="closeOptions"
                 ></history-options>
                 <preset-options 
                   v-if="currentOptionCat === 'Presets'"
@@ -640,16 +670,22 @@ Vue.component('menu-container', {
                   :current-streams="currentStreams"
                   v-on:update-presets="updatePresets"
                   v-on:load-preset="loadPreset"
+                  v-on:close-options="closeOptions"
                 ></preset-options>
                 <setting-options
                   v-if="currentOptionCat === 'Settings'"
+                  v-on:close-options="closeOptions"
                 ></setting-options>
                 <about
                   v-if="currentOptionCat === 'About'"
+                  v-on:close-options="closeOptions"
                 ></about>
               <div>
             </div>`,
   methods: {
+    closeOptions: function () {
+      this.currentOptionCat = ''
+    },
     loadPreset: function (preset) {
       this.$emit('load-preset', preset)
     },
@@ -786,8 +822,13 @@ const manytwitch = new Vue({
         channelString += String(this.currentStreams[channel].streamName) + ','
       }
       channelString = channelString.replace('undefined', '')
-      const newurl = window.location.protocol + '//' + window.location.host + window.location.pathname + '?stream=' + channelString
-      window.history.pushState({path: newurl}, '', newurl)
+      const newurl = window.location.protocol + '//' + window.location.host + window.location.pathname
+      if (channelString) {
+        const queryUrl = newurl + '?stream=' + channelString
+        window.history.pushState({path: queryUrl}, '', queryUrl)
+      } else {
+        window.history.pushState({path: newurl}, '', newurl)
+      }
     },
     getURLParam: function () {
       const urlParams = new URLSearchParams(window.location.search.substring(1))
