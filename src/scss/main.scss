@@ -117,8 +117,12 @@ body {
         }
         input {
           padding: 0.25em 0.75em;
+          margin: $content-padding/4;
           width: 100%;
           box-sizing: border-box;
+        }
+        button {
+          margin: $content-padding/4;
         }
       }
     }
@@ -137,7 +141,7 @@ body {
   }
 }
 
-.list-add {
+.input-form {
   display: flex;  
   margin: 0;
 }
@@ -200,11 +204,11 @@ body {
 
 
 .visible {
-  display: flex;
+  display: flex !important;
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .url {
@@ -217,7 +221,7 @@ body {
 
 .stream-history {
   .history-list {
-    padding-bottom: $content-padding;
+    padding-bottom: $content-padding/2;
     .history-listing {
       padding: $content-padding 0;
       border-bottom: 2px solid $off-white;
@@ -226,7 +230,7 @@ body {
         flex-direction: row;
         justify-content: space-between;
         p {
-          padding-right: $content-padding;
+          padding-right: $content-padding/2;
         }
       }
     }
@@ -259,4 +263,8 @@ body {
 
 .handle {
   padding: $content-padding/2;
+}
+
+.input-container {
+  margin: 0;
 }

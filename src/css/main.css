@@ -330,11 +330,13 @@ select {
 
 .text-heading {
   font-size: 1.25em;
-  font-weight: 600; }
+  font-weight: 600;
+  margin: 1em 0; }
 
 .text-sub-heading {
   font-size: 1.125em;
-  font-weight: 600; }
+  font-weight: 600;
+  margin: 0.5em 0; }
 
 .sub-text {
   font-size: 1em;
@@ -345,6 +347,12 @@ select {
 
 .text--white {
   color: #FEFEFE; }
+
+.text-link {
+  color: #1DD1A1;
+  text-decoration: none; }
+  .text-link:hover {
+    text-decoration: underline; }
 
 body {
   font-family: 'Poppins', sans-serif;
@@ -418,8 +426,11 @@ body {
           margin-top: 0; }
         #main .menu-container .menu-options .option input {
           padding: 0.25em 0.75em;
+          margin: 0.25em;
           width: 100%;
           box-sizing: border-box; }
+        #main .menu-container .menu-options .option button {
+          margin: 0.25em; }
     #main .menu-container.visible {
       display: flex;
       justify-content: center;
@@ -429,7 +440,7 @@ body {
   padding: 0;
   margin: 0; }
 
-.list-add {
+.input-form {
   display: flex;
   margin: 0; }
 
@@ -480,10 +491,10 @@ body {
   cursor: pointer; }
 
 .visible {
-  display: flex; }
+  display: flex !important; }
 
 .hidden {
-  display: none; }
+  display: none !important; }
 
 .url {
   color: #FEFEFE;
@@ -492,7 +503,7 @@ body {
     color: #FEFEFE; }
 
 .stream-history .history-list {
-  padding-bottom: 1em; }
+  padding-bottom: 0.5em; }
   .stream-history .history-list .history-listing {
     padding: 1em 0;
     border-bottom: 2px solid #DEDEDE; }
@@ -501,7 +512,7 @@ body {
       flex-direction: row;
       justify-content: space-between; }
       .stream-history .history-list .history-listing .listing-details p {
-        padding-right: 1em; }
+        padding-right: 0.5em; }
 
 .preset-list {
   background: #FEFEFE;
@@ -524,3 +535,6 @@ body {
 
 .handle {
   padding: 0.5em; }
+
+.input-container {
+  margin: 0; }

@@ -13,11 +13,13 @@
 .text-heading {
     font-size: $heading-size;
     font-weight: $heading-weight;
+    margin: $content-padding 0 ;
 }
   
 .text-sub-heading {
     font-size: $sub-heading-size;
     font-weight: $sub-heading-weight;
+    margin: $content-padding/2 0 ;
 }
   
 .sub-text {
@@ -31,4 +33,12 @@
 
 .text--white {
     color: $white;
+}
+
+.text-link {
+    color: $green-light;
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
 }

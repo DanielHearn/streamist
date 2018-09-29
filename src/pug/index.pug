@@ -19,35 +19,29 @@ html(lang='en')
   body
     #manytwitch
       nav
-        a.button-menu.button--green(@click='toggleMenu', :class="{active: options.menuVisible}") 
+        a.button-menu.button--green(@click='toggleMenu', :class='{active: options.menuVisible}' title="Toggle Menu") 
           span
         div.nav-center
           h2.title MT
-          form.list-add(name='newStream', 
-                        v-on:submit.prevent='addStreamFromNav')
-            input(type='text', 
-                  name='newStreamInput', 
-                  required='required', 
-                  placeholder='Enter a stream', 
-                  v-model='newStreamName')
-            button#addStreamButton.button--green(type='submit') Add
+          input-form(placeholder='Enter a stream',
+                    v-on:submit='addStreamFromNav')
         div.nav-right
-          button.button--green(@click='toggleFullscreen') 
+          button.button--green(@click='toggleFullscreen', title="Toggle Fullscreen") 
             i.material-icons fullscreen
           div 
             p.sub-text Show Chat
             label.switch
-              input(type="checkbox", checked, @click='toggleChat')
+              input(type="checkbox", checked, @click='toggleChat', title="Toggle Chat")
               span.slider
       #main
         menu-container(:options='options', 
-                      :stream-history="streamHistory",
-                      :current-streams="currentStreams",
-                      :stream-presets="streamPresets",
-                      v-on:load-selected-history="loadSelectedHistory", 
-                      v-on:clear-history="clearHistory",
-                      v-on:update-presets="updatePresets"
-                      v-on:load-preset="loadPreset")
+                      :stream-history='streamHistory',
+                      :current-streams='currentStreams',
+                      :stream-presets='streamPresets',
+                      v-on:load-selected-history='loadSelectedHistory', 
+                      v-on:clear-history='clearHistory',
+                      v-on:update-presets='updatePresets'
+                      v-on:load-preset='loadPreset')
         streams(:streams='currentStreams', 
                 v-on:update-streams='updateStreams', 
                 :options='options')

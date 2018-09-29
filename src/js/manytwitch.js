@@ -1,5 +1,5 @@
 Vue.component('remove-button', {
-  template: `<button class="button--green material-icons" @click="remove">delete</button>`,
+  template: `<button class="button--green material-icons" @click="remove"">delete</button>`,
   methods: {
     remove: function () {
       this.$emit('remove')
@@ -17,9 +17,18 @@ Vue.component('refresh-button', {
 })
 
 Vue.component('edit-button', {
-  template: `<button class="button--green material-icons" @click="edit">edit</button>`,
+  data: function () {
+    return {
+      active: false
+    }
+  },
+  template: `<button class="button--green material-icons" @click="edit">
+              <span class="material-icons" :class="{hidden: active}">edit</span>
+              <span class="material-icons" :class="{hidden: !active}">close</span>
+            </button>`,
   methods: {
     edit: function () {
+      this.active = !this.active
       this.$emit('edit')
     }
   }
@@ -34,6 +43,25 @@ Vue.component('load-button', {
   }
 })
 
+Vue.component('input-form', {
+  props: ['placeholder'],
+  data: function () {
+    return {
+      inputValue: ''
+    }
+  },
+  template: `<form class="input-form" name="input" v-on:submit.prevent="submit">
+              <input type="text" name="input" required="required" :placeholder="placeholder" v-model="inputValue" />
+              <button class="button--green" type="submit">Add</button>
+            </form>`,
+  methods: {
+    submit: function (e) {
+      this.$emit('submit', e, this.inputValue)
+      this.inputValue = ''
+    }
+  }
+})
+
 Vue.component('stream-controls', {
   props: ['stream'],
   computed: {
@@ -42,10 +70,10 @@ Vue.component('stream-controls', {
     }
   },
   template: `<div class="stream-controls">
-              <span class="material-icons handle text--white">drag_handle</span>  
-              <a class="url" :href="streamUrl" target="_blank">{{ stream.streamName }}</a>
-              <remove-button v-on:remove="remove"></remove-button>
-              <refresh-button v-on:refresh="refresh"></refresh-button>
+              <span class="material-icons handle text--white" title="Reorder stream">drag_handle</span>  
+              <a class="url" :href="streamUrl" target="_blank" title="Open Twitch stream">{{ stream.streamName }}</a>
+              <remove-button v-on:remove="remove" title="Remove stream"></remove-button>
+              <refresh-button v-on:refresh="refresh" title="Refresh stream"></refresh-button>
              </div>`,
   methods: {
     remove: function () {
@@ -151,8 +179,8 @@ Vue.component('chat', {
                   <option v-for="stream in streams" :key="stream.embedPlayerID">{{ stream.streamName }}</option>
               </select>
               <div class="chat-controls">
-                <remove-button v-if="removeAvailable" v-on:remove="remove"></remove-button>
-                <refresh-button v-on:refresh="refresh"></refresh-button>
+                <remove-button v-if="removeAvailable" v-on:remove="remove" title="Remove Chat"></remove-button>
+                <refresh-button v-on:refresh="refresh" title="Refresh Chat"></refresh-button>
               </div>
               <iframe frameborder="0" scrolling="no" v-if="chatVisible" :id="'embed-chat-' + chat.streamName" :src="'https://www.twitch.tv/embed/' + chat.streamName + '/chat'"></iframe>
              </div>`,
@@ -203,7 +231,7 @@ Vue.component('chats', {
   },
   template: `<div class="chats" v-if="chatsAvailable">
               <div class="add-chat-container">
-                <button class="button--green button--fill" v-if="streams.length" :disabled="maxChats" @click="addChat"> Add Chat </button>
+                <button class="button--green button--fill" v-if="streams.length" :disabled="maxChats" @click="addChat" title="Add Chat"> Add Chat </button>
               </div>
               <chat v-for="chat in chats" :streams="streams" :chat="chat" :key="chat.index" :remove-available="removeAvailable" v-on:load-chat="loadChat" v-on:remove-chat="removeChat"></chat>
              </div>`,
@@ -251,7 +279,7 @@ Vue.component('stream-history-listing', {
                   <p class="text-sub-heading">{{ stream.streamName }}</p>
                   <div class="listing-details">
                     <p class="sub-text">Added: {{ timeAdded }}</p>
-                    <button class="button--green" @click="loadSelectedHistory">Add</button>
+                    <button class="button--green" @click="loadSelectedHistory" title="Add Stream">Add</button>
                   </div>
               </div>`,
   methods: {
@@ -341,15 +369,15 @@ Vue.component('preset-listing', {
     }
   },
   template: `<li>
-              <div>
+              <div class="input-container">
                 <input type="text" contenteditable="true" v-model="presetName"></input>
-                <load-button v-on:load="loadPreset"></load-button>
-                <edit-button v-on:edit="toggleEditMode"></edit-button>
-                <remove-button v-on:remove="deletePreset"></remove-button>
+                <load-button v-on:load="loadPreset" title="Load Preset"></load-button>
+                <edit-button v-on:edit="toggleEditMode"  title="Edit Preset"></edit-button>
+                <remove-button v-on:remove="deletePreset"  title="Delete Preset"></remove-button>
               </div>
               <div v-if="editMode">
                 <form 
-                  class="list-add"
+                  class="input-form"
                   name="newPresetStream" 
                   v-on:submit.prevent="newPresetStream">
                   <input 
@@ -358,7 +386,7 @@ Vue.component('preset-listing', {
                     required="required"
                     placeholder="Stream Name"
                     v-model="newPresetStreamName">
-                  <button class="button--green" type="submit">Add Stream</button>
+                  <button class="button--green" type="submit" title="Add Stream">Add</button>
                 </form>  
                 <ul>
                   <draggable 
@@ -372,7 +400,7 @@ Vue.component('preset-listing', {
                       :stream="stream">
                       <span class="material-icons handle text--green">drag_handle</span>
                       <p> {{ stream }}</p> 
-                      <remove-button v-on:remove="deleteStreamFromPreset(index)"></remove-button>
+                      <remove-button v-on:remove="deleteStreamFromPreset(index)" title="Remove Stream" ></remove-button>
                     </li>
                   </draggable>
                 </ul>
@@ -430,7 +458,7 @@ Vue.component('preset-options', {
   },
   template: `<div class="option">
               <p class="text-heading">Presets</p>
-              <form class="list-add"
+              <form class="input-form"
                 name="newPreset" 
                 v-on:submit.prevent="createPreset">
                 <input type="text"
@@ -438,7 +466,7 @@ Vue.component('preset-options', {
                   required="required"
                   placeholder="Preset Name"
                   v-model="newPresetName">
-                <button class="button--green" type="submit">Create</button>
+                <button class="button--green" type="submit" title="Create Preset">Create</button>
               </form>  
               <p class="text" v-if="presetsDisabled">No presets saved</p>
               <ul class="preset-list">
@@ -566,6 +594,8 @@ Vue.component('setting-options', {
 Vue.component('about', {
   template: `<div class="option">
               <p class="text-heading">About</p>
+              <p class="text">Developed by <a class="text-link" href="http://danielhearn.co.uk" target="_blank">Daniel Hearn</a>, source available on <a class="text-link" href="https://github.com/DanielHearn/manytwitch" target="_blank">GitHub</a> (contributions welcome!).</p>
+              <p class="text">For feature suggestions and bug reports, email them to <a class="text-link" href="mailto:manytwitch@danielhearn.co.uk" target="_blank">manytwitch@danielhearn.co.uk</a>.</p>
             </div>`
 })
 
@@ -646,7 +676,6 @@ const manytwitch = new Vue({
   el: '#manytwitch',
   data: function () {
     return {
-      newStreamName: '',
       currentStreams: [],
       streamHistory: [],
       streamPresets: [],
@@ -658,13 +687,11 @@ const manytwitch = new Vue({
     }
   },
   methods: {
-    addStreamFromNav: function (e) {
+    addStreamFromNav: function (e, streamName) {
       e.preventDefault()
-      if (!this.newStreamName) {
+      if (!streamName) {
         return false
       }
-      const streamName = this.newStreamName
-      this.newStreamName = ''
       console.log(streamName)
       this.addStream(streamName)
     },
