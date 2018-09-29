@@ -1,28 +1,37 @@
-# manytwitch
-## Multiple Twitch stream viewer
+## manytwitch
+### Multiple Twitch stream viewer
 
 Live at www.danielhearn.co.uk/manytwitch
 
-Built with AngularJS, SCSS, CSS Variables, BEM for CSS, gulp for workflow tools.
+Built with VueJS, SCSS,and gulp for workflow automation.
 Hosted on github pages.
+
+## Features
+- Watch multiple twitch streams and chats
+- Recent stream history
+- Stream presets -> For quick acess to regularly watched streams
 
 To specify a channel within the url use 'manytwitch/?stream=channel1,channel2' creating a list of the channels seperated with commas.
 
 ![GitHub Logo](readme-assets/manytwitch1.png)
 
-### TODO
-- Implement js minify to gulp build task
-- Ensure consistency across all input elements, e.g dropdowns are currently different height to text inputs and buttons
+## TODO
+- Chat reordering
+- Improved styling with consistently design components
+- Mobile support
+- Notifications
+- Home page content via the Twitch API
 
-### Dependencies
-- angular-sortable-view to handle AngularJS model updating on list reorder.
+## Dependencies
+- vue draggable to handle model updating on list reorder with drag and drop.
 - screenfull.js for quick and clean access to browser fullscreen api.
+- moment for readable relative date for stream history
 
-### Gulp tasks
-- Watch: Use browsersync to reload files and compiles scss.
-- Build: Builds files from src to dist, including compressing images, js, css
+## Gulp tasks
+- Watch: Use browsersync to reload files and compiles pug and scss.
+- Build: Compiles pug and scss and builds files from src to dist, including compressing images, js, css
 
-### Contributions
+## Contributions
 
 Contributions are welcome especially those which improve functionality and user experience.
 To contribute please fork and send a pull request, to request a feature or report bugs please open an issue.
