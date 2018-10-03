@@ -2,6 +2,7 @@
 ## Multiple Twitch stream viewer
 
 Live at www.danielhearn.co.uk/manytwitch
+Currently being rebuilt with Vue and a new design on the V3 branch.
 
 Built with AngularJS, SCSS, CSS Variables, BEM for CSS, gulp for workflow tools.
 Hosted on github pages.
