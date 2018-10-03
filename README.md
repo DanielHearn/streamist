@@ -21,11 +21,14 @@ To specify a channel within the url use 'manytwitch/?stream=channel1,channel2' c
 - Mobile support
 - Notifications
 - Home page content via the Twitch API
+- Replace moment relative date with date-fns function 
+- Reduce dependencies
 
 ## Dependencies
 - vue draggable to handle model updating on list reorder with drag and drop.
 - screenfull.js for quick and clean access to browser fullscreen api.
-- moment for readable relative date for stream history
+- moment for readable relative date for stream history.
+- gulp for workflow automation
 
 ## Gulp tasks
 - Watch: Use browsersync to reload files and compiles pug and scss.
