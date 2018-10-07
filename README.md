@@ -9,7 +9,7 @@ Hosted on github pages.
 
 To specify a channel within the url use 'manytwitch/?stream=channel1,channel2' creating a list of the channels seperated with commas.
 
-![GitHub Logo](readme-assets/manytwitch1.png)
+![Example image](readme-assets/manytwitch1.png)
 
 ### TODO
 - Implement js minify to gulp build task
