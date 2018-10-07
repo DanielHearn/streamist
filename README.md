@@ -13,7 +13,7 @@ Hosted on github pages.
 
 To specify a channel within the url use 'manytwitch/?stream=channel1,channel2' creating a list of the channels seperated with commas.
 
-![GitHub Logo](readme-assets/manytwitch1.png)
+![Example image of app](readme-assets/manytwitch1.png)
 
 ## TODO
 - Chat reordering
