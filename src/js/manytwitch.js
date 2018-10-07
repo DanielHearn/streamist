@@ -280,8 +280,11 @@ Vue.component('stream-history-listing', {
   computed: {
     timeAdded: function () {
       // Show time since add
-      // TODO: Add own function to achieve the same
-      return moment(this.stream.dateAdded).fromNow()
+      const relativeDate = dateFns.distanceInWordsStrict(
+        this.stream.dateAdded,
+        this.currentDate
+      )
+      return `${relativeDate} ago`
     }
   },
   template: `<div class="history-listing">
@@ -339,8 +342,10 @@ Vue.component('stream-history-controls', {
 Vue.component('history-options', {
   props: ['streamHistory'],
   template: `<div class="option">
-              <close-button v-on:close="closeOptions" title="Close Settings"></close-button>
-              <p class="text-heading">Stream History</p>
+              <div class="option-header">
+                <p class="text-heading">Stream History</p>
+                <close-button v-on:close="closeOptions" title="Close Settings"></close-button>
+              </div>
               <stream-history-controls :stream-history="streamHistory" v-on:load-selected-history="loadSelectedHistory" v-on:clear-history="clearHistory"></stream-history-controls>
             </div>`,
   methods: {
@@ -470,8 +475,10 @@ Vue.component('preset-options', {
     }
   },
   template: `<div class="option">
-              <close-button v-on:close="closeOptions" title="Close Settings"></close-button>
-              <p class="text-heading">Presets</p>
+              <div class="option-header">
+                <p class="text-heading">Presets</p>
+                <close-button v-on:close="closeOptions" title="Close Settings"></close-button>
+              </div>
               <form class="input-form"
                 name="newPreset" 
                 v-on:submit.prevent="createPreset">
@@ -604,8 +611,10 @@ Vue.component('preset-options', {
 
 Vue.component('setting-options', {
   template: `<div class="option">
-              <close-button v-on:close="closeOptions" title="Close Settings"></close-button>
-              <p class="text-heading">Settings</p>
+              <div class="option-header">
+                <p class="text-heading">Settings</p>
+                <close-button v-on:close="closeOptions" title="Close Settings"></close-button>
+              </div>
             </div>`,
   methods: {
     closeOptions: function () {
@@ -616,8 +625,10 @@ Vue.component('setting-options', {
 
 Vue.component('about', {
   template: `<div class="option">
-              <close-button v-on:close="closeOptions" title="Close Settings"></close-button>
-              <p class="text-heading">About</p>
+              <div class="option-header">
+                <p class="text-heading">About</p>
+                <close-button v-on:close="closeOptions" title="Close Settings"></close-button>
+              </div>
               <p class="text">Developed by <a class="text-link" href="http://danielhearn.co.uk" target="_blank">Daniel Hearn</a>, source available on <a class="text-link" href="https://github.com/DanielHearn/manytwitch" target="_blank">GitHub</a> (contributions welcome!).</p>
               <p class="text">For feature suggestions and bug reports, email them to <a class="text-link" href="mailto:manytwitch@danielhearn.co.uk" target="_blank">manytwitch@danielhearn.co.uk</a>.</p>
             </div>`,

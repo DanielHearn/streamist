@@ -56,81 +56,90 @@ body {
   flex: 1 auto;
   flex-direction: row;
   background: $black;
-  .streams {
-    display: flex;
-    flex: 1 auto;
+}
+
+.chats {
+  display: flex;
+  flex: 1 auto;
+  flex-direction: column;
+  .add-chat-container {
+    background: $grey;
   }
-  .chats {
+  .stream-chat {
     display: flex;
     flex: 1 auto;
     flex-direction: column;
-    .add-chat-container {
-      background: $grey;
+    background: $green-light;
+    .chat-controls {
+      display: flex;
+      justify-content: space-evenly;
+      button {
+        width: 100%;
+      }
     }
-    .stream-chat {
+    iframe {
       display: flex;
       flex: 1 auto;
-      flex-direction: column;
-      background: $green-light;
-      .chat-controls {
-        display: flex;
-        justify-content: space-evenly;
-        button {
-          width: 100%;
-        }
+    }
+  }
+}
+
+.menu-container {
+  display: none;
+  background: $purple-light;
+  .menu {
+    width: 7em;
+    .menu-content {
+      color: $white;
+      width: 7em;
+      button {
+        width: 100%;
       }
-      iframe {
-        display: flex;
-        flex: 1 auto;
+      & > .button--purple {
+        @include transition(box-shadow $transition-time ease-in-out);
+        box-shadow: 0.5em 0 0 0 $purple-light inset;
+        &:hover {
+          box-shadow: 0.5em 0 0 0 $green-dark inset;
+        }
+        &.active {
+          background: $purple-dark;
+          box-shadow: 0.5em 0 0 0 $green-light inset;
+        }
       }
     }
   }
-  .menu-container {
-    display: none;
-    background: $purple-light;
-    .menu {
-      width: 7em;
-      .menu-content {
-        color: $white;
-        width: 7em;
-        button {
-          width: 100%;
-          &.active {
-            background: $purple-dark;
-          }
-        }
-      }
-    }
-    .menu-options {
-      background: $white;
-      max-width: 20em;
-      .option {
-        width: 20em;
-        padding: $content-padding;
-        color: $black;
+  .menu-options {
+    background: $white;
+    max-width: 20em;
+    .option {
+      width: 20em;
+      padding: $content-padding;
+      color: $black;
+      display: flex;
+      box-sizing: border-box;
+      flex-direction: column;
+      .option-header {
         display: flex;
-        box-sizing: border-box;
-        flex-direction: column;
+        justify-content: space-between;
         .text-heading {
           text-align: center;
-          margin-top: 0;
-        }
-        input {
-          padding: 0.25em 0.75em;
-          margin: $content-padding/4;
-          width: 100%;
-          box-sizing: border-box;
-        }
-        button {
-          margin: $content-padding/4;
         }
       }
+      input {
+        padding: 0.25em 0.75em;
+        margin: $content-padding/4;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      button {
+        margin: $content-padding/4;
+      }
     }
-    &.visible {
-      display: flex;
-      justify-content: center;
-      align-content: flex-start;
-    }
+  }
+  &.visible {
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
   }
 }
 
@@ -199,9 +208,8 @@ body {
 }
 
 .draggable {
-  cursor: pointer;
+  cursor: move;
 }
-
 
 .visible {
   display: flex !important;
@@ -251,6 +259,9 @@ body {
       align-items: center;
       padding: 0.5em 0;
     }
+  }
+  & > li {
+    margin-bottom: 1em;
   }
   .ghost {
     background: $off-white;

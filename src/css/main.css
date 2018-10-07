@@ -377,64 +377,71 @@ body {
   flex: 1 auto;
   flex-direction: row;
   background: #222222; }
-  #main .streams {
-    display: flex;
-    flex: 1 auto; }
-  #main .chats {
+
+.chats {
+  display: flex;
+  flex: 1 auto;
+  flex-direction: column; }
+  .chats .add-chat-container {
+    background: #4A4A4A; }
+  .chats .stream-chat {
     display: flex;
     flex: 1 auto;
-    flex-direction: column; }
-    #main .chats .add-chat-container {
-      background: #4A4A4A; }
-    #main .chats .stream-chat {
+    flex-direction: column;
+    background: #1DD1A1; }
+    .chats .stream-chat .chat-controls {
       display: flex;
-      flex: 1 auto;
-      flex-direction: column;
-      background: #1DD1A1; }
-      #main .chats .stream-chat .chat-controls {
-        display: flex;
-        justify-content: space-evenly; }
-        #main .chats .stream-chat .chat-controls button {
-          width: 100%; }
-      #main .chats .stream-chat iframe {
-        display: flex;
-        flex: 1 auto; }
-  #main .menu-container {
-    display: none;
-    background: #8452e4; }
-    #main .menu-container .menu {
+      justify-content: space-evenly; }
+      .chats .stream-chat .chat-controls button {
+        width: 100%; }
+    .chats .stream-chat iframe {
+      display: flex;
+      flex: 1 auto; }
+
+.menu-container {
+  display: none;
+  background: #8452e4; }
+  .menu-container .menu {
+    width: 7em; }
+    .menu-container .menu .menu-content {
+      color: #FEFEFE;
       width: 7em; }
-      #main .menu-container .menu .menu-content {
-        color: #FEFEFE;
-        width: 7em; }
-        #main .menu-container .menu .menu-content button {
-          width: 100%; }
-          #main .menu-container .menu .menu-content button.active {
-            background: #7D48E4; }
-    #main .menu-container .menu-options {
-      background: #FEFEFE;
-      max-width: 20em; }
-      #main .menu-container .menu-options .option {
-        width: 20em;
-        padding: 1em;
-        color: #222222;
-        display: flex;
-        box-sizing: border-box;
-        flex-direction: column; }
-        #main .menu-container .menu-options .option .text-heading {
-          text-align: center;
-          margin-top: 0; }
-        #main .menu-container .menu-options .option input {
-          padding: 0.25em 0.75em;
-          margin: 0.25em;
-          width: 100%;
-          box-sizing: border-box; }
-        #main .menu-container .menu-options .option button {
-          margin: 0.25em; }
-    #main .menu-container.visible {
+      .menu-container .menu .menu-content button {
+        width: 100%; }
+      .menu-container .menu .menu-content > .button--purple {
+        transition: box-shadow 0.25s ease-in-out;
+        box-shadow: 0.5em 0 0 0 #8452e4 inset; }
+        .menu-container .menu .menu-content > .button--purple:hover {
+          box-shadow: 0.5em 0 0 0 #10AC84 inset; }
+        .menu-container .menu .menu-content > .button--purple.active {
+          background: #7D48E4;
+          box-shadow: 0.5em 0 0 0 #1DD1A1 inset; }
+  .menu-container .menu-options {
+    background: #FEFEFE;
+    max-width: 20em; }
+    .menu-container .menu-options .option {
+      width: 20em;
+      padding: 1em;
+      color: #222222;
       display: flex;
-      justify-content: center;
-      align-content: flex-start; }
+      box-sizing: border-box;
+      flex-direction: column; }
+      .menu-container .menu-options .option .option-header {
+        display: flex;
+        justify-content: space-between; }
+        .menu-container .menu-options .option .option-header .text-heading {
+          text-align: center; }
+      .menu-container .menu-options .option input {
+        padding: 0.25em 0.75em;
+        margin: 0.25em;
+        width: 100%;
+        box-sizing: border-box; }
+      .menu-container .menu-options .option button {
+        margin: 0.25em; }
+  .menu-container.visible {
+    display: flex;
+    justify-content: center;
+    align-content: flex-start; }
 
 .stream-history ul {
   padding: 0;
@@ -488,7 +495,7 @@ body {
         width: 100%; }
 
 .draggable {
-  cursor: pointer; }
+  cursor: move; }
 
 .visible {
   display: flex !important; }
@@ -527,6 +534,8 @@ body {
       justify-content: space-between;
       align-items: center;
       padding: 0.5em 0; }
+  .preset-list > li {
+    margin-bottom: 1em; }
   .preset-list .ghost {
     background: #DEDEDE; }
 

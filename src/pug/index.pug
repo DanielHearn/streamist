@@ -47,17 +47,12 @@ html(lang='en')
                 :options='options')
         chats(:streams='currentStreams', 
               :options='options')
-    // TODO
-    // Fix frameURI error spam
-    // Reorder chat buttons, up, down
-    // Reorder stream buttons
-    // Move to single stream object i.e include date added
     script(src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js')
     script(src='https://embed.twitch.tv/embed/v1.js')
     script(src="https://cdnjs.cloudflare.com/ajax/libs/screenfull.js/3.3.2/screenfull.min.js")
     script(src="//cdn.jsdelivr.net/npm/sortablejs@1.7.0/Sortable.min.js")
     script(src="//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.15.0/vuedraggable.min.js")
-    script(src='js/moment.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.29.0/date_fns.min.js')
     script(src='js/manytwitch.js')
     script(src='js/polyfill.js')
 
