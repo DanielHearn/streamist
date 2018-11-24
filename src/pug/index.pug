@@ -28,7 +28,7 @@ html(lang='en')
         div.nav-right
           button.button--green(@click='toggleFullscreen', title="Toggle Fullscreen") 
             i.material-icons fullscreen
-          div 
+          div(v-if="currentStreams.length")
             p.sub-text Show Chat
             label.switch
               input(type="checkbox", checked, @click='toggleChat', title="Toggle Chat")

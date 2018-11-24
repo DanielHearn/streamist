@@ -1,6 +1,6 @@
 input, button {
     @include border-radius;
-    padding: 0.75em 1em;
+    padding: 0.6em 0.8em;
     font-size: 1em;
     font-weight: 600;
     p {
@@ -46,6 +46,9 @@ button {
 }
   
 .button--green {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: $green-light;
     &:hover {
       background: $green-dark;
@@ -57,6 +60,10 @@ button {
     &:hover {
       background: $purple-dark;
     }
+}
+
+.button--dark {
+    background: $dark;
 }
   
 textarea {
@@ -75,13 +82,13 @@ select {
 }
 
 .button-menu {
-    padding: 1.25em 1em;
+    padding: 0.6em 0.8em;
     z-index: 5;
     cursor: pointer;
     @include border-radius;
     span {
         height: 3px;
-        width: 35px;
+        width: 30px;
         background-color: $white;
         position: relative;
         display: block;
@@ -95,7 +102,7 @@ select {
         }
         &:before, &:after {
             height: 3px;
-            width: 35px;
+            width: 30px;
             background-color: $white;
             position: absolute;
             content: "";
@@ -147,12 +154,12 @@ select {
         height: 1.5em;
         width: 1.25em;
         bottom: -0.25em;
-        background-color: $green-light;
+        background-color: $green-dark;
         @include transition(background $transition-time ease-in-out, transform $transition-time ease-in-out);
     }
     
     input:checked + .slider:before {
-        background-color: $green-dark;
+        background-color: $green-light;
     }
     
     

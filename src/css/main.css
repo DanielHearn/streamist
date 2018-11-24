@@ -193,7 +193,7 @@ nav {
 
 input, button {
   border-radius: 3px;
-  padding: 0.75em 1em;
+  padding: 0.6em 0.8em;
   font-size: 1em;
   font-weight: 600; }
   input p, button p {
@@ -201,7 +201,7 @@ input, button {
     font-weight: 600; }
 
 input {
-  background: #DEDEDE;
+  background: #f1f1f1;
   border: none; }
 
 form input {
@@ -228,6 +228,9 @@ button {
   width: 100%; }
 
 .button--green {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: #1DD1A1; }
   .button--green:hover {
     background: #10AC84; }
@@ -237,6 +240,9 @@ button {
   .button--purple:hover {
     background: #7D48E4; }
 
+.button--dark {
+  background: #353535; }
+
 textarea {
   resize: none;
   width: 100%;
@@ -244,19 +250,19 @@ textarea {
 
 select {
   padding: 0.75em 1.25em;
-  background: #DEDEDE; }
+  background: #f1f1f1; }
   select, select option {
     font-size: 1em;
     font-weight: 600; }
 
 .button-menu {
-  padding: 1.25em 1em;
+  padding: 0.6em 0.8em;
   z-index: 5;
   cursor: pointer;
   border-radius: 3px; }
   .button-menu span {
     height: 3px;
-    width: 35px;
+    width: 30px;
     background-color: #FEFEFE;
     position: relative;
     display: block;
@@ -268,7 +274,7 @@ select {
       top: 10px; }
     .button-menu span:before, .button-menu span:after {
       height: 3px;
-      width: 35px;
+      width: 30px;
       background-color: #FEFEFE;
       position: absolute;
       content: "";
@@ -301,7 +307,7 @@ select {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #DEDEDE;
+    background-color: #f1f1f1;
     -webkit-transition: .4s;
     transition: .4s; }
   .switch .slider:before {
@@ -311,10 +317,10 @@ select {
     height: 1.5em;
     width: 1.25em;
     bottom: -0.25em;
-    background-color: #1DD1A1;
+    background-color: #10AC84;
     transition: background 0.25s ease-in-out, transform 0.25s ease-in-out; }
   .switch input:checked + .slider:before {
-    background-color: #10AC84; }
+    background-color: #1DD1A1; }
   .switch input:checked + .slider:before {
     transform: translateX(1.3em); }
 
@@ -370,7 +376,7 @@ body {
   height: 100%;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 4em 14fr; }
+  grid-template-rows: 3.5em 1fr; }
 
 #main {
   display: flex;
@@ -384,6 +390,8 @@ body {
   flex-direction: column; }
   .chats .add-chat-container {
     background: #4A4A4A; }
+    .chats .add-chat-container button {
+      border-radius: 0; }
   .chats .stream-chat {
     display: flex;
     flex: 1 auto;
@@ -392,15 +400,17 @@ body {
     .chats .stream-chat .chat-controls {
       display: flex;
       justify-content: space-evenly; }
-      .chats .stream-chat .chat-controls button {
-        width: 100%; }
+      .chats .stream-chat .chat-controls .button-container {
+        flex: 1 auto; }
+        .chats .stream-chat .chat-controls .button-container button {
+          width: 100%; }
     .chats .stream-chat iframe {
       display: flex;
       flex: 1 auto; }
 
 .menu-container {
   display: none;
-  background: #8452e4; }
+  background: #353535; }
   .menu-container .menu {
     width: 7em; }
     .menu-container .menu .menu-content {
@@ -408,13 +418,13 @@ body {
       width: 7em; }
       .menu-container .menu .menu-content button {
         width: 100%; }
-      .menu-container .menu .menu-content > .button--purple {
+      .menu-container .menu .menu-content > .button--dark {
         transition: box-shadow 0.25s ease-in-out;
-        box-shadow: 0.5em 0 0 0 #8452e4 inset; }
-        .menu-container .menu .menu-content > .button--purple:hover {
+        border-radius: unset;
+        box-shadow: 0.5em 0 0 0 #353535 inset; }
+        .menu-container .menu .menu-content > .button--dark:hover {
           box-shadow: 0.5em 0 0 0 #10AC84 inset; }
-        .menu-container .menu .menu-content > .button--purple.active {
-          background: #7D48E4;
+        .menu-container .menu .menu-content > .button--dark.active {
           box-shadow: 0.5em 0 0 0 #1DD1A1 inset; }
   .menu-container .menu-options {
     background: #FEFEFE;
@@ -428,11 +438,11 @@ body {
       flex-direction: column; }
       .menu-container .menu-options .option .option-header {
         display: flex;
-        justify-content: space-between; }
+        justify-content: space-between;
+        align-items: center; }
         .menu-container .menu-options .option .option-header .text-heading {
           text-align: center; }
       .menu-container .menu-options .option input {
-        padding: 0.25em 0.75em;
         margin: 0.25em;
         width: 100%;
         box-sizing: border-box; }
@@ -450,6 +460,9 @@ body {
 .input-form {
   display: flex;
   margin: 0; }
+  .input-form input, .input-form button {
+    margin-left: 0 !important;
+    margin-right: 0 !important; }
 
 .streams {
   display: flex;
@@ -467,6 +480,17 @@ body {
   .stream:hover .stream-controls {
     display: flex;
     opacity: 1; }
+  .stream .stream-overlay {
+    display: none;
+    opacity: 0;
+    background: grey;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transition: opacity 0.125s ease-in-out; }
+    .stream .stream-overlay.active {
+      display: flex;
+      opacity: 0.25; }
   .stream .stream-controls {
     border-radius: 3px;
     position: absolute;
@@ -476,9 +500,13 @@ body {
     align-items: center;
     background: #1DD1A1;
     padding: 0.5em;
+    cursor: default;
     right: 1em;
     top: 1em;
     opacity: 0; }
+    .stream .stream-controls.active {
+      display: flex;
+      opacity: 1; }
     .stream .stream-controls p, .stream .stream-controls button {
       margin: 0 0.25em; }
   .stream .stream-main {
@@ -494,9 +522,6 @@ body {
         flex: 1 1 auto;
         width: 100%; }
 
-.draggable {
-  cursor: move; }
-
 .visible {
   display: flex !important; }
 
@@ -505,7 +530,8 @@ body {
 
 .url {
   color: #FEFEFE;
-  text-decoration: underline; }
+  text-decoration: underline;
+  padding: 0 0.5em; }
   .url:visited {
     color: #FEFEFE; }
 
@@ -513,7 +539,7 @@ body {
   padding-bottom: 0.5em; }
   .stream-history .history-list .history-listing {
     padding: 1em 0;
-    border-bottom: 2px solid #DEDEDE; }
+    border-bottom: 2px solid #f1f1f1; }
     .stream-history .history-list .history-listing .listing-details {
       display: flex;
       flex-direction: row;
@@ -537,13 +563,16 @@ body {
   .preset-list > li {
     margin-bottom: 1em; }
   .preset-list .ghost {
-    background: #DEDEDE; }
+    background: #f1f1f1; }
 
 .draggable {
   user-select: none; }
 
 .handle {
-  padding: 0.5em; }
+  padding: 0.5em;
+  cursor: grab; }
 
 .input-container {
+  display: flex;
+  flex-direction: row;
   margin: 0; }

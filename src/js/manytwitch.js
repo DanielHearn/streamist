@@ -1,5 +1,7 @@
 Vue.component('remove-button', {
-  template: `<button class="button--green material-icons" @click="remove"">delete</button>`,
+  template: `<div class="button-container"><button class="button--green" @click="remove"">
+              <i class="material-icons">delete</i>
+            </button></div>`,
   methods: {
     remove: function () {
       this.$emit('remove')
@@ -8,7 +10,9 @@ Vue.component('remove-button', {
 })
 
 Vue.component('close-button', {
-  template: `<button class="button--green material-icons" @click="close"">close</button>`,
+  template: `<div class="button-container"><button class="button--green" @click="close"">
+              <i class="material-icons">close</i>
+             </button></div>`,
   methods: {
     close: function () {
       this.$emit('close')
@@ -17,10 +21,23 @@ Vue.component('close-button', {
 })
 
 Vue.component('refresh-button', {
-  template: `<button class="button--green material-icons" @click="refresh">refresh</button>`,
+  template: `<div class="button-container"><button class="button--green" @click="refresh"">
+              <i class="material-icons">refresh</i>
+            </button></div>`,
   methods: {
     refresh: function () {
       this.$emit('refresh')
+    }
+  }
+})
+
+Vue.component('load-button', {
+  template: `<div class="button-container"><button class="button--green" @click="load"">
+              <i class="material-icons">play_arrow</i>
+            </button></div>`,
+  methods: {
+    load: function () {
+      this.$emit('load')
     }
   }
 })
@@ -31,23 +48,14 @@ Vue.component('edit-button', {
       active: false
     }
   },
-  template: `<button class="button--green material-icons" @click="edit">
+  template: `<div class="button-container"><button class="button--green" @click="edit">
               <span class="material-icons" :class="{hidden: active}">edit</span>
               <span class="material-icons" :class="{hidden: !active}">close</span>
-            </button>`,
+            </button></div>`,
   methods: {
     edit: function () {
       this.active = !this.active
       this.$emit('edit')
-    }
-  }
-})
-
-Vue.component('load-button', {
-  template: `<button class="button--green material-icons" @click="load">play_arrow</button>`,
-  methods: {
-    load: function () {
-      this.$emit('load')
     }
   }
 })
@@ -72,14 +80,14 @@ Vue.component('input-form', {
 })
 
 Vue.component('stream-controls', {
-  props: ['stream'],
+  props: ['stream', 'numStreams'],
   computed: {
     streamUrl: function () {
       return `https://www.twitch.tv/${this.stream.streamName}`
     }
   },
   template: `<div class="stream-controls">
-              <span class="material-icons handle text--white" title="Reorder stream">drag_handle</span>  
+              <span v-if="numStreams > 1" class="material-icons handle text--white" title="Reorder stream">drag_handle</span>  
               <a class="url" :href="streamUrl" target="_blank" title="Open Twitch stream">{{ stream.streamName }}</a>
               <remove-button v-on:remove="remove" title="Remove stream"></remove-button>
               <refresh-button v-on:refresh="refresh" title="Refresh stream"></refresh-button>
@@ -95,7 +103,7 @@ Vue.component('stream-controls', {
 })
 
 Vue.component('stream', {
-  props: ['stream', 'options'],
+  props: ['stream', 'numStreams', 'options', 'hover'],
   data: function () {
     return {
       playerEmbed: {},
@@ -103,7 +111,14 @@ Vue.component('stream', {
     }
   },
   template: `<div class="stream">
-              <stream-controls :stream="stream" v-on:remove="remove" v-on:refresh="refresh"></stream-controls>
+              <div class="stream-overlay" :class="{active: hover}"></div>
+              <stream-controls 
+                :stream="stream"
+                :numStreams="numStreams"
+                v-on:remove="remove"
+                v-on:refresh="refresh"
+                :class="{active: hover}"
+                ></stream-controls>
               <div class="stream-main">
                 <div class="stream-player" :id="stream.embedPlayerID"></div>
               </div>
@@ -141,7 +156,8 @@ Vue.component('streams', {
   props: ['streams', 'options'],
   data: function () {
     return {
-      orderedStreams: this.streams.slice()
+      orderedStreams: this.streams.slice(),
+      drag: false
     }
   },
   watch: {
@@ -150,6 +166,8 @@ Vue.component('streams', {
       if (this.orderedStreams !== this.streams) {
         this.orderedStreams = this.streams.slice()
       }
+      console.log(this.streams)
+      console.log(this.orderedStreams)
     },
     'orderedStreams': function () {
       console.log('Ordered Streams:', this.orderedStreams)
@@ -161,8 +179,17 @@ Vue.component('streams', {
               v-model="orderedStreams" 
               @start="drag=true" 
               @end="drag=false"
-              :options="{ghostClass:'ghost'}">
-                <stream class="draggable" v-for="stream in orderedStreams" :key="stream.embedPlayerID" :stream="stream" :options="options" v-on:remove-stream="removeStream"></stream>
+              :options="{ghostClass:'ghost', handle:'.handle'}">
+                <stream 
+                  class="draggable" 
+                  v-for="stream in orderedStreams"
+                  :key="stream.embedPlayerID"
+                  :stream="stream"
+                  :numStreams="streams.length"
+                  :options="options"
+                  :hover="drag"
+                  v-on:remove-stream="removeStream"
+                  ></stream>
               </draggable>`,
   methods: {
     removeStream: function (removedStream) {
@@ -387,8 +414,8 @@ Vue.component('preset-listing', {
     }
   },
   template: `<li>
+              <input type="text" contenteditable="true" v-model="presetName"></input>
               <div class="input-container">
-                <input type="text" contenteditable="true" v-model="presetName"></input>
                 <load-button v-on:load="loadPreset" title="Load Preset"></load-button>
                 <edit-button v-on:edit="toggleEditMode"  title="Edit Preset"></edit-button>
                 <remove-button v-on:remove="deletePreset"  title="Delete Preset"></remove-button>
@@ -490,7 +517,7 @@ Vue.component('preset-options', {
                 <button class="button--green" type="submit" title="Create Preset">Create</button>
               </form>  
               <p class="text" v-if="presetsDisabled">No presets saved</p>
-              <ul class="preset-list">
+              <ul class="preset-list" v-if="!presetsDisabled">
                 <preset-listing
                   v-for="preset in streamPresets"
                   :preset="preset"
@@ -501,12 +528,6 @@ Vue.component('preset-options', {
               </ul>
               <button class="button--green" @click="saveCurrentAsPreset" :disabled="noStreams">Save Streams as Preset</button>
               <button class="button--green" @click="clearPresets" :disabled="presetsDisabled">Clear Presets</button>
-              <button class="button--green" @click="exportPresets" :disabled="presetsDisabled">Export Presets</button>
-              <button class="button--green" @click="importPresets">Import Presets</button>
-              <div :class="{hidden: !importPresetsOpened}">
-                <textarea v-model="importedPresets"></textarea>
-                <button class="button--green" @click="applyImportedPresets">Apply Presets</button>
-              </div>
             </div>`,
   methods: {
     copyToClipboard: function (str) {
@@ -527,27 +548,6 @@ Vue.component('preset-options', {
         document.getSelection().removeAllRanges() // Unselect everything on the HTML document
         document.getSelection().addRange(selected) // Restore the original selection
       }
-    },
-    applyImportedPresets: function () {
-      console.log('Apply Presets')
-      // TODO: Add more validation, array of objects
-      // TODO: Handle indexing here, change to be correctly ordered
-      try {
-        // TODO: Notification popup saying applied presets
-        this.updatePresets(JSON.parse(this.importedPresets))
-        this.importPresetsOpened = false
-      } catch (e) {
-        // TODO: Notification error
-      }
-    },
-    importPresets: function () {
-      console.log('Import Presets')
-      this.importPresetsOpened = !this.importPresetsOpened
-    },
-    exportPresets: function () {
-      console.log('Export Presets')
-      this.copyToClipboard(this.stringifiedPresets)
-      // TODO: Notification popup saying exported to clipboard
     },
     deletePreset: function (removedPreset) {
       const newPresets = this.streamPresets.filter(preset => preset.index !== removedPreset.index)
@@ -649,19 +649,19 @@ Vue.component('menu-container', {
   template: `<div class="menu-container" :class="{visible: options.menuVisible}">
               <div class="menu">
                 <div class="menu-content">
-                  <button class="button--purple" @click="loadOptionCat('History')" :class="{active: currentOptionCat === 'History'}">
+                  <button class="button--dark" @click="loadOptionCat('History')" :class="{active: currentOptionCat === 'History'}">
                     <i class="material-icons">history</i>
                     <p>History</p>
                   </button>
-                  <button class="button--purple" @click="loadOptionCat('Presets')" :class="{active: currentOptionCat === 'Presets'}">
+                  <button class="button--dark" @click="loadOptionCat('Presets')" :class="{active: currentOptionCat === 'Presets'}">
                     <i class="material-icons">view_module</i>
                     <p>Presets</p>
                   </button>
-                  <button class="button--purple" @click="loadOptionCat('Settings')" :class="{active: currentOptionCat === 'Settings'}">
+                  <button class="button--dark" @click="loadOptionCat('Settings')" :class="{active: currentOptionCat === 'Settings'}">
                     <i class="material-icons">settings</i>
                     <p>Settings</p>
                   </button>
-                  <button class="button--purple" @click="loadOptionCat('About')" :class="{active: currentOptionCat === 'About'}">
+                  <button class="button--dark" @click="loadOptionCat('About')" :class="{active: currentOptionCat === 'About'}">
                     <i class="material-icons">info</i>
                     <p>About</p>
                   </button>

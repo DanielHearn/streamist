@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:500,600,700');
 
 $white: #FEFEFE;
-$off-white: #DEDEDE;
+$off-white: #f1f1f1;
 $grey: #4A4A4A;
+$dark: #353535;
 $black: #222222;
 $green-light: #1DD1A1;
 $green-dark: #10AC84;
@@ -48,7 +49,7 @@ body {
   height: 100%;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 4em 14fr;
+  grid-template-rows: 3.5em 1fr;
 }
 
 #main {
@@ -64,6 +65,9 @@ body {
   flex-direction: column;
   .add-chat-container {
     background: $grey;
+    button {
+      border-radius: 0;
+    }
   }
   .stream-chat {
     display: flex;
@@ -73,8 +77,11 @@ body {
     .chat-controls {
       display: flex;
       justify-content: space-evenly;
-      button {
-        width: 100%;
+      .button-container {
+        flex: 1 auto;
+        button {
+          width: 100%;
+        }
       }
     }
     iframe {
@@ -86,7 +93,7 @@ body {
 
 .menu-container {
   display: none;
-  background: $purple-light;
+  background: $dark;
   .menu {
     width: 7em;
     .menu-content {
@@ -95,14 +102,14 @@ body {
       button {
         width: 100%;
       }
-      & > .button--purple {
+      & > .button--dark {
         @include transition(box-shadow $transition-time ease-in-out);
-        box-shadow: 0.5em 0 0 0 $purple-light inset;
+        border-radius: unset;
+        box-shadow: 0.5em 0 0 0 $dark inset;
         &:hover {
           box-shadow: 0.5em 0 0 0 $green-dark inset;
         }
         &.active {
-          background: $purple-dark;
           box-shadow: 0.5em 0 0 0 $green-light inset;
         }
       }
@@ -121,12 +128,13 @@ body {
       .option-header {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         .text-heading {
           text-align: center;
         }
       }
       input {
-        padding: 0.25em 0.75em;
+        //padding: 0.25em 0.75em;
         margin: $content-padding/4;
         width: 100%;
         box-sizing: border-box;
@@ -153,6 +161,10 @@ body {
 .input-form {
   display: flex;  
   margin: 0;
+  input, button {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
 }
 
 .streams {
@@ -173,6 +185,19 @@ body {
     display: flex;
     opacity: 1;
   }
+  .stream-overlay {
+    display: none;
+    opacity: 0;
+    background: grey;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    @include transition(opacity $transition-time/2 ease-in-out);
+    &.active {
+      display: flex;
+      opacity: 0.25;
+    }
+  }
   .stream-controls {
     @include border-radius;
     position: absolute;
@@ -182,9 +207,14 @@ body {
     align-items: center;
     background: $green-light;
     padding: $content-padding/2;
+    cursor: default;
     right: 1em;
     top: 1em;
     opacity: 0;
+    &.active {
+      display: flex;
+      opacity: 1;
+    }
     p, button {
       margin: 0 0.25em;
     }
@@ -207,10 +237,6 @@ body {
   }
 }
 
-.draggable {
-  cursor: move;
-}
-
 .visible {
   display: flex !important;
 }
@@ -222,6 +248,7 @@ body {
 .url {
   color: $white;
   text-decoration: underline;
+  padding: 0 0.5em;
   &:visited {
     color: $white;
   }
@@ -274,8 +301,11 @@ body {
 
 .handle {
   padding: $content-padding/2;
+  cursor: grab;
 }
 
 .input-container {
+  display: flex;
+  flex-direction: row;
   margin: 0;
 }
