@@ -181,7 +181,7 @@ nav {
   padding: 0.5em;
   flex: 1 auto;
   color: #FEFEFE;
-  background: #8452e4; }
+  background: #5764d7; }
   nav input {
     max-width: 10em; }
   nav div {
@@ -236,9 +236,9 @@ button {
     background: #10AC84; }
 
 .button--purple {
-  background: #8452e4; }
+  background: #5764d7; }
   .button--purple:hover {
-    background: #7D48E4; }
+    background: #4e5bcc; }
 
 .button--dark {
   background: #353535; }
