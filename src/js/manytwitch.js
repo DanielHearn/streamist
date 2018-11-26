@@ -393,7 +393,6 @@ Vue.component('preset-listing', {
   data: function () {
     return {
       orderedStreams: this.preset.streams,
-      newPresetStreamName: '',
       presetName: this.preset.name,
       editMode: false
     }
@@ -414,25 +413,29 @@ Vue.component('preset-listing', {
     }
   },
   template: `<li>
-              <input type="text" contenteditable="true" v-model="presetName"></input>
+              <input
+                type="text"
+                contenteditable="true"
+                v-model="presetName">
+              </input>
               <div class="input-container">
-                <load-button v-on:load="loadPreset" title="Load Preset"></load-button>
-                <edit-button v-on:edit="toggleEditMode"  title="Edit Preset"></edit-button>
-                <remove-button v-on:remove="deletePreset"  title="Delete Preset"></remove-button>
+                <load-button
+                  v-on:load="loadPreset"
+                  title="Load Preset">
+                </load-button>
+                <edit-button
+                  v-on:edit="toggleEditMode"
+                  title="Edit Preset">
+                </edit-button>
+                <remove-button 
+                  v-on:remove="deletePreset"
+                  title="Delete Preset">
+                </remove-button>
               </div>
               <div v-if="editMode">
-                <form 
-                  class="input-form"
-                  name="newPresetStream" 
-                  v-on:submit.prevent="newPresetStream">
-                  <input 
-                    type="text"
-                    name="newPresetStreamInput"
-                    required="required"
-                    placeholder="Stream Name"
-                    v-model="newPresetStreamName">
-                  <button class="button--green" type="submit" title="Add Stream">Add</button>
-                </form>  
+                <input-form 
+                  v-on:submit="newPresetStream"
+                  placeholder="Stream Name"></input-form>
                 <ul>
                   <draggable 
                     v-model="orderedStreams" 
@@ -466,13 +469,11 @@ Vue.component('preset-listing', {
     toggleEditMode: function () {
       this.editMode = !this.editMode
     },
-    newPresetStream: function (e) {
+    newPresetStream: function (e, newPresetStreamName) {
       e.preventDefault()
-      if (!this.newPresetStreamName) {
+      if (!newPresetStreamName) {
         return false
       }
-      const newPresetStreamName = this.newPresetStreamName
-      this.newPresetStreamName = ''
       const updatedPreset = this.preset
       updatedPreset.streams = updatedPreset.streams.concat([newPresetStreamName])
       this.$emit('update-preset', updatedPreset)
@@ -485,7 +486,6 @@ Vue.component('preset-options', {
   props: ['streamPresets', 'currentStreams'],
   data: function () {
     return {
-      newPresetName: '',
       importPresetsOpened: false,
       importedPresets: JSON.stringify(this.streamPresets)
     }
@@ -504,18 +504,14 @@ Vue.component('preset-options', {
   template: `<div class="option">
               <div class="option-header">
                 <p class="text-heading">Presets</p>
-                <close-button v-on:close="closeOptions" title="Close Settings"></close-button>
+                <close-button 
+                  v-on:close="closeOptions"
+                  title="Close Settings">
+                </close-button>
               </div>
-              <form class="input-form"
-                name="newPreset" 
-                v-on:submit.prevent="createPreset">
-                <input type="text"
-                  name="newPresetInput"
-                  required="required"
-                  placeholder="Preset Name"
-                  v-model="newPresetName">
-                <button class="button--green" type="submit" title="Create Preset">Create</button>
-              </form>  
+              <input-form 
+                v-on:submit="createPreset"
+                placeholder="Preset Name"></input-form>
               <p class="text" v-if="presetsDisabled">No presets saved</p>
               <ul class="preset-list" v-if="!presetsDisabled">
                 <preset-listing
@@ -587,13 +583,11 @@ Vue.component('preset-options', {
     updatePresets: function (newPresets) {
       this.$emit('update-presets', newPresets)
     },
-    createPreset: function (e) {
+    createPreset: function (e, presetName) {
       e.preventDefault()
-      if (!this.newPresetName) {
+      if (!presetName) {
         return false
       }
-      const presetName = this.newPresetName
-      this.newPresetName = ''
       console.log(this.streamPresets)
       const newPreset = this.createEmptyPreset(presetName)
       const newPresets = this.streamPresets.concat(newPreset)
@@ -609,12 +603,15 @@ Vue.component('preset-options', {
   }
 })
 
-Vue.component('setting-options', {
+Vue.component('help-options', {
   template: `<div class="option">
               <div class="option-header">
-                <p class="text-heading">Settings</p>
-                <close-button v-on:close="closeOptions" title="Close Settings"></close-button>
+                <p class="text-heading">Help</p>
+                <close-button v-on:close="closeOptions" title="Close Help"></close-button>
               </div>
+              <p class="text">To watch a Twitch stream type the channel name into the search box at the top of the page and click add.</p>
+              <p class="text">To reorder the current Twitch streams playing hover over the stream and click and drag the drag handle to the new location.</p>
+              <p class="text">Use the presets system on the menu bar to save sets of Twitch channels that can be loaded in future Manytwitch sessions with a single click.</p>
             </div>`,
   methods: {
     closeOptions: function () {
@@ -657,9 +654,9 @@ Vue.component('menu-container', {
                     <i class="material-icons">view_module</i>
                     <p>Presets</p>
                   </button>
-                  <button class="button--dark" @click="loadOptionCat('Settings')" :class="{active: currentOptionCat === 'Settings'}">
-                    <i class="material-icons">settings</i>
-                    <p>Settings</p>
+                  <button class="button--dark" @click="loadOptionCat('Help')" :class="{active: currentOptionCat === 'Help'}">
+                    <i class="material-icons">help</i>
+                    <p>Help</p>
                   </button>
                   <button class="button--dark" @click="loadOptionCat('About')" :class="{active: currentOptionCat === 'About'}">
                     <i class="material-icons">info</i>
@@ -683,10 +680,10 @@ Vue.component('menu-container', {
                   v-on:load-preset="loadPreset"
                   v-on:close-options="closeOptions"
                 ></preset-options>
-                <setting-options
-                  v-if="currentOptionCat === 'Settings'"
+                <help-options
+                  v-if="currentOptionCat === 'Help'"
                   v-on:close-options="closeOptions"
-                ></setting-options>
+                ></help-options>
                 <about
                   v-if="currentOptionCat === 'About'"
                   v-on:close-options="closeOptions"
