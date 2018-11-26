@@ -19,9 +19,8 @@ To specify a channel within the url use 'manytwitch/?stream=channel1,channel2' c
 - Chat reordering
 - Improved styling with consistently design components
 - Mobile support
-- Notifications
+- Notifications - E.g. preset saved, stream addeddeleted
 - Home page content via the Twitch API
-- Replace moment relative date with date-fns function 
 - Reduce dependencies
 
 ## Dependencies
