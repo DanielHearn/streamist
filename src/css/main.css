@@ -476,17 +476,26 @@ body {
   flex: 1 1 auto;
   flex-direction: column;
   position: relative;
-  color: #FEFEFE; }
+  color: #FEFEFE;
+  /*&.active .stream-player,  &.active .stream-main{
+    pointer-events: none !important;
+    iframe {
+      pointer-events: none !important;
+      display: none !important;
+    }
+  }*/ }
   .stream:hover .stream-controls {
     display: flex;
     opacity: 1; }
   .stream .stream-overlay {
     display: none;
     opacity: 0;
-    background: grey;
+    background: #f1f1f1;
     width: 100%;
     height: 100%;
     position: absolute;
+    flex: 1 auto;
+    z-index: 5;
     transition: opacity 0.125s ease-in-out; }
     .stream .stream-overlay.active {
       display: flex;
@@ -503,7 +512,8 @@ body {
     cursor: default;
     right: 1em;
     top: 1em;
-    opacity: 0; }
+    opacity: 0;
+    z-index: 10; }
     .stream .stream-controls.active {
       display: flex;
       opacity: 1; }

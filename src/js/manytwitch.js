@@ -110,8 +110,7 @@ Vue.component('stream', {
       player: {}
     }
   },
-  template: `<div class="stream">
-              <div class="stream-overlay" :class="{active: hover}"></div>
+  template: `<div class="stream" :class="{active: hover}">
               <stream-controls 
                 :stream="stream"
                 :numStreams="numStreams"
@@ -120,7 +119,8 @@ Vue.component('stream', {
                 :class="{active: hover}"
                 ></stream-controls>
               <div class="stream-main">
-                <div class="stream-player" :id="stream.embedPlayerID"></div>
+                <div class="stream-overlay" :class="{active: hover}"></div>
+                <div class="stream-player" draggable="false" :id="stream.embedPlayerID"></div>
               </div>
             </div>`,
   methods: {
@@ -179,7 +179,7 @@ Vue.component('streams', {
               v-model="orderedStreams" 
               @start="drag=true" 
               @end="drag=false"
-              :options="{ghostClass:'ghost', handle:'.handle'}">
+              :options="{ghostClass:'ghost', handle:'.handle', filter:'.stream-player', forceFallback:'true'}">
                 <stream 
                   class="draggable" 
                   v-for="stream in orderedStreams"
