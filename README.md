@@ -18,7 +18,8 @@ To specify a channel within the url use 'manytwitch/?stream=channel1,channel2' c
 ## TODO
 - Chat reordering
 - Improved styling with consistently design components
-- Mobile support
+- Mobile/ Tablet support
+- Layouts
 - Notifications - E.g. preset saved, stream addeddeleted
 - Home page content via the Twitch API
 - Reduce dependencies
@@ -26,7 +27,7 @@ To specify a channel within the url use 'manytwitch/?stream=channel1,channel2' c
 ## Dependencies
 - vue draggable to handle model updating on list reorder with drag and drop.
 - screenfull.js for quick and clean access to browser fullscreen api.
-- moment for readable relative date for stream history.
+- date fns for readable relative date for stream history.
 - gulp for workflow automation
 
 ## Gulp tasks
