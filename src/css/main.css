@@ -217,10 +217,10 @@ button {
   cursor: pointer;
   letter-spacing: 0.04em; }
   button:disabled {
-    background: grey;
+    background: #4A4A4A;
     cursor: not-allowed; }
     button:disabled:hover {
-      background: grey; }
+      background: #4A4A4A; }
   button.material-icons {
     padding: 0.40em 0.7em; }
 
@@ -290,7 +290,6 @@ select {
 .button-menu.active span:after {
   transform: rotate(-45deg) translate(7px, -7px); }
 
-/* The switch - the box around the slider */
 .switch {
   position: relative;
   display: inline-block;
@@ -476,14 +475,7 @@ body {
   flex: 1 1 auto;
   flex-direction: column;
   position: relative;
-  color: #FEFEFE;
-  /*&.active .stream-player,  &.active .stream-main{
-    pointer-events: none !important;
-    iframe {
-      pointer-events: none !important;
-      display: none !important;
-    }
-  }*/ }
+  color: #FEFEFE; }
   .stream:hover .stream-controls {
     display: flex;
     opacity: 1; }
@@ -499,7 +491,7 @@ body {
     transition: opacity 0.125s ease-in-out; }
     .stream .stream-overlay.active {
       display: flex;
-      opacity: 0.25; }
+      opacity: 0.1; }
   .stream .stream-controls {
     border-radius: 3px;
     position: absolute;

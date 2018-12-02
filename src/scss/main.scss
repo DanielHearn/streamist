@@ -185,13 +185,6 @@ body {
     display: flex;
     opacity: 1;
   }
-  /*&.active .stream-player,  &.active .stream-main{
-    pointer-events: none !important;
-    iframe {
-      pointer-events: none !important;
-      display: none !important;
-    }
-  }*/
   .stream-overlay {
     display: none;
     opacity: 0;
@@ -205,7 +198,7 @@ body {
     @include transition(opacity $transition-time/2 ease-in-out);
     &.active {
       display: flex;
-      opacity: 0.25;
+      opacity: 0.1;
     }
   }
   .stream-controls {

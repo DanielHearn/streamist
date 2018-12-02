@@ -30,10 +30,10 @@ button {
     cursor: pointer;
     letter-spacing: 0.04em;
     &:disabled {
-      background: grey;
+      background: $grey;
       cursor: not-allowed;
       &:hover {
-        background: grey;  
+        background: $grey;  
       }
     }
     &.material-icons {
@@ -126,7 +126,6 @@ select {
     }
 }
 
-/* The switch - the box around the slider */
 .switch {
     position: relative;
     display: inline-block;
