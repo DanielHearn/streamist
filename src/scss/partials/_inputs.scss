@@ -24,7 +24,6 @@ form {
 }
 
 button {
-    @include transition(background $transition-time ease-in-out);
     color: $white;
     border: 0;
     cursor: pointer;
@@ -50,6 +49,7 @@ button {
     align-items: center;
     justify-content: center;
     background: $green-light;
+    @include transition(background $transition-time ease-in-out);
     &:hover {
       background: $green-dark;
     }

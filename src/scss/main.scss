@@ -167,12 +167,39 @@ body {
   }
 }
 
+.streams-container {
+  display: flex;
+  flex: 1 auto;
+  justify-content: center;
+  align-items: center;
+}
 .streams {
   display: flex;
   flex: 1 auto;
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
+  height: 100%;
+}
+
+.intro-content {
+  text-align: center;
+  color: $white;
+  .intro-title {
+    font-size: $title-size;
+    font-weight: $title-weight;
+    margin: 0.25em 0;
+  }
+  .intro-subheading {
+    font-size: $heading-size;
+    font-weight: $heading-weight;
+    margin-top: 0.5em;
+    margin-bottom: 1.5em;
+  }
+  .intro-text {
+    font-size: $sub-heading-size;
+    font-weight: $sub-heading-weight;
+  }
 }
 
 .stream {
