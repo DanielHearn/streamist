@@ -422,7 +422,7 @@ Vue.component('preset-listing', {
       this.$emit('update-preset', tempPreset)
     }
   },
-  template: `<li>
+  template: `<li class="preset-listing">
               <input
                 type="text"
                 contenteditable="true"
@@ -830,8 +830,27 @@ const manytwitch = new Vue({
       localStorage.setItem('streamHistory', JSON.stringify(streamHistory))
     },
     toggleFullscreen: function () {
-      if (screenfull.enabled) {
-        screenfull.toggle()
+      if (!document.fullscreenElement &&
+          !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+        if (document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen()
+        } else if (document.documentElement.msRequestFullscreen) {
+          document.documentElement.msRequestFullscreen()
+        } else if (document.documentElement.mozRequestFullScreen) {
+          document.documentElement.mozRequestFullScreen()
+        } else if (document.documentElement.webkitRequestFullscreen) {
+          document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT)
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen()
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen()
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen()
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen()
+        }
       }
     },
     insertURLParam: function () {

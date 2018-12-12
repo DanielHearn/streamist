@@ -1,0 +1,30 @@
+.chats {
+  display: flex;
+  flex-direction: column;
+  .add-chat-container {
+    background: $grey;
+    button {
+      border-radius: 0;
+    }
+  }
+  .stream-chat {
+    display: flex;
+    flex: 1 auto;
+    flex-direction: column;
+    background: $green-light;
+    .chat-controls {
+      display: flex;
+      justify-content: space-evenly;
+      .button-container {
+        flex: 1 auto;
+        button {
+          width: 100%;
+        }
+      }
+    }
+    iframe {
+      display: flex;
+      flex: 1 auto;
+    }
+  }
+}

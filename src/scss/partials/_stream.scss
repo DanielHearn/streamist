@@ -1,0 +1,65 @@
+.stream {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  position: relative;
+  color: $white;
+  &:hover .stream-controls {
+    display: flex;
+    opacity: 1;
+  }
+  .stream-overlay {
+    display: none;
+    opacity: 0;
+    background: $off-white;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    flex: 1 auto;
+    //pointer-events: auto;
+    z-index: 5;
+    @include transition(opacity $transition-time/2 ease-in-out);
+    &.active {
+      display: flex;
+      opacity: 0.1;
+    }
+  }
+  .stream-controls {
+    @include border-radius;
+    position: absolute;
+    display: none;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background: $green-light;
+    padding: $content-padding/2;
+    cursor: default;
+    right: 1em;
+    top: 1em;
+    opacity: 0;
+    z-index: 10;
+    &.active {
+      display: flex;
+      opacity: 1;
+    }
+    p, button {
+      margin: 0 0.25em;
+    }
+  }
+  .stream-main {
+    display: flex;
+    flex-direction: row;
+    flex: 1 auto;
+    .stream-player {
+      flex: 3 auto;
+    }
+    .stream-player{
+      display: flex;
+      iframe {
+        display: flex;
+        flex: 1 1 auto;
+        width: 100%;
+      }
+    }
+  }
+}

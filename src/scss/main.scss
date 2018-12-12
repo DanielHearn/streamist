@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:500,600,700');
 
+// COLOURS
 $white: #FEFEFE;
 $off-white: #f1f1f1;
 $grey: #4A4A4A;
@@ -7,9 +8,16 @@ $dark: #353535;
 $black: #222222;
 $green-light: #1DD1A1;
 $green-dark: #10AC84;
-$purple-light: #5764d7;
-$purple-dark: #4e5bcc;
+$purple-light: #4f59a7;
+$purple-dark: #464e95;
 
+// NAV
+$nav-height: 3em;
+
+// MENU
+$menu-width: 6em;
+
+// FONT
 $title-size: 2.5em;
 $title-weight: 700;
 $heading-size: 1.25em;
@@ -27,7 +35,16 @@ $content-padding: 1em;
 $content-border-radius: 3px;
 
 @import 'partials/normalize';
+
 @import 'partials/mixins';
+
+@import 'partials/chat';
+@import 'partials/intro';
+@import 'partials/menu';
+@import 'partials/preset-list';
+@import 'partials/stream-history';
+@import 'partials/stream';
+@import 'partials/streams';
 @import 'partials/nav';
 @import 'partials/inputs';
 @import 'partials/text';
@@ -45,117 +62,21 @@ body {
 }
 
 #manytwitch {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 3.5em 1fr;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex: 1fr;
+  flex-direction: column;
 }
 
 #main {
   display: flex;
   flex: 1 auto;
   flex-direction: row;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
   background: $black;
-}
-
-.chats {
-  display: flex;
-  flex: 1 auto;
-  flex-direction: column;
-  .add-chat-container {
-    background: $grey;
-    button {
-      border-radius: 0;
-    }
-  }
-  .stream-chat {
-    display: flex;
-    flex: 1 auto;
-    flex-direction: column;
-    background: $green-light;
-    .chat-controls {
-      display: flex;
-      justify-content: space-evenly;
-      .button-container {
-        flex: 1 auto;
-        button {
-          width: 100%;
-        }
-      }
-    }
-    iframe {
-      display: flex;
-      flex: 1 auto;
-    }
-  }
-}
-
-.menu-container {
-  display: none;
-  background: $dark;
-  .menu {
-    width: 7em;
-    .menu-content {
-      color: $white;
-      width: 7em;
-      button {
-        width: 100%;
-      }
-      & > .button--dark {
-        @include transition(box-shadow $transition-time ease-in-out);
-        border-radius: unset;
-        box-shadow: 0.5em 0 0 0 $dark inset;
-        &:hover {
-          box-shadow: 0.5em 0 0 0 $green-dark inset;
-        }
-        &.active {
-          box-shadow: 0.5em 0 0 0 $green-light inset;
-        }
-      }
-    }
-  }
-  .menu-options {
-    background: $white;
-    max-width: 20em;
-    .option {
-      width: 20em;
-      padding: $content-padding;
-      color: $black;
-      display: flex;
-      box-sizing: border-box;
-      flex-direction: column;
-      .option-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        .text-heading {
-          text-align: center;
-        }
-      }
-      input {
-        //padding: 0.25em 0.75em;
-        margin: $content-padding/4;
-        width: 100%;
-        box-sizing: border-box;
-      }
-      button {
-        margin: $content-padding/4;
-      }
-    }
-  }
-  &.visible {
-    display: flex;
-    justify-content: center;
-    align-content: flex-start;
-  }
-}
-
-.stream-history {
-  ul {
-    padding: 0;
-    margin: 0;
-  }
 }
 
 .input-form {
@@ -164,107 +85,6 @@ body {
   input, button {
     margin-left: 0 !important;
     margin-right: 0 !important;
-  }
-}
-
-.streams-container {
-  display: flex;
-  flex: 1 auto;
-  justify-content: center;
-  align-items: center;
-}
-.streams {
-  display: flex;
-  flex: 1 auto;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-  height: 100%;
-}
-
-.intro-content {
-  text-align: center;
-  color: $white;
-  .intro-title {
-    font-size: $title-size;
-    font-weight: $title-weight;
-    margin: 0.25em 0;
-  }
-  .intro-subheading {
-    font-size: $heading-size;
-    font-weight: $heading-weight;
-    margin-top: 0.5em;
-    margin-bottom: 1.5em;
-  }
-  .intro-text {
-    font-size: $sub-heading-size;
-    font-weight: $sub-heading-weight;
-  }
-}
-
-.stream {
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
-  position: relative;
-  color: $white;
-  &:hover .stream-controls {
-    display: flex;
-    opacity: 1;
-  }
-  .stream-overlay {
-    display: none;
-    opacity: 0;
-    background: $off-white;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    flex: 1 auto;
-    //pointer-events: auto;
-    z-index: 5;
-    @include transition(opacity $transition-time/2 ease-in-out);
-    &.active {
-      display: flex;
-      opacity: 0.1;
-    }
-  }
-  .stream-controls {
-    @include border-radius;
-    position: absolute;
-    display: none;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    background: $green-light;
-    padding: $content-padding/2;
-    cursor: default;
-    right: 1em;
-    top: 1em;
-    opacity: 0;
-    z-index: 10;
-    &.active {
-      display: flex;
-      opacity: 1;
-    }
-    p, button {
-      margin: 0 0.25em;
-    }
-  }
-  .stream-main {
-    display: flex;
-    flex-direction: row;
-    flex: 1 auto;
-    .stream-player {
-      flex: 3 auto;
-    }
-    .stream-player{
-      display: flex;
-      iframe {
-        display: flex;
-        flex: 1 1 auto;
-        width: 100%;
-      }
-    }
   }
 }
 
@@ -282,47 +102,6 @@ body {
   padding: 0 0.5em;
   &:visited {
     color: $white;
-  }
-}
-
-.stream-history {
-  .history-list {
-    padding-bottom: $content-padding/2;
-    .history-listing {
-      padding: $content-padding 0;
-      border-bottom: 2px solid $off-white;
-      .listing-details {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        p {
-          padding-right: $content-padding/2;
-        }
-      }
-    }
-  }
-}
-
-.preset-list {
-  background: $white;
-  list-style: none;
-  padding-left: 0;
-  ul {
-    list-style: none;
-    padding-left: 0;
-    li {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.5em 0;
-    }
-  }
-  & > li {
-    margin-bottom: 1em;
-  }
-  .ghost {
-    background: $off-white;
   }
 }
 

@@ -6,6 +6,7 @@ nav {
     flex: 1 auto;
     color: $white;
     background: $purple-light;
+    max-height: $nav-height;
     input {
         max-width: 10em;
     }
