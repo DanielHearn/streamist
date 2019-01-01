@@ -18,36 +18,6 @@ html(lang='en')
 
   body
     #manytwitch
-      nav
-        a.button-menu.button--green(@click='toggleMenu', :class='{active: options.menuVisible}' title="Toggle Menu") 
-          span
-        div.nav-center
-          h2.title MT
-          input-form(placeholder='Enter a stream',
-                    v-on:submit='addStreamFromNav')
-        div.nav-right
-          button.button--green(@click='toggleFullscreen', title="Toggle Fullscreen") 
-            i.material-icons fullscreen
-          div(v-if="currentStreams.length")
-            p.sub-text Show Chat
-            label.switch
-              input(type="checkbox", checked, @click='toggleChat', title="Toggle Chat")
-              span.slider
-      #main
-        menu-container(:options='options', 
-                      :stream-history='streamHistory',
-                      :current-streams='currentStreams',
-                      :stream-presets='streamPresets',
-                      v-on:load-selected-history='loadSelectedHistory', 
-                      v-on:clear-history='clearHistory',
-                      v-on:update-presets='updatePresets'
-                      v-on:load-preset='loadPreset')
-        streams(:streams='currentStreams', 
-                v-on:update-streams='updateStreams', 
-                :options='options')
-        chats(:streams='currentStreams', 
-              :options='options')
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js')
     script(src='https://embed.twitch.tv/embed/v1.js')
     script(src="//cdn.jsdelivr.net/npm/sortablejs@1.7.0/Sortable.min.js")
     script(src="//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.15.0/vuedraggable.min.js")
