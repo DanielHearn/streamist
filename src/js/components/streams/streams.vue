@@ -6,7 +6,7 @@
       v-model="orderedStreams" 
       @start="drag=true" 
       @end="drag=false"
-      :options="{ghostClass:'ghost', handle:'.handle', filter:'.stream-player', forceFallback:'true', fallbackTolerance:'1'}">
+      :options="{ghostClass:'ghost', handle:'.handle', filter:'.stream-player', forceFallback:'true', fallbackTolerance:'1', removeCloneOnHide: true}">
       <stream 
         class="draggable" 
         v-for="currStream in streams"

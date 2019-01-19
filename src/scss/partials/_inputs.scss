@@ -103,6 +103,7 @@ select {
         &:before, &:after {
             height: 3px;
             width: 30px;
+            left: 0;
             background-color: $white;
             position: absolute;
             content: "";

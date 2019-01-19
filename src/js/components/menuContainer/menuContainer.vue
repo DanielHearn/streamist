@@ -3,19 +3,19 @@
     <div class="menu">
       <div class="menu-content">
         <button class="button--dark" @click="loadOptionCat('History')" :class="{active: currentOptionCat === 'History'}">
-          <i class="material-icons">history</i>
+          <i class="menu-icon material-icons">history</i>
           <p>History</p>
         </button>
         <button class="button--dark" @click="loadOptionCat('Presets')" :class="{active: currentOptionCat === 'Presets'}">
-          <i class="material-icons">view_module</i>
+          <i class="menu-icon material-icons">view_module</i>
           <p>Presets</p>
         </button>
         <button class="button--dark" @click="loadOptionCat('Help')" :class="{active: currentOptionCat === 'Help'}">
-          <i class="material-icons">help</i>
+          <i class="menu-icon material-icons">help</i>
           <p>Help</p>
         </button>
         <button class="button--dark" @click="loadOptionCat('About')" :class="{active: currentOptionCat === 'About'}">
-          <i class="material-icons">info</i>
+          <i class="menu-icon material-icons">info</i>
           <p>About</p>
         </button>
       </div>

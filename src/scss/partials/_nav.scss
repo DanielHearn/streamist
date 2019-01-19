@@ -13,7 +13,9 @@ nav {
     div {
         display: flex;
         flex-direction: row;
-        align-items: center;
+    }
+    .nav-center {
+      align-items: center;
     }
     .nav-right {
       button {

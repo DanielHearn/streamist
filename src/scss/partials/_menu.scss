@@ -11,8 +11,14 @@
       }
       & > .button--dark {
         @include transition(box-shadow $transition-time ease-in-out);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
         border-radius: unset;
         box-shadow: 0.5em 0 0 0 $dark inset;
+        .menu-icon {
+          margin-right: 0.5em;
+        }
         &:hover {
           box-shadow: 0.5em 0 0 0 $green-dark inset;
         }

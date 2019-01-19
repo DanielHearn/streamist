@@ -1,13 +1,13 @@
 <template>
   <div id="manytwitch">
     <nav>
-      <a 
+      <button 
         class="button-menu button--green"
         @click="toggleMenu"
         :class="{active: options.menuVisible}"
         title="Toggle Menu">
         <span></span>
-      </a>
+      </button>
       <div 
         class="nav-center">
         <h2 class="title">MT</h2>
@@ -19,14 +19,14 @@
         class="nav-right">
         <fullscreen-button/>
         <div class="button-container">
-          <a 
+          <button 
             class="button-menu button--green"
             @click="toggleChat"
-            :class="{active: options.chatVisible}"
+            :class="{active: options.chatVisible && currentStreams.length}"
             :disabled="!currentStreams.length"
             title="Toggle Chat">
             <span></span>
-          </a>
+          </button>
         </div>
       </div>
     </nav>
