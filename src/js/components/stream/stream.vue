@@ -1,18 +1,21 @@
 <template>
   <div class="stream" :class="{active: hover}">
-    <stream-controls 
-      :stream="currentStream"
-      :numStreams="numStreams"
-      v-on:remove="remove"
-      v-on:refresh="refresh"
-      :class="{active: hover}"
-      ></stream-controls>
+    <div v-if="displayControls">
+      <stream-controls
+        :stream="currentStream"
+        :numStreams="numStreams"
+        v-on:remove="remove"
+        v-on:refresh="refresh"
+        :class="{active: hover}"
+      />
+    </div>
     <div class="stream-main">
       <div class="stream-overlay" :class="{active: hover}"></div>
       <div class="stream-player" draggable="false" :id="currentStream.embedPlayerID"></div>
     </div>
   </div>
 </template>
+
 
 <script>
 import StreamControls from './../streamControls/StreamControls.vue'
@@ -26,13 +29,13 @@ export default {
   data: function () {
     return {
       playerEmbed: {},
-      player: {}
+      player: {},
+      displayControls: false
     }
   },
-  template: ``,
   methods: {
     remove: function () {
-      this.$emit('remove-stream', this.stream)
+      this.$emit('remove-stream', this.currentStream)
     },
     refresh: function () {
       const streamPlayer = document.querySelector(`#${this.currentStream.embedPlayerID}`)
@@ -41,6 +44,7 @@ export default {
     },
     displayStream: function () {
       console.log('Display stream: ' + this.currentStream.streamName)
+      this.displayControls = true
       const options = {
         channel: this.currentStream.streamName,
         layout: 'video',

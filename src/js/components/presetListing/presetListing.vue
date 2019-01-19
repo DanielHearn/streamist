@@ -3,8 +3,7 @@
     <input
       type="text"
       contenteditable="true"
-      v-model="presetName">
-    </input>
+      v-model="presetName"/>
     <div class="input-container">
       <load-button
         v-on:load="loadPreset"

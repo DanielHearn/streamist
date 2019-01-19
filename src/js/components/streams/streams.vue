@@ -3,10 +3,10 @@
     <draggable 
       v-if="streams.length"
       class="streams"
-      v-model="streams" 
+      v-model="orderedStreams" 
       @start="drag=true" 
       @end="drag=false"
-      :options="{ghostClass:'ghost', handle:'.handle', filter:'.stream-player', forceFallback:'true', fallbackTolerance:'2'}">
+      :options="{ghostClass:'ghost', handle:'.handle', filter:'.stream-player', forceFallback:'true', fallbackTolerance:'1'}">
       <stream 
         class="draggable" 
         v-for="currStream in streams"
@@ -41,31 +41,21 @@ export default {
   props: ['streams', 'options'],
   data: function () {
     return {
-      //orderedStreams: this.streams,
+      orderedStreams: this.streams.slice(),
       drag: false
     }
   },
   watch: {
-    /*'streams': function () {
-      if (this.orderedStreams !== this.streams) {
-        this.orderedStreams = this.streams.slice()
-      }
-    }*/
-  },
-  /*watch: {
+    'orderedStreams': function () {
+      this.$emit('update-streams', this.orderedStreams)
+    },
     'streams': function () {
       console.log('update orderedstreams from streams')
       if (this.orderedStreams !== this.streams) {
-        this.orderedStreams = this.streams.slice()
+        this.orderedStreams = this.streams
       }
-      console.log(this.streams)
-      console.log(this.orderedStreams)
-    },
-    'orderedStreams': function () {
-      console.log('Ordered Streams:', this.orderedStreams)
-      this.$emit('update-streams', this.orderedStreams)
     }
-  },*/
+  },
   methods: {
     removeStream: function (removedStream) {
       // Remove stream with matching streamIndex from currentStreams

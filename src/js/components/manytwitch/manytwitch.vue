@@ -18,19 +18,15 @@
       <div
         class="nav-right">
         <fullscreen-button/>
-        <div 
-          v-if="currentStreams.length">
-          <p
-          class="sub-text">
-          Show Chat</p>
-          <label class="switch">
-            <input
-            type="checkbox"
-            checked="checked"
+        <div class="button-container">
+          <a 
+            class="button-menu button--green"
             @click="toggleChat"
-            title="Toggle Chat"/>
-              <span class="slider"></span>
-          </label>
+            :class="{active: options.chatVisible}"
+            :disabled="!currentStreams.length"
+            title="Toggle Chat">
+            <span></span>
+          </a>
         </div>
       </div>
     </nav>
