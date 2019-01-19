@@ -8,6 +8,7 @@
 
 <script>
 export default {
+  name: 'load-button',
   methods: {
     load: function () {
       this.$emit('load')

@@ -12,7 +12,15 @@
 </template>
 
 <script>
+import RemoveButton from './../buttons/removeButton/RemoveButton.vue'
+import RefreshButton from './../buttons/refreshButton/RefreshButton.vue'
+
 export default {
+  name: 'chat',
+  components: {
+    RemoveButton,
+    RefreshButton
+  },
   props: ['streams', 'chat', 'removeAvailable'],
   data: function () {
     return {

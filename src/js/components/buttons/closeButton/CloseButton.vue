@@ -8,6 +8,7 @@
 
 <script>
 export default {
+  name: 'close-button',
   methods: {
     close: function () {
       this.$emit('close')

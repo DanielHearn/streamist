@@ -17,18 +17,18 @@ const cssDest = 'src/css'
 gulp.task('browserSync', function () {
   browserSync.init({
     server: {
-      baseDir: 'src'
+      baseDir: 'dist'
     }
   })
 })
-
+/*
 gulp.task('sass', function () {
   return gulp.src(scssSource)
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest(cssDest))
     .pipe(browserSync.stream())
-})
-
+}) */
+/*
 gulp.task('pug', function buildHTML () {
   try {
     return gulp.src('src/pug/*.pug')
@@ -39,8 +39,8 @@ gulp.task('pug', function buildHTML () {
   } catch (e) {
     console.log(e)
   }
-})
-
+}) */
+/*
 gulp.task('js', function () {
   return gulp.src([
     'node_modules/babel-polyfill/dist/polyfill.js',
@@ -50,10 +50,10 @@ gulp.task('js', function () {
       presets: ['env']
     }))
     .pipe(gulp.dest('dist/js'))
-})
+}) */
 
 gulp.task('useref', function () {
-  return gulp.src('src/**/*.+(html|css|js|png|jpg|jpeg|gif|svg|ico|xml|json)')
+  return gulp.src('src/**/*.+(png|jpg|jpeg|gif|svg|ico|xml|json)')
     .pipe(useref())
     .pipe(gulp.dest('dist'))
 })
@@ -74,16 +74,15 @@ gulp.task('clean:dist', function () {
   return del.sync(['dist/**/*'])
 })
 
-gulp.task('watch', ['browserSync', 'sass'], function () {
-  gulp.watch('src/pug/*.pug', ['pug'])
-  gulp.watch(scssSource, ['sass'])
-  gulp.watch('src/*.html').on('change', browserSync.reload)
+gulp.task('watch', ['browserSync'], function () {
+  gulp.watch('src/css/*.css', browserSync.reload)
+  gulp.watch('dist/*.html').on('change', browserSync.reload)
   gulp.watch('src/js/*.js', browserSync.reload)
 })
 
 gulp.task('build', function (callback) {
   runSequence('clean:dist',
-    ['pug', 'sass', 'images', 'favicons'], 'useref', 'js',
+    ['images', 'favicons'], 'useref',
     callback
   )
 })

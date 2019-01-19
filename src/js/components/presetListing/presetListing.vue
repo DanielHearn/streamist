@@ -1,5 +1,64 @@
+<template>
+  <li class="preset-listing">
+    <input
+      type="text"
+      contenteditable="true"
+      v-model="presetName">
+    </input>
+    <div class="input-container">
+      <load-button
+        v-on:load="loadPreset"
+        title="Load Preset">
+      </load-button>
+      <edit-button
+        v-on:edit="toggleEditMode"
+        title="Edit Preset">
+      </edit-button>
+      <remove-button 
+        v-on:remove="deletePreset"
+        title="Delete Preset">
+      </remove-button>
+    </div>
+    <div v-if="editMode">
+      <input-form 
+        v-on:submit="newPresetStream"
+        placeholder="Stream Name"></input-form>
+      <ul>
+        <draggable 
+          v-model="orderedStreams" 
+          @start="drag=true" 
+          @end="drag=false"
+          :options="{ghostClass:'ghost'}">
+          <li
+            class="draggable"
+            v-for="(stream, index) in orderedStreams"
+            :stream="stream">
+            <span class="material-icons handle text--green">drag_handle</span>
+            <p> {{ stream }}</p> 
+            <remove-button v-on:remove="deleteStreamFromPreset(index)" title="Remove Stream" ></remove-button>
+          </li>
+        </draggable>
+      </ul>
+    </div>
+  </li>
+</template>
 
-Vue.component('preset-listing', {
+<script>
+import draggable from 'vuedraggable'
+import InputForm from './../inputForm/InputForm.vue'
+import LoadButton from './../buttons/loadButton/LoadButton.vue'
+import EditButton from './../buttons/editButton/EditButton.vue'
+import RemoveButton from './../buttons/removeButton/RemoveButton.vue'
+
+export default {
+  name: 'preset-listing',
+  components: {
+    draggable,
+    InputForm,
+    LoadButton,
+    EditButton,
+    RemoveButton
+  },
   props: ['preset'],
   data: function () {
     return {
@@ -23,48 +82,6 @@ Vue.component('preset-listing', {
       this.$emit('update-preset', tempPreset)
     }
   },
-  template: `<li class="preset-listing">
-              <input
-                type="text"
-                contenteditable="true"
-                v-model="presetName">
-              </input>
-              <div class="input-container">
-                <load-button
-                  v-on:load="loadPreset"
-                  title="Load Preset">
-                </load-button>
-                <edit-button
-                  v-on:edit="toggleEditMode"
-                  title="Edit Preset">
-                </edit-button>
-                <remove-button 
-                  v-on:remove="deletePreset"
-                  title="Delete Preset">
-                </remove-button>
-              </div>
-              <div v-if="editMode">
-                <input-form 
-                  v-on:submit="newPresetStream"
-                  placeholder="Stream Name"></input-form>
-                <ul>
-                  <draggable 
-                    v-model="orderedStreams" 
-                    @start="drag=true" 
-                    @end="drag=false"
-                    :options="{ghostClass:'ghost'}">
-                    <li
-                      class="draggable"
-                      v-for="(stream, index) in orderedStreams"
-                      :stream="stream">
-                      <span class="material-icons handle text--green">drag_handle</span>
-                      <p> {{ stream }}</p> 
-                      <remove-button v-on:remove="deleteStreamFromPreset(index)" title="Remove Stream" ></remove-button>
-                    </li>
-                  </draggable>
-                </ul>
-              </div>
-            </li>`,
   methods: {
     deleteStreamFromPreset: function (index) {
       const tempPreset = this.preset
@@ -90,4 +107,5 @@ Vue.component('preset-listing', {
       this.$emit('update-preset', updatedPreset)
     }
   }
-})
+}
+</script>

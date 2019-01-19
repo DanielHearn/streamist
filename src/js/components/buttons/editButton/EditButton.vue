@@ -7,6 +7,7 @@
 
 <script>
 export default {
+  name: 'edit-button',
   data: function () {
     return {
       active: false

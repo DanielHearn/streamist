@@ -8,7 +8,13 @@
 </template>
 
 <script>
+import Chat from './../chat/Chat.vue'
+
 export default {
+  name: 'chats',
+  components: {
+    Chat
+  },
   props: ['streams', 'options'],
   data: function () {
     return {
@@ -40,7 +46,7 @@ export default {
     },
     loadChat: function (currentChat, newChatName) {
       const chatIndex = this.chats.indexOf(currentChat)
-      Vue.set(this.chats, chatIndex, this.createChatObject(newChatName))
+      this.$set(this.chats, chatIndex, this.createChatObject(newChatName))
     },
     addChat: function () {
       let chat = this.getNewChatName()

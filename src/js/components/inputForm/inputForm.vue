@@ -7,6 +7,7 @@
 
 <script>
 export default {
+  name: 'input-form',
   props: ['placeholder'],
   data: function () {
     return {

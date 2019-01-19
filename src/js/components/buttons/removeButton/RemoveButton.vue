@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  name: 'remove-button',
   methods: {
     remove: function () {
       this.$emit('remove')

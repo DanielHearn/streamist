@@ -1,73 +1,79 @@
 <template>
-  <nav>
-    <a 
-      class="button-menu button--green"
-      @click="toggleMenu"
-      :class="{active: options.menuVisible}"
-      title="Toggle Menu">
-      <span></span>
-    </a>
-    <div 
-      class="nav-center">
-      <h2 class="title">MT</h2>
-      <input-form 
-      placeholder="Enter a stream"
-      v-on:submit="addStreamFromNav"></input-form>
-    </div>
-    <div
-      class="nav-right">
-      <button
-      class="button--green"
-      @click="toggleFullscreen"
-      title="Toggle Fullscreen">
-        <i class="material-icons">fullscreen</i>
-      </button>
+  <div id="manytwitch">
+    <nav>
+      <a 
+        class="button-menu button--green"
+        @click="toggleMenu"
+        :class="{active: options.menuVisible}"
+        title="Toggle Menu">
+        <span></span>
+      </a>
       <div 
-        v-if="currentStreams.length">
-        <p
-        class="sub-text">
-        Show Chat</p>
-        <label class="switch">
-          <input
-          type="checkbox"
-          checked="checked"
-          @click="toggleChat"
-          title="Toggle Chat"/>
-            <span class="slider"></span>
-        </label>
+        class="nav-center">
+        <h2 class="title">MT</h2>
+        <input-form 
+        placeholder="Enter a stream"
+        v-on:submit="addStreamFromNav"></input-form>
       </div>
+      <div
+        class="nav-right">
+        <fullscreen-button/>
+        <div 
+          v-if="currentStreams.length">
+          <p
+          class="sub-text">
+          Show Chat</p>
+          <label class="switch">
+            <input
+            type="checkbox"
+            checked="checked"
+            @click="toggleChat"
+            title="Toggle Chat"/>
+              <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </nav>
+    <div id="main">
+      <menu-container 
+        :options="options"
+        :stream-history="streamHistory"
+        :current-streams="currentStreams"
+        :stream-presets="streamPresets"
+        v-on:load-selected-history="loadSelectedHistory"
+        v-on:clear-history="clearHistory"
+        v-on:update-presets="updatePresets"
+        v-on:load-preset="loadPreset">
+        </menu-container>
+      <streams
+        :streams="currentStreams"
+        v-on:update-streams="updateStreams"
+        :options="options">
+        </streams>
+      <chats
+        :streams="currentStreams"
+        :options="options">
+        </chats>
     </div>
-  </nav>
-  <div id="main">
-    <menu-container 
-      :options="options"
-      :stream-history="streamHistory"
-      :current-streams="currentStreams"
-      :stream-presets="streamPresets"
-      v-on:load-selected-history="loadSelectedHistory"
-      v-on:clear-history="clearHistory"
-      v-on:update-presets="updatePresets"
-      v-on:load-preset="loadPreset">
-      </menu-container>
-    <streams
-      :streams="currentStreams"
-      v-on:update-streams="updateStreams"
-      :options="options">
-      </streams>
-    <chats
-      :streams="currentStreams"
-      :options="options">
-      </chats>
   </div>
 </template>
 
 <script>
-import inputForm from './inputForm/inputForm.vue'
-import menuContainer from './menuContainer/menuContainer.vue'
-import streams from './streams/streams.vue'
-import chats from './chats/chats.vue'
+import FullscreenButton from './../buttons/fullscreenButton/FullscreenButton.vue'
+import InputForm from './../inputForm/InputForm.vue'
+import MenuContainer from './../menuContainer/MenuContainer.vue'
+import Streams from './../streams/Streams.vue'
+import Chats from './../chats/Chats.vue'
 
 export default {
+  name: 'manytwitch',
+  components: {
+    FullscreenButton,
+    InputForm,
+    MenuContainer,
+    Streams,
+    Chats
+  },
   data: function () {
     return {
       currentStreams: [],
@@ -168,30 +174,6 @@ export default {
     setHistory: function (streamHistory) {
       this.streamHistory = streamHistory
       localStorage.setItem('streamHistory', JSON.stringify(streamHistory))
-    },
-    toggleFullscreen: function () {
-      if (!document.fullscreenElement &&
-          !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
-        if (document.documentElement.requestFullscreen) {
-          document.documentElement.requestFullscreen()
-        } else if (document.documentElement.msRequestFullscreen) {
-          document.documentElement.msRequestFullscreen()
-        } else if (document.documentElement.mozRequestFullScreen) {
-          document.documentElement.mozRequestFullScreen()
-        } else if (document.documentElement.webkitRequestFullscreen) {
-          document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT)
-        }
-      } else {
-        if (document.exitFullscreen) {
-          document.exitFullscreen()
-        } else if (document.msExitFullscreen) {
-          document.msExitFullscreen()
-        } else if (document.mozCancelFullScreen) {
-          document.mozCancelFullScreen()
-        } else if (document.webkitExitFullscreen) {
-          document.webkitExitFullscreen()
-        }
-      }
     },
     insertURLParam: function () {
       let channelString = ''

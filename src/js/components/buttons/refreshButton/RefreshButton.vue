@@ -8,6 +8,7 @@
 
 <script>
 export default {
+  name: 'refresh-button',
   methods: {
     refresh: function () {
       this.$emit('refresh')
