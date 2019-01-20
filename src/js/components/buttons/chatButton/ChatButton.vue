@@ -4,14 +4,14 @@
       class="button--green"
       @click="toggle"
       :disabled="disabled">
-      <i class="material-icons">menu</i>
+      <i class="material-icons">chat</i>
     </button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'menu-button',
+  name: 'chat-button',
   props: ['disabled'],
   methods: {
     toggle: function () {

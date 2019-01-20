@@ -1,7 +1,7 @@
 <template>
   <div id="manytwitch">
     <nav>
-      <menu-button
+      <arrow-button
         v-if="options.menuVisible"
         button-title="Toggle Menu"
         direction="left"
@@ -10,7 +10,6 @@
       <menu-button
         v-else
         button-title="Toggle Menu"
-        direction="right"
         v-on:toggle="toggleMenu"
       />
       <div 
@@ -23,17 +22,16 @@
       <div
         class="nav-right">
         <fullscreen-button/>
-        <menu-button
+        <arrow-button
           v-if="options.chatVisible && currentStreams.length"
           direction="right"
           button-title="Toggle Chat"
           v-on:toggle="toggleChat"
         />
-        <menu-button
+        <chat-button
           :disabled="!currentStreams.length"
-          direction="left"
           v-else
-          button-title="Toggle Chat"
+          title="Toggle Chat"
           v-on:toggle="toggleChat"
         />
       </div>
@@ -64,7 +62,10 @@
 
 <script>
 import FullscreenButton from './../buttons/fullscreenButton/FullscreenButton.vue'
+import ArrowButton from './../buttons/arrowButton/ArrowButton.vue'
+import ChatButton from './../buttons/chatButton/ChatButton.vue'
 import MenuButton from './../buttons/menuButton/MenuButton.vue'
+
 import InputForm from './../inputForm/InputForm.vue'
 import MenuContainer from './../menuContainer/MenuContainer.vue'
 import Streams from './../streams/Streams.vue'
@@ -74,6 +75,8 @@ export default {
   name: 'manytwitch',
   components: {
     FullscreenButton,
+    ArrowButton,
+    ChatButton,
     MenuButton,
     InputForm,
     MenuContainer,
@@ -197,11 +200,11 @@ export default {
     },
     getURLParam: function () {
       const urlParams = new URLSearchParams(window.location.search.substring(1))
-      let urlStreams = urlParams.get('stream')
+      const urlStreams = urlParams.get('stream')
       if (urlStreams !== '' && urlStreams !== null) {
-        urlStreams = urlStreams.split(',')
-        for (const channel in urlStreams) {
-          const newChannel = urlStreams[channel]
+        const channels = urlStreams.split(',')
+        for (const channel in channels) {
+          const newChannel = channels[channel]
           if (newChannel !== '') {
             this.addStream(newChannel)
           }
