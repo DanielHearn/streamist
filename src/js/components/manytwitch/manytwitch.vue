@@ -1,13 +1,18 @@
 <template>
   <div id="manytwitch">
     <nav>
-      <button 
-        class="button-menu button--green"
-        @click="toggleMenu"
-        :class="{active: options.menuVisible}"
-        title="Toggle Menu">
-        <span></span>
-      </button>
+      <menu-button
+        v-if="options.menuVisible"
+        button-title="Toggle Menu"
+        direction="left"
+        v-on:toggle="toggleMenu"
+      />
+      <menu-button
+        v-else
+        button-title="Toggle Menu"
+        direction="right"
+        v-on:toggle="toggleMenu"
+      />
       <div 
         class="nav-center">
         <h2 class="title">MT</h2>
@@ -18,16 +23,19 @@
       <div
         class="nav-right">
         <fullscreen-button/>
-        <div class="button-container">
-          <button 
-            class="button-menu button--green"
-            @click="toggleChat"
-            :class="{active: options.chatVisible && currentStreams.length}"
-            :disabled="!currentStreams.length"
-            title="Toggle Chat">
-            <span></span>
-          </button>
-        </div>
+        <menu-button
+          v-if="options.chatVisible && currentStreams.length"
+          direction="right"
+          button-title="Toggle Chat"
+          v-on:toggle="toggleChat"
+        />
+        <menu-button
+          :disabled="!currentStreams.length"
+          direction="left"
+          v-else
+          button-title="Toggle Chat"
+          v-on:toggle="toggleChat"
+        />
       </div>
     </nav>
     <div id="main">
@@ -56,6 +64,7 @@
 
 <script>
 import FullscreenButton from './../buttons/fullscreenButton/FullscreenButton.vue'
+import MenuButton from './../buttons/menuButton/MenuButton.vue'
 import InputForm from './../inputForm/InputForm.vue'
 import MenuContainer from './../menuContainer/MenuContainer.vue'
 import Streams from './../streams/Streams.vue'
@@ -65,6 +74,7 @@ export default {
   name: 'manytwitch',
   components: {
     FullscreenButton,
+    MenuButton,
     InputForm,
     MenuContainer,
     Streams,
