@@ -8,11 +8,11 @@
 
 <script>
 export default {
-  name: "remove-button",
+  name: 'remove-button',
   methods: {
-    remove: function() {
-      this.$emit("remove");
+    remove: function () {
+      this.$emit('remove')
     }
   }
-};
+}
 </script>
