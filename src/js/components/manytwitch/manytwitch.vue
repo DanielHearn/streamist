@@ -101,22 +101,20 @@ export default {
       if (!streamName) {
         return false
       }
-      console.log(streamName)
       this.addStream(streamName)
     },
     addStream: function (streamName) {
-      console.log('Add Stream')
       const stream = this.createStreamObject(streamName)
       this.updateStreams(this.currentStreams.concat([stream]))
       this.addStreamToHistory(streamName)
       this.setHistory(this.streamHistory)
     },
     createStreamObject: function (streamName) {
-      const stream = {}
-      stream.streamName = streamName
-      stream.embedPlayerID = `embed-player-${stream.streamName}-${this.currentStreams.length}`
-      stream.index = this.currentStreams.length
-      return stream
+      return {
+        streamName: streamName,
+        embedPlayerID: `embed-player-${stream.streamName}-${this.currentStreams.length}`,
+        index: this.currentStreams.length
+      }
     },
     updateStreams: function (updatedStreams) {
       this.currentStreams = updatedStreams
@@ -124,15 +122,26 @@ export default {
     },
     toggleChat: function () {
       this.options.chatVisible = !this.options.chatVisible
+      this.storeOptions()
     },
     toggleMenu: function () {
-      console.log(this.options.menuVisible)
       this.options.menuVisible = !this.options.menuVisible
+      this.storeOptions()
+    },
+    storeOptions: function() {
+      localStorage.setItem('options', JSON.stringify(this.options))
+    },
+    getStoredOptions: function() {
+      const options = localStorage.getItem('options')
+      if (options) {
+        this.options = JSON.parse(options)
+      }
     },
     addStreamToHistory: function (streamName) {
-      const stream = {}
-      stream.streamName = streamName
-      stream.dateAdded = new Date()
+      const stream = {
+        streamName: streamName,
+        dateAdded: new Date()
+      }
       if (this.streamHistory.length < 5) {
         this.streamHistory = this.streamHistory.concat([stream])
       } else {
@@ -145,39 +154,34 @@ export default {
     loadSelectedHistory: function (streamName) {
       this.addStream(streamName)
     },
-    loadPresets: function () {
+    getStoredPresets: function () {
       const streamPresets = localStorage.getItem('streamPresets')
       if (streamPresets) {
         this.streamPresets = JSON.parse(streamPresets)
       }
     },
     loadPreset: function (preset) {
-      console.log('Loading Preset', preset)
       this.currentStreams = []
-      console.log(preset.streams)
       for (const stream of preset.streams) {
         this.addStream(stream)
       }
     },
-    setPresets: function (presets) {
+    storePresets: function (presets) {
       this.parsedPresets = presets
-      console.log('Storing presets')
       localStorage.setItem('streamPresets', JSON.stringify(presets))
     },
     updatePresets: function (newPresets) {
       this.streamPresets = newPresets
-      this.setPresets(this.streamPresets)
+      this.storePresets(this.streamPresets)
     },
     loadHistory: function () {
       const streamHistory = localStorage.getItem('streamHistory')
       if (streamHistory) {
         const parsedHistory = JSON.parse(streamHistory)
         for (const stream of parsedHistory) {
-          console.log(stream.dateAdded)
           stream.dateAdded = new Date(stream.dateAdded)
         }
         this.streamHistory = parsedHistory
-        console.log(this.streamHistory)
       }
     },
     setHistory: function (streamHistory) {
@@ -217,7 +221,16 @@ export default {
   mounted: function () {
     console.log('Manytwitch Created')
     this.loadHistory()
-    this.loadPresets()
+    if(localStorage.getItem('options')) {
+      this.getStoredOptions()
+    } else {
+      this.storeOptions()
+    }
+    if(localStorage.getItem('streamPresets')) {
+      this.getStoredPresets()
+    } else {
+      this.storePresets()
+    }
     this.getURLParam()
   }
 }
