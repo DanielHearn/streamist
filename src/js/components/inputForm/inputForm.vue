@@ -5,20 +5,4 @@
   </form>
 </template>
 
-<script>
-export default {
-  name: 'input-form',
-  props: ['placeholder'],
-  data: function () {
-    return {
-      inputValue: ''
-    }
-  },
-  methods: {
-    submit: function (e) {
-      this.$emit('submit', e, this.inputValue)
-      this.inputValue = ''
-    }
-  }
-}
-</script>
+<script src="./inputForm.js"></script>

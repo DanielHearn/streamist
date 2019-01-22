@@ -28,40 +28,22 @@
   </div>
 </template>
 
-<script>
-import draggable from 'vuedraggable'
-import Stream from './../stream/Stream.vue'
+<script src="./streams.js"></script>
 
-export default {
-  name: 'streams',
-  components: {
-    draggable,
-    Stream
-  },
-  props: ['streams', 'options'],
-  data: function () {
-    return {
-      orderedStreams: this.streams.slice(),
-      drag: false
-    }
-  },
-  watch: {
-    'orderedStreams': function () {
-      this.$emit('update-streams', this.orderedStreams)
-    },
-    'streams': function () {
-      console.log('update orderedstreams from streams')
-      if (this.orderedStreams !== this.streams) {
-        this.orderedStreams = this.streams
-      }
-    }
-  },
-  methods: {
-    removeStream: function (removedStream) {
-      // Remove stream with matching streamIndex from currentStreams
-      const newStreams = this.streams.filter(stream => stream !== removedStream)
-      this.$emit('update-streams', newStreams)
-    }
-  }
+<style lang="scss">
+.streams-container {
+  display: flex;
+  flex: 1 auto;
+  justify-content: center;
+  align-items: center;
 }
-</script>
+
+.streams {
+  display: flex;
+  flex: 1 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+}
+</style>

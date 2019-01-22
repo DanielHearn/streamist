@@ -9,14 +9,4 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'chat-button',
-  props: ['disabled'],
-  methods: {
-    toggle: function () {
-      this.$emit('toggle')
-    }
-  }
-}
-</script>
+<script src="./chatButton.js"></script>

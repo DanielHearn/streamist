@@ -8,27 +8,4 @@
   </div>
 </template>
 
-<script>
-import {distanceInWordsStrict} from 'date-fns'
-
-export default {
-  name: 'stream-history-listing',
-  props: ['stream', 'currentDate'],
-  computed: {
-    timeAdded: function () {
-      // Show time since add
-      const relativeDate = distanceInWordsStrict(
-        this.stream.dateAdded,
-        this.currentDate
-      )
-      return `${relativeDate} ago`
-    }
-  },
-  template: ``,
-  methods: {
-    loadSelectedHistory: function () {
-      this.$emit('load-selected-history', this.stream.streamName)
-    }
-  }
-}
-</script>
+<script src="./streamHistoryListing.js"></script>

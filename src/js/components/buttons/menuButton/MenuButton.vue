@@ -9,14 +9,4 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'menu-button',
-  props: ['disabled'],
-  methods: {
-    toggle: function () {
-      this.$emit('toggle')
-    }
-  }
-}
-</script>
+<script src="./menuButton.js"></script>

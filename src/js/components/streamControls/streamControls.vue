@@ -7,29 +7,31 @@
   </div>
 </template>
 
-<script>
-import RemoveButton from './../buttons/removeButton/RemoveButton.vue'
-import RefreshButton from './../buttons/refreshButton/RefreshButton.vue'
+<script src="./streamControls.js"></script>
 
-export default {
-  name: 'stream-controls',
-  components: {
-    RemoveButton,
-    RefreshButton
-  },
-  props: ['stream', 'numStreams'],
-  computed: {
-    streamUrl: function () {
-      return `https://www.twitch.tv/${this.stream.streamName}`
-    }
-  },
-  methods: {
-    remove: function () {
-      this.$emit('remove')
-    },
-    refresh: function () {
-      this.$emit('refresh')
-    }
-  },
+<style lang="scss">
+@import "../../../scss/partials/mixins.scss";
+
+.stream-controls {
+  @include border-radius;
+  position: absolute;
+  display: none;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  background: $green-light;
+  padding: $content-padding/2;
+  cursor: default;
+  right: 1em;
+  top: 1em;
+  opacity: 0;
+  z-index: 10;
+  &.active {
+    display: flex;
+    opacity: 1;
+  }
+  p, button {
+    margin: 0 0.25em;
+  }
 }
-</script>
+</style>
