@@ -1,40 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:500,600,700');
 
-// COLOURS
-$white: #FEFEFE;
-$off-white: #f1f1f1;
-$grey: #4A4A4A;
-$dark: #353535;
-$black: #222222;
-$green-light: #1DD1A1;
-$green-dark: #10AC84;
-$purple-light: #4f59a7;
-$purple-dark: #464e95;
-
-// NAV
-$nav-height: 3em;
-
-// MENU
-$menu-width: 9em;
-
-// FONT
-$title-size: 2.5em;
-$title-weight: 700;
-$heading-size: 1.25em;
-$heading-weight: 600;
-$sub-heading-size: 1.125em;
-$sub-heading-weight: 600;
-$text-size: 1em;
-$text-weight: 500;
-$sub-text-size: 1em;
-$sub-text-weight: 500;
-
-// TRANSITION
-$transition-time: 0.25s;
-
-$content-padding: 1em;
-$content-border-radius: 3px;
-
+@import 'variables';
 @import 'partials/normalize';
 
 @import 'partials/mixins';
@@ -45,7 +11,6 @@ $content-border-radius: 3px;
 @import 'partials/preset-list';
 @import 'partials/stream-history';
 @import 'partials/stream';
-@import 'partials/streams';
 @import 'partials/nav';
 @import 'partials/inputs';
 @import 'partials/text';

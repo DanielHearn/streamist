@@ -10,7 +10,7 @@
         width: 100%;
       }
       & > .button--dark {
-        @include transition(box-shadow $transition-time ease-in-out);
+        @include transition(box-shadow $transition-time ease-in-out, background $transition-time ease-in-out);
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -24,6 +24,7 @@
         }
         &.active {
           box-shadow: 0.5em 0 0 0 $green-light inset;
+          background: $black;
         }
       }
     }
