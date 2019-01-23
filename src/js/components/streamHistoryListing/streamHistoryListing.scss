@@ -1,0 +1,12 @@
+.history-listing {
+  padding: $content-padding 0;
+  //border-bottom: 2px solid $off-white;
+  .listing-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    p {
+      padding-right: $content-padding/2;
+    }
+  }
+}

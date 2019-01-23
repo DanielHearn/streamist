@@ -16,5 +16,6 @@
   </div>
 </template>
 
-
 <script src="./stream.js"></script>
+
+<style src="./stream.scss"></style>

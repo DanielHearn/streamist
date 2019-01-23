@@ -9,29 +9,4 @@
 
 <script src="./streamControls.js"></script>
 
-<style lang="scss">
-@import "../../../scss/partials/mixins.scss";
-
-.stream-controls {
-  @include border-radius;
-  position: absolute;
-  display: none;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  background: $green-light;
-  padding: $content-padding/2;
-  cursor: default;
-  right: 1em;
-  top: 1em;
-  opacity: 0;
-  z-index: 10;
-  &.active {
-    display: flex;
-    opacity: 1;
-  }
-  p, button {
-    margin: 0 0.25em;
-  }
-}
-</style>
+<style src="./streamControls.scss"></style>

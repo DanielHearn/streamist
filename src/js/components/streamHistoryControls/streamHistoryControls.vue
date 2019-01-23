@@ -14,3 +14,5 @@
 </template>
 
 <script src="./streamHistoryControls.js"></script>
+
+<style src-"./streamHistoryControls.scss"></style>

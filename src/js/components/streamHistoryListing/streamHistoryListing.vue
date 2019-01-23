@@ -9,3 +9,5 @@
 </template>
 
 <script src="./streamHistoryListing.js"></script>
+
+<style src="./streamHistoryListing.scss"></style>

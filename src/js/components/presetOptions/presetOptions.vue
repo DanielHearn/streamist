@@ -26,3 +26,5 @@
 </template>
 
 <script src="./presetOptions.js"></script>
+
+<style src="./presetOptions.scss"></style>

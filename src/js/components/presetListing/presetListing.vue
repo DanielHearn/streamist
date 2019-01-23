@@ -43,3 +43,5 @@
 </template>
 
 <script src="./presetListing.js"></script>
+
+<style src="./presetListing.scss"></style>

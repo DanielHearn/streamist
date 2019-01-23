@@ -1,11 +1,13 @@
 import draggable from 'vuedraggable'
 import Stream from './../stream/Stream.vue'
+import Intro from './../intro/Intro.vue'
 
 export default {
   name: 'streams',
   components: {
     draggable,
-    Stream
+    Stream,
+    Intro
   },
   props: ['streams', 'options'],
   data: function () {

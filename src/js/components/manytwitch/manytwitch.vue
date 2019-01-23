@@ -60,5 +60,6 @@
   </div>
 </template>
 
-<script src="./manytwitch.js">
-</script>
+<script src="./manytwitch.js"></script>
+
+<style src="./manytwitch.scss"></style>

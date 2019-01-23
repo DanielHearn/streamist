@@ -30,20 +30,4 @@
 
 <script src="./streams.js"></script>
 
-<style lang="scss">
-.streams-container {
-  display: flex;
-  flex: 1 auto;
-  justify-content: center;
-  align-items: center;
-}
-
-.streams {
-  display: flex;
-  flex: 1 auto;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-  height: 100%;
-}
-</style>
+<style src="./streams.scss"></style>

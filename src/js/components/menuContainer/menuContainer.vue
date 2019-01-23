@@ -2,19 +2,19 @@
   <div class="menu-container" :class="{visible: options.menuVisible}">
     <div class="menu">
       <div class="menu-content">
-        <button class="button--dark" @click="loadOptionCat('History')" :class="{active: currentOptionCat === 'History'}">
+        <button class="button--dark button--menu" @click="loadOptionCat('History')" :class="{active: currentOptionCat === 'History'}">
           <i class="menu-icon material-icons">history</i>
           <p>History</p>
         </button>
-        <button class="button--dark" @click="loadOptionCat('Presets')" :class="{active: currentOptionCat === 'Presets'}">
+        <button class="button--dark button--menu" @click="loadOptionCat('Presets')" :class="{active: currentOptionCat === 'Presets'}">
           <i class="menu-icon material-icons">view_module</i>
           <p>Presets</p>
         </button>
-        <button class="button--dark" @click="loadOptionCat('Help')" :class="{active: currentOptionCat === 'Help'}">
+        <button class="button--dark button--menu" @click="loadOptionCat('Help')" :class="{active: currentOptionCat === 'Help'}">
           <i class="menu-icon material-icons">help</i>
           <p>Help</p>
         </button>
-        <button class="button--dark" @click="loadOptionCat('About')" :class="{active: currentOptionCat === 'About'}">
+        <button class="button--dark button--menu" @click="loadOptionCat('About')" :class="{active: currentOptionCat === 'About'}">
           <i class="menu-icon material-icons">info</i>
           <p>About</p>
         </button>
@@ -49,3 +49,5 @@
 </template>
 
 <script src="./menuContainer.js"></script>
+
+<style src="./menuContainer.scss"></style>

@@ -35,7 +35,6 @@ export default {
     }
   },
   mounted: function () {
-    console.log('Mounted Stream: ', this.currentStream)
     this.displayStream()
   }
 }
