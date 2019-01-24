@@ -62,4 +62,7 @@
 
 <script src="./manytwitch.js"></script>
 
-<style src="./manytwitch.scss"></style>
+
+<style lang="scss">
+    @import './manytwitch.scss';
+</style>

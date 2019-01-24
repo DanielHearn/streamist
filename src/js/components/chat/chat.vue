@@ -12,3 +12,7 @@
 </template>
 
 <script src="./chat.js"></script>
+
+<style lang="scss">
+    @import './chat.scss';
+</style>

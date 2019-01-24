@@ -9,4 +9,6 @@
 
 <script src="./streamControls.js"></script>
 
-<style src="./streamControls.scss"></style>
+<style lang="scss">
+    @import './streamControls.scss';
+</style>

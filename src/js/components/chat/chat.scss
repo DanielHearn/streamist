@@ -1,0 +1,22 @@
+@import "variables";
+
+.stream-chat {
+  display: flex;
+  flex: 1 auto;
+  flex-direction: column;
+  background: $green-light;
+  .chat-controls {
+    display: flex;
+    justify-content: space-evenly;
+    .button-container {
+      flex: 1 auto;
+      button {
+        width: 100%;
+      }
+    }
+  }
+  iframe {
+    display: flex;
+    flex: 1 auto;
+  }
+}

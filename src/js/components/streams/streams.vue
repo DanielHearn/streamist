@@ -18,16 +18,12 @@
         v-on:remove-stream="removeStream"
         ></stream>
     </draggable>
-    <section 
-      v-if="!streams.length"
-      class="intro-content">
-        <h1 class="intro-title">MANYTWITCH</h1>
-        <h2 class="intro-subheading">Multiple Twitch Stream Viewer</h2>
-        <p class="intro-text">Enter a twitch channel to start.</p>
-    </section>
+    <intro v-if="!streams.length"/>
   </div>
 </template>
 
 <script src="./streams.js"></script>
 
-<style src="./streams.scss"></style>
+<style lang="scss">
+    @import './streams.scss';
+</style>

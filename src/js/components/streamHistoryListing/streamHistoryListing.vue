@@ -10,4 +10,6 @@
 
 <script src="./streamHistoryListing.js"></script>
 
-<style src="./streamHistoryListing.scss"></style>
+<style lang="scss">
+    @import './streamHistoryListing.scss';
+</style>

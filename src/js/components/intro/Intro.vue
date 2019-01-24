@@ -9,4 +9,6 @@
 
 <script src="./intro.js"></script>
 
-<style src="./intro.scss"></style>
+<style lang="scss">
+    @import './intro.scss';
+</style>

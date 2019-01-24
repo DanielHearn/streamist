@@ -1,0 +1,12 @@
+@import "variables";
+
+.chats {
+  display: flex;
+  flex-direction: column;
+  .add-chat-container {
+    background: $grey;
+    button {
+      border-radius: 0;
+    }
+  }
+}

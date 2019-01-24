@@ -8,3 +8,8 @@
 </template>
 
 <script src="./chats.js"></script>
+
+
+<style lang="scss">
+    @import './chats.scss';
+</style>

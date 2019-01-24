@@ -15,4 +15,6 @@
 
 <script src="./streamHistoryControls.js"></script>
 
-<style src-"./streamHistoryControls.scss"></style>
+<style lang="scss">
+    @import './streamHistoryControls.scss';
+</style>
