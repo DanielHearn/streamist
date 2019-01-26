@@ -50,4 +50,6 @@
 
 <script src="./menuContainer.js"></script>
 
-<style src="./menuContainer.scss"></style>
+<style lang="scss">
+    @import './menuContainer.scss';
+</style>

@@ -7,3 +7,11 @@
 @mixin border-radius {
     border-radius: $content-border-radius;
 }
+
+@mixin english-font {
+    font-family: $english-font;
+}
+
+@mixin korean-font {
+    font-family: $korean-font;
+}

@@ -18,4 +18,6 @@
 
 <script src="./stream.js"></script>
 
-<style src="./stream.scss"></style>
+<style lang="scss">
+    @import './stream.scss';
+</style>

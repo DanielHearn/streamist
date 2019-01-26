@@ -27,4 +27,6 @@
 
 <script src="./presetOptions.js"></script>
 
-<style src="./presetOptions.scss"></style>
+<style lang="scss">
+    @import './presetOptions.scss';
+</style>

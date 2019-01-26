@@ -14,18 +14,18 @@ $purple-dark: #464e95;
 $nav-height: 3em;
 
 // MENU
-$menu-width: 9em;
+$menu-width: 8em;
 
 // FONT
 $title-size: 2.5em;
 $title-weight: 700;
 $heading-size: 1.25em;
-$heading-weight: 600;
+$heading-weight: 700;
 $sub-heading-size: 1.125em;
 $sub-heading-weight: 600;
-$text-size: 1em;
+$text-size: 1.05em;
 $text-weight: 500;
-$sub-text-size: 1em;
+$sub-text-size: 1.05em;
 $sub-text-weight: 500;
 
 // TRANSITION
@@ -33,3 +33,6 @@ $transition-time: 0.25s;
 
 $content-padding: 1em;
 $content-border-radius: 3px;
+
+$english-font: 'Open Sans', sans-serif;
+$korean-font: 'Noto Sans KR', sans-serif;

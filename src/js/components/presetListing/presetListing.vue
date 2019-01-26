@@ -18,18 +18,18 @@
         title="Delete Preset">
       </remove-button>
     </div>
-    <div v-if="editMode">
+    <div v-if="editMode" class="preset-listing-edit">
       <input-form 
         v-on:submit="newPresetStream"
         placeholder="Stream Name"></input-form>
-      <ul>
+      <ul class="preset-stream-list">
         <draggable 
           v-model="orderedStreams" 
           @start="drag=true" 
           @end="drag=false"
           :options="{ghostClass:'ghost'}">
           <li
-            class="draggable"
+            class="draggable preset-stream"
             v-for="(stream, index) in orderedStreams"
             :stream="stream">
             <span class="material-icons handle text--green">drag_handle</span>
@@ -44,4 +44,6 @@
 
 <script src="./presetListing.js"></script>
 
-<style src="./presetListing.scss"></style>
+<style lang="scss">
+    @import './presetListing.scss';
+</style>
