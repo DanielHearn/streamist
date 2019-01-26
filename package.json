@@ -39,6 +39,7 @@
     "del": "^3.0.0",
     "eslint-config-prettier": "^3.6.0",
     "eslint-plugin-vue": "^5.1.0",
+    "file-loader": "^3.0.1",
     "gh-pages": "^1.2.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.1",
