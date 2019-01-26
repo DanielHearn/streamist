@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const AppManifestWebpackPlugin = require('app-manifest-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -29,6 +30,25 @@ module.exports = {
       filename: './../index.html',
       template: 'src/pug/index.pug',
       inject: false
+    }),
+    new AppManifestWebpackPlugin({
+      logo: './src/favicons/Icon.png',
+      persistentCache: true,
+      inject: true,
+      prefix: './favicons/',
+      output: './../favicons/',
+      config: {
+        appName: 'Manytwitch',
+        appDescription: 'Multiple Twitch Stream Viewer',
+        developerName: 'Daniel Hearn',
+        developerURL: 'https://danielhearn.co.uk',
+        background: '#4f59a7',
+        theme_color: '#4f59a7',
+        display: 'standalone',
+        orientation: 'portrait',
+        start_url: '/?homescreen=1',
+        version: '1.0'
+      }
     }),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
