@@ -16,7 +16,6 @@ To specify a channel within the url use 'manytwitch/?stream=channel1,channel2' c
 ![Example image of app](readme-assets/manytwitch1.png)
 
 ## TODO
-- Chat reordering
 - Improved styling with consistently design components
 - Mobile/ Tablet support
 - Layouts
@@ -26,9 +25,14 @@ To specify a channel within the url use 'manytwitch/?stream=channel1,channel2' c
 
 ## Dependencies
 - vue draggable to handle model updating on list reorder with drag and drop.
-- screenfull.js for quick and clean access to browser fullscreen api.
 - date fns for readable relative date for stream history.
 - gulp for workflow automation
+- webpack for bundling and building
+
+## Tasks
+- 'npm run watch': Watch with webpack
+- 'npm run serve': Serve with gulp and browsersync
+- 'npm run build': Build production files 
 
 ## Gulp tasks
 - Watch: Use browsersync to reload files and compiles pug and scss.
