@@ -1,3 +1,4 @@
+
 const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -8,7 +9,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   mode: 'development',
   entry: {
-    main: './src/js/manytwitch.js'
+    main: [
+      '@babel/polyfill',
+      './src/js/manytwitch.js'
+    ]
   },
   optimization: {
     minimizer: [
@@ -46,10 +50,7 @@ module.exports = {
         test: /\.m?js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env']
-          }
+          loader: 'babel-loader'
         }
       },
       {
