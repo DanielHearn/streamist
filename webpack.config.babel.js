@@ -6,6 +6,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const AppManifestWebpackPlugin = require('app-manifest-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -14,6 +15,10 @@ module.exports = {
       '@babel/polyfill',
       './src/js/manytwitch.js'
     ]
+  },
+  output: {
+    filename: '[name].[chunkhash].js',
+    path: path.resolve(__dirname, 'dist/js')
   },
   optimization: {
     minimizer: [
@@ -26,17 +31,24 @@ module.exports = {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin('dist', {
+      exclude: ['/favicons']
+    }),
+    new MiniCssExtractPlugin({
+      filename: './../css/main.[contenthash].css'
+    }),
     new HtmlWebpackPlugin({
       filename: './../index.html',
       template: 'src/pug/index.pug',
-      inject: false
+      hash: true,
+      inject: true
     }),
     new AppManifestWebpackPlugin({
       logo: './src/favicons/Icon.png',
       persistentCache: true,
       inject: true,
-      prefix: './favicons/',
-      output: './../favicons/',
+      prefix: '/favicons/',
+      output: '../favicons/',
       config: {
         appName: 'Manytwitch',
         appDescription: 'Multiple Twitch Stream Viewer',
@@ -46,15 +58,10 @@ module.exports = {
         theme_color: '#4f59a7',
         display: 'standalone',
         orientation: 'portrait',
-        start_url: '/?homescreen=1',
         version: '1.0'
       }
     }),
-    new VueLoaderPlugin(),
-    new MiniCssExtractPlugin({
-      filename: './../css/[name].css',
-      chunkFilename: './../css/[[id].css'
-    })
+    new VueLoaderPlugin()
   ],
   module: {
     rules: [
@@ -102,9 +109,5 @@ module.exports = {
         ]
       }
     ]
-  },
-  output: {
-    filename: '[name].js',
-    path: path.resolve(__dirname, 'dist/js')
   }
 }
