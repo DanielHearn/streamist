@@ -3,7 +3,7 @@
 
 Live at www.danielhearn.co.uk/manytwitch
 
-Built with VueJS, SCSS,and gulp for workflow automation.
+Built with VueJS, SCSS, webpack, and gulp for workflow automation.
 Hosted on github pages.
 
 ## Features
@@ -19,7 +19,7 @@ To specify a channel within the url use 'manytwitch/?stream=channel1,channel2' c
 - Improved styling with consistently design components
 - Mobile/ Tablet support
 - Layouts
-- Notifications - E.g. preset saved, stream addeddeleted
+- Notifications - E.g. preset saved, stream add or deleted, history cleared
 - Home page content via the Twitch API
 - Reduce dependencies
 
