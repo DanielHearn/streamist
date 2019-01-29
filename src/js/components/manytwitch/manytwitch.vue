@@ -42,6 +42,8 @@
         :stream-history="streamHistory"
         :current-streams="currentStreams"
         :stream-presets="streamPresets"
+        :available-layouts="availableLayouts"
+        v-on:change-layout="changeLayout"
         v-on:load-selected-history="loadSelectedHistory"
         v-on:clear-history="clearHistory"
         v-on:update-presets="updatePresets"
@@ -49,8 +51,9 @@
         </menu-container>
       <streams
         :streams="currentStreams"
-        v-on:update-streams="updateStreams"
-        :options="options">
+        :current-layout="options.currentLayout"
+        :options="options"
+        v-on:update-streams="updateStreams">
         </streams>
       <chats
         :streams="currentStreams"

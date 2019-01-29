@@ -25,10 +25,15 @@ export default {
       currentStreams: [],
       streamHistory: [],
       streamPresets: [],
+      availableLayouts: [
+        'grid',
+        'column'
+      ],
       options: {
         chatVisible: true,
         menuVisible: true,
-        startMuted: true
+        startMuted: true,
+        currentLayout: 'grid'
       }
     }
   },
@@ -56,6 +61,13 @@ export default {
     updateStreams: function (updatedStreams) {
       this.currentStreams = updatedStreams
       this.insertURLParam()
+    },
+    changeLayout: function (newLayout) {
+      console.log(newLayout)
+      if (this.availableLayouts.includes(newLayout)) {
+        this.options.currentLayout = newLayout
+        this.storeOptions()
+      }
     },
     toggleChat: function () {
       this.options.chatVisible = !this.options.chatVisible
@@ -156,7 +168,6 @@ export default {
     }
   },
   mounted: function () {
-    console.log('Manytwitch Created')
     this.loadHistory()
     if (localStorage.getItem('options')) {
       this.getStoredOptions()
