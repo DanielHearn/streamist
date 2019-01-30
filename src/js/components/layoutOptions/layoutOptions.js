@@ -5,11 +5,19 @@ export default {
   components: {
     CloseButton
   },
-  props: ['availableLayouts'],
+  props: ['currentStreams', 'availableLayouts', 'options'],
   data: function () {
     return {
-      selectedLayout: 'grid',
-      lastLayout: 'grid'
+      selectedLayout: this.options.currentLayout,
+      lastLayout: this.options.currentLayout
+    }
+  },
+  computed: {
+    streams: function () {
+      return this.currentStreams.map((stream, index) => {
+        stream.index = index + 1
+        return stream
+      })
     }
   },
   watch: {

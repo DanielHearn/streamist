@@ -1,14 +1,12 @@
 @import 'variables';
 @import 'partials/normalize';
 
-@import 'partials/mixins';
-
 @import 'partials/inputs';
 @import 'partials/text';
 
 
 body {
-  @include english-font;
+  font-family: 'Open Sans', sans-serif;
   background: $black;
   display: flex;
   margin: 0;
@@ -44,10 +42,6 @@ body {
     margin-left: 0 !important;
     margin-right: 0 !important;
   }
-}
-
-.korean {
-  @include korean-font;
 }
 
 .visible {

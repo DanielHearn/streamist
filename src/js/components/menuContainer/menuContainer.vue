@@ -27,6 +27,7 @@
     <div class="menu-options">
       <layout-options 
         v-if="currentOptionCat === 'Layouts'"
+        :options="options"
         :current-streams="currentStreams"
         :available-layouts="availableLayouts"
         v-on:change-layout="changeLayout"
