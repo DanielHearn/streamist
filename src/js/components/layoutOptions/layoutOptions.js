@@ -1,15 +1,16 @@
 import CloseButton from './../buttons/closeButton/CloseButton.vue'
+import LayoutDemo from './../layoutDemo/LayoutDemo.vue'
 
 export default {
   name: 'layout-options',
   components: {
-    CloseButton
+    CloseButton,
+    LayoutDemo
   },
   props: ['currentStreams', 'availableLayouts', 'options'],
   data: function () {
     return {
-      selectedLayout: this.options.currentLayout,
-      lastLayout: this.options.currentLayout
+      selectedLayout: this.options.currentLayout
     }
   },
   computed: {
@@ -22,16 +23,18 @@ export default {
   },
   watch: {
     'selectedLayout': function () {
-      if (this.selectedLayout !== this.lastLayout) {
-        this.lastLayout = this.selectedLayout
-        console.log(this.selectedLayout)
-        this.$emit('change-layout', this.selectedLayout)
-      }
+
     }
   },
   methods: {
     closeOptions: function () {
       this.$emit('close-options')
+    },
+    changeLayout: function (newLayout) {
+      if (newLayout !== this.selectedLayout) {
+        this.selectedLayout = newLayout
+        this.$emit('change-layout', newLayout)
+      }
     }
   }
 }

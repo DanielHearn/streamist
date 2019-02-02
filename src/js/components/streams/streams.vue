@@ -4,9 +4,7 @@
     <draggable 
       v-if="streams.length"
       class="streams"
-      :class="{
-        'streams--layout-grid': options.currentLayout === 'grid',
-        'streams--layout-column': options.currentLayout === 'column'}"
+      :class="layoutClass"
       v-model="orderedStreams" 
       @start="drag=true" 
       @end="drag=false"

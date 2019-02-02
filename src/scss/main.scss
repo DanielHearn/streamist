@@ -17,6 +17,10 @@ body {
   flex-direction: column;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 #manytwitch {
   width: 100vw;
   height: 100vh;

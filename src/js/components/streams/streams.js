@@ -26,6 +26,11 @@ export default {
       }
     }
   },
+  computed: {
+    'layoutClass': function () {
+      return `streams--layout-${this.options.currentLayout.id}`
+    }
+  },
   methods: {
     removeStream: function (removedStream) {
       // Remove stream with matching streamIndex from currentStreams

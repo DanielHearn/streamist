@@ -7,6 +7,7 @@ import InputForm from './../inputForm/InputForm.vue'
 import MenuContainer from './../menuContainer/MenuContainer.vue'
 import Streams from './../streams/Streams.vue'
 import Chats from './../chats/Chats.vue'
+import { log } from 'util'
 
 export default {
   name: 'manytwitch',
@@ -26,14 +27,14 @@ export default {
       streamHistory: [],
       streamPresets: [],
       availableLayouts: [
-        'grid',
-        'column'
+        {id: 'grid', name: 'Grid'},
+        {id: 'column', name: 'Column'}
       ],
       options: {
         chatVisible: true,
         menuVisible: true,
         startMuted: true,
-        currentLayout: 'grid'
+        currentLayout: {id: 'grid', name: 'Grid'}
       }
     }
   },
@@ -63,7 +64,6 @@ export default {
       this.insertURLParam()
     },
     changeLayout: function (newLayout) {
-      console.log(newLayout)
       if (this.availableLayouts.includes(newLayout)) {
         this.options.currentLayout = newLayout
         this.storeOptions()
@@ -82,7 +82,7 @@ export default {
     },
     getStoredOptions: function () {
       const options = localStorage.getItem('options')
-      if (options) {
+      if (options.length) {
         this.options = JSON.parse(options)
       }
     },
@@ -105,7 +105,7 @@ export default {
     },
     getStoredPresets: function () {
       const streamPresets = localStorage.getItem('streamPresets')
-      if (streamPresets) {
+      if (streamPresets.length) {
         this.streamPresets = JSON.parse(streamPresets)
       }
     },
@@ -116,7 +116,7 @@ export default {
       }
     },
     storePresets: function (presets) {
-      this.parsedPresets = presets
+      this.parsedPresets = presets || []
       localStorage.setItem('streamPresets', JSON.stringify(presets))
     },
     updatePresets: function (newPresets) {
@@ -177,7 +177,7 @@ export default {
     if (localStorage.getItem('streamPresets')) {
       this.getStoredPresets()
     } else {
-      this.storePresets()
+      this.storePresets([])
     }
     this.getURLParam()
   }
