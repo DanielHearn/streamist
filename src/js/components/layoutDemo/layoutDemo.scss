@@ -2,12 +2,14 @@
 @import "mixins";
 
 .layout-demo-wrap {
+  @include transition(background $transition-time ease-in-out);
   width: 100%;
   background: $off-white;
   color: $white;
   font-weight: $sub-heading-weight;
   margin: $content-padding/2 0;
   padding: $content-padding/2;
+  box-sizing: border-box;
   &:hover {
     background: $green-light;
   }
@@ -21,7 +23,6 @@
 }
 
 .layout-demo {
-  @include transition(background $transition-time ease-in-out);
   display: flex;
   flex: 1 auto;
   flex-direction: row;

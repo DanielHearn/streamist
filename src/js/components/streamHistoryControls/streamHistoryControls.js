@@ -14,6 +14,7 @@ export default {
   },
   computed: {
     orderedHistory: function () {
+      this.currentDate = new Date()
       return this.streamHistory.slice().reverse()
     },
     historyAvailable: function () {
@@ -28,5 +29,11 @@ export default {
     clearHistory: function () {
       this.$emit('clear-history')
     }
+  },
+  mounted: function () {
+    const self = this
+    setInterval(() => {
+      self.currentDate = new Date()
+    }, 5000)
   }
 }

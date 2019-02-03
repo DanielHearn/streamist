@@ -7,7 +7,7 @@ import InputForm from './../inputForm/InputForm.vue'
 import MenuContainer from './../menuContainer/MenuContainer.vue'
 import Streams from './../streams/Streams.vue'
 import Chats from './../chats/Chats.vue'
-import { log } from 'util'
+import { generateID } from './../utilities'
 
 export default {
   name: 'manytwitch',
@@ -35,6 +35,9 @@ export default {
         menuVisible: true,
         startMuted: true,
         currentLayout: {id: 'grid', name: 'Grid'}
+      },
+      config: {
+        maxHistoryLength: 10
       }
     }
   },
@@ -88,10 +91,11 @@ export default {
     },
     addStreamToHistory: function (streamName) {
       const stream = {
+        id: generateID(8),
         streamName: streamName,
         dateAdded: new Date()
       }
-      if (this.streamHistory.length < 5) {
+      if (this.streamHistory.length < this.config.maxHistoryLength) {
         this.streamHistory = this.streamHistory.concat([stream])
       } else {
         this.streamHistory = this.streamHistory.slice(1, this.streamHistory.length).concat([stream])

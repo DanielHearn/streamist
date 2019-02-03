@@ -14,6 +14,7 @@
     <ul class="preset-list" v-if="!presetsDisabled">
       <preset-listing
         v-for="preset in streamPresets"
+        :key="preset.id"
         :preset="preset"
         v-on:load-preset="loadPreset"
         v-on:update-preset="updatePreset"

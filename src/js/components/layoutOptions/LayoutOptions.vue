@@ -8,7 +8,7 @@
     <div class="layouts-demo-container">
       <layout-demo
         v-for="layout in availableLayouts"
-        :key="layout.id"
+        :key="layout.slug"
         :class="{'active': selectedLayout.id === layout.id}"
         :layout="layout"
         :currentStreams="currentStreams"

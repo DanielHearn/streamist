@@ -21,11 +21,6 @@ export default {
       })
     }
   },
-  watch: {
-    'selectedLayout': function () {
-
-    }
-  },
   methods: {
     closeOptions: function () {
       this.$emit('close-options')

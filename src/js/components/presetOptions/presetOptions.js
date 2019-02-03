@@ -2,6 +2,7 @@
 import CloseButton from './../buttons/closeButton/CloseButton.vue'
 import PresetListing from './../presetListing/PresetListing.vue'
 import InputForm from './../inputForm/InputForm.vue'
+import { generateID } from './../utilities'
 
 export default {
   name: 'preset-options',
@@ -49,7 +50,7 @@ export default {
       }
     },
     deletePreset: function (removedPreset) {
-      const newPresets = this.streamPresets.filter(preset => preset.index !== removedPreset.index)
+      const newPresets = this.streamPresets.filter(preset => preset.id !== removedPreset.id)
       this.updatePresets(newPresets)
     },
     loadPreset: function (preset) {
@@ -66,7 +67,7 @@ export default {
       return {
         name: presetName,
         streams: presetStreams,
-        index: this.streamPresets.length
+        id: generateID(8)
       }
     },
     createEmptyPreset: function (presetName) {
@@ -75,7 +76,7 @@ export default {
     updatePreset: function (updatedPreset) {
       const tempPresets = this.streamPresets
       for (const preset in tempPresets) {
-        if (preset.index === updatedPreset.index) {
+        if (preset.id === updatedPreset.id) {
           preset.name = updatedPreset.name
           preset.streams = updatedPreset.streams
         }

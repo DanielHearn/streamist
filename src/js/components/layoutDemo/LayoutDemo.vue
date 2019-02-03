@@ -11,9 +11,10 @@
       <div
       class="layout-demo-stream"
       v-for="(stream, index) in currentStreams"
+      :title="stream.streamName"
       :key="stream.embedPlayerID">
         <div class="layout-demo-number">
-          <p>{{ index + 1 }}</p>
+          <p v-if="currentStreams.length < 8">{{ index + 1 }}</p>
         </div>
       </div>
     </div>

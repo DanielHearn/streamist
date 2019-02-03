@@ -2,12 +2,12 @@ import { distanceInWordsStrict } from 'date-fns'
 
 export default {
   name: 'stream-history-listing',
-  props: ['stream', 'currentDate'],
+  props: ['history', 'currentDate'],
   computed: {
     timeAdded: function () {
       // Show time since add e.g '1 minute ago'
       const relativeDate = distanceInWordsStrict(
-        this.stream.dateAdded,
+        this.history.dateAdded,
         this.currentDate
       )
       return `${relativeDate} ago`
@@ -15,7 +15,7 @@ export default {
   },
   methods: {
     loadSelectedHistory: function () {
-      this.$emit('load-selected-history', this.stream.streamName)
+      this.$emit('load-selected-history', this.history.streamName)
     }
   }
 }
