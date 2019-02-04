@@ -39,6 +39,7 @@
     max-width: 20em;
     .option {
       width: 20em;
+      height: 100%;
       padding: $content-padding;
       color: $black;
       display: flex;
@@ -54,6 +55,10 @@
         .text-heading {
           text-align: center;
         }
+      }
+      .option-content {
+        height: 100%;
+        overflow-y: scroll;
       }
       input {
         //padding: 0.25em 0.75em;

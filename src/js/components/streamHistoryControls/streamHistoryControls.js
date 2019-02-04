@@ -34,6 +34,6 @@ export default {
     const self = this
     setInterval(() => {
       self.currentDate = new Date()
-    }, 5000)
+    }, 1000)
   }
 }
