@@ -8,6 +8,7 @@ import MenuContainer from './../menuContainer/MenuContainer.vue'
 import Streams from './../streams/Streams.vue'
 import Chats from './../chats/Chats.vue'
 import { generateID } from './../utilities'
+import defaultData from './DefaultData'
 
 export default {
   name: 'manytwitch',
@@ -69,26 +70,53 @@ export default {
     changeLayout: function (newLayout) {
       if (this.availableLayouts.includes(newLayout)) {
         this.options.currentLayout = newLayout
-        this.storeOptions()
+        this.storeOptions(this.options)
       }
     },
     toggleChat: function () {
       this.options.chatVisible = !this.options.chatVisible
-      this.storeOptions()
+      this.storeOptions(this.options)
     },
     toggleMenu: function () {
       this.options.menuVisible = !this.options.menuVisible
-      this.storeOptions()
+      this.storeOptions(this.options)
     },
-    storeOptions: function () {
-      localStorage.setItem('options', JSON.stringify(this.options))
+
+    validateOptions: function (options) {
+      return true
     },
-    getStoredOptions: function () {
-      const options = localStorage.getItem('options')
-      if (options.length) {
-        this.options = JSON.parse(options)
+    storeOptions: function (options) {
+      if (this.validateOptions(options)) {
+        localStorage.setItem('manytwitch_options', JSON.stringify(options))
       }
     },
+    getStoredOptions: function () {
+      return localStorage.getItem('manytwitch_options')
+    },
+
+    validatePresets: function (presets) {
+      return true
+    },
+    getStoredPresets: function () {
+      return localStorage.getItem('manytwitch_presets')
+    },
+    loadStreamsFromPreset: function (preset) {
+      this.currentStreams = []
+      for (const stream of preset.streams) {
+        this.addStream(stream)
+      }
+    },
+    storePresets: function (presets) {
+      if (this.validatePresets(presets)) {
+        localStorage.setItem('manytwitch_presets', JSON.stringify(presets))
+      }
+    },
+    updatePresets: function (newPresets) {
+      this.streamPresets = newPresets
+      const presets = newPresets || []
+      this.storePresets(presets)
+    },
+
     addStreamToHistory: function (streamName) {
       const stream = {
         id: generateID(8),
@@ -107,40 +135,43 @@ export default {
     loadSelectedHistory: function (streamName) {
       this.addStream(streamName)
     },
-    getStoredPresets: function () {
-      const streamPresets = localStorage.getItem('streamPresets')
-      if (streamPresets.length) {
-        this.streamPresets = JSON.parse(streamPresets)
+    getStoredHistory: function () {
+      return localStorage.getItem('stream_history')
+    },
+    validateHistory: function (history) {
+      return true
+    },
+    storeHistory: function (history) {
+      if (this.validateHistory(history)) {
+        localStorage.setItem('stream_history', JSON.stringify(history))
       }
     },
-    loadPreset: function (preset) {
-      this.currentStreams = []
-      for (const stream of preset.streams) {
-        this.addStream(stream)
-      }
-    },
-    storePresets: function (presets) {
-      this.parsedPresets = presets || []
-      localStorage.setItem('streamPresets', JSON.stringify(presets))
-    },
-    updatePresets: function (newPresets) {
-      this.streamPresets = newPresets
-      this.storePresets(this.streamPresets)
-    },
-    loadHistory: function () {
-      const streamHistory = localStorage.getItem('streamHistory')
+    loadHistory: function (streamHistory) {
       if (streamHistory) {
-        const parsedHistory = JSON.parse(streamHistory)
-        for (const stream of parsedHistory) {
+        const formattedHistory = streamHistory
+        for (const stream of formattedHistory) {
           stream.dateAdded = new Date(stream.dateAdded)
         }
-        this.streamHistory = parsedHistory
+        this.streamHistory = formattedHistory
       }
     },
     setHistory: function (streamHistory) {
-      this.streamHistory = streamHistory
-      localStorage.setItem('streamHistory', JSON.stringify(streamHistory))
+      if (this.validateHistory(streamHistory)) {
+        this.streamHistory = streamHistory
+        this.storeHistory(streamHistory)
+      }
     },
+
+    getDefault: function (field) {
+      if (defaultData.hasOwnProperty(field)) {
+        console.log(JSON.parse(JSON.stringify(defaultData[field])))
+        // Naive deepclone that won't clone functions
+        return JSON.parse(JSON.stringify(defaultData[field]))
+      } else {
+        return undefined
+      }
+    },
+
     insertURLParam: function () {
       let channelString = ''
       for (const channel in this.currentStreams) {
@@ -169,20 +200,58 @@ export default {
         return true
       }
       return false
+    },
+    getStoredData: function () {
+      const rawHistory = this.getStoredHistory()
+      let historyLoaded = false
+      if (rawHistory) {
+        const parsedHistory = JSON.parse(rawHistory)
+        if (this.validateHistory(parsedHistory)) {
+          this.streamHistory = parsedHistory
+          historyLoaded = true
+        }
+      }
+      if (!historyLoaded) {
+        const defaultHistory = this.getDefault('streamHistory')
+        console.log('defaultHistory', defaultHistory)
+        this.streamHistory = defaultHistory
+        this.storeHistory(defaultHistory)
+      }
+
+      const rawOptions = this.getStoredOptions()
+      let optionsLoaded = false
+      if (rawOptions) {
+        const parsedOptions = JSON.parse(rawOptions)
+        if (this.validateOptions(parsedOptions)) {
+          optionsLoaded = true
+          this.options = parsedOptions
+        }
+      }
+      if (!optionsLoaded) {
+        const defaultOptions = this.getDefault('options')
+        this.options = defaultOptions
+        this.storeOptions(defaultOptions)
+      }
+
+      const rawPresets = this.getStoredPresets()
+      let presetsLoaded = false
+      if (rawPresets) {
+        const parsedPresets = JSON.parse(rawPresets)
+        if (this.validatePresets(parsedPresets)) {
+          presetsLoaded = true
+          this.options = parsedPresets
+        }
+      }
+      if (!presetsLoaded) {
+        const defaultPresets = this.getDefault('streamPresets')
+        this.streamPresets = defaultPresets
+        this.storePresets(defaultPresets)
+      }
     }
   },
-  mounted: function () {
-    this.loadHistory()
-    if (localStorage.getItem('options')) {
-      this.getStoredOptions()
-    } else {
-      this.storeOptions()
-    }
-    if (localStorage.getItem('streamPresets')) {
-      this.getStoredPresets()
-    } else {
-      this.storePresets([])
-    }
+  created: function () {
+    this.getStoredData()
+
     this.getURLParam()
   }
 }

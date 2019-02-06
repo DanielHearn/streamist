@@ -47,7 +47,7 @@
         v-on:load-selected-history="loadSelectedHistory"
         v-on:clear-history="clearHistory"
         v-on:update-presets="updatePresets"
-        v-on:load-preset="loadPreset">
+        v-on:load-preset="loadStreamsFromPreset">
         </menu-container>
       <streams
         :streams="currentStreams"
