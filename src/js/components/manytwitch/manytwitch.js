@@ -1,3 +1,5 @@
+import { isValid } from 'date-fns'
+
 import FullscreenButton from './../buttons/fullscreenButton/FullscreenButton.vue'
 import ArrowButton from './../buttons/arrowButton/ArrowButton.vue'
 import ChatButton from './../buttons/chatButton/ChatButton.vue'
@@ -53,6 +55,7 @@ export default {
     addStream: function (streamName) {
       const stream = this.createStreamObject(streamName)
       this.updateStreams(this.currentStreams.concat([stream]))
+      console.log('NEW STREAM')
       this.addStreamToHistory(streamName)
       this.setHistory(this.streamHistory)
     },
@@ -83,7 +86,11 @@ export default {
     },
 
     validateOptions: function (options) {
-      return true
+      if (typeof options === 'object') {
+        return true
+      } else {
+        return false
+      }
     },
     storeOptions: function (options) {
       if (this.validateOptions(options)) {
@@ -95,7 +102,11 @@ export default {
     },
 
     validatePresets: function (presets) {
-      return true
+      if (Array.isArray(presets)) {
+        return true
+      } else {
+        return false
+      }
     },
     getStoredPresets: function () {
       return localStorage.getItem('manytwitch_presets')
@@ -123,6 +134,7 @@ export default {
         streamName: streamName,
         dateAdded: new Date()
       }
+      console.log('NEW STREAM IN HISTORY')
       if (this.streamHistory.length < this.config.maxHistoryLength) {
         this.streamHistory = this.streamHistory.concat([stream])
       } else {
@@ -139,7 +151,52 @@ export default {
       return localStorage.getItem('stream_history')
     },
     validateHistory: function (history) {
-      return true
+      if (Array.isArray(history)) {
+        for (let index = 0; index < history.length; index++) {
+          if (history.hasOwnProperty(index)) {
+            const historyItem = history[index]
+
+            if (historyItem.id) {
+              if (typeof historyItem.id !== 'string') {
+                return false
+              }
+            } else {
+              return false
+            }
+
+            if (historyItem.streamName) {
+              if (typeof historyItem.streamName !== 'string') {
+                return false
+              }
+            } else {
+              return false
+            }
+
+            if (historyItem.dateAdded) {
+              if (typeof historyItem.dateAdded === 'string') {
+                if (!isValid(new Date(historyItem.dateAdded))) {
+                  return false
+                }
+              } else if (typeof historyItem.dateAdded === 'object') {
+                if (!isValid(historyItem.dateAdded)) {
+                  return false
+                }
+              } else {
+                return false
+              }
+            } else {
+              return false
+            }
+          } else {
+            return false
+          }
+        }
+        // No items in array has broken validation rules
+        return true
+      } else {
+        console.log('History: Invalid Type')
+        return false
+      }
     },
     storeHistory: function (history) {
       if (this.validateHistory(history)) {
@@ -164,7 +221,6 @@ export default {
 
     getDefault: function (field) {
       if (defaultData.hasOwnProperty(field)) {
-        console.log(JSON.parse(JSON.stringify(defaultData[field])))
         // Naive deepclone that won't clone functions
         return JSON.parse(JSON.stringify(defaultData[field]))
       } else {
@@ -205,15 +261,19 @@ export default {
       const rawHistory = this.getStoredHistory()
       let historyLoaded = false
       if (rawHistory) {
-        const parsedHistory = JSON.parse(rawHistory)
-        if (this.validateHistory(parsedHistory)) {
-          this.streamHistory = parsedHistory
-          historyLoaded = true
+        try {
+          const parsedHistory = JSON.parse(rawHistory)
+          if (this.validateHistory(parsedHistory)) {
+            console.log('History passed validation')
+            this.streamHistory = parsedHistory
+            historyLoaded = true
+          }
+        } catch (error) {
         }
       }
       if (!historyLoaded) {
+        console.log('Loading default history')
         const defaultHistory = this.getDefault('streamHistory')
-        console.log('defaultHistory', defaultHistory)
         this.streamHistory = defaultHistory
         this.storeHistory(defaultHistory)
       }
@@ -221,10 +281,13 @@ export default {
       const rawOptions = this.getStoredOptions()
       let optionsLoaded = false
       if (rawOptions) {
-        const parsedOptions = JSON.parse(rawOptions)
-        if (this.validateOptions(parsedOptions)) {
-          optionsLoaded = true
-          this.options = parsedOptions
+        try {
+          const parsedOptions = JSON.parse(rawOptions)
+          if (this.validateOptions(parsedOptions)) {
+            optionsLoaded = true
+            this.options = parsedOptions
+          }
+        } catch (error) {
         }
       }
       if (!optionsLoaded) {
@@ -236,10 +299,13 @@ export default {
       const rawPresets = this.getStoredPresets()
       let presetsLoaded = false
       if (rawPresets) {
-        const parsedPresets = JSON.parse(rawPresets)
-        if (this.validatePresets(parsedPresets)) {
-          presetsLoaded = true
-          this.options = parsedPresets
+        try {
+          const parsedPresets = JSON.parse(rawPresets)
+          if (this.validatePresets(parsedPresets)) {
+            presetsLoaded = true
+            this.streamPresets = parsedPresets
+          }
+        } catch (error) {
         }
       }
       if (!presetsLoaded) {
