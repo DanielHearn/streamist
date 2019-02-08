@@ -1,4 +1,8 @@
-export default {
+export const config = {
+  logging: true
+}
+
+export const defaultData = {
   options: {
     chatVisible: true,
     menuVisible: true,

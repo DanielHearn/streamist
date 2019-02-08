@@ -9,8 +9,8 @@ import InputForm from './../inputForm/InputForm.vue'
 import MenuContainer from './../menuContainer/MenuContainer.vue'
 import Streams from './../streams/Streams.vue'
 import Chats from './../chats/Chats.vue'
-import { generateID } from './../utilities'
-import defaultData from './DefaultData'
+import { generateID, log } from './../utilities'
+import { defaultData } from './../config'
 
 export default {
   name: 'manytwitch',
@@ -55,7 +55,7 @@ export default {
     addStream: function (streamName) {
       const stream = this.createStreamObject(streamName)
       this.updateStreams(this.currentStreams.concat([stream]))
-      console.log('NEW STREAM')
+      log('NEW STREAM')
       this.addStreamToHistory(streamName)
       this.setHistory(this.streamHistory)
     },
@@ -103,6 +103,36 @@ export default {
 
     validatePresets: function (presets) {
       if (Array.isArray(presets)) {
+        for (let index = 0; index < presets.length; index++) {
+          if (presets.hasOwnProperty(index)) {
+            const preset = presets[index]
+
+            if (!preset.id || typeof preset.id !== 'string') {
+              return false
+            }
+
+            if (!preset.name || typeof preset.name !== 'string') {
+              return false
+            }
+
+            if (preset.streams && Array.isArray(preset.streams)) {
+              for (let j = 0; j < preset.streams.length; j++) {
+                if (preset.streams.hasOwnProperty(j)) {
+                  if (typeof preset.streams[j] !== 'string') {
+                    return false
+                  }
+                } else {
+                  return false
+                }
+              }
+            } else {
+              return false
+            }
+          } else {
+            return false
+          }
+        }
+        // No items in array has broken validation rules
         return true
       } else {
         return false
@@ -134,7 +164,6 @@ export default {
         streamName: streamName,
         dateAdded: new Date()
       }
-      console.log('NEW STREAM IN HISTORY')
       if (this.streamHistory.length < this.config.maxHistoryLength) {
         this.streamHistory = this.streamHistory.concat([stream])
       } else {
@@ -194,7 +223,7 @@ export default {
         // No items in array has broken validation rules
         return true
       } else {
-        console.log('History: Invalid Type')
+        log('History: Invalid Type')
         return false
       }
     },
@@ -258,13 +287,14 @@ export default {
       return false
     },
     getStoredData: function () {
+      log('--- Getting Stored Data ---')
       const rawHistory = this.getStoredHistory()
       let historyLoaded = false
       if (rawHistory) {
         try {
           const parsedHistory = JSON.parse(rawHistory)
           if (this.validateHistory(parsedHistory)) {
-            console.log('History passed validation')
+            log('History passed validation')
             this.streamHistory = parsedHistory
             historyLoaded = true
           }
@@ -272,7 +302,7 @@ export default {
         }
       }
       if (!historyLoaded) {
-        console.log('Loading default history')
+        log('Loading default history')
         const defaultHistory = this.getDefault('streamHistory')
         this.streamHistory = defaultHistory
         this.storeHistory(defaultHistory)
@@ -284,6 +314,7 @@ export default {
         try {
           const parsedOptions = JSON.parse(rawOptions)
           if (this.validateOptions(parsedOptions)) {
+            log('Options passed validation')
             optionsLoaded = true
             this.options = parsedOptions
           }
@@ -302,6 +333,7 @@ export default {
         try {
           const parsedPresets = JSON.parse(rawPresets)
           if (this.validatePresets(parsedPresets)) {
+            log('Streams passed validation')
             presetsLoaded = true
             this.streamPresets = parsedPresets
           }
@@ -313,6 +345,7 @@ export default {
         this.streamPresets = defaultPresets
         this.storePresets(defaultPresets)
       }
+      log('--- Completed Stored Data Collection ---')
     }
   },
   created: function () {
