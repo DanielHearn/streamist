@@ -23,3 +23,9 @@
     margin: 0 0.25em;
   }
 }
+
+@media only screen and (max-width: $tablet-width) {
+  .stream-controls {
+    padding: $content-padding/4;
+  }
+}

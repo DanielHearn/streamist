@@ -38,7 +38,7 @@ export default {
         currentLayout: {id: 'grid', name: 'Grid'}
       },
       config: {
-        maxHistoryLength: 10
+        maxHistoryLength: 20
       }
     }
   },
@@ -111,9 +111,7 @@ export default {
             if (!validateField(preset, 'name', 'string')) {
               return false
             }
-            log('Validate')
             if (!validateArray(preset, 'streams', 'string')) {
-              console.log('array failed')
               return false
             }
           } else {
