@@ -24,9 +24,7 @@ export default {
   },
   watch: {
     'streams': function () {
-      if (this.streams.length > 0 && this.chats.length === 0) {
-        this.addChat()
-      }
+      this.addInitialChat()
     }
   },
   methods: {
@@ -54,6 +52,14 @@ export default {
         streamName: streamName,
         index: this.chats.length
       }
+    },
+    addInitialChat: function () {
+      if (this.streams.length > 0 && this.chats.length === 0) {
+        this.addChat()
+      }
     }
+  },
+  mounted: function () {
+    this.addInitialChat()
   }
 }

@@ -1,5 +1,3 @@
-import { isValid } from 'date-fns'
-
 import FullscreenButton from 'Components/buttons/fullscreenButton/FullscreenButton.vue'
 import ArrowButton from 'Components/buttons/arrowButton/ArrowButton.vue'
 import ChatButton from 'Components/buttons/chatButton/ChatButton.vue'
@@ -9,9 +7,8 @@ import InputForm from 'Components/inputForm/InputForm.vue'
 import MenuContainer from 'Components/menuContainer/MenuContainer.vue'
 import Streams from 'Components/streams/Streams.vue'
 import Chats from 'Components/chats/Chats.vue'
-import { generateID, log } from 'Js/utilities'
-import { defaultData } from 'Js/config'
-import { validateField } from 'Js/validation'
+import { generateID, log, getDefault } from 'Js/utilities'
+import { validateField, validateDate, validateArray } from 'Js/validation'
 
 export default {
   name: 'manytwitch',
@@ -107,25 +104,16 @@ export default {
           if (presets.hasOwnProperty(index)) {
             const preset = presets[index]
 
-            if (!preset.id || typeof preset.id !== 'string') {
+            if (!validateField(preset, 'id', 'string')) {
               return false
             }
 
-            if (!preset.name || typeof preset.name !== 'string') {
+            if (!validateField(preset, 'name', 'string')) {
               return false
             }
-
-            if (preset.streams && Array.isArray(preset.streams)) {
-              for (let j = 0; j < preset.streams.length; j++) {
-                if (preset.streams.hasOwnProperty(j)) {
-                  if (typeof preset.streams[j] !== 'string') {
-                    return false
-                  }
-                } else {
-                  return false
-                }
-              }
-            } else {
+            log('Validate')
+            if (!validateArray(preset, 'streams', 'string')) {
+              console.log('array failed')
               return false
             }
           } else {
@@ -185,31 +173,15 @@ export default {
           if (history.hasOwnProperty(index)) {
             const historyItem = history[index]
 
-            if (!validateField(historyItem, historyItem.id, 'string')) {
+            if (!validateField(historyItem, 'id', 'string')) {
               return false
             }
 
-            if (historyItem.streamName) {
-              if (typeof historyItem.streamName !== 'string') {
-                return false
-              }
-            } else {
+            if (!validateField(historyItem, 'streamName', 'string')) {
               return false
             }
 
-            if (historyItem.dateAdded) {
-              if (typeof historyItem.dateAdded === 'string') {
-                if (!isValid(new Date(historyItem.dateAdded))) {
-                  return false
-                }
-              } else if (typeof historyItem.dateAdded === 'object') {
-                if (!isValid(historyItem.dateAdded)) {
-                  return false
-                }
-              } else {
-                return false
-              }
-            } else {
+            if (!validateDate(historyItem, 'dateAdded')) {
               return false
             }
           } else {
@@ -241,15 +213,6 @@ export default {
       if (this.validateHistory(streamHistory)) {
         this.streamHistory = streamHistory
         this.storeHistory(streamHistory)
-      }
-    },
-
-    getDefault: function (field) {
-      if (defaultData.hasOwnProperty(field)) {
-        // Naive deepclone that won't clone functions
-        return JSON.parse(JSON.stringify(defaultData[field]))
-      } else {
-        return undefined
       }
     },
 
@@ -301,7 +264,7 @@ export default {
       }
       if (!historyLoaded) {
         log('Loading default history')
-        const defaultHistory = this.getDefault('streamHistory')
+        const defaultHistory = getDefault('streamHistory')
         this.streamHistory = defaultHistory
         this.storeHistory(defaultHistory)
       }
@@ -320,7 +283,8 @@ export default {
         }
       }
       if (!optionsLoaded) {
-        const defaultOptions = this.getDefault('options')
+        log('Loading default options')
+        const defaultOptions = getDefault('options')
         this.options = defaultOptions
         this.storeOptions(defaultOptions)
       }
@@ -339,7 +303,8 @@ export default {
         }
       }
       if (!presetsLoaded) {
-        const defaultPresets = this.getDefault('streamPresets')
+        log('Loading default presets')
+        const defaultPresets = getDefault('streamPresets')
         this.streamPresets = defaultPresets
         this.storePresets(defaultPresets)
       }
