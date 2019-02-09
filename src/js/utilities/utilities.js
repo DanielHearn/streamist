@@ -1,4 +1,4 @@
-import { config } from './../config'
+import { config } from 'Js/config'
 
 function generateHash (length) {
   return Math.random().toString(36).slice(-length)

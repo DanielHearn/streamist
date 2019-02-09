@@ -109,5 +109,11 @@ module.exports = {
         ]
       }
     ]
+  },
+  resolve: {
+    alias: {
+      Js: path.resolve(__dirname, 'src/js/'),
+      Components: path.resolve(__dirname, 'src/js/components/')
+    }
   }
 }

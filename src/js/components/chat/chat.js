@@ -1,5 +1,5 @@
-import RemoveButton from './../buttons/removeButton/RemoveButton.vue'
-import RefreshButton from './../buttons/refreshButton/RefreshButton.vue'
+import RemoveButton from 'Components/buttons/removeButton/RemoveButton.vue'
+import RefreshButton from 'Components/buttons/refreshButton/RefreshButton.vue'
 
 export default {
   name: 'chat',

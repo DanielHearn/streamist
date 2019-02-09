@@ -1,8 +1,8 @@
 
-import CloseButton from './../buttons/closeButton/CloseButton.vue'
-import PresetListing from './../presetListing/PresetListing.vue'
-import InputForm from './../inputForm/InputForm.vue'
-import { generateID } from './../utilities'
+import CloseButton from 'Components/buttons/closeButton/CloseButton.vue'
+import PresetListing from 'Components/presetListing/PresetListing.vue'
+import InputForm from 'Components/inputForm/InputForm.vue'
+import { generateID } from 'Js/utilities'
 
 export default {
   name: 'preset-options',

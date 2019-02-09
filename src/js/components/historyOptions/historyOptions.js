@@ -1,5 +1,5 @@
-import CloseButton from './../buttons/closeButton/CloseButton.vue'
-import StreamHistoryControls from './../streamHistoryControls/StreamHistoryControls.vue'
+import CloseButton from 'Components/buttons/closeButton/CloseButton.vue'
+import StreamHistoryControls from 'Components/streamHistoryControls/StreamHistoryControls.vue'
 
 export default {
   name: 'history-options',

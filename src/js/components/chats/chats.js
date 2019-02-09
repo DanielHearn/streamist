@@ -1,4 +1,4 @@
-import Chat from './../chat/Chat.vue'
+import Chat from 'Components/chat/Chat.vue'
 
 export default {
   name: 'chats',

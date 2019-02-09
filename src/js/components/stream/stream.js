@@ -1,4 +1,4 @@
-import StreamControls from './../streamControls/StreamControls.vue'
+import StreamControls from 'Components/streamControls/StreamControls.vue'
 
 export default {
   name: 'stream',

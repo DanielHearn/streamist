@@ -1,16 +1,17 @@
 import { isValid } from 'date-fns'
 
-import FullscreenButton from './../buttons/fullscreenButton/FullscreenButton.vue'
-import ArrowButton from './../buttons/arrowButton/ArrowButton.vue'
-import ChatButton from './../buttons/chatButton/ChatButton.vue'
-import MenuButton from './../buttons/menuButton/MenuButton.vue'
+import FullscreenButton from 'Components/buttons/fullscreenButton/FullscreenButton.vue'
+import ArrowButton from 'Components/buttons/arrowButton/ArrowButton.vue'
+import ChatButton from 'Components/buttons/chatButton/ChatButton.vue'
+import MenuButton from 'Components/buttons/menuButton/MenuButton.vue'
 
-import InputForm from './../inputForm/InputForm.vue'
-import MenuContainer from './../menuContainer/MenuContainer.vue'
-import Streams from './../streams/Streams.vue'
-import Chats from './../chats/Chats.vue'
-import { generateID, log } from './../utilities'
-import { defaultData } from './../../config'
+import InputForm from 'Components/inputForm/InputForm.vue'
+import MenuContainer from 'Components/menuContainer/MenuContainer.vue'
+import Streams from 'Components/streams/Streams.vue'
+import Chats from 'Components/chats/Chats.vue'
+import { generateID, log } from 'Js/utilities'
+import { defaultData } from 'Js/config'
+import { validateField } from 'Js/validation'
 
 export default {
   name: 'manytwitch',
@@ -55,7 +56,6 @@ export default {
     addStream: function (streamName) {
       const stream = this.createStreamObject(streamName)
       this.updateStreams(this.currentStreams.concat([stream]))
-      log('NEW STREAM')
       this.addStreamToHistory(streamName)
       this.setHistory(this.streamHistory)
     },
@@ -185,11 +185,7 @@ export default {
           if (history.hasOwnProperty(index)) {
             const historyItem = history[index]
 
-            if (historyItem.id) {
-              if (typeof historyItem.id !== 'string') {
-                return false
-              }
-            } else {
+            if (!validateField(historyItem, historyItem.id, 'string')) {
               return false
             }
 
@@ -260,12 +256,14 @@ export default {
     insertURLParam: function () {
       let channelString = ''
       for (const channel in this.currentStreams) {
-        channelString += String(this.currentStreams[channel].streamName) + ','
+        if (this.currentStreams.hasOwnProperty(channel)) {
+          channelString += String(this.currentStreams[channel].streamName) + ','
+        }
       }
       channelString = channelString.replace('undefined', '')
-      const newurl = window.location.protocol + '//' + window.location.host + window.location.pathname
+      const newurl = `${window.location.protocol}//${window.location.host}${window.location.pathname}`
       if (channelString) {
-        const queryUrl = newurl + '?stream=' + channelString
+        const queryUrl = `${newurl}?stream=${channelString}`
         window.history.pushState({ path: queryUrl }, '', queryUrl)
       } else {
         window.history.pushState({ path: newurl }, '', newurl)

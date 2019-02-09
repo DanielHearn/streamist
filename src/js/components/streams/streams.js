@@ -1,6 +1,6 @@
 import draggable from 'vuedraggable'
-import Stream from './../stream/Stream.vue'
-import Intro from './../intro/Intro.vue'
+import Stream from 'Components/stream/Stream.vue'
+import Intro from 'Components/intro/Intro.vue'
 
 export default {
   name: 'streams',

@@ -1,4 +1,4 @@
-import StreamHistoryListing from './../streamHistoryListing/StreamHistoryListing.vue'
+import StreamHistoryListing from 'Components/streamHistoryListing/StreamHistoryListing.vue'
 
 export default {
   name: 'stream-history-controls',
