@@ -10,7 +10,7 @@ import MenuContainer from './../menuContainer/MenuContainer.vue'
 import Streams from './../streams/Streams.vue'
 import Chats from './../chats/Chats.vue'
 import { generateID, log } from './../utilities'
-import { defaultData } from './../config'
+import { defaultData } from './../../config'
 
 export default {
   name: 'manytwitch',
@@ -351,6 +351,7 @@ export default {
   created: function () {
     this.getStoredData()
 
+    // Get streams from url querystring
     this.getURLParam()
   }
 }
