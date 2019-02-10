@@ -8,7 +8,7 @@ import MenuContainer from 'Components/menuContainer/MenuContainer.vue'
 import Streams from 'Components/streams/Streams.vue'
 import Chats from 'Components/chats/Chats.vue'
 import { generateID, log, getDefault } from 'Js/utilities'
-import { validateField, validateDate, validateArray } from 'Js/validation'
+import { testValidators, validateHistory, validatePresets, validateOptions } from 'Js/validation'
 
 export default {
   name: 'manytwitch',
@@ -82,15 +82,9 @@ export default {
       this.storeOptions(this.options)
     },
 
-    validateOptions: function (options) {
-      if (typeof options === 'object') {
-        return true
-      } else {
-        return false
-      }
-    },
     storeOptions: function (options) {
-      if (this.validateOptions(options)) {
+      log('storing options')
+      if (validateOptions(options)) {
         localStorage.setItem('manytwitch_options', JSON.stringify(options))
       }
     },
@@ -98,32 +92,6 @@ export default {
       return localStorage.getItem('manytwitch_options')
     },
 
-    validatePresets: function (presets) {
-      if (Array.isArray(presets)) {
-        for (let index = 0; index < presets.length; index++) {
-          if (presets.hasOwnProperty(index)) {
-            const preset = presets[index]
-
-            if (!validateField(preset, 'id', 'string')) {
-              return false
-            }
-
-            if (!validateField(preset, 'name', 'string')) {
-              return false
-            }
-            if (!validateArray(preset, 'streams', 'string')) {
-              return false
-            }
-          } else {
-            return false
-          }
-        }
-        // No items in array has broken validation rules
-        return true
-      } else {
-        return false
-      }
-    },
     getStoredPresets: function () {
       return localStorage.getItem('manytwitch_presets')
     },
@@ -134,7 +102,7 @@ export default {
       }
     },
     storePresets: function (presets) {
-      if (this.validatePresets(presets)) {
+      if (validatePresets(presets)) {
         localStorage.setItem('manytwitch_presets', JSON.stringify(presets))
       }
     },
@@ -165,36 +133,8 @@ export default {
     getStoredHistory: function () {
       return localStorage.getItem('stream_history')
     },
-    validateHistory: function (history) {
-      if (Array.isArray(history)) {
-        for (let index = 0; index < history.length; index++) {
-          if (history.hasOwnProperty(index)) {
-            const historyItem = history[index]
-
-            if (!validateField(historyItem, 'id', 'string')) {
-              return false
-            }
-
-            if (!validateField(historyItem, 'streamName', 'string')) {
-              return false
-            }
-
-            if (!validateDate(historyItem, 'dateAdded')) {
-              return false
-            }
-          } else {
-            return false
-          }
-        }
-        // No items in array has broken validation rules
-        return true
-      } else {
-        log('History: Invalid Type')
-        return false
-      }
-    },
     storeHistory: function (history) {
-      if (this.validateHistory(history)) {
+      if (validateHistory(history)) {
         localStorage.setItem('stream_history', JSON.stringify(history))
       }
     },
@@ -252,7 +192,7 @@ export default {
       if (rawHistory) {
         try {
           const parsedHistory = JSON.parse(rawHistory)
-          if (this.validateHistory(parsedHistory)) {
+          if (validateHistory(parsedHistory)) {
             log('History passed validation')
             this.streamHistory = parsedHistory
             historyLoaded = true
@@ -272,7 +212,7 @@ export default {
       if (rawOptions) {
         try {
           const parsedOptions = JSON.parse(rawOptions)
-          if (this.validateOptions(parsedOptions)) {
+          if (validateOptions(parsedOptions)) {
             log('Options passed validation')
             optionsLoaded = true
             this.options = parsedOptions
@@ -292,7 +232,7 @@ export default {
       if (rawPresets) {
         try {
           const parsedPresets = JSON.parse(rawPresets)
-          if (this.validatePresets(parsedPresets)) {
+          if (validatePresets(parsedPresets)) {
             log('Streams passed validation')
             presetsLoaded = true
             this.streamPresets = parsedPresets
@@ -310,6 +250,8 @@ export default {
     }
   },
   created: function () {
+    testValidators()
+
     this.getStoredData()
 
     // Get streams from url querystring
