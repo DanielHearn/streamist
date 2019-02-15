@@ -83,7 +83,6 @@ export default {
     },
 
     storeOptions: function (options) {
-      log('storing options')
       if (validateOptions(options)) {
         localStorage.setItem('manytwitch_options', JSON.stringify(options))
       }
@@ -134,8 +133,19 @@ export default {
       return localStorage.getItem('stream_history')
     },
     storeHistory: function (history) {
-      if (validateHistory(history)) {
-        localStorage.setItem('stream_history', JSON.stringify(history))
+      const formattedHistory = history
+      console.log(history)
+      for (const stream of history) {
+        console.log(stream)
+        if (stream.dateAdded) {
+          log(String(stream.dateAdded))
+          stream.dateAdded = String(stream.dateAdded)
+        }
+      }
+      log('Set')
+      log(formattedHistory)
+      if (validateHistory(formattedHistory)) {
+        localStorage.setItem('stream_history', JSON.stringify(formattedHistory))
       }
     },
     loadHistory: function (streamHistory) {
@@ -148,12 +158,9 @@ export default {
       }
     },
     setHistory: function (streamHistory) {
-      if (this.validateHistory(streamHistory)) {
-        this.streamHistory = streamHistory
-        this.storeHistory(streamHistory)
-      }
+      this.streamHistory = streamHistory
+      this.storeHistory(streamHistory)
     },
-
     insertURLParam: function () {
       let channelString = ''
       for (const channel in this.currentStreams) {
@@ -194,7 +201,7 @@ export default {
           const parsedHistory = JSON.parse(rawHistory)
           if (validateHistory(parsedHistory)) {
             log('History passed validation')
-            this.streamHistory = parsedHistory
+            this.loadHistory(parsedHistory)
             historyLoaded = true
           }
         } catch (error) {
