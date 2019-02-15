@@ -134,16 +134,11 @@ export default {
     },
     storeHistory: function (history) {
       const formattedHistory = history
-      console.log(history)
       for (const stream of history) {
-        console.log(stream)
         if (stream.dateAdded) {
-          log(String(stream.dateAdded))
           stream.dateAdded = String(stream.dateAdded)
         }
       }
-      log('Set')
-      log(formattedHistory)
       if (validateHistory(formattedHistory)) {
         localStorage.setItem('stream_history', JSON.stringify(formattedHistory))
       }

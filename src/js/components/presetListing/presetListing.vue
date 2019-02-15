@@ -6,7 +6,7 @@
       v-model="presetName"/>
     <div class="input-container">
       <load-button
-        v-on:load="loadPreset"
+        @click.native="loadPreset"
         title="Load Preset">
       </load-button>
       <edit-button
