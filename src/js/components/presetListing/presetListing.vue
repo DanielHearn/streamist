@@ -10,11 +10,11 @@
         title="Load Preset">
       </load-button>
       <edit-button
-        v-on:edit="toggleEditMode"
+        @click.native="toggleEditMode"
         title="Edit Preset">
       </edit-button>
       <remove-button 
-        v-on:remove="deletePreset"
+        @click.native="deletePreset"
         title="Delete Preset">
       </remove-button>
     </div>
@@ -34,7 +34,7 @@
             :stream="stream">
             <span class="material-icons handle text--green">drag_handle</span>
             <p> {{ stream }}</p> 
-            <remove-button v-on:remove="deleteStreamFromPreset(index)" title="Remove Stream" ></remove-button>
+            <remove-button @click.native="deleteStreamFromPreset(index)" title="Remove Stream" ></remove-button>
           </li>
         </draggable>
       </ul>

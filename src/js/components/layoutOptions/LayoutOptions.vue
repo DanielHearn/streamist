@@ -2,7 +2,7 @@
   <div class="option">
     <div class="option-header">
       <p class="text-heading">Layouts</p>
-      <close-button v-on:close="closeOptions" title="Close Help"></close-button>
+      <close-button @click.native="closeOptions" title="Close Help"></close-button>
     </div>
     <div class="option-content">
       <p>Select a layout</p>

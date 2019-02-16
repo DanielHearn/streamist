@@ -13,7 +13,13 @@ export default {
     HelpOptions,
     About
   },
-  props: ['options', 'currentStreams', 'streamHistory', 'streamPresets', 'availableLayouts'],
+  props: [
+    'options',
+    'currentStreams',
+    'streamHistory',
+    'streamPresets',
+    'availableLayouts'
+  ],
   data: function () {
     return {
       currentOptionCat: ''

@@ -1,8 +1,8 @@
 import draggable from 'vuedraggable'
 import InputForm from 'Components/inputForm/InputForm.vue'
 import LoadButton from 'Components/buttons/iconButtons/loadButton/LoadButton.vue'
-import EditButton from 'Components/buttons/editButton/EditButton.vue'
-import RemoveButton from 'Components/buttons/removeButton/RemoveButton.vue'
+import EditButton from 'Components/buttons/iconButtons/editButton/EditButton.vue'
+import RemoveButton from 'Components/buttons/iconButtons/removeButton/RemoveButton.vue'
 
 export default {
   name: 'preset-listing',

@@ -3,7 +3,7 @@
     <div class="option-header">
       <p class="text-heading">Presets</p>
       <close-button 
-        v-on:close="closeOptions"
+        @click.native="closeOptions"
         title="Close Settings">
       </close-button>
     </div>

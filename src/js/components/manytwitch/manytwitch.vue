@@ -5,12 +5,12 @@
         v-if="options.menuVisible"
         button-title="Toggle Menu"
         direction="left"
-        v-on:toggle="toggleMenu"
+        @click.native="toggleMenu"
       />
       <menu-button
         v-else
         button-title="Toggle Menu"
-        v-on:toggle="toggleMenu"
+        @click.native="toggleMenu"
       />
       <div 
         class="nav-center">
@@ -26,13 +26,13 @@
           v-if="options.chatVisible && currentStreams.length"
           direction="right"
           button-title="Toggle Chat"
-          v-on:toggle="toggleChat"
+          @click.native="toggleChat"
         />
         <chat-button
-          :disabled="!currentStreams.length"
           v-else
+          :disabled="!currentStreams.length"
           title="Toggle Chat"
-          v-on:toggle="toggleChat"
+          @click.native="toggleChat"
         />
       </div>
     </nav>

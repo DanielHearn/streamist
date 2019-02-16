@@ -1,7 +1,7 @@
-import FullscreenButton from 'Components/buttons/fullscreenButton/FullscreenButton.vue'
-import ArrowButton from 'Components/buttons/arrowButton/ArrowButton.vue'
-import ChatButton from 'Components/buttons/chatButton/ChatButton.vue'
-import MenuButton from 'Components/buttons/menuButton/MenuButton.vue'
+import FullscreenButton from 'Components/buttons/iconButtons/fullscreenButton/FullscreenButton.vue'
+import ArrowButton from 'Components/buttons/iconButtons/arrowButton/ArrowButton.vue'
+import ChatButton from 'Components/buttons/iconButtons/chatButton/ChatButton.vue'
+import MenuButton from 'Components/buttons/iconButtons/menuButton/MenuButton.vue'
 
 import InputForm from 'Components/inputForm/InputForm.vue'
 import MenuContainer from 'Components/menuContainer/MenuContainer.vue'

@@ -2,7 +2,7 @@
   <div class="option">
     <div class="option-header">
       <p class="text-heading">Help</p>
-      <close-button v-on:close="closeOptions" title="Close Help"></close-button>
+      <close-button @click.native="closeOptions" title="Close Help"></close-button>
     </div>
     <div class="option-content">
       <p class="text">To watch a Twitch stream type the channel name into the search box at the top of the page and click add.</p>

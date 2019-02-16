@@ -1,6 +1,16 @@
+import IconButton from 'Components/buttons/iconButton/iconButton.vue'
+
 export default {
   name: 'fullscreen-button',
-  props: ['disabled'],
+  components: {
+    IconButton
+  },
+  props: {
+    disabled: {
+      default: false,
+      type: Boolean
+    }
+  },
   methods: {
     toggleFullscreen: function () {
       if (!document.fullscreenElement &&

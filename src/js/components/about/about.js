@@ -1,4 +1,4 @@
-import CloseButton from 'Components/buttons/closeButton/CloseButton.vue'
+import CloseButton from 'Components/buttons/iconButtons/closeButton/CloseButton.vue'
 
 export default {
   name: 'about',

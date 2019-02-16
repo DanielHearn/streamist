@@ -1,5 +1,5 @@
 
-import CloseButton from 'Components/buttons/closeButton/CloseButton.vue'
+import CloseButton from 'Components/buttons/iconButtons/closeButton/CloseButton.vue'
 import PresetListing from 'Components/presetListing/PresetListing.vue'
 import InputForm from 'Components/inputForm/InputForm.vue'
 import { generateID } from 'Js/utilities'

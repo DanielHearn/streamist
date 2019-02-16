@@ -1,5 +1,5 @@
-import RemoveButton from 'Components/buttons/removeButton/RemoveButton.vue'
-import RefreshButton from 'Components/buttons/refreshButton/RefreshButton.vue'
+import RemoveButton from 'Components/buttons/iconButtons/removeButton/RemoveButton.vue'
+import RefreshButton from 'Components/buttons/iconButtons/refreshButton/RefreshButton.vue'
 
 export default {
   name: 'stream-controls',

@@ -1,10 +1,10 @@
-import CloseButton from 'Components/buttons/closeButton/CloseButton.vue'
+import MenuItem from 'Components/menuItem/MenuItem.vue'
 import StreamHistoryControls from 'Components/streamHistoryControls/StreamHistoryControls.vue'
 
 export default {
   name: 'history-options',
   components: {
-    CloseButton,
+    MenuItem,
     StreamHistoryControls
   },
   props: ['streamHistory'],

@@ -1,13 +1,15 @@
 import CloseButton from 'Components/buttons/iconButtons/closeButton/CloseButton.vue'
 
 export default {
-  name: 'help-options',
+  name: 'menu-item',
   components: {
     CloseButton
   },
+  props: ['title', 'closeTitle'],
   methods: {
-    closeOptions: function () {
-      this.$emit('close-options')
+    closeMenuItem: function () {
+      console.log('Click')
+      this.$emit('close-menu-item')
     }
   }
 }
