@@ -18,8 +18,12 @@
           v-on:delete-preset="deletePreset">
         </preset-listing>
       </ul>
-      <button class="button--green" @click="saveCurrentAsPreset" :disabled="noStreams">Save Streams as Preset</button>
-      <button class="button--green" @click="clearPresets" :disabled="presetsDisabled">Clear Presets</button>
+      <standard-button
+        @click.native="saveCurrentAsPreset"
+        :disabled="noStreams">Save Streams as Preset</standard-button>
+      <standard-button
+        @click.native="clearPresets"
+        :disabled="presetsDisabled">Clear Presets</standard-button>
   </menu-item>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <button
-    class="button--green"
+    :class="buttonClasses"
     :disabled="disabled">
     <slot></slot>
   </button>

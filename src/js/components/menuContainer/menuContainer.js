@@ -3,6 +3,7 @@ import HistoryOptions from 'Components/historyOptions/HistoryOptions.vue'
 import PresetOptions from 'Components/presetOptions/PresetOptions.vue'
 import HelpOptions from 'Components/helpOptions/HelpOptions.vue'
 import About from 'Components/about/About.vue'
+import IconButton from 'Components/buttons/iconButton/iconButton.vue'
 
 export default {
   name: 'menu-container',
@@ -11,8 +12,31 @@ export default {
     HistoryOptions,
     PresetOptions,
     HelpOptions,
-    About
+    About,
+    IconButton
   },
+  menuItems: [
+    {
+      itemName: 'Layouts',
+      iconName: 'view_module'
+    },
+    {
+      itemName: 'Presets',
+      iconName: 'view_list'
+    },
+    {
+      itemName: 'History',
+      iconName: 'history'
+    },
+    {
+      itemName: 'Help',
+      iconName: 'help'
+    },
+    {
+      itemName: 'About',
+      iconName: 'info'
+    }
+  ],
   props: [
     'options',
     'currentStreams',

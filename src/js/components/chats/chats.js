@@ -1,9 +1,11 @@
 import Chat from 'Components/chat/Chat.vue'
+import StandardButton from 'Components/buttons/standardButton/StandardButton.vue'
 
 export default {
   name: 'chats',
   components: {
-    Chat
+    Chat,
+    StandardButton
   },
   props: ['streams', 'options'],
   data: function () {

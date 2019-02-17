@@ -10,7 +10,9 @@
           v-on:load-selected-history="loadSelectedHistory"
           ></stream-history-listing>
     </ul>
-    <button class="button--green" @click="clearHistory" :disabled="!historyAvailable">Clear History</button>
+    <standard-button
+      @click.native="clearHistory"
+      :disabled="!historyAvailable">Clear History</standard-button>
   </div>
 </template>
 

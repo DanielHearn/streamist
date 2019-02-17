@@ -1,7 +1,7 @@
 import IconButton from 'Components/buttons/iconButton/iconButton.vue'
 
 export default {
-  name: 'remove-button',
+  name: 'chat-button',
   components: {
     IconButton
   },

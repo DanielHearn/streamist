@@ -2,26 +2,15 @@
   <div class="menu-container" :class="{visible: options.menuVisible}">
     <div class="menu">
       <div class="menu-content">
-        <button class="button--dark button--menu" @click="loadOptionCat('Layouts')" :class="{active: currentOptionCat === 'Layouts'}">
-          <i class="menu-icon material-icons">view_module</i>
-          <p>Layouts</p>
-        </button>
-        <button class="button--dark button--menu" @click="loadOptionCat('Presets')" :class="{active: currentOptionCat === 'Presets'}">
-          <i class="menu-icon material-icons">view_list</i>
-          <p>Presets</p>
-        </button>
-        <button class="button--dark button--menu" @click="loadOptionCat('History')" :class="{active: currentOptionCat === 'History'}">
-          <i class="menu-icon material-icons">history</i>
-          <p>History</p>
-        </button>
-        <button class="button--dark button--menu" @click="loadOptionCat('Help')" :class="{active: currentOptionCat === 'Help'}">
-          <i class="menu-icon material-icons">help</i>
-          <p>Help</p>
-        </button>
-        <button class="button--dark button--menu" @click="loadOptionCat('About')" :class="{active: currentOptionCat === 'About'}">
-          <i class="menu-icon material-icons">info</i>
-          <p>About</p>
-        </button>
+        <icon-button 
+          v-for="menuitem in $options.menuItems" :key="menuitem.itemName"
+          @click.native="loadOptionCat(menuitem.itemName)"
+          :class="{active: currentOptionCat === menuitem.itemName}"
+          :buttonClasses="'button--dark button--menu'"
+          :iconClasses="'menu-icon'"
+          :iconName="menuitem.iconName">
+          <p>{{menuitem.itemName}}</p>
+        </icon-button>
       </div>
     </div>
     <div class="menu-options">

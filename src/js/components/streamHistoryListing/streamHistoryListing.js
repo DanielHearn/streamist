@@ -1,7 +1,11 @@
 import { distanceInWordsStrict } from 'date-fns'
+import StandardButton from 'Components/buttons/standardButton/StandardButton.vue'
 
 export default {
   name: 'stream-history-listing',
+  components: {
+    StandardButton
+  },
   props: ['history', 'currentDate'],
   computed: {
     timeAdded: function () {

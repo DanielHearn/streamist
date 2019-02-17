@@ -1,9 +1,11 @@
 import StreamHistoryListing from 'Components/streamHistoryListing/StreamHistoryListing.vue'
+import StandardButton from 'Components/buttons/standardButton/StandardButton.vue'
 
 export default {
   name: 'stream-history-controls',
   components: {
-    StreamHistoryListing
+    StreamHistoryListing,
+    StandardButton
   },
   props: ['streamHistory'],
   data: function () {

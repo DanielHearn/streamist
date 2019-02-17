@@ -13,6 +13,14 @@ export default {
     iconName: {
       default: 'mouse',
       type: String
+    },
+    buttonClasses: {
+      default: 'button--green',
+      type: String
+    },
+    iconClasses: {
+      default: '',
+      type: String
     }
   }
 }
