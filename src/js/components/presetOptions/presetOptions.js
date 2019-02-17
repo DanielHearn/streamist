@@ -1,5 +1,5 @@
 
-import CloseButton from 'Components/buttons/iconButtons/closeButton/CloseButton.vue'
+import MenuItem from 'Components/menuItem/MenuItem.vue'
 import PresetListing from 'Components/presetListing/PresetListing.vue'
 import InputForm from 'Components/inputForm/InputForm.vue'
 import { generateID } from 'Js/utilities'
@@ -7,7 +7,7 @@ import { generateID } from 'Js/utilities'
 export default {
   name: 'preset-options',
   components: {
-    CloseButton,
+    MenuItem,
     PresetListing,
     InputForm
   },

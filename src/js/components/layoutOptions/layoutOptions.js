@@ -1,10 +1,10 @@
-import CloseButton from 'Components/buttons/iconButtons/closeButton/CloseButton.vue'
+import MenuItem from 'Components/menuItem/MenuItem.vue'
 import LayoutDemo from 'Components/layoutDemo/LayoutDemo.vue'
 
 export default {
   name: 'layout-options',
   components: {
-    CloseButton,
+    MenuItem,
     LayoutDemo
   },
   props: ['currentStreams', 'availableLayouts', 'options'],

@@ -1,9 +1,9 @@
-import CloseButton from 'Components/buttons/iconButtons/closeButton/CloseButton.vue'
+import MenuItem from 'Components/menuItem/MenuItem.vue'
 
 export default {
   name: 'help-options',
   components: {
-    CloseButton
+    MenuItem
   },
   methods: {
     closeOptions: function () {

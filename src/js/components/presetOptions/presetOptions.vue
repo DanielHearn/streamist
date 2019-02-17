@@ -1,13 +1,9 @@
 <template>
-  <div class="option">
-    <div class="option-header">
-      <p class="text-heading">Presets</p>
-      <close-button 
-        @click.native="closeOptions"
-        title="Close Settings">
-      </close-button>
-    </div>
-    <div class="option-content">
+  <menu-item
+    :title="'Presets'"
+    :closeTitle="'Close Settings'"
+    v-on:close-menu-item="closeOptions"
+    >
       <input-form 
         v-on:submit="createPreset"
         placeholder="Preset Name"></input-form>
@@ -24,8 +20,7 @@
       </ul>
       <button class="button--green" @click="saveCurrentAsPreset" :disabled="noStreams">Save Streams as Preset</button>
       <button class="button--green" @click="clearPresets" :disabled="presetsDisabled">Clear Presets</button>
-    </div>
-  </div>
+  </menu-item>
 </template>
 
 <script src="./presetOptions.js"></script>

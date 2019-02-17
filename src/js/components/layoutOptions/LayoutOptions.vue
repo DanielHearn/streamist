@@ -1,10 +1,9 @@
 <template>
-  <div class="option">
-    <div class="option-header">
-      <p class="text-heading">Layouts</p>
-      <close-button @click.native="closeOptions" title="Close Help"></close-button>
-    </div>
-    <div class="option-content">
+  <menu-item
+    :title="'Layouts'"
+    :closeTitle="'Close Layout Options'"
+    v-on:close-menu-item="closeOptions"
+    >
       <p>Select a layout</p>
       <div class="layouts-demo-container">
         <layout-demo
@@ -16,8 +15,7 @@
           v-on:change-layout="changeLayout">
         </layout-demo>
       </div>
-    </div>
-  </div>
+  </menu-item>
 </template>
 
 <script src="./layoutOptions.js"></script>
