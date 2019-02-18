@@ -7,7 +7,20 @@ export default {
     MenuItem,
     LayoutDemo
   },
-  props: ['currentStreams', 'availableLayouts', 'options'],
+  props: {
+    currentStreams: {
+      type: Array,
+      required: true
+    },
+    availableLayouts: {
+      type: Array,
+      required: true
+    },
+    options: {
+      type: Object,
+      required: true
+    }
+  },
   data: function () {
     return {
       selectedLayout: this.options.currentLayout

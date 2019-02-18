@@ -7,7 +7,22 @@ export default {
     RemoveButton,
     RefreshButton
   },
-  props: ['streams', 'chat', 'removeAvailable'],
+  props: {
+    streams: {
+      default: [],
+      type: Array,
+      required: true
+    },
+    chat: {
+      type: Object,
+      required: true
+    },
+    removeAvailable: {
+      default: false,
+      type: Boolean,
+      required: true
+    }
+  },
   data: function () {
     return {
       newChatName: this.chat.streamName,

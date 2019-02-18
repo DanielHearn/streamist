@@ -7,7 +7,16 @@ export default {
     RemoveButton,
     RefreshButton
   },
-  props: ['stream', 'numStreams'],
+  props: {
+    stream: {
+      type: Object,
+      required: true
+    },
+    numStreams: {
+      type: Number,
+      required: true
+    }
+  },
   computed: {
     streamUrl: function () {
       return `https://www.twitch.tv/${this.stream.streamName}`

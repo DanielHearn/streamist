@@ -7,7 +7,13 @@ export default {
     MenuItem,
     StreamHistoryControls
   },
-  props: ['streamHistory'],
+  props: {
+    streamHistory: {
+      default: [],
+      type: Array,
+      required: true
+    }
+  },
   methods: {
     loadSelectedHistory: function (streamName) {
       this.$emit('load-selected-history', streamName)

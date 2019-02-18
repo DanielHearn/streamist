@@ -8,19 +8,23 @@ export default {
   props: {
     disabled: {
       default: false,
-      type: Boolean
+      type: Boolean,
+      required: false
     },
     iconName: {
       default: 'mouse',
-      type: String
+      type: String,
+      required: true
     },
     buttonClasses: {
       default: 'button--green',
-      type: String
+      type: String,
+      required: false
     },
     iconClasses: {
       default: '',
-      type: String
+      type: String,
+      required: false
     }
   }
 }

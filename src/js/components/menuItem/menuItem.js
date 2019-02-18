@@ -5,10 +5,18 @@ export default {
   components: {
     CloseButton
   },
-  props: ['title', 'closeTitle'],
+  props: {
+    title: {
+      type: String,
+      required: true
+    },
+    closeTitle: {
+      type: String,
+      required: true
+    }
+  },
   methods: {
     closeMenuItem: function () {
-      console.log('Click')
       this.$emit('close-menu-item')
     }
   }

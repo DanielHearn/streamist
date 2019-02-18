@@ -8,11 +8,13 @@ export default {
   props: {
     disabled: {
       default: false,
-      type: Boolean
+      type: Boolean,
+      required: false
     },
     direction: {
       default: 'left',
-      type: String
+      type: String,
+      required: true
     }
   },
   data: function () {

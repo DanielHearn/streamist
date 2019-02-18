@@ -7,7 +7,12 @@ export default {
     StreamHistoryListing,
     StandardButton
   },
-  props: ['streamHistory'],
+  props: {
+    streamHistory: {
+      type: Array,
+      required: true
+    }
+  },
   data: function () {
     return {
       selectedHistory: '',

@@ -13,7 +13,12 @@ export default {
     EditButton,
     RemoveButton
   },
-  props: ['preset'],
+  props: {
+    preset: {
+      type: Object,
+      required: true
+    }
+  },
   data: function () {
     return {
       orderedStreams: this.preset.streams,

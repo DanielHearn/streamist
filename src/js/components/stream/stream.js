@@ -5,7 +5,24 @@ export default {
   components: {
     StreamControls
   },
-  props: ['currentStream', 'numStreams', 'options', 'hover'],
+  props: {
+    currentStream: {
+      type: Object,
+      required: true
+    },
+    numStreams: {
+      type: Number,
+      required: true
+    },
+    options: {
+      type: Object,
+      required: true
+    },
+    hover: {
+      type: Boolean,
+      required: true
+    }
+  },
   data: function () {
     return {
       playerEmbed: {},

@@ -9,7 +9,16 @@ export default {
     Stream,
     Intro
   },
-  props: ['streams', 'options'],
+  props: {
+    streams: {
+      type: Array,
+      required: true
+    },
+    options: {
+      type: Object,
+      required: true
+    }
+  },
   data: function () {
     return {
       orderedStreams: this.streams.slice(),

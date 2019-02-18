@@ -7,7 +7,8 @@ export default {
     },
     buttonClasses: {
       default: 'button--green',
-      type: String
+      type: String,
+      required: false
     }
   }
 }

@@ -8,7 +8,14 @@
         @click.native="addChat"
         title="Add Chat">Add Chat</standard-button>
     </div>
-    <chat v-for="chat in chats" :streams="streams" :chat="chat" :key="chat.index" :remove-available="removeAvailable" v-on:load-chat="loadChat" v-on:remove-chat="removeChat"></chat>
+    <chat
+      v-for="chat in chats"
+      :key="chat.index"
+      :streams="streams"
+      :chat="chat"
+      :remove-available="removeAvailable"
+      v-on:load-chat="loadChat"
+      v-on:remove-chat="removeChat"></chat>
   </div>
 </template>
 

@@ -7,7 +7,17 @@ export default {
     Chat,
     StandardButton
   },
-  props: ['streams', 'options'],
+  props: {
+    streams: {
+      default: [],
+      type: Array,
+      required: true
+    },
+    options: {
+      type: Object,
+      required: true
+    }
+  },
   data: function () {
     return {
       chats: []

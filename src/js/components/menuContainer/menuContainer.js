@@ -37,13 +37,28 @@ export default {
       iconName: 'info'
     }
   ],
-  props: [
-    'options',
-    'currentStreams',
-    'streamHistory',
-    'streamPresets',
-    'availableLayouts'
-  ],
+  props: {
+    options: {
+      type: Object,
+      required: true
+    },
+    currentStreams: {
+      type: Array,
+      required: true
+    },
+    streamHistory: {
+      type: Array,
+      required: true
+    },
+    streamPresets: {
+      type: Array,
+      required: true
+    },
+    availableLayouts: {
+      type: Array,
+      required: true
+    }
+  },
   data: function () {
     return {
       currentOptionCat: ''

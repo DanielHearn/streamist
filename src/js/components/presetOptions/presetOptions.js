@@ -13,7 +13,16 @@ export default {
     InputForm,
     StandardButton
   },
-  props: ['streamPresets', 'currentStreams'],
+  props: {
+    streamPresets: {
+      type: Array,
+      required: true
+    },
+    currentStreams: {
+      type: Array,
+      required: true
+    }
+  },
   data: function () {
     return {
       importPresetsOpened: false,

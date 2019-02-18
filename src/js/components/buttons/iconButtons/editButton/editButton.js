@@ -8,7 +8,8 @@ export default {
   props: {
     disabled: {
       default: false,
-      type: Boolean
+      type: Boolean,
+      required: false
     }
   },
   data: function () {

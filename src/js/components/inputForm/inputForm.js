@@ -5,7 +5,12 @@ export default {
   components: {
     StandardButton
   },
-  props: ['placeholder'],
+  props: {
+    placeholder: {
+      type: String,
+      required: true
+    }
+  },
   data: function () {
     return {
       inputValue: ''

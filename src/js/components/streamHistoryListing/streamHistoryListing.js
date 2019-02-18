@@ -6,7 +6,16 @@ export default {
   components: {
     StandardButton
   },
-  props: ['history', 'currentDate'],
+  props: {
+    history: {
+      type: Object,
+      required: true
+    },
+    currentDate: {
+      type: Date,
+      required: true
+    }
+  },
   computed: {
     timeAdded: function () {
       // Show time since add e.g '1 minute ago'
