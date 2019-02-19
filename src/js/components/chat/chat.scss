@@ -8,11 +8,8 @@
   .chat-controls {
     display: flex;
     justify-content: space-evenly;
-    .button-container {
-      flex: 1 auto;
-      button {
-        width: 100%;
-      }
+    button {
+      width: 100%;
     }
   }
   iframe {

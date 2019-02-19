@@ -6,6 +6,7 @@ export const defaultData = {
   options: {
     chatVisible: true,
     menuVisible: true,
+    navVisible: true,
     startMuted: true,
     currentLayout: {id: 'grid', name: 'Grid'}
   },

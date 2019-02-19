@@ -1,10 +1,12 @@
 <template>
   <div id="manytwitch">
-    <nav>
+    <nav
+      :class="{'hidden': !options.navVisible}"
+    >
       <arrow-button
         v-if="options.menuVisible"
         button-title="Toggle Menu"
-        direction="left"
+        :direction="'left'"
         @click.native="toggleMenu"
       />
       <menu-button
@@ -24,7 +26,7 @@
         <fullscreen-button/>
         <arrow-button
           v-if="options.chatVisible && currentStreams.length"
-          direction="right"
+          :direction="'right'"
           button-title="Toggle Chat"
           @click.native="toggleChat"
         />
@@ -37,7 +39,14 @@
       </div>
     </nav>
     <div id="main">
+      <arrow-button
+        class="nav-toggle-button"
+        :direction="options.navVisible ? 'up' : 'down'"
+        button-title="Toggle Nav"
+        @click.native="toggleNav"
+      />
       <menu-container 
+        :class="{'hidden': !options.navVisible}"
         :options="options"
         :stream-history="streamHistory"
         :current-streams="currentStreams"

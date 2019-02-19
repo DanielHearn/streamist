@@ -29,10 +29,18 @@ export default {
   },
   methods: {
     setIconName: function () {
-      if (this.direction === 'right') {
-        this.iconName = 'arrow_forward'
-      } else {
-        this.iconName = 'arrow_back'
+      this.iconName = this.mapDirection(this.direction)
+    },
+    mapDirection: function () {
+      switch (this.direction) {
+        case 'left':
+          return 'arrow_back'
+        case 'right':
+          return 'arrow_forward'
+        case 'up':
+          return 'arrow_upward'
+        case 'down':
+          return 'arrow_downward'
       }
     }
   },

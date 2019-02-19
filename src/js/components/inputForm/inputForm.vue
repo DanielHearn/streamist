@@ -14,3 +14,7 @@
 </template>
 
 <script src="./inputForm.js"></script>
+
+<style lang="scss">
+    @import './inputForm.scss';
+</style>

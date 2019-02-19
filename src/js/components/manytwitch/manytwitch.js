@@ -34,6 +34,7 @@ export default {
       options: {
         chatVisible: true,
         menuVisible: true,
+        navVisible: true,
         startMuted: true,
         currentLayout: {id: 'grid', name: 'Grid'}
       },
@@ -79,6 +80,10 @@ export default {
     },
     toggleMenu: function () {
       this.options.menuVisible = !this.options.menuVisible
+      this.storeOptions(this.options)
+    },
+    toggleNav: function () {
+      this.options.navVisible = !this.options.navVisible
       this.storeOptions(this.options)
     },
 

@@ -1,5 +1,16 @@
 @import "variables";
 
+#main {
+  display: flex;
+  flex: 1 auto;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: $black;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -24,4 +35,14 @@ nav {
       margin: 0 0.5em;
     }
   }
+  .hidden { 
+    display: none;
+  }
+}
+
+.nav-toggle-button {
+  margin: 0 auto;
+  position: absolute;
+  z-index: 20;
+  padding: 0.25em 1em;
 }
