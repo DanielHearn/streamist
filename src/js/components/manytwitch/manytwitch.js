@@ -31,6 +31,7 @@ export default {
         {id: 'grid', name: 'Grid'},
         {id: 'column', name: 'Column'}
       ],
+      appHover: false,
       options: {
         chatVisible: true,
         menuVisible: true,
@@ -254,7 +255,18 @@ export default {
         this.storePresets(defaultPresets)
       }
       log('--- Completed Stored Data Collection ---')
+    },
+    checkMovement: function () {
+      this.appHover = true
+      const app = this
+      setTimeout(function () {
+        app.appHover = false
+      }, 5000)
+      console.log('move')
     }
+  },
+  mounted: function () {
+    document.addEventListener('mousemove', this.checkMovement, false)
   },
   created: function () {
     testValidators()

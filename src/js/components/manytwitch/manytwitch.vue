@@ -44,6 +44,7 @@
         :direction="options.navVisible ? 'up' : 'down'"
         button-title="Toggle Nav"
         @click.native="toggleNav"
+        :class="{'hidden': !appHover}"
       />
       <menu-container 
         :class="{'hidden': !options.navVisible}"
