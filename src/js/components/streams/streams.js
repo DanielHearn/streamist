@@ -1,13 +1,15 @@
 import draggable from 'vuedraggable'
 import Stream from 'Components/stream/Stream.vue'
 import Intro from 'Components/intro/Intro.vue'
+import ArrowButton from 'Components/buttons/iconButtons/arrowButton/ArrowButton.vue'
 
 export default {
   name: 'streams',
   components: {
     draggable,
     Stream,
-    Intro
+    Intro,
+    ArrowButton
   },
   props: {
     streams: {
@@ -16,6 +18,14 @@ export default {
     },
     options: {
       type: Object,
+      required: true
+    },
+    navVisible: {
+      type: Boolean,
+      required: true
+    },
+    appHover: {
+      type: Boolean,
       required: true
     }
   },
@@ -45,6 +55,9 @@ export default {
       // Remove stream with matching streamIndex from currentStreams
       const newStreams = this.streams.filter(stream => stream !== removedStream)
       this.$emit('update-streams', newStreams)
+    },
+    toggleNav: function () {
+      this.$emit('toggle-nav')
     }
   }
 }

@@ -1,6 +1,13 @@
 <template>
   <div 
   class="streams-container">
+    <arrow-button
+      class="nav-toggle-button"
+      :direction="navVisible ? 'up' : 'down'"
+      button-title="Toggle Nav"
+      @click.native="toggleNav"
+      :class="{'hidden': !appHover}"
+    />
     <draggable 
       v-if="streams.length"
       class="streams"

@@ -3,6 +3,7 @@
   flex: 1 auto;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .streams {
@@ -22,4 +23,21 @@
 
 .streams--layout-column {
   flex-wrap: nowrap;
+}
+
+.nav-toggle-button.button--green {
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  z-index: 20;
+  padding: 0.25em 1em;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+  &.hidden {
+    opacity: 0;
+    display: flex !important;
+  }
+  &:hover {
+    opacity: 1;
+  }
 }

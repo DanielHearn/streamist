@@ -30,7 +30,6 @@ const presetsValidator = new Rule({
 const optionsValidator = new Validator({
   chatVisible: new Rule({ type: 'boolean' }),
   menuVisible: new Rule({ type: 'boolean' }),
-  navVisible: new Rule({ type: 'boolean' }),
   startMuted: new Rule({ type: 'boolean' }),
   currentLayout: {
     id: new Rule('string'),

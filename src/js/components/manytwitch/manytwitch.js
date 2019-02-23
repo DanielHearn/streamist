@@ -1,3 +1,5 @@
+import { isBefore } from 'date-fns'
+
 import FullscreenButton from 'Components/buttons/iconButtons/fullscreenButton/FullscreenButton.vue'
 import ArrowButton from 'Components/buttons/iconButtons/arrowButton/ArrowButton.vue'
 import ChatButton from 'Components/buttons/iconButtons/chatButton/ChatButton.vue'
@@ -32,10 +34,12 @@ export default {
         {id: 'column', name: 'Column'}
       ],
       appHover: false,
+      appHoverDate: new Date(),
+      appHoverTracking: false,
+      navVisible: true,
       options: {
         chatVisible: true,
         menuVisible: true,
-        navVisible: true,
         startMuted: true,
         currentLayout: {id: 'grid', name: 'Grid'}
       },
@@ -84,8 +88,7 @@ export default {
       this.storeOptions(this.options)
     },
     toggleNav: function () {
-      this.options.navVisible = !this.options.navVisible
-      this.storeOptions(this.options)
+      this.navVisible = !this.navVisible
     },
 
     storeOptions: function (options) {
@@ -258,11 +261,19 @@ export default {
     },
     checkMovement: function () {
       this.appHover = true
+      this.appHoverTracking = true
+      const currDate = new Date()
+      // Set date that nav bar button will be hidden at
+      this.appHoverDate = new Date(currDate.getTime() + currDate.getMinutes() * 100)
+    },
+    checkAppMovement: function () {
       const app = this
-      setTimeout(function () {
-        app.appHover = false
-      }, 5000)
-      console.log('move')
+      setInterval(function () {
+        if (app.appHoverTracking === true && isBefore(app.appHoverDate, new Date())) {
+          app.appHover = false
+          app.appHoverTracking = false
+        }
+      }, 1000)
     }
   },
   mounted: function () {
@@ -275,5 +286,7 @@ export default {
 
     // Get streams from url querystring
     this.getURLParam()
+
+    this.checkAppMovement()
   }
 }

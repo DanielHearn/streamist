@@ -1,7 +1,7 @@
 <template>
   <div id="manytwitch">
     <nav
-      :class="{'hidden': !options.navVisible}"
+      :class="{'hidden': !navVisible}"
     >
       <arrow-button
         v-if="options.menuVisible"
@@ -39,15 +39,8 @@
       </div>
     </nav>
     <div id="main">
-      <arrow-button
-        class="nav-toggle-button"
-        :direction="options.navVisible ? 'up' : 'down'"
-        button-title="Toggle Nav"
-        @click.native="toggleNav"
-        :class="{'hidden': !appHover}"
-      />
       <menu-container 
-        :class="{'hidden': !options.navVisible}"
+        :class="{'hidden': !navVisible}"
         :options="options"
         :stream-history="streamHistory"
         :current-streams="currentStreams"
@@ -63,7 +56,10 @@
         :streams="currentStreams"
         :current-layout="options.currentLayout"
         :options="options"
-        v-on:update-streams="updateStreams">
+        :navVisible="navVisible"
+        :appHover="appHover"
+        v-on:update-streams="updateStreams"
+        v-on:toggle-nav="toggleNav">
         </streams>
       <chats
         :streams="currentStreams"
