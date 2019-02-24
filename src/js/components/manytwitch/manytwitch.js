@@ -266,7 +266,7 @@ export default {
         if (app.appHoverTracker === 0) {
           app.appHover = false
         }
-      }, 4000)
+      }, 3000)
     }
   },
   mounted: function () {

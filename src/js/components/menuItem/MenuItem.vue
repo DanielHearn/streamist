@@ -14,3 +14,8 @@
 </template>
 
 <script src="./menuItem.js"></script>
+
+
+<style lang="scss">
+    @import './menuItem.scss';
+</style>

@@ -72,7 +72,7 @@ export default {
         if (component.componentHoverTracker === 0) {
           component.componentHover = false
         }
-      }, 4000)
+      }, 3000)
     }
   },
   mounted: function () {

@@ -1,0 +1,38 @@
+.menu-options {
+  background: $white;
+  max-width: 20em;
+  .option {
+    width: 20em;
+    height: 100%;
+    color: $black;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    .text-sub-heading {
+      margin: 0;
+    }
+    .option-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: $content-padding;
+      .text-heading {
+        text-align: center;
+      }
+    }
+    .option-content {
+      height: 100%;
+      padding: $content-padding;
+      overflow-y: scroll;
+    }
+    input {
+      //padding: 0.25em 0.75em;
+      margin: $content-padding/4;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button {
+      margin: $content-padding/4;
+    }
+  }
+}
