@@ -5,13 +5,13 @@
     >
       <arrow-button
         v-if="options.menuVisible"
-        button-title="Toggle Menu"
+        title="Close Menu"
         :direction="'left'"
         @click.native="toggleMenu"
       />
       <menu-button
         v-else
-        button-title="Toggle Menu"
+        title="Open Menu"
         @click.native="toggleMenu"
       />
       <div 
@@ -23,17 +23,19 @@
       </div>
       <div
         class="nav-right">
-        <fullscreen-button/>
+        <fullscreen-button
+          title="Toggle Fullscreen"
+        />
         <arrow-button
           v-if="options.chatVisible && currentStreams.length"
           :direction="'right'"
-          button-title="Toggle Chat"
+          title="Close Chat"
           @click.native="toggleChat"
         />
         <chat-button
           v-else
           :disabled="!currentStreams.length"
-          title="Toggle Chat"
+          title="Open Chat"
           @click.native="toggleChat"
         />
       </div>
@@ -54,7 +56,6 @@
         </menu-container>
       <streams
         :streams="currentStreams"
-        :current-layout="options.currentLayout"
         :options="options"
         :navVisible="navVisible"
         :appHover="appHover"

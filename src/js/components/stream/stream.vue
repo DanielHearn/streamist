@@ -1,12 +1,12 @@
 <template>
-  <div class="stream" :class="{active: hover}">
+  <div class="stream" :class="[{active: hover}, 'stream--' + currentStream.embedPlayerID]">
     <div v-if="displayControls">
       <stream-controls
         :stream="currentStream"
         :numStreams="numStreams"
         v-on:remove="remove"
         v-on:refresh="refresh"
-        :class="{active: hover}"
+        :class="{active: componentHover || hover}"
       />
     </div>
     <div class="stream-main">

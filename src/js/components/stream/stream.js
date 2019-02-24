@@ -1,3 +1,4 @@
+import { log } from 'Js/utilities'
 import StreamControls from 'Components/streamControls/StreamControls.vue'
 
 export default {
@@ -27,7 +28,9 @@ export default {
     return {
       playerEmbed: {},
       player: {},
-      displayControls: false
+      displayControls: false,
+      componentHover: false,
+      componentHoverTracker: 0
     }
   },
   methods: {
@@ -40,15 +43,36 @@ export default {
       this.displayStream()
     },
     displayStream: function () {
-      this.displayControls = true
-      const options = {
-        channel: this.currentStream.streamName,
-        layout: 'video',
-        allowfullscreen: false,
-        theme: 'dark'
+      try {
+        this.displayControls = true
+        const playerElement = document.querySelector(`.stream--${this.currentStream.embedPlayerID}`)
+        if (playerElement) {
+          playerElement.addEventListener('mousemove', this.checkMovement, false)
+        }
+
+        const options = {
+          channel: this.currentStream.streamName,
+          layout: 'video',
+          allowfullscreen: false,
+          theme: 'dark'
+        }
+        this.playerEmbed = new Twitch.Embed(this.currentStream.embedPlayerID, options)
+        this.player = this.playerEmbed.getPlayer()
+      } catch (error) {
+        console.error('Twitch API script is not loaded')
       }
-      this.playerEmbed = new Twitch.Embed(this.currentStream.embedPlayerID, options)
-      this.player = this.playerEmbed.getPlayer()
+    },
+    checkMovement: function () {
+      this.componentHover = true
+      this.componentHoverTracker += 1
+
+      const component = this
+      setTimeout(function () {
+        component.componentHoverTracker -= 1
+        if (component.componentHoverTracker === 0) {
+          component.componentHover = false
+        }
+      }, 4000)
     }
   },
   mounted: function () {

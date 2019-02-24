@@ -1,5 +1,3 @@
-import { isBefore } from 'date-fns'
-
 import FullscreenButton from 'Components/buttons/iconButtons/fullscreenButton/FullscreenButton.vue'
 import ArrowButton from 'Components/buttons/iconButtons/arrowButton/ArrowButton.vue'
 import ChatButton from 'Components/buttons/iconButtons/chatButton/ChatButton.vue'
@@ -34,8 +32,7 @@ export default {
         {id: 'column', name: 'Column'}
       ],
       appHover: false,
-      appHoverDate: new Date(),
-      appHoverTracking: false,
+      appHoverTracker: 0,
       navVisible: true,
       options: {
         chatVisible: true,
@@ -261,19 +258,15 @@ export default {
     },
     checkMovement: function () {
       this.appHover = true
-      this.appHoverTracking = true
-      const currDate = new Date()
-      // Set date that nav bar button will be hidden at
-      this.appHoverDate = new Date(currDate.getTime() + currDate.getMinutes() * 100)
-    },
-    checkAppMovement: function () {
+      this.appHoverTracker += 1
+
       const app = this
-      setInterval(function () {
-        if (app.appHoverTracking === true && isBefore(app.appHoverDate, new Date())) {
+      setTimeout(function () {
+        app.appHoverTracker -= 1
+        if (app.appHoverTracker === 0) {
           app.appHover = false
-          app.appHoverTracking = false
         }
-      }, 1000)
+      }, 4000)
     }
   },
   mounted: function () {
@@ -286,7 +279,5 @@ export default {
 
     // Get streams from url querystring
     this.getURLParam()
-
-    this.checkAppMovement()
   }
 }

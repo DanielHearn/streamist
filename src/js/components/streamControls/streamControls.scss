@@ -4,7 +4,7 @@
 .stream-controls {
   @include border-radius;
   position: absolute;
-  display: none;
+  display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
@@ -15,8 +15,8 @@
   top: 2em;
   opacity: 0;
   z-index: 10;
-  &.active {
-    display: flex;
+  transition: opacity 0.5s ease-in-out;
+  &.active, &:hover {
     opacity: 1;
   }
   p, button {
