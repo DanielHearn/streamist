@@ -5,4 +5,10 @@
     margin-left: 0 !important;
     margin-right: 0 !important;
   }
+  input {
+    border-radius: $content-border-radius 0 0 $content-border-radius;
+  }
+  button {
+    border-radius: 0 $content-border-radius $content-border-radius 0;
+  }
 }

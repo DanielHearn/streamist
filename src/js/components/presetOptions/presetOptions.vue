@@ -6,7 +6,9 @@
     >
       <input-form 
         v-on:submit="createPreset"
-        placeholder="Preset Name"></input-form>
+        placeholder="Preset Name"
+        buttonText="Create"
+        ></input-form>
       <p class="text" v-if="presetsDisabled">No presets saved</p>
       <ul class="preset-list" v-if="!presetsDisabled">
         <preset-listing

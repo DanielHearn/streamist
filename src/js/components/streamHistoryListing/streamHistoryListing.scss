@@ -1,13 +1,18 @@
 @import "variables";
 
 .history-listing {
-  padding: $content-padding 0;
-  //border-bottom: 2px solid $off-white;
+  margin: $content-padding 0;
+  padding: $content-padding/2;
+  background: #f9f9f9;
   .listing-details {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    p {
+    .sub-text {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
       padding-right: $content-padding/2;
     }
   }

@@ -2,7 +2,7 @@
   <div class="history-listing">
       <p class="text-sub-heading">{{ history.streamName }}</p>
       <div class="listing-details">
-        <p class="sub-text">Added: {{ timeAdded }}</p>
+        <p class="sub-text">{{ timeAdded }}</p>
         <standard-button
           @click.native="loadSelectedHistory"
           title="Add Stream">Add</standard-button>

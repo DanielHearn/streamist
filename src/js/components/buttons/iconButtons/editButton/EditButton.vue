@@ -1,7 +1,8 @@
 <template>
   <icon-button
     :disabled="disabled"
-    :iconName="iconName">
+    :iconName="iconName"
+    @click.native="edit">
   </icon-button>
 </template>
 

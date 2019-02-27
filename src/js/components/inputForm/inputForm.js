@@ -9,6 +9,11 @@ export default {
     placeholder: {
       type: String,
       required: true
+    },
+    buttonText: {
+      type: String,
+      required: false,
+      default: 'Add'
     }
   },
   data: function () {

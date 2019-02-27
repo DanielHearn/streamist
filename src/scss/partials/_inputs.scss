@@ -14,15 +14,8 @@ input, button {
 input {
     background: $off-white;
     border: none;
-}
-
-form {
-    input {
-        border-radius: $content-border-radius 0 0 $content-border-radius;
-    }
-    button {
-        border-radius: 0 $content-border-radius $content-border-radius 0;
-    }
+    padding: 0.4em 0.8em;
+    line-height: 1.4em;
 }
 
 button {
@@ -66,12 +59,9 @@ button {
 
 .button--dark {
     background: $dark;
-}
-  
-textarea {
-    resize: none;
-    width: 100%;
-    min-height: 5em;
+    &:hover {
+      background: $dark-grey;
+    }
 }
 
 select {
@@ -81,6 +71,17 @@ select {
       font-size: 1em;
       font-weight: 600;
     }
+}
+
+.input-container {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+}
+
+.handle {
+  padding: $content-padding/2;
+  cursor: grab;
 }
 
 /*

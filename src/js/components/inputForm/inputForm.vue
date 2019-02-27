@@ -9,7 +9,7 @@
       required="required"
       :placeholder="placeholder"
       v-model="inputValue" />
-    <standard-button type="submit">Add</standard-button>
+    <standard-button type="submit">{{buttonText}}</standard-button>
   </form>
 </template>
 

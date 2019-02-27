@@ -4,6 +4,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  overflow: hidden;
 }
 
 .streams {
@@ -32,6 +33,7 @@
   z-index: 20;
   padding: 0.25em 1em;
   transition: opacity 0.5s ease-in-out;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.15);
   opacity: 1;
   &.hidden {
     opacity: 0;

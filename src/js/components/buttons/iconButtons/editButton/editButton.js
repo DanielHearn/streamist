@@ -1,7 +1,7 @@
 import IconButton from 'Components/buttons/iconButton/iconButton.vue'
 
 export default {
-  name: 'remove-button',
+  name: 'edit-button',
   components: {
     IconButton
   },

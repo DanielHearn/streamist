@@ -25,6 +25,7 @@
       <ul class="preset-stream-list">
         <draggable 
           v-model="orderedStreams" 
+          v-if="orderedStreams.length"
           @start="drag=true" 
           @end="drag=false"
           :options="{ghostClass:'ghost'}">
@@ -37,6 +38,7 @@
             <remove-button @click.native="deleteStreamFromPreset(index)" title="Remove Stream" ></remove-button>
           </li>
         </draggable>
+        <p v-else>No streams in preset</p>
       </ul>
     </div>
   </li>
