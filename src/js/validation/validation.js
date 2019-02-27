@@ -2,10 +2,17 @@ import { isValid } from 'date-fns'
 import { log } from 'Js/utilities'
 import { Validator, Rule } from '@cesium133/forgjs'
 
+function isValidDate (date) {
+  return isValid(new Date(date))
+}
+
 const historyItemValidator = new Validator({
   id: new Rule('string'),
   streamName: new Rule('string'),
-  dateAdded: new Rule('string')
+  dateAdded: new Rule({
+    type: 'string',
+    custom: isValidDate
+  })
 })
 
 const historyValidator = new Rule({
@@ -59,12 +66,12 @@ const testHistoryValidator = function () {
     {
       id: 'id',
       streamName: 'stream',
-      dateAdded: 'date'
+      dateAdded: 'Wed Feb 27 2019 21:33:28 GMT+0000'
     },
     {
       id: 'id',
       streamName: 'stream',
-      dateAdded: 'date'
+      dateAdded: 'Wed Feb 27 2019 21:33:28 GMT+0000'
     }
   ]
   try {
