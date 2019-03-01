@@ -6,7 +6,7 @@
     >
     <stream-history-controls
       :stream-history="streamHistory"
-      v-on:load-selected-history="$emit('load-selected-history', streamName)"
+      v-on:load-selected-history="loadSelectedHistory"
       v-on:clear-history="$emit('clear-history')"
     ></stream-history-controls>
   </menu-item>

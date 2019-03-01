@@ -19,22 +19,22 @@
         :options="options"
         :current-streams="currentStreams"
         :available-layouts="availableLayouts"
-        v-on:change-layout="$emit('change-layout', newLayout)"
+        v-on:change-layout="changeLayout"
         v-on:close-menu="closeMenu"
       ></layout-menu>
       <preset-menu 
         v-if="currentMenu === 'Presets'"
         :stream-presets="streamPresets"
         :current-streams="currentStreams"
-        v-on:update-presets="$emit('update-presets', newPresets)"
-        v-on:load-preset="$emit('load-preset', preset)"
+        v-on:update-presets="updatePresets"
+        v-on:load-preset="loadPreset"
         v-on:close-menu="closeMenu"
       ></preset-menu>
       <history-menu 
         v-if="currentMenu === 'History'" 
         :stream-history="streamHistory" 
-        v-on:load-selected-history="$emit('load-selected-history', streamName)"
-        v-on:clear-history="$emit('clear-history')"
+        v-on:load-selected-history="loadSelectedHistory"
+        v-on:clear-history="clearHistory"
         v-on:close-menu="closeMenu"
       ></history-menu>
       <help-menu

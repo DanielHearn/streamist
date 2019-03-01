@@ -70,6 +70,21 @@ export default {
     },
     loadMenu: function (menu) {
       this.currentMenu = menu === this.currentMenu ? '' : menu
+    },
+    loadPreset: function (preset) {
+      this.$emit('load-preset', preset)
+    },
+    loadSelectedHistory: function (streamName) {
+      this.$emit('load-selected-history', streamName)
+    },
+    clearHistory: function () {
+      this.$emit('clear-history')
+    },
+    updatePresets: function (newPresets) {
+      this.$emit('update-presets', newPresets)
+    },
+    changeLayout: function (newLayout) {
+      this.$emit('change-layout', newLayout)
     }
   }
 }
