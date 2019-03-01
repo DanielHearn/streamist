@@ -1,13 +1,13 @@
 <template>
-  <div class="option">
-    <div class="option-header">
+  <div class="menu-item">
+    <div class="menu-item-header">
       <p class="text-heading">{{title}}</p>
       <close-button
-        @click.native="closeMenuItem"
+        @click.native="$emit('close-menu-item')"
         :title="closeTitle">
       </close-button>
     </div>
-    <div class="option-content">
+    <div class="menu-item-content">
       <slot></slot>
     </div>
   </div>

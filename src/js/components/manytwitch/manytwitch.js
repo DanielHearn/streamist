@@ -4,7 +4,7 @@ import ChatButton from 'Components/buttons/iconButtons/chatButton/ChatButton.vue
 import MenuButton from 'Components/buttons/iconButtons/menuButton/MenuButton.vue'
 
 import InputForm from 'Components/inputForm/InputForm.vue'
-import MenuContainer from 'Components/menuContainer/MenuContainer.vue'
+import SideMenu from 'Components/sideMenu/SideMenu.vue'
 import Streams from 'Components/streams/Streams.vue'
 import Chats from 'Components/chats/Chats.vue'
 import { generateID, log, getDefault } from 'Js/utilities'
@@ -18,7 +18,7 @@ export default {
     ChatButton,
     MenuButton,
     InputForm,
-    MenuContainer,
+    SideMenu,
     Streams,
     Chats
   },

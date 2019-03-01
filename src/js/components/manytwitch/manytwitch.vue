@@ -41,7 +41,7 @@
       </div>
     </nav>
     <div id="main">
-      <menu-container 
+      <side-menu
         :class="{'hidden': !navVisible}"
         :options="options"
         :stream-history="streamHistory"
@@ -53,7 +53,7 @@
         v-on:clear-history="clearHistory"
         v-on:update-presets="updatePresets"
         v-on:load-preset="loadStreamsFromPreset">
-        </menu-container>
+        </side-menu>
       <streams
         :streams="currentStreams"
         :options="options"

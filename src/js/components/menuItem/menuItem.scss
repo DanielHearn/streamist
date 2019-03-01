@@ -1,38 +1,44 @@
-.menu-options {
-  background: $white;
-  max-width: 20em;
-  .option {
-    width: 20em;
-    height: 100%;
-    color: $black;
+.menu-item {
+  width: 20em;
+  height: 100%;
+  color: $black;
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  .text-sub-heading {
+    margin: 0;
+  }
+  .menu-item-header {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $content-padding/2 $content-padding;
+    background: $near-white;
+    .text-heading {
+      text-align: center;
+    }
+  }
+  .menu-item-content {
+    height: 100%;
+    padding: $content-padding;
+    overflow-y: auto;
+    display: flex;
+    flex: 1 auto;
     box-sizing: border-box;
     flex-direction: column;
-    .text-sub-heading {
-      margin: 0;
-    }
-    .option-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: $content-padding;
-      .text-heading {
-        text-align: center;
+    .menu-item-row {
+      p:first-child {
+        margin-top: 0;
       }
     }
-    .option-content {
-      height: 100%;
-      padding: $content-padding;
-      overflow-y: scroll;
-    }
-    input {
-      //padding: 0.25em 0.75em;
-      margin: $content-padding/4;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    button {
-      margin: $content-padding/4;
-    }
+  }
+  input {
+    //padding: 0.25em 0.75em;
+    margin: $content-padding/4;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  button {
+    margin: $content-padding/4;
   }
 }

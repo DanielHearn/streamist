@@ -1,7 +1,7 @@
 import MenuItem from 'Components/menuItem/MenuItem.vue'
 
 export default {
-  name: 'about',
+  name: 'help-menu',
   components: {
     MenuItem
   }

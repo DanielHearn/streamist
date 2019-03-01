@@ -2,7 +2,7 @@
   <menu-item
     :title="'Presets'"
     :closeTitle="'Close Settings'"
-    v-on:close-menu-item="closeOptions"
+    v-on:close-menu-item="$emit('close-menu')"
     >
       <input-form 
         v-on:submit="createPreset"
@@ -29,8 +29,8 @@
   </menu-item>
 </template>
 
-<script src="./presetOptions.js"></script>
+<script src="./presetMenu.js"></script>
 
 <style lang="scss">
-    @import './presetOptions.scss';
+    @import './presetMenu.scss';
 </style>

@@ -2,8 +2,9 @@
   <menu-item
     :title="'Layouts'"
     :closeTitle="'Close Layout Options'"
-    v-on:close-menu-item="closeOptions"
+    v-on:close-menu-item="$emit('close-menu')"
     >
+    <div class="menu-item-row">
       <p>Select a layout</p>
       <div class="layouts-demo-container">
         <layout-demo
@@ -15,11 +16,12 @@
           v-on:change-layout="changeLayout">
         </layout-demo>
       </div>
+    </div>
   </menu-item>
 </template>
 
-<script src="./layoutOptions.js"></script>
+<script src="./layoutMenu.js"></script>
 
 <style lang="scss">
-  @import './layoutOptions.scss';
+  @import './layoutMenu.scss';
 </style>

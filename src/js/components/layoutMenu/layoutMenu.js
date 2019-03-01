@@ -2,7 +2,7 @@ import MenuItem from 'Components/menuItem/MenuItem.vue'
 import LayoutDemo from 'Components/layoutDemo/LayoutDemo.vue'
 
 export default {
-  name: 'layout-options',
+  name: 'layout-menu',
   components: {
     MenuItem,
     LayoutDemo
@@ -35,9 +35,6 @@ export default {
     }
   },
   methods: {
-    closeOptions: function () {
-      this.$emit('close-options')
-    },
     changeLayout: function (newLayout) {
       if (newLayout !== this.selectedLayout) {
         this.selectedLayout = newLayout

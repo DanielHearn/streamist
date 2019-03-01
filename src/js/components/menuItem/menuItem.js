@@ -14,10 +14,5 @@ export default {
       type: String,
       required: true
     }
-  },
-  methods: {
-    closeMenuItem: function () {
-      this.$emit('close-menu-item')
-    }
   }
 }

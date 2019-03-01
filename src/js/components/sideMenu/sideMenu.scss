@@ -1,12 +1,12 @@
 @import "variables";
 @import "mixins";
 
-.menu-container {
+.menu {
   display: none;
   background: $dark;
-  .menu {
+  .menu-bar {
     width: $menu-width;
-    .menu-content {
+    .menu-bar-content {
       color: $white;
       width: $menu-width;
       button {
@@ -33,6 +33,10 @@
         }
       }
     }
+  }
+  .menu-content {
+    background: $white;
+    max-width: 20em;
   }
   &.visible {
     display: flex;

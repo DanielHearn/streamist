@@ -32,9 +32,6 @@ export default {
   methods: {
     loadSelectedHistory: function (streamName) {
       this.$emit('load-selected-history', streamName)
-    },
-    clearHistory: function () {
-      this.$emit('clear-history')
     }
   },
   mounted: function () {

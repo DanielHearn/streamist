@@ -4,7 +4,7 @@
 .layout-demo-wrap {
   @include transition(background $transition-time ease-in-out);
   width: 100%;
-  background: $off-white;
+  background: #b3b3b3;
   color: $white;
   font-weight: $sub-heading-weight;
   margin: $content-padding/2 0;

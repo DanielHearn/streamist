@@ -6,7 +6,7 @@ import StandardButton from 'Components/buttons/standardButton/StandardButton.vue
 import { generateID } from 'Js/utilities'
 
 export default {
-  name: 'preset-options',
+  name: 'preset-menu',
   components: {
     MenuItem,
     PresetListing,
@@ -108,9 +108,6 @@ export default {
     },
     clearPresets: function () {
       this.updatePresets([])
-    },
-    closeOptions: function () {
-      this.$emit('close-options')
     }
   }
 }

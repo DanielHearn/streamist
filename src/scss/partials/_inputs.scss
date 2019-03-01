@@ -59,6 +59,9 @@ button {
 
 .button--dark {
     background: $dark;
+    p {
+      margin: 0.75em 0;
+    }
     &:hover {
       background: $dark-grey;
     }
