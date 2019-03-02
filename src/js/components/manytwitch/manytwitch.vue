@@ -44,16 +44,41 @@
       <side-menu
         :class="{'hidden': !navVisible}"
         :options="options"
-        :stream-history="streamHistory"
-        :current-streams="currentStreams"
-        :stream-presets="streamPresets"
-        :available-layouts="availableLayouts"
-        v-on:change-layout="changeLayout"
-        v-on:load-selected-history="loadSelectedHistory"
-        v-on:clear-history="clearHistory"
-        v-on:update-presets="updatePresets"
-        v-on:load-preset="loadStreamsFromPreset">
-        </side-menu>
+        :menuItems="$options.menuItems">
+        <template slot-scope="{ currentMenu, closeMenu }">
+          <layout-menu 
+            v-if="currentMenu === 'Layouts'"
+            :options="options"
+            :current-streams="currentStreams"
+            :available-layouts="availableLayouts"
+            v-on:change-layout="changeLayout"
+            v-on:close-menu="closeMenu"
+          ></layout-menu>
+          <preset-menu 
+            v-if="currentMenu === 'Presets'"
+            :stream-presets="streamPresets"
+            :current-streams="currentStreams"
+            v-on:update-presets="updatePresets"
+            v-on:load-preset="loadStreamsFromPreset"
+            v-on:close-menu="closeMenu"
+          ></preset-menu>
+          <history-menu 
+            v-if="currentMenu === 'History'" 
+            :stream-history="streamHistory" 
+            v-on:load-selected-history="loadSelectedHistory"
+            v-on:clear-history="clearHistory"
+            v-on:close-menu="closeMenu"
+          ></history-menu>
+          <help-menu
+            v-if="currentMenu === 'Help'"
+            v-on:close-menu="closeMenu"
+          ></help-menu>
+          <about
+            v-if="currentMenu === 'About'"
+            v-on:close-menu="closeMenu"
+          ></about>
+        </template>
+      </side-menu>
       <streams
         :streams="currentStreams"
         :options="options"
@@ -61,11 +86,11 @@
         :appHover="appHover"
         v-on:update-streams="updateStreams"
         v-on:toggle-nav="toggleNav">
-        </streams>
+      </streams>
       <chats
         :streams="currentStreams"
         :options="options">
-        </chats>
+      </chats>
     </div>
   </div>
 </template>
@@ -76,3 +101,49 @@
 <style lang="scss">
     @import './manytwitch.scss';
 </style>
+
+<!--
+          :stream-history="streamHistory"
+        :current-streams="currentStreams"
+        :stream-presets="streamPresets"
+        :available-layouts="availableLayouts"
+        v-on:change-layout="changeLayout"
+        v-on:load-selected-history="loadSelectedHistory"
+        v-on:clear-history="clearHistory"
+        v-on:update-presets="updatePresets"
+        v-on:load-preset="loadStreamsFromPreset"
+        -->
+
+        <!--
+          <layout-menu 
+            v-if="currentMenu === 'Layouts'"
+            :options="options"
+            :current-streams="currentStreams"
+            :available-layouts="availableLayouts"
+            v-on:change-layout="changeLayout"
+            v-on:close-menu="closeMenu"
+          ></layout-menu>
+          <preset-menu 
+            v-if="currentMenu === 'Presets'"
+            :stream-presets="streamPresets"
+            :current-streams="currentStreams"
+            v-on:update-presets="updatePresets"
+            v-on:load-preset="loadPreset"
+            v-on:close-menu="closeMenu"
+          ></preset-menu>
+          <history-menu 
+            v-if="currentMenu === 'History'" 
+            :stream-history="streamHistory" 
+            v-on:load-selected-history="loadSelectedHistory"
+            v-on:clear-history="clearHistory"
+            v-on:close-menu="closeMenu"
+          ></history-menu>
+          <help-menu
+            v-if="currentMenu === 'Help'"
+            v-on:close-menu="closeMenu"
+          ></help-menu>
+          <about
+            v-if="currentMenu === 'About'"
+            v-on:close-menu="closeMenu"
+          ></about>
+          -->

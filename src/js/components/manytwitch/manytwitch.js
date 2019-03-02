@@ -3,6 +3,12 @@ import ArrowButton from 'Components/buttons/iconButtons/arrowButton/ArrowButton.
 import ChatButton from 'Components/buttons/iconButtons/chatButton/ChatButton.vue'
 import MenuButton from 'Components/buttons/iconButtons/menuButton/MenuButton.vue'
 
+import LayoutMenu from 'Components/layoutMenu/layoutMenu.vue'
+import HistoryMenu from 'Components/historyMenu/HistoryMenu.vue'
+import PresetMenu from 'Components/presetMenu/PresetMenu.vue'
+import HelpMenu from 'Components/helpMenu/HelpMenu.vue'
+import About from 'Components/about/About.vue'
+
 import InputForm from 'Components/inputForm/InputForm.vue'
 import SideMenu from 'Components/sideMenu/SideMenu.vue'
 import Streams from 'Components/streams/Streams.vue'
@@ -20,8 +26,35 @@ export default {
     InputForm,
     SideMenu,
     Streams,
-    Chats
+    Chats,
+    LayoutMenu,
+    HistoryMenu,
+    PresetMenu,
+    HelpMenu,
+    About
   },
+  menuItems: [
+    {
+      itemName: 'Layouts',
+      iconName: 'view_module'
+    },
+    {
+      itemName: 'Presets',
+      iconName: 'view_list'
+    },
+    {
+      itemName: 'History',
+      iconName: 'history'
+    },
+    {
+      itemName: 'Help',
+      iconName: 'help'
+    },
+    {
+      itemName: 'About',
+      iconName: 'info'
+    }
+  ],
   data: function () {
     return {
       currentStreams: [],
