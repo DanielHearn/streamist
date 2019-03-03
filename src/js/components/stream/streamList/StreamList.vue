@@ -31,8 +31,8 @@
   </div>
 </template>
 
-<script src="./streams.js"></script>
+<script src="./streamList.js"></script>
 
 <style lang="scss">
-    @import './streams.scss';
+    @import './streamList.scss';
 </style>

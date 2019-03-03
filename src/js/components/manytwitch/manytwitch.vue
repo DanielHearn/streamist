@@ -73,10 +73,10 @@
             v-if="currentMenu === 'Help'"
             v-on:close-menu="closeMenu"
           ></help-menu>
-          <about
+          <about-menu
             v-if="currentMenu === 'About'"
             v-on:close-menu="closeMenu"
-          ></about>
+          ></about-menu>
         </template>
       </side-menu>
       <streams

@@ -1,10 +1,10 @@
 import draggable from 'vuedraggable'
-import Stream from 'Components/stream/Stream.vue'
+import Stream from 'Components/stream/streamItem/StreamItem.vue'
 import Intro from 'Components/intro/Intro.vue'
 import ArrowButton from 'Components/inputs/buttons/iconButtons/arrowButton/ArrowButton.vue'
 
 export default {
-  name: 'streams',
+  name: 'stream-list',
   components: {
     draggable,
     Stream,

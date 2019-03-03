@@ -19,9 +19,9 @@
   </div>
 </template>
 
-<script src="./chats.js"></script>
+<script src="./chatList.js"></script>
 
 
 <style lang="scss">
-    @import './chats.scss';
+    @import './chatList.scss';
 </style>

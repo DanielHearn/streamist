@@ -11,4 +11,4 @@
   </menu-item>
 </template>
 
-<script src="./about.js"></script>
+<script src="./aboutMenu.js"></script>

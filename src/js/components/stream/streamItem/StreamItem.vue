@@ -16,8 +16,8 @@
   </div>
 </template>
 
-<script src="./stream.js"></script>
+<script src="./streamItem.js"></script>
 
 <style lang="scss">
-    @import './stream.scss';
+    @import './streamItem.scss';
 </style>

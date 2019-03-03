@@ -1,4 +1,4 @@
-import Chat from 'Components/chat/Chat.vue'
+import Chat from 'Components/chat/chatItem/ChatItem.vue'
 import StandardButton from 'Components/inputs/buttons/standardButton/StandardButton.vue'
 
 export default {

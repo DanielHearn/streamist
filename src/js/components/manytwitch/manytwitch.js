@@ -4,15 +4,15 @@ import ChatButton from 'Components/inputs/buttons/iconButtons/chatButton/ChatBut
 import MenuButton from 'Components/inputs/buttons/iconButtons/menuButton/MenuButton.vue'
 import InputForm from 'Components/inputs/inputForm/InputForm.vue'
 
-import LayoutMenu from 'Components/layoutMenu/layoutMenu.vue'
-import HistoryMenu from 'Components/historyMenu/HistoryMenu.vue'
-import PresetMenu from 'Components/presetMenu/PresetMenu.vue'
-import HelpMenu from 'Components/helpMenu/HelpMenu.vue'
-import About from 'Components/about/About.vue'
+import LayoutMenu from 'Components/menu/layoutMenu/LayoutMenu.vue'
+import HistoryMenu from 'Components/menu/historyMenu/HistoryMenu.vue'
+import PresetMenu from 'Components/menu/presetMenu/PresetMenu.vue'
+import HelpMenu from 'Components/menu/helpMenu/HelpMenu.vue'
+import AboutMenu from 'Components/menu/aboutMenu/AboutMenu.vue'
+import SideMenu from 'Components/menu/sideMenu/SideMenu.vue'
 
-import SideMenu from 'Components/sideMenu/SideMenu.vue'
-import Streams from 'Components/streams/Streams.vue'
-import Chats from 'Components/chats/Chats.vue'
+import Streams from 'Components/stream/streamList/StreamList.vue'
+import Chats from 'Components/chat/chatList/ChatList.vue'
 
 import { generateID, log, getDefault } from 'Js/utilities'
 import { testValidators, validateHistory, validatePresets, validateOptions } from 'Js/validation'
@@ -32,7 +32,7 @@ export default {
     HistoryMenu,
     PresetMenu,
     HelpMenu,
-    About
+    AboutMenu
   },
   menuItems: [
     {

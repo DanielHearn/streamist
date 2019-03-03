@@ -1,5 +1,5 @@
-import MenuItem from 'Components/menuItem/MenuItem.vue'
-import LayoutDemo from 'Components/layoutDemo/LayoutDemo.vue'
+import MenuItem from 'Components/menu/menuItem/MenuItem.vue'
+import LayoutDemo from 'Components/layout/layoutDemo/LayoutDemo.vue'
 
 export default {
   name: 'layout-menu',

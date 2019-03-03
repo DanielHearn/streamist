@@ -3,13 +3,13 @@
     <div class="menu-item-row">
       <p class="text" v-if="!historyAvailable">No streams in history</p>
       <ul class="history-list">
-        <stream-history-listing 
+        <stream-history-item 
             v-for="history in orderedHistory" 
             :key="history.id"
             :history="history" 
             :current-date="currentDate"
             v-on:load-selected-history="loadSelectedHistory"
-            ></stream-history-listing>
+            ></stream-history-item>
       </ul>
     </div>
     <div class="menu-item-row">

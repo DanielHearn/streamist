@@ -10,8 +10,8 @@
   </div>
 </template>
 
-<script src="./streamHistoryListing.js"></script>
+<script src="./streamHistoryItem.js"></script>
 
 <style lang="scss">
-    @import './streamHistoryListing.scss';
+    @import './streamHistoryItem.scss';
 </style>
