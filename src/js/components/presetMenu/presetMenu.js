@@ -1,8 +1,8 @@
 
 import MenuItem from 'Components/menuItem/MenuItem.vue'
 import PresetListing from 'Components/presetListing/PresetListing.vue'
-import InputForm from 'Components/inputForm/InputForm.vue'
-import StandardButton from 'Components/buttons/standardButton/StandardButton.vue'
+import InputForm from 'Components/inputs/inputForm/InputForm.vue'
+import StandardButton from 'Components/inputs/buttons/standardButton/StandardButton.vue'
 import { generateID } from 'Js/utilities'
 
 export default {

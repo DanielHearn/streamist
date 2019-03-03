@@ -1,7 +1,8 @@
-import FullscreenButton from 'Components/buttons/iconButtons/fullscreenButton/FullscreenButton.vue'
-import ArrowButton from 'Components/buttons/iconButtons/arrowButton/ArrowButton.vue'
-import ChatButton from 'Components/buttons/iconButtons/chatButton/ChatButton.vue'
-import MenuButton from 'Components/buttons/iconButtons/menuButton/MenuButton.vue'
+import FullscreenButton from 'Components/inputs/buttons/iconButtons/fullscreenButton/FullscreenButton.vue'
+import ArrowButton from 'Components/inputs/buttons/iconButtons/arrowButton/ArrowButton.vue'
+import ChatButton from 'Components/inputs/buttons/iconButtons/chatButton/ChatButton.vue'
+import MenuButton from 'Components/inputs/buttons/iconButtons/menuButton/MenuButton.vue'
+import InputForm from 'Components/inputs/inputForm/InputForm.vue'
 
 import LayoutMenu from 'Components/layoutMenu/layoutMenu.vue'
 import HistoryMenu from 'Components/historyMenu/HistoryMenu.vue'
@@ -9,10 +10,10 @@ import PresetMenu from 'Components/presetMenu/PresetMenu.vue'
 import HelpMenu from 'Components/helpMenu/HelpMenu.vue'
 import About from 'Components/about/About.vue'
 
-import InputForm from 'Components/inputForm/InputForm.vue'
 import SideMenu from 'Components/sideMenu/SideMenu.vue'
 import Streams from 'Components/streams/Streams.vue'
 import Chats from 'Components/chats/Chats.vue'
+
 import { generateID, log, getDefault } from 'Js/utilities'
 import { testValidators, validateHistory, validatePresets, validateOptions } from 'Js/validation'
 

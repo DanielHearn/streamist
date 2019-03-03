@@ -1,5 +1,5 @@
 import { distanceInWordsStrict } from 'date-fns'
-import StandardButton from 'Components/buttons/standardButton/StandardButton.vue'
+import StandardButton from 'Components/inputs/buttons/standardButton/StandardButton.vue'
 
 export default {
   name: 'stream-history-listing',

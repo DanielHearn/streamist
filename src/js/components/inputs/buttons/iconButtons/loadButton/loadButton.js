@@ -1,4 +1,4 @@
-import IconButton from 'Components/buttons/iconButton/iconButton.vue'
+import IconButton from 'Components/inputs/buttons/iconButton/iconButton.vue'
 
 export default {
   name: 'load-button',

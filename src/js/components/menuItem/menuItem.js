@@ -1,4 +1,4 @@
-import CloseButton from 'Components/buttons/iconButtons/closeButton/CloseButton.vue'
+import CloseButton from 'Components/inputs/buttons/iconButtons/closeButton/CloseButton.vue'
 
 export default {
   name: 'menu-item',

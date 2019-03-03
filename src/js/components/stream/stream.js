@@ -1,4 +1,3 @@
-import { log } from 'Js/utilities'
 import StreamControls from 'Components/streamControls/StreamControls.vue'
 
 export default {
