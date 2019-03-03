@@ -8,12 +8,15 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    .sub-text {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0;
-      padding-right: $content-padding/2;
-    }
+  }
+  button {
+    margin: 0;
+  }
+  .sub-text {
+    display: flex;
+    //justify-content: center;
+    //align-items: center;
+    margin: 0;
+    padding-right: $content-padding/2;
   }
 }

@@ -5,7 +5,7 @@
     v-on:close-menu-item="$emit('close-menu')"
     >
     <div class="menu-item-row">
-      <p>Select a layout</p>
+      <p>Select a stream layout.</p>
       <div class="layouts-demo-container">
         <layout-demo
           v-for="layout in availableLayouts"
