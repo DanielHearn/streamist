@@ -2,7 +2,7 @@
   <div class="stream-history" v-if="streamHistory">
     <div class="menu-item-row">
       <p class="text" v-if="!historyAvailable">No streams in history</p>
-      <ul class="history-list">
+      <list>
         <stream-history-item 
             v-for="history in orderedHistory" 
             :key="history.id"
@@ -10,7 +10,7 @@
             :current-date="currentDate"
             v-on:load-selected-history="loadSelectedHistory"
             ></stream-history-item>
-      </ul>
+      </list>
     </div>
     <div class="menu-item-row">
       <standard-button

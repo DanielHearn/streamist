@@ -1,10 +1,12 @@
 import { distanceInWordsStrict } from 'date-fns'
 import StandardButton from 'Components/inputs/buttons/standardButton/StandardButton.vue'
+import ListItem from 'Components/list/listItem/ListItem.vue'
 
 export default {
   name: 'stream-history-item',
   components: {
-    StandardButton
+    StandardButton,
+    ListItem
   },
   props: {
     history: {

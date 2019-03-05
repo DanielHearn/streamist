@@ -1,0 +1,26 @@
+.list-item {
+  margin: 1em 0;
+  background: #f9f9f9;
+  .item-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em;
+    background: #eeeeee;
+    p {
+      margin: 0;
+      font-size: 1em;
+      font-weight: 600;
+    }
+    button {
+      margin: 0;
+    }
+  }
+  .item-content {
+    padding: 0.5em;
+    .sub-text {
+      margin: 0;
+    }
+  }
+}

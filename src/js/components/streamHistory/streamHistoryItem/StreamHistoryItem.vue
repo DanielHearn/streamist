@@ -1,13 +1,11 @@
 <template>
-  <div class="history-listing">
-      <div class="listing-details">
-        <p class="text-sub-heading">{{ history.streamName }}</p>
         <standard-button
-          @click.native="loadSelectedHistory"
-          title="Add Stream">Add</standard-button>
-      </div>
-      <p class="sub-text">{{ timeAdded }}</p>
-  </div>
+  <list-item
+  v-on:click="loadSelectedHistory"
+  :itemName="history.streamName"
+  :actionName="'Load'">
+    <p class="sub-text">Watched: {{ timeAdded }}</p>
+  </list-item>
 </template>
 
 <script src="./streamHistoryItem.js"></script>
