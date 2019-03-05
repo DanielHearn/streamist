@@ -1,5 +1,4 @@
 <template>
-        <standard-button
   <list-item
   v-on:click="loadSelectedHistory"
   :itemName="history.streamName"
