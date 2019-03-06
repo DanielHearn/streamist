@@ -152,16 +152,21 @@ export default {
     },
 
     addStreamToHistory: function (streamName) {
+      let newHistory = this.streamHistory
       const stream = {
         id: generateID(8),
         streamName: streamName,
         dateAdded: new Date()
       }
-      if (this.streamHistory.length < this.config.maxHistoryLength) {
-        this.streamHistory = this.streamHistory.concat([stream])
+      newHistory = newHistory.filter((streamHistoryItem) => {
+        return streamHistoryItem.streamName !== streamName
+      })
+      if (newHistory.length < this.config.maxHistoryLength) {
+        newHistory = newHistory.concat([stream])
       } else {
-        this.streamHistory = this.streamHistory.slice(1, this.streamHistory.length).concat([stream])
+        newHistory = newHistory.slice(1, newHistory.length).concat([stream])
       }
+      this.streamHistory = newHistory
     },
     clearHistory: function () {
       this.setHistory([])
