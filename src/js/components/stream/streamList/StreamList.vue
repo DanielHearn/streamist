@@ -4,7 +4,7 @@
     <arrow-button
       class="nav-toggle-button"
       :direction="navVisible ? 'up' : 'down'"
-      title="Toggle Nav"
+      :title="navVisible ? 'Hide Interface' : 'Show Interface'"
       @click.native="toggleNav"
       :class="{'hidden': !appHover}"
     />
