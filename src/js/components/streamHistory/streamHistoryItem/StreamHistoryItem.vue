@@ -1,8 +1,8 @@
 <template>
   <list-item
-  v-on:click="loadSelectedHistory"
+  @click="loadSelectedHistory"
   :itemName="history.streamName"
-  :actionName="'Load'">
+  :actionName="'Add'">
     <p class="sub-text">Watched: {{ timeAdded }}</p>
   </list-item>
 </template>

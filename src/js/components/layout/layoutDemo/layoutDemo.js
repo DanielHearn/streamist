@@ -1,5 +1,10 @@
+import ListItem from 'Components/list/listItem/ListItem.vue'
+
 export default {
   name: 'layout-demo',
+  components: {
+    ListItem
+  },
   props: {
     currentStreams: {
       type: Array,
