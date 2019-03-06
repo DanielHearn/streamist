@@ -13,6 +13,11 @@ export default {
     actionName: {
       type: String,
       required: false
+    },
+    handleActive: {
+      type: Boolean,
+      default: false,
+      required: false
     }
   }
 }

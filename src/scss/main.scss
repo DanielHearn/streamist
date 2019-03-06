@@ -45,3 +45,8 @@ body {
 .draggable {
   user-select: none;
 }
+
+.row {
+  display: flex;
+  flex-direction: row;
+}

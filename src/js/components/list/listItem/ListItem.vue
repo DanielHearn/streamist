@@ -1,7 +1,12 @@
 <template>
   <div class="list-item">
     <div class="item-header">
-      <p>{{ itemName }}</p>
+      <div class="row">
+        <span 
+        v-if="handleActive"
+        class="material-icons handle text--green">drag_handle</span>
+        <p>{{ itemName }}</p>
+      </div>
       <standard-button
         v-if="actionName"
         @click.native="$emit('click')"

@@ -8,6 +8,12 @@
     align-items: center;
     padding: 0.5em;
     background: #eeeeee;
+    .handle {
+      padding-left: 0;
+    }
+    .row {
+      align-items: center;
+    }
     p {
       margin: 0;
       font-size: 1em;
