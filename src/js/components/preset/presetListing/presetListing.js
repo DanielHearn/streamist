@@ -27,7 +27,7 @@ export default {
     }
   },
   watch: {
-    'presetName': function () {
+    presetName: function () {
       const tempPreset = this.preset
       tempPreset.name = this.presetName
       this.$emit('update-preset', tempPreset)
@@ -35,7 +35,7 @@ export default {
     'preset.streams': function () {
       this.orderedStreams = this.preset.streams
     },
-    'orderedStreams': function () {
+    orderedStreams: function () {
       const tempPreset = this.preset
       tempPreset.streams = this.orderedStreams
       this.$emit('update-preset', tempPreset)
@@ -62,7 +62,9 @@ export default {
         return false
       }
       const updatedPreset = this.preset
-      updatedPreset.streams = updatedPreset.streams.concat([newPresetStreamName])
+      updatedPreset.streams = updatedPreset.streams.concat([
+        newPresetStreamName
+      ])
       this.$emit('update-preset', updatedPreset)
     }
   }

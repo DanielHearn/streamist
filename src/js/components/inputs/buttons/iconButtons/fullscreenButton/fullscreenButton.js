@@ -14,8 +14,12 @@ export default {
   },
   methods: {
     toggleFullscreen: function () {
-      if (!document.fullscreenElement &&
-        !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+      if (
+        !document.fullscreenElement &&
+        !document.mozFullScreenElement &&
+        !document.webkitFullscreenElement &&
+        !document.msFullscreenElement
+      ) {
         if (document.documentElement.requestFullscreen) {
           document.documentElement.requestFullscreen()
         } else if (document.documentElement.msRequestFullscreen) {
@@ -23,7 +27,9 @@ export default {
         } else if (document.documentElement.mozRequestFullScreen) {
           document.documentElement.mozRequestFullScreen()
         } else if (document.documentElement.webkitRequestFullscreen) {
-          document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT)
+          document.documentElement.webkitRequestFullscreen(
+            Element.ALLOW_KEYBOARD_INPUT
+          )
         }
       } else {
         if (document.exitFullscreen) {

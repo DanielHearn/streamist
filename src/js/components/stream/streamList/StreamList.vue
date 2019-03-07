@@ -1,6 +1,5 @@
 <template>
-  <div 
-  class="streams-container">
+  <div class="streams-container">
     <arrow-button
       class="nav-toggle-button"
       :direction="navVisible ? 'up' : 'down'"
@@ -8,16 +7,17 @@
       @click.native="toggleNav"
       :class="{'hidden': !appHover}"
     />
-    <draggable 
+    <draggable
       v-if="streams.length"
       class="streams"
       :class="layoutClass"
-      v-model="orderedStreams" 
-      @start="drag=true" 
+      v-model="orderedStreams"
+      @start="drag=true"
       @end="drag=false"
-      :options="{ghostClass:'ghost', handle:'.handle', filter:'.stream-player', forceFallback:'true', fallbackTolerance:'1', removeCloneOnHide: true}">
-      <stream 
-        class="draggable" 
+      :options="{ghostClass:'ghost', handle:'.handle', filter:'.stream-player', forceFallback:'true', fallbackTolerance:'1', removeCloneOnHide: true}"
+    >
+      <stream
+        class="draggable"
         v-for="currStream in streams"
         :key="currStream.embedPlayerID"
         :currentStream="currStream"
@@ -25,7 +25,7 @@
         :options="options"
         :hover="drag"
         v-on:remove-stream="removeStream"
-        ></stream>
+      ></stream>
     </draggable>
     <intro v-if="!streams.length"/>
   </div>
@@ -34,5 +34,5 @@
 <script src="./streamList.js"></script>
 
 <style lang="scss">
-    @import './streamList.scss';
+@import "./streamList.scss";
 </style>

@@ -37,14 +37,18 @@ export default {
       this.$emit('remove-stream', this.currentStream)
     },
     refresh: function () {
-      const streamPlayer = document.querySelector(`#${this.currentStream.embedPlayerID}`)
+      const streamPlayer = document.querySelector(
+        `#${this.currentStream.embedPlayerID}`
+      )
       streamPlayer.innerHTML = ''
       this.displayStream()
     },
     displayStream: function () {
       try {
         this.displayControls = true
-        const playerElement = document.querySelector(`.stream--${this.currentStream.embedPlayerID}`)
+        const playerElement = document.querySelector(
+          `.stream--${this.currentStream.embedPlayerID}`
+        )
         if (playerElement) {
           playerElement.addEventListener('mousemove', this.checkMovement, false)
         }
@@ -55,7 +59,10 @@ export default {
           allowfullscreen: false,
           theme: 'dark'
         }
-        this.playerEmbed = new Twitch.Embed(this.currentStream.embedPlayerID, options)
+        this.playerEmbed = new Twitch.Embed(
+          this.currentStream.embedPlayerID,
+          options
+        )
         this.player = this.playerEmbed.getPlayer()
       } catch (error) {
         console.error('Twitch API script is not loaded')

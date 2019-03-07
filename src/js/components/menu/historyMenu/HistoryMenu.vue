@@ -3,7 +3,7 @@
     :title="'Channel History'"
     :closeTitle="'Close History'"
     v-on:close-menu-item="$emit('close-menu')"
-    >
+  >
     <div class="menu-item-row">
       <p>Your previously watched Twitch channels.</p>
       <stream-history-controls

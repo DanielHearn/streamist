@@ -19,5 +19,5 @@
 <script src="./streamItem.js"></script>
 
 <style lang="scss">
-    @import './streamItem.scss';
+@import "./streamItem.scss";
 </style>

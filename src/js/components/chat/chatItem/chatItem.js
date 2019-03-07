@@ -2,7 +2,7 @@ import RemoveButton from 'Components/inputs/buttons/iconButtons/removeButton/Rem
 import RefreshButton from 'Components/inputs/buttons/iconButtons/refreshButton/RefreshButton.vue'
 
 export default {
-  name: 'chat',
+  name: 'chat-item',
   components: {
     RemoveButton,
     RefreshButton
@@ -27,6 +27,14 @@ export default {
     return {
       newChatName: this.chat.streamName,
       chatVisible: false
+    }
+  },
+  computed: {
+    id: function () {
+      return `embed-chat-${this.chat.streamName}`
+    },
+    src: function () {
+      return `https://www.twitch.tv/embed/${this.chat.streamName}/chat`
     }
   },
   methods: {

@@ -3,34 +3,29 @@
     :title="'Presets'"
     :closeTitle="'Close Settings'"
     v-on:close-menu-item="$emit('close-menu')"
-    >
-      <input-form 
-        v-on:submit="createPreset"
-        placeholder="Preset Name"
-        buttonText="Create"
-        ></input-form>
-      <p class="text" v-if="presetsDisabled">No presets saved</p>
-      <ul class="preset-list" v-if="!presetsDisabled">
-        <preset-listing
-          v-for="preset in streamPresets"
-          :key="preset.id"
-          :preset="preset"
-          v-on:load-preset="loadPreset"
-          v-on:update-preset="updatePreset"
-          v-on:delete-preset="deletePreset">
-        </preset-listing>
-      </ul>
-      <standard-button
-        @click.native="saveCurrentAsPreset"
-        :disabled="noStreams">Save Streams as Preset</standard-button>
-      <standard-button
-        @click.native="clearPresets"
-        :disabled="presetsDisabled">Clear Presets</standard-button>
+  >
+    <input-form v-on:submit="createPreset" placeholder="Preset Name" buttonText="Create"></input-form>
+    <p class="text" v-if="presetsDisabled">No presets saved</p>
+    <ul class="preset-list" v-if="!presetsDisabled">
+      <preset-listing
+        v-for="preset in streamPresets"
+        :key="preset.id"
+        :preset="preset"
+        v-on:load-preset="loadPreset"
+        v-on:update-preset="updatePreset"
+        v-on:delete-preset="deletePreset"
+      ></preset-listing>
+    </ul>
+    <standard-button
+      @click.native="saveCurrentAsPreset"
+      :disabled="noStreams"
+    >Save Streams as Preset</standard-button>
+    <standard-button @click.native="clearPresets" :disabled="presetsDisabled">Clear Presets</standard-button>
   </menu-item>
 </template>
 
 <script src="./presetMenu.js"></script>
 
 <style lang="scss">
-    @import './presetMenu.scss';
+@import "./presetMenu.scss";
 </style>

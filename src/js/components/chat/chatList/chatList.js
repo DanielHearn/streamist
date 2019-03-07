@@ -1,10 +1,10 @@
-import Chat from 'Components/chat/chatItem/ChatItem.vue'
+import ChatItem from 'Components/chat/chatItem/ChatItem.vue'
 import StandardButton from 'Components/inputs/buttons/standardButton/StandardButton.vue'
 
 export default {
   name: 'chats',
   components: {
-    Chat,
+    ChatItem,
     StandardButton
   },
   props: {
@@ -35,7 +35,7 @@ export default {
     }
   },
   watch: {
-    'streams': function () {
+    streams: function () {
       this.addInitialChat()
     }
   },
@@ -54,7 +54,9 @@ export default {
     },
     getNewChatName: function () {
       if (this.streams.length > 1 && this.chats.length > 0) {
-        return this.createChatObject(this.streams[this.streams.length - 1].streamName)
+        return this.createChatObject(
+          this.streams[this.streams.length - 1].streamName
+        )
       } else {
         return this.createChatObject(this.streams[0].streamName)
       }

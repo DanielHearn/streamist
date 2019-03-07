@@ -23,7 +23,7 @@ export default {
     }
   },
   watch: {
-    'direction': function () {
+    direction: function () {
       this.setIconName()
     }
   },

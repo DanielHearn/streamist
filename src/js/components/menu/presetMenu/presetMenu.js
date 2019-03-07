@@ -1,4 +1,3 @@
-
 import MenuItem from 'Components/menu/menuItem/MenuItem.vue'
 import PresetListing from 'Components/preset/presetListing/PresetListing.vue'
 import InputForm from 'Components/inputs/inputForm/InputForm.vue'
@@ -42,7 +41,9 @@ export default {
   },
   methods: {
     deletePreset: function (removedPreset) {
-      const newPresets = this.streamPresets.filter(preset => preset.id !== removedPreset.id)
+      const newPresets = this.streamPresets.filter(
+        preset => preset.id !== removedPreset.id
+      )
       this.updatePresets(newPresets)
     },
     loadPreset: function (preset) {

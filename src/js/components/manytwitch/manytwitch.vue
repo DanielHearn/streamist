@@ -1,31 +1,19 @@
 <template>
   <div id="manytwitch">
-    <nav
-      :class="{'hidden': !navVisible}"
-    >
+    <nav :class="{'hidden': !navVisible}">
       <arrow-button
         v-if="options.menuVisible"
         title="Close Menu"
         :direction="'left'"
         @click.native="toggleMenu"
       />
-      <menu-button
-        v-else
-        title="Open Menu"
-        @click.native="toggleMenu"
-      />
-      <div 
-        class="nav-center">
+      <menu-button v-else title="Open Menu" @click.native="toggleMenu"/>
+      <div class="nav-center">
         <h2 class="title">MT</h2>
-        <input-form 
-        placeholder="Enter a stream"
-        v-on:submit="addStreamFromNav"></input-form>
+        <input-form placeholder="Enter a stream" v-on:submit="addStreamFromNav"></input-form>
       </div>
-      <div
-        class="nav-right">
-        <fullscreen-button
-          title="Toggle Fullscreen"
-        />
+      <div class="nav-right">
+        <fullscreen-button title="Toggle Fullscreen"/>
         <arrow-button
           v-if="options.chatVisible && currentStreams.length"
           :direction="'right'"
@@ -44,9 +32,10 @@
       <side-menu
         :class="{'hidden': !navVisible}"
         :options="options"
-        :menuItems="$options.menuItems">
+        :menuItems="$options.menuItems"
+      >
         <template slot-scope="{ currentMenu, closeMenu }">
-          <layout-menu 
+          <layout-menu
             v-if="currentMenu === 'Layouts'"
             :options="options"
             :current-streams="currentStreams"
@@ -54,7 +43,7 @@
             v-on:change-layout="changeLayout"
             v-on:close-menu="closeMenu"
           ></layout-menu>
-          <preset-menu 
+          <preset-menu
             v-if="currentMenu === 'Presets'"
             :stream-presets="streamPresets"
             :current-streams="currentStreams"
@@ -62,21 +51,15 @@
             v-on:load-preset="loadStreamsFromPreset"
             v-on:close-menu="closeMenu"
           ></preset-menu>
-          <history-menu 
-            v-if="currentMenu === 'History'" 
-            :stream-history="streamHistory" 
+          <history-menu
+            v-if="currentMenu === 'History'"
+            :stream-history="streamHistory"
             v-on:load-selected-history="loadSelectedHistory"
             v-on:clear-history="clearHistory"
             v-on:close-menu="closeMenu"
           ></history-menu>
-          <help-menu
-            v-if="currentMenu === 'Help'"
-            v-on:close-menu="closeMenu"
-          ></help-menu>
-          <about-menu
-            v-if="currentMenu === 'About'"
-            v-on:close-menu="closeMenu"
-          ></about-menu>
+          <help-menu v-if="currentMenu === 'Help'" v-on:close-menu="closeMenu"></help-menu>
+          <about-menu v-if="currentMenu === 'About'" v-on:close-menu="closeMenu"></about-menu>
         </template>
       </side-menu>
       <streams
@@ -85,12 +68,9 @@
         :navVisible="navVisible"
         :appHover="appHover"
         v-on:update-streams="updateStreams"
-        v-on:toggle-nav="toggleNav">
-      </streams>
-      <chats
-        :streams="currentStreams"
-        :options="options">
-      </chats>
+        v-on:toggle-nav="toggleNav"
+      ></streams>
+      <chats :streams="currentStreams" :options="options"></chats>
     </div>
   </div>
 </template>
@@ -99,5 +79,5 @@
 
 
 <style lang="scss">
-    @import './manytwitch.scss';
+@import "./manytwitch.scss";
 </style>

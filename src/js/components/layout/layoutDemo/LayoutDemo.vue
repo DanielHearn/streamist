@@ -1,31 +1,23 @@
 <template>
   <list-item
-  :itemName="layout.name"
-  :actionName="'Set Layout'"
-  @click="$emit('change-layout', layout)"
+    :itemName="layout.name"
+    :actionName="'Set Layout'"
+    @click="$emit('change-layout', layout)"
   >
-    <div
-      class="layout-demo"
-      :class="layoutClass"
-      v-if="currentStreams.length">
+    <div class="layout-demo" :class="layoutClass" v-if="currentStreams.length">
       <div
-      class="layout-demo-stream"
-      v-for="(stream, index) in currentStreams"
-      :title="stream.streamName"
-      :key="stream.embedPlayerID">
+        class="layout-demo-stream"
+        v-for="(stream, index) in currentStreams"
+        :title="stream.streamName"
+        :key="stream.embedPlayerID"
+      >
         <div class="layout-demo-number">
           <p v-if="currentStreams.length < 8">{{ index + 1 }}</p>
         </div>
       </div>
     </div>
-    <div
-      class="layout-demo"
-      :class="layoutClass"
-      v-if="!currentStreams.length">
-      <div
-      v-for="index in [1, 2, 3, 4]"
-      :key="index"
-      class="layout-demo-stream">
+    <div class="layout-demo" :class="layoutClass" v-if="!currentStreams.length">
+      <div v-for="index in [1, 2, 3, 4]" :key="index" class="layout-demo-stream">
         <div class="layout-demo-number">
           <p>{{ index }}</p>
         </div>
@@ -37,5 +29,5 @@
 <script src="./layoutDemo.js"></script>
 
 <style lang="scss">
-  @import './layoutDemo.scss';
+@import "./layoutDemo.scss";
 </style>

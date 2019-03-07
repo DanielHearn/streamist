@@ -1,41 +1,29 @@
 <template>
   <li class="preset-listing">
-    <input
-      type="text"
-      contenteditable="true"
-      v-model="presetName"/>
+    <input type="text" contenteditable="true" v-model="presetName">
     <div class="input-container">
-      <load-button
-        @click.native="loadPreset"
-        title="Load Preset">
-      </load-button>
-      <edit-button
-        @click.native="toggleEditMode"
-        title="Edit Preset">
-      </edit-button>
-      <remove-button 
-        @click.native="deletePreset"
-        title="Delete Preset">
-      </remove-button>
+      <load-button @click.native="loadPreset" title="Load Preset"></load-button>
+      <edit-button @click.native="toggleEditMode" title="Edit Preset"></edit-button>
+      <remove-button @click.native="deletePreset" title="Delete Preset"></remove-button>
     </div>
     <div v-if="editMode" class="preset-listing-edit">
-      <input-form 
-        v-on:submit="newPresetStream"
-        placeholder="Stream Name"></input-form>
+      <input-form v-on:submit="newPresetStream" placeholder="Stream Name"></input-form>
       <ul class="preset-stream-list">
-        <draggable 
-          v-model="orderedStreams" 
+        <draggable
+          v-model="orderedStreams"
           v-if="orderedStreams.length"
-          @start="drag=true" 
+          @start="drag=true"
           @end="drag=false"
-          :options="{ghostClass:'ghost'}">
+          :options="{ghostClass:'ghost'}"
+        >
           <li
             class="draggable preset-stream"
             v-for="(stream, index) in orderedStreams"
-            :stream="stream">
+            :stream="stream"
+          >
             <span class="material-icons handle text--green">drag_handle</span>
-            <p> {{ stream }}</p> 
-            <remove-button @click.native="deleteStreamFromPreset(index)" title="Remove Stream" ></remove-button>
+            <p>{{ stream }}</p>
+            <remove-button @click.native="deleteStreamFromPreset(index)" title="Remove Stream"></remove-button>
           </li>
         </draggable>
         <p v-else>No streams in preset</p>
@@ -47,5 +35,5 @@
 <script src="./presetListing.js"></script>
 
 <style lang="scss">
-    @import './presetListing.scss';
+@import "./presetListing.scss";
 </style>

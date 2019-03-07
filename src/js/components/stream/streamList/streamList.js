@@ -36,17 +36,17 @@ export default {
     }
   },
   watch: {
-    'orderedStreams': function () {
+    orderedStreams: function () {
       this.$emit('update-streams', this.orderedStreams)
     },
-    'streams': function () {
+    streams: function () {
       if (this.orderedStreams !== this.streams) {
         this.orderedStreams = this.streams
       }
     }
   },
   computed: {
-    'layoutClass': function () {
+    layoutClass: function () {
       return `streams--layout-${this.options.currentLayout.id}`
     }
   },

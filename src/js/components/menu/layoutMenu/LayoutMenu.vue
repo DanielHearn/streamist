@@ -3,7 +3,7 @@
     :title="'Layouts'"
     :closeTitle="'Close Layout Options'"
     v-on:close-menu-item="$emit('close-menu')"
-    >
+  >
     <div class="menu-item-row">
       <p>Select a stream layout.</p>
       <div class="layouts-demo-container">
@@ -13,8 +13,8 @@
           :class="{'active': selectedLayout.id === layout.id}"
           :layout="layout"
           :currentStreams="currentStreams"
-          v-on:change-layout="changeLayout">
-        </layout-demo>
+          v-on:change-layout="changeLayout"
+        ></layout-demo>
       </div>
     </div>
   </menu-item>
@@ -23,5 +23,5 @@
 <script src="./layoutMenu.js"></script>
 
 <style lang="scss">
-  @import './layoutMenu.scss';
+@import "./layoutMenu.scss";
 </style>

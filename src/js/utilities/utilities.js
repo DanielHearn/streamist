@@ -1,7 +1,9 @@
 import { config, defaultData } from 'Js/config'
 
 export const generateID = function (length) {
-  return Math.random().toString(36).slice(-length)
+  return Math.random()
+    .toString(36)
+    .slice(-length)
 }
 
 export const getDefault = function (field) {
@@ -33,7 +35,8 @@ export const copyToClipboard = function (str) {
   el.select() // Select the <textarea> content
   document.execCommand('copy') // Copy - only works as a result of a user action (e.g. click events)
   document.body.removeChild(el) // Remove the <textarea> element
-  if (selected) { // If a selection existed before copying
+  if (selected) {
+    // If a selection existed before copying
     document.getSelection().removeAllRanges() // Unselect everything on the HTML document
     document.getSelection().addRange(selected) // Restore the original selection
   }

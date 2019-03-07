@@ -1,14 +1,12 @@
 <template>
-  <form
-    class="input-form"
-    name="input"
-    v-on:submit.prevent="submit">
+  <form class="input-form" name="input" v-on:submit.prevent="submit">
     <input
       type="text"
       name="input"
       required="required"
       :placeholder="placeholder"
-      v-model="inputValue" />
+      v-model="inputValue"
+    >
     <standard-button type="submit">{{buttonText}}</standard-button>
   </form>
 </template>
@@ -16,5 +14,5 @@
 <script src="./inputForm.js"></script>
 
 <style lang="scss">
-    @import './inputForm.scss';
+@import "./inputForm.scss";
 </style>

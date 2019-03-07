@@ -6,16 +6,18 @@
         v-if="streams.length"
         :disabled="maxChats"
         @click.native="addChat"
-        title="Add Chat">Add Chat</standard-button>
+        title="Add Chat"
+      >Add Chat</standard-button>
     </div>
-    <chat
+    <chat-item
       v-for="chat in chats"
       :key="chat.index"
       :streams="streams"
       :chat="chat"
       :remove-available="removeAvailable"
       v-on:load-chat="loadChat"
-      v-on:remove-chat="removeChat"></chat>
+      v-on:remove-chat="removeChat"
+    ></chat-item>
   </div>
 </template>
 
@@ -23,5 +25,5 @@
 
 
 <style lang="scss">
-    @import './chatList.scss';
+@import "./chatList.scss";
 </style>
