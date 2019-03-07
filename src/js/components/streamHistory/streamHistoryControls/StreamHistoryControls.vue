@@ -1,7 +1,7 @@
 <template>
   <div class="stream-history" v-if="streamHistory">
     <div class="menu-item-row">
-      <p class="text" v-if="!historyAvailable">No streams in history</p>
+      <p class="text" v-if="!historyAvailable">No channels in your history.</p>
       <list>
         <stream-history-item 
             v-for="history in orderedHistory" 
