@@ -1,25 +1,8 @@
 .preset-listing {
-  background: #f9f9f9;
-  padding: 0.5em;
-  margin-bottom: 1em;
-  list-style: none;
-  //padding-left: 0;
   .preset-listing-edit {
     padding: 0.25em;
-    .preset-stream-list {
-      list-style: none;
-      padding-left: 0;
-      .preset-stream {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        margin: 0.5em 0;
-        background: $near-white;
-        &:hover {
-          background: $off-white;
-        }
-      }
-    }
+  }
+  .list {
+    margin-top: 1em;
   }
 }

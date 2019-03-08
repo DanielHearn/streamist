@@ -3,6 +3,8 @@ import InputForm from 'Components/inputs/inputForm/InputForm.vue'
 import LoadButton from 'Components/inputs/buttons/iconButtons/loadButton/LoadButton.vue'
 import EditButton from 'Components/inputs/buttons/iconButtons/editButton/EditButton.vue'
 import RemoveButton from 'Components/inputs/buttons/iconButtons/removeButton/RemoveButton.vue'
+import ListItem from 'Components/list/listItem/ListItem.vue'
+import List from 'Components/list/list/List.vue'
 
 export default {
   name: 'preset-listing',
@@ -11,19 +13,25 @@ export default {
     InputForm,
     LoadButton,
     EditButton,
-    RemoveButton
+    RemoveButton,
+    ListItem,
+    List
   },
   props: {
     preset: {
       type: Object,
+      required: true
+    },
+    editMode: {
+      type: Boolean,
+      default: false,
       required: true
     }
   },
   data: function () {
     return {
       orderedStreams: this.preset.streams,
-      presetName: this.preset.name,
-      editMode: false
+      presetName: this.preset.name
     }
   },
   watch: {
@@ -42,6 +50,10 @@ export default {
     }
   },
   methods: {
+    nameChange: function (newName) {
+      console.log(newName)
+      this.presetName = newName
+    },
     deleteStreamFromPreset: function (index) {
       const tempPreset = this.preset
       tempPreset.streams.splice(index, 1)
@@ -54,7 +66,7 @@ export default {
       this.$emit('delete-preset', this.preset)
     },
     toggleEditMode: function () {
-      this.editMode = !this.editMode
+      this.$emit('edit-preset', this.preset.id)
     },
     newPresetStream: function (e, newPresetStreamName) {
       e.preventDefault()

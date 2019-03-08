@@ -2,6 +2,7 @@ import MenuItem from 'Components/menu/menuItem/MenuItem.vue'
 import PresetListing from 'Components/preset/presetListing/PresetListing.vue'
 import InputForm from 'Components/inputs/inputForm/InputForm.vue'
 import StandardButton from 'Components/inputs/buttons/standardButton/StandardButton.vue'
+import List from 'Components/list/list/List.vue'
 import { generateID } from 'Js/utilities'
 
 export default {
@@ -10,7 +11,8 @@ export default {
     MenuItem,
     PresetListing,
     InputForm,
-    StandardButton
+    StandardButton,
+    List
   },
   props: {
     streamPresets: {
@@ -24,8 +26,7 @@ export default {
   },
   data: function () {
     return {
-      importPresetsOpened: false,
-      importedPresets: JSON.stringify(this.streamPresets)
+      currentlyEditedPreset: ''
     }
   },
   computed: {
@@ -48,6 +49,10 @@ export default {
     },
     loadPreset: function (preset) {
       this.$emit('load-preset', preset)
+    },
+    editPreset: function (presetId) {
+      this.currentlyEditedPreset =
+        this.currentlyEditedPreset === presetId ? '' : presetId
     },
     saveCurrentAsPreset: function () {
       const presetName = `Preset ${this.streamPresets.length + 1}`
