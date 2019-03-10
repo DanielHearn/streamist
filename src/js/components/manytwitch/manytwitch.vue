@@ -10,19 +10,23 @@
       <menu-button v-else title="Open Menu" @click.native="toggleMenu"/>
       <div class="nav-center">
         <h2 class="title">MT</h2>
-        <input-form placeholder="Enter a stream" v-on:submit="addStreamFromNav"></input-form>
+        <input-form
+          placeholder="Twitch channel"
+          :buttonText="'Watch'"
+          v-on:submit="addStreamFromNav"
+        ></input-form>
       </div>
       <div class="nav-right">
         <fullscreen-button title="Toggle Fullscreen"/>
         <arrow-button
-          v-if="options.chatVisible && currentStreams.length"
+          v-if="options.chatVisible && streams.length"
           :direction="'right'"
           title="Close Chat"
           @click.native="toggleChat"
         />
         <chat-button
           v-else
-          :disabled="!currentStreams.length"
+          :disabled="!streams.length"
           title="Open Chat"
           @click.native="toggleChat"
         />
@@ -38,7 +42,7 @@
           <layout-menu
             v-if="currentMenu === 'Layouts'"
             :options="options"
-            :current-streams="currentStreams"
+            :streams="streams"
             :available-layouts="availableLayouts"
             v-on:change-layout="changeLayout"
             v-on:close-menu="closeMenu"
@@ -46,7 +50,7 @@
           <preset-menu
             v-if="currentMenu === 'Presets'"
             :stream-presets="streamPresets"
-            :current-streams="currentStreams"
+            :streams="streams"
             v-on:update-presets="updatePresets"
             v-on:load-preset="loadStreamsFromPreset"
             v-on:close-menu="closeMenu"
@@ -63,14 +67,14 @@
         </template>
       </side-menu>
       <streams
-        :streams="currentStreams"
+        :streams="streams"
         :options="options"
         :navVisible="navVisible"
         :appHover="appHover"
         v-on:update-streams="updateStreams"
         v-on:toggle-nav="toggleNav"
       ></streams>
-      <chats :streams="currentStreams" :options="options"></chats>
+      <chats :streams="streams" :options="options"></chats>
     </div>
   </div>
 </template>

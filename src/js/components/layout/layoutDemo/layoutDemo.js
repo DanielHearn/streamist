@@ -6,7 +6,7 @@ export default {
     ListItem
   },
   props: {
-    currentStreams: {
+    streams: {
       type: Array,
       required: true
     },
@@ -18,6 +18,9 @@ export default {
   computed: {
     layoutClass: function () {
       return `layout-demo--layout-${this.layout.id}`
+    },
+    streamLengthClass: function () {
+      return `streams--${this.streams.length}`
     }
   }
 }

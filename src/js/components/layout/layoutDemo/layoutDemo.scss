@@ -12,10 +12,10 @@
   box-sizing: border-box;
   cursor: pointer;
   &:hover {
-    background: $green-light;
+    background: $accent-light;
   }
   &.active {
-    background: $green-dark;
+    background: $accent-dark;
   }
 }
 
@@ -48,7 +48,7 @@
   flex: 1 auto;
   font-weight: bold;
   color: $white;
-  background: $grey;
+  background: $black-normal;
   width: 100%;
   height: 100%;
   justify-content: center;
@@ -64,6 +64,12 @@
 
 .layout-demo--layout-grid {
   flex-wrap: wrap;
+  &.streams--1, &.streams--2 {
+    flex-direction: column;
+    .layout-demo-stream  {
+      width: 100%;
+    }
+  }
   .layout-demo-stream {
     width: 50%;
   }

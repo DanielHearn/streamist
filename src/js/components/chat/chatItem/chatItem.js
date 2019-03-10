@@ -35,6 +35,11 @@ export default {
     },
     src: function () {
       return `https://www.twitch.tv/embed/${this.chat.streamName}/chat`
+    },
+    filteredStreams: function () {
+      return this.streams.filter(stream => {
+        return stream.streamName !== this.newChatName
+      })
     }
   },
   methods: {

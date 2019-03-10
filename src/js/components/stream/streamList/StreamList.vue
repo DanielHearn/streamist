@@ -5,12 +5,12 @@
       :direction="navVisible ? 'up' : 'down'"
       :title="navVisible ? 'Hide Interface' : 'Show Interface'"
       @click.native="toggleNav"
-      :class="{'hidden': !appHover}"
+      :class="{'hidden': !appHover && streams.length}"
     />
     <draggable
       v-if="streams.length"
       class="streams"
-      :class="layoutClass"
+      :class="[layoutClass, streamLengthClass]"
       v-model="orderedStreams"
       @start="drag=true"
       @end="drag=false"

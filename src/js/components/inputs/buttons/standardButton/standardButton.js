@@ -6,7 +6,7 @@ export default {
       type: Boolean
     },
     buttonClasses: {
-      default: 'button--green',
+      default: 'button--accent',
       type: String,
       required: false
     }

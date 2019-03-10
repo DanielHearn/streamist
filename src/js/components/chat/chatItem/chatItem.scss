@@ -4,7 +4,7 @@
   display: flex;
   flex: 1 auto;
   flex-direction: column;
-  background: $green-light;
+  background: $accent-light;
   .chat-controls {
     display: flex;
     justify-content: space-evenly;
@@ -15,5 +15,6 @@
   iframe {
     display: flex;
     flex: 1 auto;
+    background: $off-white;
   }
 }

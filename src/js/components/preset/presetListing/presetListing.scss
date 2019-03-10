@@ -1,8 +1,15 @@
 .preset-listing {
   .preset-listing-edit {
     padding: 0.25em;
+    margin-top: 0.5em;
   }
   .list {
     margin-top: 1em;
+  }
+  .preset-listing-item {
+    margin: 0.5em 0;
+    p {
+      font-weight: 500;
+    }
   }
 }

@@ -26,6 +26,16 @@ export default {
       default: '',
       required: false
     },
+    actionClass: {
+      type: String,
+      default: 'button--accent',
+      required: false
+    },
+    actionDisabled: {
+      type: Boolean,
+      default: false,
+      required: false
+    },
     handleActive: {
       type: Boolean,
       default: false,

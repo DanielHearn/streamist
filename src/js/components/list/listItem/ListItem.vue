@@ -1,24 +1,28 @@
 <template>
   <div class="list-item">
     <div class="item-header">
-      <div class="row">
-        <span v-if="handleActive" class="material-icons handle text--green">drag_handle</span>
-        <input v-if="canEditTitle" type="text" contenteditable="true" v-model="title">
-        <p v-else>{{ itemName }}</p>
+      <span v-if="handleActive" class="material-icons handle text--accent">drag_handle</span>
+      <div class="item-header-content">
+        <div class="row">
+          <input v-if="canEditTitle" type="text" contenteditable="true" v-model="title">
+          <p v-else>{{ itemName }}</p>
+        </div>
+        <standard-button
+          v-if="actionName && !actionNameIsIcon"
+          @click.native="$emit('click')"
+          :disabled="actionDisabled"
+          :buttonClasses="actionClass"
+          :title="actionTitle"
+        >{{ actionName }}</standard-button>
+        <icon-button
+          v-if="actionName && actionNameIsIcon"
+          @click.native="$emit('click')"
+          :disabled="actionDisabled"
+          :iconName="actionName"
+          :title="actionTitle"
+          :buttonClasses="actionClass"
+        ></icon-button>
       </div>
-      <standard-button
-        v-if="actionName && !actionNameIsIcon"
-        @click.native="$emit('click')"
-        :disabled="false"
-        :buttonClasses="'button--green'"
-        :title="actionTitle"
-      >{{ actionName }}</standard-button>
-      <icon-button
-        v-if="actionName && actionNameIsIcon"
-        @click.native="$emit('click')"
-        :iconName="actionName"
-        :title="actionTitle"
-      ></icon-button>
     </div>
     <div class="item-content" v-if="!!$slots.default">
       <slot></slot>

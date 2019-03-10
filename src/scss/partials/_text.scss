@@ -8,28 +8,31 @@
 .text {
     font-size: $text-size;
     font-weight: $text-weight;
+    color: rgba(254, 254, 254, 0.9);
 }
   
 .text-heading {
     font-size: $heading-size;
     font-weight: $heading-weight;
     margin: $content-padding/2 0;
+    color: rgba(254, 254, 254, 0.9);
 }
   
 .text-sub-heading {
     font-size: $sub-heading-size;
     font-weight: $sub-heading-weight;
-    margin: $content-padding/2 0 ;
+    margin: $content-padding/2 0;
+    color: rgba(254, 254, 254, 0.9);
 }
   
 .sub-text {
     font-size: $sub-text-size;
     font-weight: $sub-text-weight;
-    color: $grey;
+    color: rgba(254, 254, 254, 0.6);
 }
 
-.text--green {
-    color: $green-light;
+.text--accent {
+    color: $accent-light;
 }
 
 .text--white {
@@ -37,7 +40,7 @@
 }
 
 .text-link {
-    color: $green-light;
+    color: $accent-light;
     text-decoration: none;
     &:hover {
         text-decoration: underline;

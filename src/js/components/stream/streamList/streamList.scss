@@ -17,6 +17,12 @@
 
 .streams--layout-grid {
   flex-wrap: wrap;
+  &.streams--1, &.streams--2 {
+    flex-direction: column;
+    .stream {
+      width: 100%;
+    }
+  }
   .stream {
     width: 50%;
   }
@@ -26,7 +32,7 @@
   flex-wrap: nowrap;
 }
 
-.nav-toggle-button.button--green {
+.nav-toggle-button.button--accent {
   margin: 0 auto;
   position: absolute;
   top: 0;
@@ -36,7 +42,7 @@
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.15);
   opacity: 1;
   &.hidden {
-    opacity: 0;
+    opacity: 0.5;
     display: flex !important;
   }
   &:hover {

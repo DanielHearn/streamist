@@ -16,6 +16,7 @@
       <standard-button
         @click.native="$emit('clear-history')"
         :disabled="!historyAvailable"
+        :buttonClasses="'button--secondary'"
       >Clear History</standard-button>
     </div>
   </div>

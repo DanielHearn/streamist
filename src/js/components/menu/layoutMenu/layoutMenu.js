@@ -8,7 +8,7 @@ export default {
     LayoutDemo
   },
   props: {
-    currentStreams: {
+    streams: {
       type: Array,
       required: true
     },
@@ -27,8 +27,8 @@ export default {
     }
   },
   computed: {
-    streams: function () {
-      return this.currentStreams.map((stream, index) => {
+    indexedStreams: function () {
+      return this.streams.map((stream, index) => {
         stream.index = index + 1
         return stream
       })

@@ -6,7 +6,7 @@
           v-for="menuitem in menuItems"
           :key="menuitem.itemName"
           @click.native="loadMenu(menuitem.itemName)"
-          :class="{active: currentMenu === menuitem.itemName}"
+          :class="{'active': currentMenu === menuitem.itemName}"
           :buttonClasses="'button--dark button--menu'"
           :iconClasses="'menu-icon'"
           :iconName="menuitem.iconName"

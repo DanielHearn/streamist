@@ -3,30 +3,41 @@ $white: #FEFEFE;
 $near-white: #f0f0f0;
 $off-white: #e2e1e1;
 $grey: #5c5c5c;
-$dark: #353535;
-$dark-grey: #2d2d2d;
-$black: #2b2b2b;
-$green-light: #1DD1A1;
-$green-dark: #10AC84;
+
+$accent-light: #15bc90;
+$accent-dark: #13ad84;
+
+$black-lightest: #333333;
+$black-light: #2f2f2f;
+$black-normal: #2d2d2d;
+$black-dark: #2a2a2a;
+$black-darker: #252525;
+$black-darkest: #232323;
+
+/*
+$dark: #2d2d2d;
+$dark-grey: #272727;
+$black: #232323;
 $purple-light: #464e6d;
-$purple-dark: #3D445E;
+$purple-dark: #3D445E;*/
 
 // NAV
 $nav-height: 3em;
 
 // MENU
 $menu-width: 8em;
+$menu-content-width: 22em;
 
 // FONT
 $title-size: 2.5em;
 $title-weight: 700;
 $heading-size: 1.25em;
 $heading-weight: 700;
-$sub-heading-size: 1.125em;
+$sub-heading-size: 1em;
 $sub-heading-weight: 600;
 $text-size: 1em;
 $text-weight: 500;
-$sub-text-size: 0.9em;
+$sub-text-size: 1em;
 $sub-text-weight: 500;
 
 // TRANSITION

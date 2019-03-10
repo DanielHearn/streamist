@@ -1,7 +1,9 @@
+@import "variables";
+
 .menu-item {
-  width: 20em;
+  width: $menu-content-width;
   height: 100%;
-  color: $black;
+  color: $white;
   display: flex;
   box-sizing: border-box;
   flex-direction: column;
@@ -13,7 +15,7 @@
     justify-content: space-between;
     align-items: center;
     padding: $content-padding/2 $content-padding;
-    background: $near-white;
+    background: $black-light;
     .text-heading {
       text-align: center;
     }

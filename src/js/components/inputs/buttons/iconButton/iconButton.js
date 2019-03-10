@@ -17,7 +17,7 @@ export default {
       required: true
     },
     buttonClasses: {
-      default: 'button--green',
+      default: 'button--accent',
       type: String,
       required: false
     },

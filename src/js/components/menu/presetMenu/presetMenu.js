@@ -19,7 +19,7 @@ export default {
       type: Array,
       required: true
     },
-    currentStreams: {
+    streams: {
       type: Array,
       required: true
     }
@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     noStreams: function () {
-      return !this.currentStreams.length
+      return !this.streams.length
     },
     presetsDisabled: function () {
       return !this.streamPresets.length
@@ -57,7 +57,7 @@ export default {
     saveCurrentAsPreset: function () {
       const presetName = `Preset ${this.streamPresets.length + 1}`
       const newPreset = this.createEmptyPreset(presetName, [])
-      newPreset.streams = this.currentStreams.map(stream => stream.streamName)
+      newPreset.streams = this.streams.map(stream => stream.streamName)
       const newPresets = this.streamPresets.concat(newPreset)
       this.updatePresets(newPresets)
     },

@@ -2,6 +2,7 @@ import draggable from 'vuedraggable'
 import InputForm from 'Components/inputs/inputForm/InputForm.vue'
 import LoadButton from 'Components/inputs/buttons/iconButtons/loadButton/LoadButton.vue'
 import EditButton from 'Components/inputs/buttons/iconButtons/editButton/EditButton.vue'
+import CloseButton from 'Components/inputs/buttons/iconButtons/closeButton/CloseButton.vue'
 import RemoveButton from 'Components/inputs/buttons/iconButtons/removeButton/RemoveButton.vue'
 import ListItem from 'Components/list/listItem/ListItem.vue'
 import List from 'Components/list/list/List.vue'
@@ -14,6 +15,7 @@ export default {
     LoadButton,
     EditButton,
     RemoveButton,
+    CloseButton,
     ListItem,
     List
   },

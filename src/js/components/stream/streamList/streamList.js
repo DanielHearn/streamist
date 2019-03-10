@@ -48,11 +48,14 @@ export default {
   computed: {
     layoutClass: function () {
       return `streams--layout-${this.options.currentLayout.id}`
+    },
+    streamLengthClass: function () {
+      return `streams--${this.streams.length}`
     }
   },
   methods: {
     removeStream: function (removedStream) {
-      // Remove stream with matching streamIndex from currentStreams
+      // Remove stream with matching streamIndex from streams
       const newStreams = this.streams.filter(stream => stream !== removedStream)
       this.$emit('update-streams', newStreams)
     },

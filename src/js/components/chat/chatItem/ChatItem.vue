@@ -1,7 +1,8 @@
 <template>
   <div class="stream-chat">
     <select v-model="newChatName" v-on:change="loadChat">
-      <option v-for="stream in streams" :key="stream.embedPlayerID">{{ stream.streamName }}</option>
+      <option>{{ newChatName }}</option>
+      <option v-for="stream in filteredStreams" :key="stream.embedPlayerID">{{ stream.streamName }}</option>
     </select>
     <div class="chat-controls">
       <remove-button v-if="removeAvailable" @click.native="remove" title="Remove Chat"></remove-button>

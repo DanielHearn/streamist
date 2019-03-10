@@ -26,8 +26,13 @@
       <standard-button
         @click.native="saveCurrentAsPreset"
         :disabled="noStreams"
+        :buttonClasses="'button--secondary'"
       >Save Streams as Preset</standard-button>
-      <standard-button @click.native="clearPresets" :disabled="presetsDisabled">Clear Presets</standard-button>
+      <standard-button
+        @click.native="clearPresets"
+        :disabled="presetsDisabled"
+        :buttonClasses="'button--secondary'"
+      >Clear Presets</standard-button>
     </div>
   </menu-item>
 </template>

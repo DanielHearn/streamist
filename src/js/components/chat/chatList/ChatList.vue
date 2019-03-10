@@ -12,7 +12,7 @@
     <chat-item
       v-for="chat in chats"
       :key="chat.index"
-      :streams="streams"
+      :streams="filteredStreams"
       :chat="chat"
       :remove-available="removeAvailable"
       v-on:load-chat="loadChat"

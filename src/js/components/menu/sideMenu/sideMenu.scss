@@ -3,7 +3,7 @@
 
 .menu {
   display: none;
-  background: $dark;
+  background: $black-normal;
   .menu-bar {
     width: $menu-width;
     .menu-bar-content {
@@ -18,25 +18,25 @@
         flex-direction: row;
         align-items: center;
         border-radius: unset;
-        box-shadow: 0.5em 0 0 0 $dark inset;
+        box-shadow: 0.5em 0 0 0 $black-normal inset;
         outline: none;
         .menu-icon {
           margin-right: 0.5em;
         }
         &:hover {
-          box-shadow: 0.5em 0 0 0 $green-dark inset;
-          background: $dark-grey;
+          box-shadow: 0.5em 0 0 0 $accent-dark inset;
+          background: $black-darker;
         }
         &.active {
-          box-shadow: 0.5em 0 0 0 $green-light inset;
-          background: $black;
+          box-shadow: 0.5em 0 0 0 $accent-light inset;
+          background: $black-darkest;
         }
       }
     }
   }
   .menu-content {
-    background: $white;
-    max-width: 20em;
+    background: $black-dark;
+    max-width: $menu-content-width;
   }
   &.visible {
     display: flex;

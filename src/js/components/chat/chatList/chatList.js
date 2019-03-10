@@ -32,6 +32,16 @@ export default {
     },
     removeAvailable: function () {
       return this.chats.length > 1
+    },
+    filteredStreams: function () {
+      const streamNames = []
+      // Remove duplicate streams
+      return this.streams.filter(stream => {
+        if (!streamNames.includes(stream.streamName)) {
+          streamNames.push(stream.streamName)
+          return stream
+        }
+      })
     }
   },
   watch: {

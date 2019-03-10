@@ -4,19 +4,19 @@
     :actionName="'Set Layout'"
     @click="$emit('change-layout', layout)"
   >
-    <div class="layout-demo" :class="layoutClass" v-if="currentStreams.length">
+    <div class="layout-demo" :class="[layoutClass, streamLengthClass]" v-if="streams.length > 1">
       <div
         class="layout-demo-stream"
-        v-for="(stream, index) in currentStreams"
+        v-for="(stream, index) in streams"
         :title="stream.streamName"
         :key="stream.embedPlayerID"
       >
         <div class="layout-demo-number">
-          <p v-if="currentStreams.length < 8">{{ index + 1 }}</p>
+          <p v-if="streams.length < 8">{{ index + 1 }}</p>
         </div>
       </div>
     </div>
-    <div class="layout-demo" :class="layoutClass" v-if="!currentStreams.length">
+    <div class="layout-demo" :class="[layoutClass, streamLengthClass]" v-else>
       <div v-for="index in [1, 2, 3, 4]" :key="index" class="layout-demo-stream">
         <div class="layout-demo-number">
           <p>{{ index }}</p>

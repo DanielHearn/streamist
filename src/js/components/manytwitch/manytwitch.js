@@ -15,7 +15,12 @@ import Streams from 'Components/stream/streamList/StreamList.vue'
 import Chats from 'Components/chat/chatList/ChatList.vue'
 
 import { generateID, log, getDefault } from 'Js/utilities'
-import { testValidators, validateHistory, validatePresets, validateOptions } from 'Js/validation'
+import {
+  testValidators,
+  validateHistory,
+  validatePresets,
+  validateOptions
+} from 'Js/validation'
 
 export default {
   name: 'manytwitch',
@@ -58,12 +63,12 @@ export default {
   ],
   data: function () {
     return {
-      currentStreams: [],
+      streams: [],
       streamHistory: [],
       streamPresets: [],
       availableLayouts: [
-        {id: 'grid', name: 'Grid'},
-        {id: 'column', name: 'Column'}
+        { id: 'grid', name: 'Grid' },
+        { id: 'column', name: 'Column' }
       ],
       appHover: false,
       appHoverTracker: 0,
@@ -72,7 +77,7 @@ export default {
         chatVisible: true,
         menuVisible: true,
         startMuted: true,
-        currentLayout: {id: 'grid', name: 'Grid'}
+        currentLayout: { id: 'grid', name: 'Grid' }
       },
       config: {
         maxHistoryLength: 20
@@ -89,19 +94,19 @@ export default {
     },
     addStream: function (streamName) {
       const stream = this.createStreamObject(streamName)
-      this.updateStreams(this.currentStreams.concat([stream]))
+      this.updateStreams(this.streams.concat([stream]))
       this.addStreamToHistory(streamName)
       this.setHistory(this.streamHistory)
     },
     createStreamObject: function (streamName) {
       return {
         streamName: streamName,
-        embedPlayerID: `embed-player-${streamName}-${this.currentStreams.length}`,
-        index: this.currentStreams.length
+        embedPlayerID: `embed-player-${streamName}-${this.streams.length}`,
+        index: this.streams.length
       }
     },
     updateStreams: function (updatedStreams) {
-      this.currentStreams = updatedStreams
+      this.streams = updatedStreams
       this.insertURLParam()
     },
     changeLayout: function (newLayout) {
@@ -135,7 +140,7 @@ export default {
       return localStorage.getItem('manytwitch_presets')
     },
     loadStreamsFromPreset: function (preset) {
-      this.currentStreams = []
+      this.streams = []
       for (const stream of preset.streams) {
         this.addStream(stream)
       }
@@ -158,7 +163,7 @@ export default {
         streamName: streamName,
         dateAdded: new Date()
       }
-      newHistory = newHistory.filter((streamHistoryItem) => {
+      newHistory = newHistory.filter(streamHistoryItem => {
         return streamHistoryItem.streamName !== streamName
       })
       if (newHistory.length < this.config.maxHistoryLength) {
@@ -203,13 +208,15 @@ export default {
     },
     insertURLParam: function () {
       let channelString = ''
-      for (const channel in this.currentStreams) {
-        if (this.currentStreams.hasOwnProperty(channel)) {
-          channelString += String(this.currentStreams[channel].streamName) + ','
+      for (const channel in this.streams) {
+        if (this.streams.hasOwnProperty(channel)) {
+          channelString += String(this.streams[channel].streamName) + ','
         }
       }
       channelString = channelString.replace('undefined', '')
-      const newurl = `${window.location.protocol}//${window.location.host}${window.location.pathname}`
+      const newurl = `${window.location.protocol}//${window.location.host}${
+        window.location.pathname
+      }`
       if (channelString) {
         const queryUrl = `${newurl}?stream=${channelString}`
         window.history.pushState({ path: queryUrl }, '', queryUrl)
@@ -244,8 +251,7 @@ export default {
             this.loadHistory(parsedHistory)
             historyLoaded = true
           }
-        } catch (error) {
-        }
+        } catch (error) {}
       }
       if (!historyLoaded) {
         log('Loading default history')
@@ -264,8 +270,7 @@ export default {
             optionsLoaded = true
             this.options = parsedOptions
           }
-        } catch (error) {
-        }
+        } catch (error) {}
       }
       if (!optionsLoaded) {
         log('Loading default options')
@@ -284,8 +289,7 @@ export default {
             presetsLoaded = true
             this.streamPresets = parsedPresets
           }
-        } catch (error) {
-        }
+        } catch (error) {}
       }
       if (!presetsLoaded) {
         log('Loading default presets')
@@ -310,6 +314,19 @@ export default {
   },
   mounted: function () {
     document.addEventListener('mousemove', this.checkMovement, false)
+
+    const app = this
+    window.addEventListener(
+      'keydown',
+      function (e) {
+        console.log(e.key)
+        if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) {
+          e.preventDefault()
+          app.navVisible = true
+        }
+      },
+      true
+    )
   },
   created: function () {
     testValidators()
