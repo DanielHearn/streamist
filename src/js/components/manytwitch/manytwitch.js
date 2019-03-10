@@ -319,7 +319,6 @@ export default {
     window.addEventListener(
       'keydown',
       function (e) {
-        console.log(e.key)
         if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) {
           e.preventDefault()
           app.navVisible = true

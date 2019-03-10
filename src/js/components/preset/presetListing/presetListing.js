@@ -53,7 +53,6 @@ export default {
   },
   methods: {
     nameChange: function (newName) {
-      console.log(newName)
       this.presetName = newName
     },
     deleteStreamFromPreset: function (index) {
