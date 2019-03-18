@@ -8,7 +8,7 @@
     v-on:test="nameChange"
     class="preset-listing"
   >
-    <div class="input-container">
+    <div class="input-container space-between">
       <edit-button
         class="button--secondary"
         v-if="!editMode"
@@ -21,7 +21,12 @@
         @click.native="toggleEditMode"
         title="Close Preset Editing"
       ></close-button>
-      <remove-button class="button--secondary" @click.native="deletePreset" title="Delete Preset"></remove-button>
+      <remove-button
+        class="button--secondary"
+        :hasWarningColor="true"
+        @click.native="deletePreset"
+        title="Delete Preset"
+      ></remove-button>
     </div>
     <div style="margin: 0.25em; margin-top: 0.5em;" v-if="!orderedStreams.length">
       <p class="text-warning">Edit preset to add streams</p>
@@ -35,7 +40,7 @@
           v-if="orderedStreams.length"
           @start="drag=true"
           @end="drag=false"
-          :options="{ghostClass:'ghost'}"
+          :options="{ghostClass:'ghost', removeCloneOnHide: true}"
         >
           <list-item
             v-for="(stream, index) in orderedStreams"
@@ -44,7 +49,8 @@
             :itemName="stream"
             :actionName="'delete'"
             :actionNameIsIcon="true"
-            :actionClass="'button--secondary'"
+            :actionClass="'button--tertiary button--warning'"
+            :class="{'drag--active': drag}"
             :handleActive="true"
             v-on:click="deleteStreamFromPreset(index)"
           />

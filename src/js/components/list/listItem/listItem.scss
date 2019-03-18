@@ -3,6 +3,10 @@
   background: $black-lightest;
   &[draggable="true"] .item-header {
     background: $black-dark;
+    box-shadow: inset -4px 0px 0px $accent-dark;
+  }
+  &.drag--active .item-header {
+    box-shadow: inset -4px 0px 0px #7c8185;
   }
   .ghost {
     background: $black-dark;

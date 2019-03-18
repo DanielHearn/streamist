@@ -1,5 +1,10 @@
 <template>
-  <icon-button :disabled="disabled" :iconName="'delete'"></icon-button>
+  <icon-button
+    :buttonClasses="'button--tertiary'"
+    :disabled="disabled"
+    :iconName="'delete'"
+    :hasWarningColor="hasWarningColor"
+  ></icon-button>
 </template>
 
 <script src="./removeButton.js"></script>

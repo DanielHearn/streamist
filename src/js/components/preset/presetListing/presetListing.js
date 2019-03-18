@@ -33,7 +33,8 @@ export default {
   data: function () {
     return {
       orderedStreams: this.preset.streams,
-      presetName: this.preset.name
+      presetName: this.preset.name,
+      drag: false
     }
   },
   watch: {

@@ -74,6 +74,27 @@ button {
   }
 }
 
+.button--tertiary {
+  background: transparent;
+  border: 2px solid transparent;
+  @include transition(background $transition-time ease-in-out);
+  &:hover {
+    background: #7c8185;
+  }
+  &.active {
+    background: #7c8185;
+  }
+}
+
+.button--warning {
+  &:hover {
+    background: $red;
+  }
+  &.active {
+    background: $red;
+  }
+}
+
 select {
   padding: 0.75em 1.25em;
   background: $off-white;

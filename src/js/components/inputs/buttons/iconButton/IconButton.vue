@@ -1,5 +1,5 @@
 <template>
-  <standard-button :disabled="disabled" :buttonClasses="buttonClasses">
+  <standard-button :disabled="disabled" :buttonClasses="buttonClasses" :class="warningClass">
     <i class="material-icons" :class="iconClasses">{{iconName}}</i>
     <slot></slot>
   </standard-button>

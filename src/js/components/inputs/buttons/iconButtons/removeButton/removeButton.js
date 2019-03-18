@@ -10,6 +10,11 @@ export default {
       default: false,
       type: Boolean,
       required: false
+    },
+    hasWarningColor: {
+      default: false,
+      type: Boolean,
+      required: false
     }
   }
 }
