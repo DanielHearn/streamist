@@ -1,10 +1,12 @@
-import CloseButton from 'Components/inputs/buttons/iconButtons/closeButton/CloseButton.vue'
+import IconButton from 'Components/inputs/buttons/iconButton/IconButton.vue'
+import Icons from 'Js/icons'
 
 export default {
   name: 'menu-item',
   components: {
-    CloseButton
+    IconButton
   },
+  icons: Icons,
   props: {
     title: {
       type: String,

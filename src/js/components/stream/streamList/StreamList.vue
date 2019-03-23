@@ -1,11 +1,11 @@
 <template>
   <div class="streams-container">
-    <arrow-button
-      class="nav-toggle-button"
-      :direction="navVisible ? 'up' : 'down'"
-      :title="navVisible ? 'Hide Interface' : 'Show Interface'"
-      @click.native="toggleNav"
+    <icon-button
+      :iconName="navVisible ? $options.icons.upArrow : $options.icons.downArrow"
       :class="{'hidden': !appHover && streams.length}"
+      class="nav-toggle-button"
+      title="navVisible ? 'Hide Interface' : 'Show Interface'"
+      @click.native="toggleNav"
     />
     <draggable
       v-if="streams.length"

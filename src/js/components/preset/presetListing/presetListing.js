@@ -1,21 +1,17 @@
 import draggable from 'vuedraggable'
 import InputForm from 'Components/inputs/inputForm/InputForm.vue'
-import LoadButton from 'Components/inputs/buttons/iconButtons/loadButton/LoadButton.vue'
-import EditButton from 'Components/inputs/buttons/iconButtons/editButton/EditButton.vue'
-import CloseButton from 'Components/inputs/buttons/iconButtons/closeButton/CloseButton.vue'
-import RemoveButton from 'Components/inputs/buttons/iconButtons/removeButton/RemoveButton.vue'
+import IconButton from 'Components/inputs/buttons/iconButton/IconButton.vue'
 import ListItem from 'Components/list/listItem/ListItem.vue'
 import List from 'Components/list/list/List.vue'
+
+import Icons from 'Js/icons/'
 
 export default {
   name: 'preset-listing',
   components: {
     draggable,
     InputForm,
-    LoadButton,
-    EditButton,
-    RemoveButton,
-    CloseButton,
+    IconButton,
     ListItem,
     List
   },
@@ -37,6 +33,7 @@ export default {
       drag: false
     }
   },
+  icons: Icons,
   watch: {
     presetName: function () {
       const tempPreset = this.preset

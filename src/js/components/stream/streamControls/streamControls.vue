@@ -11,8 +11,8 @@
       target="_blank"
       title="Open Twitch stream"
     >{{ stream.streamName }}</a>
-    <remove-button @click.native="remove" title="Remove stream"></remove-button>
-    <refresh-button @click.native="refresh" title="Refresh stream"></refresh-button>
+    <icon-button :iconName="$options.icons.refresh" title="Refresh Stream" @click.native="refresh"/>
+    <icon-button :iconName="$options.icons.remove" title="Remove Stream" @click.native="remove"/>
   </div>
 </template>
 

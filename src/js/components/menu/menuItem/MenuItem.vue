@@ -2,11 +2,12 @@
   <div class="menu-item">
     <div class="menu-item-header">
       <p class="text-heading">{{title}}</p>
-      <close-button
+      <icon-button
         class="button--secondary"
         @click.native="$emit('close-menu-item')"
         :title="closeTitle"
-      ></close-button>
+        :iconName="$options.icons.close"
+      ></icon-button>
     </div>
     <div class="menu-item-content">
       <slot></slot>

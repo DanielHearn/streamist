@@ -1,13 +1,11 @@
 <template>
   <div id="manytwitch">
     <nav :class="{'hidden': !navVisible}">
-      <arrow-button
-        v-if="options.menuVisible"
-        title="Close Menu"
-        :direction="'left'"
+      <icon-button
+        :iconName="options.menuVisible ? $options.icons.leftArrow : $options.icons.menu"
+        :title="options.menuVisible ? 'Close Menu' : 'Open Menu'"
         @click.native="toggleMenu"
       />
-      <menu-button v-else title="Open Menu" @click.native="toggleMenu"/>
       <div class="nav-center">
         <h2 class="title">MT</h2>
         <input-form
@@ -17,16 +15,16 @@
         ></input-form>
       </div>
       <div class="nav-right">
-        <fullscreen-button title="Toggle Fullscreen"/>
-        <arrow-button
-          v-if="options.chatVisible && streams.length"
-          :direction="'right'"
-          title="Close Chat"
-          @click.native="toggleChat"
+        <icon-button
+          :iconName="$options.icons.fullscreen"
+          :buttonClasses="'button--secondary'"
+          title="Toggle Fullscreen"
+          @click.native="toggleFullscreen"
         />
-        <chat-button
-          v-else
+        <icon-button
           :disabled="!streams.length"
+          :iconName="options.chatVisible && streams.length ? $options.icons.rightArrow : $options.icons.chat"
+          :buttonClasses="'button--secondary'"
           title="Open Chat"
           @click.native="toggleChat"
         />

@@ -1,7 +1,9 @@
 import draggable from 'vuedraggable'
 import Stream from 'Components/stream/streamItem/StreamItem.vue'
 import Intro from 'Components/intro/Intro.vue'
-import ArrowButton from 'Components/inputs/buttons/iconButtons/arrowButton/ArrowButton.vue'
+import IconButton from 'Components/inputs/buttons/iconButton/IconButton.vue'
+
+import Icons from 'Js/icons'
 
 export default {
   name: 'stream-list',
@@ -9,7 +11,7 @@ export default {
     draggable,
     Stream,
     Intro,
-    ArrowButton
+    IconButton
   },
   props: {
     streams: {
@@ -29,6 +31,7 @@ export default {
       required: true
     }
   },
+  icons: Icons,
   data: function () {
     return {
       orderedStreams: this.streams.slice(),

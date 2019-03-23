@@ -1,11 +1,11 @@
-import RemoveButton from 'Components/inputs/buttons/iconButtons/removeButton/RemoveButton.vue'
-import RefreshButton from 'Components/inputs/buttons/iconButtons/refreshButton/RefreshButton.vue'
+import IconButton from 'Components/inputs/buttons/iconButton/IconButton.vue'
+
+import Icons from 'Js/icons'
 
 export default {
   name: 'stream-controls',
   components: {
-    RemoveButton,
-    RefreshButton
+    IconButton
   },
   props: {
     stream: {
@@ -17,6 +17,7 @@ export default {
       required: true
     }
   },
+  icons: Icons,
   computed: {
     streamUrl: function () {
       return `https://www.twitch.tv/${this.stream.streamName}`

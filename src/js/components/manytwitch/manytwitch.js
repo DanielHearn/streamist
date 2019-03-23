@@ -1,7 +1,4 @@
-import FullscreenButton from 'Components/inputs/buttons/iconButtons/fullscreenButton/FullscreenButton.vue'
-import ArrowButton from 'Components/inputs/buttons/iconButtons/arrowButton/ArrowButton.vue'
-import ChatButton from 'Components/inputs/buttons/iconButtons/chatButton/ChatButton.vue'
-import MenuButton from 'Components/inputs/buttons/iconButtons/menuButton/MenuButton.vue'
+import IconButton from 'Components/inputs/buttons/iconButton/IconButton.vue'
 import InputForm from 'Components/inputs/inputForm/InputForm.vue'
 
 import LayoutMenu from 'Components/menu/layoutMenu/LayoutMenu.vue'
@@ -14,7 +11,8 @@ import SideMenu from 'Components/menu/sideMenu/SideMenu.vue'
 import Streams from 'Components/stream/streamList/StreamList.vue'
 import Chats from 'Components/chat/chatList/ChatList.vue'
 
-import { generateID, log, getDefault } from 'Js/utilities'
+import Icons from 'Js/icons/'
+import { generateID, log, getDefault, toggleFullscreen } from 'Js/utilities'
 import {
   testValidators,
   validateHistory,
@@ -25,10 +23,7 @@ import {
 export default {
   name: 'manytwitch',
   components: {
-    FullscreenButton,
-    ArrowButton,
-    ChatButton,
-    MenuButton,
+    IconButton,
     InputForm,
     SideMenu,
     Streams,
@@ -39,26 +34,27 @@ export default {
     HelpMenu,
     AboutMenu
   },
+  icons: Icons,
   menuItems: [
     {
       itemName: 'Layouts',
-      iconName: 'view_module'
+      iconName: Icons.layouts
     },
     {
       itemName: 'Presets',
-      iconName: 'view_list'
+      iconName: Icons.presets
     },
     {
       itemName: 'History',
-      iconName: 'history'
+      iconName: Icons.history
     },
     {
       itemName: 'Help',
-      iconName: 'help'
+      iconName: Icons.help
     },
     {
       itemName: 'About',
-      iconName: 'info'
+      iconName: Icons.about
     }
   ],
   data: function () {
@@ -85,6 +81,7 @@ export default {
     }
   },
   methods: {
+    toggleFullscreen: toggleFullscreen,
     addStreamFromNav: function (e, streamName) {
       e.preventDefault()
       if (!streamName) {

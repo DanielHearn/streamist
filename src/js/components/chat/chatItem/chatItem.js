@@ -1,11 +1,11 @@
-import RemoveButton from 'Components/inputs/buttons/iconButtons/removeButton/RemoveButton.vue'
-import RefreshButton from 'Components/inputs/buttons/iconButtons/refreshButton/RefreshButton.vue'
+import IconButton from 'Components/inputs/buttons/iconButton/IconButton.vue'
+
+import Icons from 'Js/icons'
 
 export default {
   name: 'chat-item',
   components: {
-    RemoveButton,
-    RefreshButton
+    IconButton
   },
   props: {
     streams: {
@@ -23,6 +23,7 @@ export default {
       required: true
     }
   },
+  icons: Icons,
   data: function () {
     return {
       newChatName: this.chat.streamName,

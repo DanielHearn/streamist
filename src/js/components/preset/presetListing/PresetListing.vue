@@ -9,24 +9,27 @@
     class="preset-listing"
   >
     <div class="input-container space-between">
-      <edit-button
+      <icon-button
         class="button--secondary"
         v-if="!editMode"
         @click.native="toggleEditMode"
+        :iconName="$options.icons.edit"
         title="Edit Preset"
-      ></edit-button>
-      <close-button
+      />
+      <icon-button
         class="button--secondary active"
         v-else
         @click.native="toggleEditMode"
+        :iconName="$options.icons.close"
         title="Close Preset Editing"
-      ></close-button>
-      <remove-button
-        class="button--secondary"
-        :hasWarningColor="true"
+      />
+      <icon-button
+        class="button--tertiary"
         @click.native="deletePreset"
+        :iconName="$options.icons.remove"
+        :hasWarningColor="true"
         title="Delete Preset"
-      ></remove-button>
+      />
     </div>
     <div style="margin: 0.25em; margin-top: 0.5em;" v-if="!orderedStreams.length">
       <p class="text-warning">Edit preset to add streams</p>
@@ -47,7 +50,7 @@
             class="preset-listing-item"
             :key="index"
             :itemName="stream"
-            :actionName="'delete'"
+            :actionName="$options.icons.remove"
             :actionNameIsIcon="true"
             :actionClass="'button--tertiary button--warning'"
             :class="{'drag--active': drag}"
