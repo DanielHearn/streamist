@@ -2,7 +2,8 @@
   <div class="streams-container">
     <icon-button
       :iconName="navVisible ? $options.icons.upArrow : $options.icons.downArrow"
-      :class="{'hidden': !appHover && streams.length}"
+      :class="{'fade': !appHover && streams.length}"
+      :buttonClasses="'button--secondary'"
       class="nav-toggle-button"
       title="navVisible ? 'Hide Interface' : 'Show Interface'"
       @click.native="toggleNav"

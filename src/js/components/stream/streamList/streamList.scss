@@ -32,7 +32,10 @@
   flex-wrap: nowrap;
 }
 
-.nav-toggle-button.button--accent {
+.nav-toggle-button.button--secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0 auto;
   position: absolute;
   top: 0;
@@ -41,9 +44,8 @@
   transition: opacity 0.5s ease-in-out;
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.15);
   opacity: 1;
-  &.hidden {
-    opacity: 0.5;
-    display: flex !important;
+  &.fade {
+    opacity: 0.25;
   }
   &:hover {
     opacity: 1;

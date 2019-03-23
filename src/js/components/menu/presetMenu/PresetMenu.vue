@@ -1,6 +1,6 @@
 <template>
   <menu-item
-    :title="'Presets'"
+    :title="'Stream Presets'"
     :closeTitle="'Close Settings'"
     v-on:close-menu-item="$emit('close-menu')"
   >
