@@ -1,4 +1,4 @@
-import IconButton from 'Components/inputs/buttons/iconButton/iconButton.vue'
+import IconButton from 'Components/inputs/buttons/iconButton/IconButton.vue'
 
 export default {
   name: 'side-menu',

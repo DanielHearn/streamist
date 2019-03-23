@@ -24,7 +24,12 @@
           class="text-link"
           href="mailto:manytwitch@danielhearn.co.uk"
           target="_blank"
-        >manytwitch@danielhearn.co.uk</a>.
+        >manytwitch@danielhearn.co.uk</a> or create an issue on
+        <a
+          class="text-link"
+          href="https://github.com/DanielHearn/manytwitch/issues"
+          target="_blank"
+        >Github</a>.
       </p>
     </div>
   </menu-item>

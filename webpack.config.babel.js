@@ -1,4 +1,3 @@
-
 const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -11,14 +10,19 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 module.exports = {
   mode: 'development',
   entry: {
-    main: [
-      '@babel/polyfill',
-      './src/js/manytwitch.js'
-    ]
+    main: ['@babel/polyfill', './src/js/manytwitch.js']
   },
   output: {
-    filename: '[name].[chunkhash].js',
+    filename: '[name].[hash].js',
     path: path.resolve(__dirname, 'dist/js')
+  },
+  devServer: {
+    index: 'index.html',
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    hot: true,
+    port: 9000,
+    writeToDisk: true
   },
   optimization: {
     minimizer: [
@@ -35,7 +39,7 @@ module.exports = {
       exclude: ['/favicons']
     }),
     new MiniCssExtractPlugin({
-      filename: './../css/main.[contenthash].css'
+      filename: './../css/main.[hash].css'
     }),
     new HtmlWebpackPlugin({
       filename: './../index.html',
@@ -90,9 +94,7 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               data: '@import "variables"; @import "mixins";',
-              includePaths: [
-                path.resolve(__dirname, './src/scss')
-              ]
+              includePaths: [path.resolve(__dirname, './src/scss')]
             }
           }
         ]
