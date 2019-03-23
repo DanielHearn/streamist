@@ -25,10 +25,10 @@ button {
   cursor: pointer;
   letter-spacing: 0.04em;
   &:disabled {
-    background: #3b3b3b;
+    background: $dark-grey;
     cursor: not-allowed;
     &:hover {
-      background: #3b3b3b; 
+      background: $dark-grey;
     }
   }
   &.material-icons {
@@ -64,13 +64,16 @@ button {
 
 .button--secondary {
   background: transparent;
-  border: 2px solid #7c8185;
+  border: 2px solid $orange;
   @include transition(background $transition-time ease-in-out);
   &:hover {
-    background: #7c8185;
+    background: $orange;
   }
   &.active {
-    background: #7c8185;
+    background: $orange;
+  }
+  &:disabled {
+    border: 2px solid $dark-grey;
   }
 }
 
@@ -79,10 +82,10 @@ button {
   border: 2px solid transparent;
   @include transition(background $transition-time ease-in-out);
   &:hover {
-    background: #7c8185;
+    background: $orange;
   }
   &.active {
-    background: #7c8185;
+    background: $orange;
   }
 }
 
