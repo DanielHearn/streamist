@@ -21,7 +21,7 @@
           :iconName="actionName"
           :title="actionTitle"
           :buttonClasses="actionClass"
-        ></icon-button>
+        />
       </div>
     </div>
     <div class="item-content" v-if="!!$slots.default">

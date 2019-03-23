@@ -1,11 +1,13 @@
 import MenuItem from 'Components/menu/menuItem/MenuItem.vue'
 import LayoutDemo from 'Components/layout/layoutDemo/LayoutDemo.vue'
+import List from 'Components/list/list/List.vue'
 
 export default {
   name: 'layout-menu',
   components: {
     MenuItem,
-    LayoutDemo
+    LayoutDemo,
+    List
   },
   props: {
     streams: {
