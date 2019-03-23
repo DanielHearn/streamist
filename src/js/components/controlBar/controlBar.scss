@@ -1,7 +1,7 @@
 @import "variables";
 @import "mixins";
 
-.stream-controls {
+.control-bar {
   @include border-radius;
   position: absolute;
   display: flex;
@@ -32,7 +32,7 @@
 }
 
 @media only screen and (max-width: $tablet-width) {
-  .stream-controls {
+  .control-bar {
     padding: $content-padding/4;
   }
 }

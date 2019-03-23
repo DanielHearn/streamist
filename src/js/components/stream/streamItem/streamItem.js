@@ -1,9 +1,13 @@
-import StreamControls from 'Components/stream/streamControls/StreamControls.vue'
+import ControlBar from 'Components/controlBar/ControlBar.vue'
+import IconButton from 'Components/inputs/buttons/iconButton/IconButton.vue'
+
+import Icons from 'Js/icons/'
 
 export default {
   name: 'stream-item',
   components: {
-    StreamControls
+    ControlBar,
+    IconButton
   },
   props: {
     currentStream: {
@@ -23,6 +27,7 @@ export default {
       required: true
     }
   },
+  icons: Icons,
   data: function () {
     return {
       playerEmbed: {},
@@ -30,6 +35,11 @@ export default {
       displayControls: false,
       componentHover: false,
       componentHoverTracker: 0
+    }
+  },
+  computed: {
+    streamUrl: function () {
+      return `https://www.twitch.tv/${this.currentStream.streamName}`
     }
   },
   methods: {
