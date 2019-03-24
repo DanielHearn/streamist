@@ -50,7 +50,7 @@ module.exports = {
       logo: './src/favicons/Icon.png',
       persistentCache: true,
       inject: true,
-      prefix: '/favicons/',
+      prefix: '/manytwitch/favicons/',
       output: '../favicons/',
       config: {
         appName: 'Manytwitch',
