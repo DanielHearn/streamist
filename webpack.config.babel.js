@@ -1,7 +1,7 @@
 const path = require('path')
 const { VueLoaderPlugin } = require('vue-loader')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const AppManifestWebpackPlugin = require('app-manifest-webpack-plugin')
@@ -26,8 +26,7 @@ module.exports = {
   },
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
+      new TerserPlugin({
         parallel: true,
         sourceMap: false
       }),
