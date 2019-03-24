@@ -1,0 +1,63 @@
+{
+  "_from": "typescript-simple",
+  "_id": "typescript-simple@8.0.5",
+  "_inBundle": false,
+  "_integrity": "sha512-vlLnXhWqn3WJnR2vZSyD8h6o9UZyhEq9DWHXOnj1RB+LKYDjZ4W5s+BKPBf9tqEG7lj+8INZQimq2dIzWZoSKw==",
+  "_location": "/typescript-simple",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "typescript-simple",
+    "name": "typescript-simple",
+    "escapedName": "typescript-simple",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/typescript-simple/-/typescript-simple-8.0.5.tgz",
+  "_shasum": "b5007a48db5d242c2ad5dbde306fe90410803476",
+  "_spec": "typescript-simple",
+  "_where": "E:\\wwwroot\\git\\maskletter\\maskletter-webpack",
+  "author": {
+    "name": "Teppei Sato",
+    "email": "teppeis@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/teppeis/typescript-simple/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "typescript": "^2.2.1"
+  },
+  "deprecated": false,
+  "description": "Simple API to compile TypeScript code string to JavaScript. That's all!",
+  "devDependencies": {
+    "@types/node": "^4.2.21",
+    "mocha": "^3.5.3"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "homepage": "https://github.com/teppeis/typescript-simple",
+  "keywords": [
+    "typescript"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "typescript-simple",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teppeis/typescript-simple.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "test": "npm run prepare && mocha"
+  },
+  "version": "8.0.5"
+}

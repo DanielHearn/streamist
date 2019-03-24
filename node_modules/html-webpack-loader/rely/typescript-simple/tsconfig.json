@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "lib": [
+            "es6"
+        ],
+        "declaration": true,
+        "removeComments": false,
+        "stripInternal": true,
+        // since 2.3
+        // "strict": true,
+        "alwaysStrict": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "strictNullChecks": true
+    },
+    "files": [
+        "./index.ts"
+    ]
+}
