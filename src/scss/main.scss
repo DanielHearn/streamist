@@ -1,0 +1,56 @@
+@import 'variables';
+@import 'partials/normalize';
+
+@import 'partials/inputs';
+@import 'partials/text';
+
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+  background: $black-normal;
+  display: flex;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#manytwitch {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex: 1fr;
+  flex-direction: column;
+}
+
+.visible {
+  display: flex !important;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.url {
+  color: $white;
+  text-decoration: underline;
+  padding: 0 0.5em;
+  &:visited {
+    color: $white;
+  }
+}
+
+.draggable {
+  user-select: none;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.space-between {
+  justify-content: space-between;
+}

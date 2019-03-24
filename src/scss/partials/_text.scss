@@ -1,0 +1,48 @@
+.title {
+    font-size: $title-size;
+    font-weight: $title-weight;
+    margin: 0;
+    padding-right: 0.75em;
+}
+  
+.text {
+    font-size: $text-size;
+    font-weight: $text-weight;
+    color: rgba(254, 254, 254, 0.9);
+}
+  
+.text-heading {
+    font-size: $heading-size;
+    font-weight: $heading-weight;
+    margin: $content-padding/2 0;
+    color: rgba(254, 254, 254, 0.9);
+}
+  
+.text-sub-heading {
+    font-size: $sub-heading-size;
+    font-weight: $sub-heading-weight;
+    margin: $content-padding/2 0;
+    color: rgba(254, 254, 254, 0.9);
+}
+  
+.sub-text {
+    font-size: $sub-text-size;
+    font-weight: $sub-text-weight;
+    color: rgba(254, 254, 254, 0.6);
+}
+
+.text--accent {
+    color: $accent-light;
+}
+
+.text--white {
+    color: $white;
+}
+
+.text-link {
+    color: $accent-light;
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}

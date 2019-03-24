@@ -1,0 +1,208 @@
+@import "mixins";
+
+input, button {
+  @include border-radius;
+  padding: 0.5em 0.7em;
+  font-size: 1em;
+  font-weight: 600;
+  p {
+    font-size: 1em;
+    font-weight: 600;
+  }
+}
+  
+input {
+  background: $black-darker;
+  color: $white;
+  border: none;
+  padding: 0.4em 0.8em;
+  line-height: 1.4em;
+}
+
+button {
+  color: $white;
+  border: 0;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  &:disabled {
+    background: $dark-grey;
+    cursor: not-allowed;
+    &:hover {
+      background: $dark-grey;
+    }
+  }
+  &.material-icons {
+      padding: 0.40em 0.8em;
+  }
+}
+
+.button--fill {
+  width: 100%;
+}
+  
+.button--accent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $accent-light;
+  @include transition(background $transition-time ease-in-out);
+  &:hover {
+    background: $accent-dark;
+  }
+}
+
+.button--dark {
+  background: $black-normal;
+  p {
+    margin: 0.75em 0;
+  }
+  &:hover {
+    background: $black-dark;
+  }
+}
+
+
+.button--secondary {
+  background: transparent;
+  border: 2px solid $orange;
+  @include transition(background $transition-time ease-in-out);
+  &:hover {
+    background: $orange;
+  }
+  &.active {
+    background: $orange;
+  }
+  &:disabled {
+    border: 2px solid $dark-grey;
+  }
+}
+
+.button--tertiary {
+  background: transparent;
+  border: 2px solid transparent;
+  @include transition(background $transition-time ease-in-out);
+  &:hover {
+    background: $orange;
+  }
+  &.active {
+    background: $orange;
+  }
+}
+
+.button--warning {
+  &:hover {
+    background: $red;
+  }
+  &.active {
+    background: $red;
+  }
+}
+
+select {
+  padding: 0.75em 1.25em;
+  background: $off-white;
+  &, option {
+    font-size: 1em;
+    font-weight: 600;
+  }
+}
+
+.input-container {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+}
+
+.handle {
+  padding: $content-padding/2;
+  cursor: grab;
+}
+
+/*
+.button-menu {
+    padding: 0.6em 0.8em;
+    z-index: 5;
+    cursor: pointer;
+    @include border-radius;
+    span {
+        height: 3px;
+        width: 30px;
+        background-color: $white;
+        position: relative;
+        display: block;
+        @include transition(background $transition-time ease-in-out, opacity $transition-time ease-in-out);
+        &:before {
+          top: -10px;
+          visibility: visible;
+        }
+        &:after {
+          top: 10px;
+        }
+        &:before, &:after {
+            height: 3px;
+            width: 30px;
+            left: 0;
+            background-color: $white;
+            position: absolute;
+            content: "";
+            transition: all .2s ease-in-out;
+        }
+      }
+  }
+
+.button-menu.active {
+    &:hover span, span{
+      background: transparent;
+    }
+    span {
+      &:before {
+        transform: rotate(45deg) translate(7px, 7px);
+        opacity: 1;
+      }
+      &:after {
+        transform: rotate(-45deg) translate(7px, -7px);
+      }
+    }
+}
+*/
+/*
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 2.5em;
+    height: 1em;
+    margin: 0 0.5em;
+    .switch input {display:none;}
+    .slider {
+        @include border-radius;
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: $off-white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+    
+    .slider:before {
+        @include border-radius;
+        position: absolute;
+        content: "";
+        height: 1.5em;
+        width: 1.25em;
+        bottom: -0.25em;
+        background-color: $accent-dark;
+        @include transition(background $transition-time ease-in-out, transform $transition-time ease-in-out);
+    }
+    
+    input:checked + .slider:before {
+        background-color: $accent-light;
+    }
+    
+    
+    input:checked + .slider:before {
+        transform: translateX(1.3em);
+    }
+}*/

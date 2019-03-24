@@ -1,0 +1,51 @@
+.list-item {
+  margin: 1em 0;
+  background: $black-lightest;
+  &[draggable="true"] .item-header {
+    background: $black-dark;
+    box-shadow: inset -4px 0px 0px $accent-dark !important;
+  }
+  &.drag--active .item-header {
+    box-shadow: inset -4px 0px 0px #7c8185;
+  }
+  .ghost {
+    background: $black-dark;
+    display: none;
+  }
+  .item-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: $black-normal;
+    .item-header-content {
+      padding: 0.5em;
+      display: flex;
+      flex: 1 auto;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .handle {
+      padding: 0.9em 0.25em;
+      background: $black-dark;
+      width: 1em;
+    }
+    .row {
+      align-items: center;
+    }
+    p {
+      margin: 0;
+      font-size: 1em;
+      font-weight: 600;
+    }
+    button {
+      margin-right: 0;
+    }
+  }
+  .item-content {
+    padding: 0.5em;
+    .sub-text {
+      margin: 0;
+    }
+  }
+}

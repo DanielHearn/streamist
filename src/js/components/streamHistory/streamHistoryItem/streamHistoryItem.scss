@@ -1,0 +1,20 @@
+@import "variables";
+
+.history-listing {
+  margin: $content-padding 0;
+  padding: $content-padding/2;
+  background: #f9f9f9;
+  .listing-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  button {
+    margin: 0;
+  }
+  .sub-text {
+    display: flex;
+    margin: 0;
+    padding-right: $content-padding/2;
+  }
+}

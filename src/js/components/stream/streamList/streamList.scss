@@ -1,0 +1,53 @@
+.streams-container {
+  display: flex;
+  flex: 1 auto;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.streams {
+  display: flex;
+  flex: 1 auto;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+.streams--layout-grid {
+  flex-wrap: wrap;
+  &.streams--1, &.streams--2 {
+    flex-direction: column;
+    .stream {
+      width: 100%;
+    }
+  }
+  .stream {
+    width: 50%;
+  }
+}
+
+.streams--layout-column {
+  flex-wrap: nowrap;
+}
+
+.nav-toggle-button.button--secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  z-index: 20;
+  padding: 0.25em 1em;
+  transition: opacity 0.5s ease-in-out;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.15);
+  opacity: 1;
+  &.fade {
+    opacity: 0.25;
+  }
+  &:hover {
+    opacity: 1;
+  }
+}

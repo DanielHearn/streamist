@@ -1,0 +1,89 @@
+@import "variables";
+@import "mixins";
+
+.layouts-demo-container .list-item {
+  cursor: pointer;
+  &.active {
+    .item-content {
+      background: $accent-dark;
+    }
+  }
+}
+
+.layout-demo-wrap {
+  @include transition(background $transition-time ease-in-out);
+  width: 100%;
+  background: #b3b3b3;
+  color: $white;
+  font-weight: $sub-heading-weight;
+  margin: $content-padding/2 0;
+  padding: $content-padding/2;
+  box-sizing: border-box;
+  cursor: pointer;
+  &:hover {
+    background: $accent-light;
+  }
+  &.active {
+    background: $accent-dark;
+  }
+}
+
+.layout-demo-name {
+  margin-top: 0;
+}
+
+.layout-demo {
+  display: flex;
+  flex: 1 auto;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  height: 8em;
+}
+
+.layout-demo-stream {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0.2em;
+  box-sizing: border-box;
+}
+
+.layout-demo-number {
+  display: flex;
+  flex: 1 auto;
+  font-weight: bold;
+  color: $white;
+  background: $black-normal;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-content: center;
+  p {
+    margin: 0;
+    display: flex;
+    flex: 1 auto;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.layout-demo--layout-grid {
+  flex-wrap: wrap;
+  &.streams--1, &.streams--2 {
+    flex-direction: column;
+    .layout-demo-stream  {
+      width: 100%;
+    }
+  }
+  .layout-demo-stream {
+    width: 50%;
+  }
+}
+
+.layout-demo--layout-column {
+  flex-wrap: nowrap;
+}

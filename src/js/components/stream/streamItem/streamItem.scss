@@ -1,0 +1,42 @@
+@import "variables";
+@import "mixins";
+
+.stream {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  position: relative;
+  color: $white;
+  .stream-overlay {
+    display: none;
+    opacity: 0;
+    background: $off-white;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    flex: 1 auto;
+    //pointer-events: auto;
+    z-index: 5;
+    @include transition(opacity $transition-time/2 ease-in-out);
+    &.active {
+      display: flex;
+      opacity: 0.1;
+    }
+  }
+  .stream-main {
+    display: flex;
+    flex-direction: row;
+    flex: 1 auto;
+    .stream-player {
+      flex: 3 auto;
+    }
+    .stream-player{
+      display: flex;
+      iframe {
+        display: flex;
+        flex: 1 1 auto;
+        width: 100%;
+      }
+    }
+  }
+}

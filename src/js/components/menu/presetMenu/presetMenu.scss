@@ -1,0 +1,17 @@
+@import "variables";
+
+.menu-item-content {
+  .menu-item-row:first-of-type {
+    margin-bottom: 1em;
+  }
+}
+
+
+.preset-list {
+  background: $white;
+  list-style: none;
+  padding: 0;
+  .ghost {
+    background: $off-white;
+  }
+}

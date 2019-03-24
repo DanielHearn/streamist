@@ -1,0 +1,46 @@
+@import "variables";
+@import "mixins";
+
+.menu {
+  display: none;
+  background: $black-normal;
+  .menu-bar {
+    width: $menu-width;
+    .menu-bar-content {
+      color: $white;
+      width: $menu-width;
+      button {
+        width: 100%;
+      }
+      .button--menu {
+        @include transition(box-shadow $transition-time ease-in-out, background $transition-time ease-in-out);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-radius: unset;
+        box-shadow: 0.5em 0 0 0 $black-normal inset;
+        outline: none;
+        .menu-icon {
+          margin-right: 0.5em;
+        }
+        &:hover {
+          box-shadow: 0.5em 0 0 0 $accent-dark inset;
+          background: $black-darker;
+        }
+        &.active {
+          box-shadow: 0.5em 0 0 0 $accent-light inset;
+          background: $black-darkest;
+        }
+      }
+    }
+  }
+  .menu-content {
+    background: $black-dark;
+    max-width: $menu-content-width;
+  }
+  &.visible {
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+  }
+}
