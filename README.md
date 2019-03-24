@@ -8,8 +8,9 @@ Hosted on github pages.
 
 ## Features
 - Watch multiple twitch streams and chats
-- Recent stream history
-- Stream presets -> For quick acess to regularly watched streams
+- Recent channel history
+- Favorite channels
+- Channel presets -> For quick acess to regularly watched sets of channels
 
 To specify a channel within the url use 'manytwitch/?stream=channel1,channel2' creating a list of the channels seperated with commas.
 
@@ -31,6 +32,7 @@ To specify a channel within the url use 'manytwitch/?stream=channel1,channel2' c
 ## Tasks
 - 'npm run watch': Watch with webpack dev server
 - 'npm run build': Build production files 
+- 'npm run deploy': Build and deploy dist to gh-pages branch
 
 ## Gulp tasks
 - Watch: Use browsersync to reload files and compiles pug and scss.
