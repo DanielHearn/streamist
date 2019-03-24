@@ -1,6 +1,6 @@
 <template>
   <list-item @click="loadSelectedHistory" :itemName="history.streamName" :actionName="'Watch'">
-    <p class="sub-text">Watched: {{ timeAdded }}</p>
+    <p slot="content" class="sub-text">Watched: {{ timeAdded }}</p>
   </list-item>
 </template>
 

@@ -25,6 +25,10 @@ export default {
     hover: {
       type: Boolean,
       required: true
+    },
+    streamFavorites: {
+      type: Array,
+      required: true
     }
   },
   icons: Icons,
@@ -40,6 +44,14 @@ export default {
   computed: {
     streamUrl: function () {
       return `https://www.twitch.tv/${this.currentStream.streamName}`
+    },
+    favorited: function () {
+      return !!this.streamFavorites.filter(favorite => {
+        return (
+          favorite.streamName.toLowerCase() ===
+          this.currentStream.streamName.toLowerCase()
+        )
+      }).length
     }
   },
   methods: {
@@ -89,6 +101,19 @@ export default {
           component.componentHover = false
         }
       }, 3000)
+    },
+    favoriteChannel: function () {
+      if (this.favorited) {
+        this.$emit(
+          'unfavorite-channel',
+          this.currentStream.streamName.toLowerCase()
+        )
+      } else {
+        this.$emit(
+          'favorite-channel',
+          this.currentStream.streamName.toLowerCase()
+        )
+      }
     }
   },
   mounted: function () {

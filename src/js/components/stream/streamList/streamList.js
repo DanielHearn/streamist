@@ -1,5 +1,5 @@
 import draggable from 'vuedraggable'
-import Stream from 'Components/stream/streamItem/StreamItem.vue'
+import StreamItem from 'Components/stream/streamItem/StreamItem.vue'
 import Intro from 'Components/intro/Intro.vue'
 import IconButton from 'Components/inputs/buttons/iconButton/IconButton.vue'
 
@@ -9,7 +9,7 @@ export default {
   name: 'stream-list',
   components: {
     draggable,
-    Stream,
+    StreamItem,
     Intro,
     IconButton
   },
@@ -28,6 +28,10 @@ export default {
     },
     appHover: {
       type: Boolean,
+      required: true
+    },
+    streamFavorites: {
+      type: Array,
       required: true
     }
   },
@@ -64,6 +68,12 @@ export default {
     },
     toggleNav: function () {
       this.$emit('toggle-nav')
+    },
+    favoriteChannel: function (streamName) {
+      this.$emit('favorite-channel', streamName)
+    },
+    unfavoriteChannel: function (streamName) {
+      this.$emit('unfavorite-channel', streamName)
     }
   }
 }

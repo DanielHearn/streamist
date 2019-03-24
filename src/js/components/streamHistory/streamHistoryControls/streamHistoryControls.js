@@ -17,7 +17,6 @@ export default {
   },
   data: function () {
     return {
-      selectedHistory: '',
       currentDate: new Date()
     }
   },
@@ -30,7 +29,6 @@ export default {
       return this.streamHistory.length > 0
     }
   },
-  template: ``,
   methods: {
     loadSelectedHistory: function (streamName) {
       this.$emit('load-selected-history', streamName)

@@ -7,8 +7,9 @@ export const defaultData = {
     chatVisible: true,
     menuVisible: true,
     startMuted: true,
-    currentLayout: {id: 'grid', name: 'Grid'}
+    currentLayout: { id: 'grid', name: 'Grid' }
   },
   streamHistory: [],
-  streamPresets: []
+  streamPresets: [],
+  streamFavorites: []
 }

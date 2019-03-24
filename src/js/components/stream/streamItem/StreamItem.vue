@@ -14,6 +14,11 @@
           title="Open Twitch stream"
         >{{ currentStream.streamName }}</a>
         <icon-button
+          :iconName="favorited ? $options.icons.favorited : $options.icons.unfavorited"
+          :title="favorited ? 'Remove channel from favorites' : 'Add channel to favorites'"
+          @click.native="favoriteChannel"
+        />
+        <icon-button
           :iconName="$options.icons.refresh"
           title="Refresh Stream"
           @click.native="refresh"

@@ -45,6 +45,14 @@
             v-on:change-layout="changeLayout"
             v-on:close-menu="closeMenu"
           ></layout-menu>
+          <favorites-menu
+            v-if="currentMenu === 'Favorites'"
+            :stream-favorites="streamFavorites"
+            v-on:load-selected-favorite="loadSelectedFavorite"
+            v-on:clear-favorites="clearFavorites"
+            v-on:unfavorite-channel="unfavoriteStream"
+            v-on:close-menu="closeMenu"
+          ></favorites-menu>
           <preset-menu
             v-if="currentMenu === 'Presets'"
             :stream-presets="streamPresets"
@@ -69,8 +77,11 @@
         :options="options"
         :navVisible="navVisible"
         :appHover="appHover"
+        :streamFavorites="streamFavorites"
         v-on:update-streams="updateStreams"
         v-on:toggle-nav="toggleNav"
+        v-on:favorite-channel="addStreamToFavorites"
+        v-on:unfavorite-channel="unfavoriteStream"
       ></streams>
       <chats :streams="streams" :options="options"></chats>
     </div>

@@ -7,25 +7,28 @@
           <input v-if="canEditTitle" type="text" contenteditable="true" v-model="title">
           <p v-else>{{ itemName }}</p>
         </div>
-        <standard-button
-          v-if="actionName && !actionNameIsIcon"
-          @click.native="$emit('click')"
-          :disabled="actionDisabled"
-          :buttonClasses="actionClass"
-          :title="actionTitle"
-        >{{ actionName }}</standard-button>
-        <icon-button
-          v-if="actionName && actionNameIsIcon"
-          @click.native="$emit('click')"
-          :disabled="actionDisabled"
-          :iconName="actionName"
-          :title="actionTitle"
-          :buttonClasses="actionClass"
-        />
+        <div class="row">
+          <slot name="header"></slot>
+          <standard-button
+            v-if="actionName && !actionNameIsIcon"
+            @click.native="$emit('click')"
+            :disabled="actionDisabled"
+            :buttonClasses="actionClass"
+            :title="actionTitle"
+          >{{ actionName }}</standard-button>
+          <icon-button
+            v-if="actionName && actionNameIsIcon"
+            @click.native="$emit('click')"
+            :disabled="actionDisabled"
+            :iconName="actionName"
+            :title="actionTitle"
+            :buttonClasses="actionClass"
+          />
+        </div>
       </div>
     </div>
-    <div class="item-content" v-if="!!$slots.default">
-      <slot></slot>
+    <div class="item-content" v-if="!!$slots.content">
+      <slot name="content"></slot>
     </div>
   </div>
 </template>

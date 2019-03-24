@@ -7,6 +7,7 @@ import PresetMenu from 'Components/menu/presetMenu/PresetMenu.vue'
 import HelpMenu from 'Components/menu/helpMenu/HelpMenu.vue'
 import AboutMenu from 'Components/menu/aboutMenu/AboutMenu.vue'
 import SideMenu from 'Components/menu/sideMenu/SideMenu.vue'
+import FavoritesMenu from 'Components/menu/favoritesMenu/FavoritesMenu.vue'
 
 import Streams from 'Components/stream/streamList/StreamList.vue'
 import Chats from 'Components/chat/chatList/ChatList.vue'
@@ -17,7 +18,8 @@ import {
   testValidators,
   validateHistory,
   validatePresets,
-  validateOptions
+  validateOptions,
+  validateFavorites
 } from 'Js/validation'
 
 export default {
@@ -32,13 +34,18 @@ export default {
     HistoryMenu,
     PresetMenu,
     HelpMenu,
-    AboutMenu
+    AboutMenu,
+    FavoritesMenu
   },
   icons: Icons,
   menuItems: [
     {
       itemName: 'Layouts',
       iconName: Icons.layouts
+    },
+    {
+      itemName: 'Favorites',
+      iconName: Icons.favorited
     },
     {
       itemName: 'Presets',
@@ -62,6 +69,7 @@ export default {
       streams: [],
       streamHistory: [],
       streamPresets: [],
+      streamFavorites: [],
       availableLayouts: [
         { id: 'grid', name: 'Grid' },
         { id: 'column', name: 'Column' }
@@ -153,6 +161,47 @@ export default {
       this.storePresets(presets)
     },
 
+    addStreamToFavorites: function (streamName) {
+      let newFavorites = this.streamFavorites
+      const stream = {
+        id: generateID(8),
+        streamName: streamName
+      }
+      newFavorites = newFavorites.filter(streamFavoriteItem => {
+        return streamFavoriteItem.streamName !== streamName
+      })
+      this.setFavorites([].concat([stream], newFavorites))
+    },
+    unfavoriteStream: function (streamName) {
+      const newFavorites = this.streamFavorites.filter(streamFavoriteItem => {
+        return streamFavoriteItem.streamName !== streamName
+      })
+      this.setFavorites(newFavorites)
+    },
+    clearFavorites: function () {
+      this.setFavorites([])
+    },
+    loadSelectedFavorite: function (streamName) {
+      this.addStream(streamName)
+    },
+    getStoredFavorites: function () {
+      return localStorage.getItem('stream_favorites')
+    },
+    storeFavorites: function (favorites) {
+      if (validateFavorites(favorites)) {
+        localStorage.setItem('stream_favorites', JSON.stringify(favorites))
+      }
+    },
+    loadFavorites: function (streamFavorites) {
+      if (streamFavorites) {
+        this.streamFavorites = streamFavorites
+      }
+    },
+    setFavorites: function (streamFavorites) {
+      this.streamFavorites = streamFavorites
+      this.storeFavorites(streamFavorites)
+    },
+
     addStreamToHistory: function (streamName) {
       let newHistory = this.streamHistory
       const stream = {
@@ -203,6 +252,7 @@ export default {
       this.streamHistory = streamHistory
       this.storeHistory(streamHistory)
     },
+
     insertURLParam: function () {
       let channelString = ''
       for (const channel in this.streams) {
@@ -255,6 +305,25 @@ export default {
         const defaultHistory = getDefault('streamHistory')
         this.streamHistory = defaultHistory
         this.storeHistory(defaultHistory)
+      }
+
+      const rawFavorites = this.getStoredFavorites()
+      let favoritesLoaded = false
+      if (rawFavorites) {
+        try {
+          const parsedFavorites = JSON.parse(rawFavorites)
+          if (validateFavorites(parsedFavorites)) {
+            log('Favorites passed validation')
+            this.loadFavorites(parsedFavorites)
+            favoritesLoaded = true
+          }
+        } catch (error) {}
+      }
+      if (!favoritesLoaded) {
+        log('Loading default favorites')
+        const defaultFavorites = getDefault('streamFavorites')
+        this.streamFavorites = defaultFavorites
+        this.storeHistory(defaultFavorites)
       }
 
       const rawOptions = this.getStoredOptions()

@@ -15,5 +15,7 @@ export default {
   play: 'play_arrow',
   refresh: 'refresh',
   remove: 'delete',
-  menu: 'menu'
+  menu: 'menu',
+  favorited: 'favorite',
+  unfavorited: 'favorite_border'
 }

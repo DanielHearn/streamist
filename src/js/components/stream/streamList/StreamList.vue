@@ -5,7 +5,7 @@
       :class="{'fade': !appHover && streams.length}"
       :buttonClasses="'button--secondary'"
       class="nav-toggle-button"
-      title="navVisible ? 'Hide Interface' : 'Show Interface'"
+      :title="navVisible ? 'Hide Interface' : 'Show Interface'"
       @click.native="toggleNav"
     />
     <draggable
@@ -17,7 +17,7 @@
       @end="drag=false"
       :options="{ghostClass:'ghost', handle:'.handle', filter:'.stream-player', forceFallback:'true', fallbackTolerance:'1', removeCloneOnHide: true}"
     >
-      <stream
+      <stream-item
         class="draggable"
         v-for="currStream in streams"
         :key="currStream.embedPlayerID"
@@ -25,8 +25,11 @@
         :numStreams="streams.length"
         :options="options"
         :hover="drag"
+        :streamFavorites="streamFavorites"
         v-on:remove-stream="removeStream"
-      ></stream>
+        v-on:favorite-channel="favoriteChannel"
+        v-on:unfavorite-channel="unfavoriteChannel"
+      />
     </draggable>
     <intro v-if="!streams.length"/>
   </div>

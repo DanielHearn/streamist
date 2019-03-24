@@ -20,6 +20,16 @@ const historyValidator = new Rule({
   of: historyItemValidator
 })
 
+const favoriteItemValidator = new Validator({
+  id: new Rule('string'),
+  streamName: new Rule('string')
+})
+
+const favoritesValidator = new Rule({
+  type: 'array',
+  of: favoriteItemValidator
+})
+
 const presetValidator = new Validator({
   id: new Rule('string'),
   name: new Rule('string'),
@@ -81,6 +91,24 @@ const testHistoryValidator = function () {
   }
 }
 
+const testFavoritesValidator = function () {
+  const favorites = [
+    {
+      id: 'id',
+      streamName: 'stream'
+    },
+    {
+      id: 'id',
+      streamName: 'stream'
+    }
+  ]
+  try {
+    log(`Favorite test validation: ${favoritesValidator.test(favorites)}`)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 const testPresetValidator = function () {
   const presets = [
     {
@@ -113,8 +141,13 @@ export const validateOptions = function (options) {
   return optionsValidator.test(options)
 }
 
+export const validateFavorites = function (favorites) {
+  return favoritesValidator.test(favorites)
+}
+
 export const testValidators = function () {
   testOptionsValidator()
   testHistoryValidator()
   testPresetValidator()
+  testFavoritesValidator()
 }

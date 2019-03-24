@@ -1,6 +1,15 @@
 @import "variables";
 @import "mixins";
 
+.layouts-demo-container .list-item {
+  cursor: pointer;
+  &.active {
+    .item-content {
+      background: $accent-dark;
+    }
+  }
+}
+
 .layout-demo-wrap {
   @include transition(background $transition-time ease-in-out);
   width: 100%;
