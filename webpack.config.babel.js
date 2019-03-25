@@ -7,6 +7,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const AppManifestWebpackPlugin = require('app-manifest-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
+const isProduction =
+  process.argv[process.argv.indexOf('--mode') + 1] === 'production'
+
 module.exports = {
   mode: 'development',
   entry: {
@@ -50,7 +53,7 @@ module.exports = {
       logo: './src/favicons/Icon.png',
       persistentCache: true,
       inject: true,
-      prefix: '/manytwitch/favicons/',
+      prefix: isProduction ? '/manytwitch/favicons/' : '/favicons/',
       output: '../favicons/',
       config: {
         appName: 'Manytwitch',
