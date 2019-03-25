@@ -18,8 +18,11 @@ To specify a channel within the url use 'manytwitch/?stream=channel1,channel2' c
 
 ## TODO
 - Improved styling with consistently design components
+- Move control bar to top right
+- Then left border on left menu bar buttons
 - Mobile/ Tablet support
   - Only icons on left menu bar
+  - Compact nav bar
 - Notifications - E.g. preset saved, stream add or deleted, history cleared
 - Home page content via the Twitch API
 - Fix chat refresh / remove buttons
