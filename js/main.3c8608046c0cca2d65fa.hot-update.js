@@ -1,0 +1,15 @@
+webpackHotUpdate("main",{
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./src/js/components/menu/sideMenu/SideMenu.vue?vue&type=template&id=01509d8b&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/js/components/menu/sideMenu/SideMenu.vue?vue&type=template&id=01509d8b& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"div\",\n    { staticClass: \"menu\", class: { visible: _vm.options.menuVisible } },\n    [\n      _c(\"div\", { staticClass: \"menu-bar\" }, [\n        _c(\n          \"div\",\n          { staticClass: \"menu-bar-content\" },\n          _vm._l(_vm.menuItems, function(menuitem) {\n            return _c(\n              \"icon-button\",\n              {\n                key: menuitem.itemName,\n                class: { active: _vm.currentMenu === menuitem.itemName },\n                attrs: {\n                  buttonClasses: \"button--dark button--menu\",\n                  iconClasses: \"menu-icon\",\n                  iconName: menuitem.iconName\n                },\n                nativeOn: {\n                  click: function($event) {\n                    _vm.loadMenu(menuitem.itemName)\n                  }\n                }\n              },\n              [\n                _c(\"p\", { staticClass: \"button--menu__text\" }, [\n                  _vm._v(_vm._s(menuitem.itemName))\n                ])\n              ]\n            )\n          }),\n          1\n        )\n      ]),\n      _vm._v(\" \"),\n      _c(\n        \"div\",\n        { staticClass: \"menu-content\" },\n        [\n          _vm._t(\"default\", null, {\n            currentMenu: _vm.currentMenu,\n            closeMenu: _vm.closeMenu\n          })\n        ],\n        2\n      )\n    ]\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n\n\n//# sourceURL=webpack:///./src/js/components/menu/sideMenu/SideMenu.vue?./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options");
+
+/***/ })
+
+})

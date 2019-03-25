@@ -3,9 +3,9 @@
   "name": "Manytwitch",
   "description": "Multiple Twitch Stream Viewer",
   "icons": {
-    "60": "/manytwitch/favicons/firefox_app_60x60.png",
-    "128": "/manytwitch/favicons/firefox_app_128x128.png",
-    "512": "/manytwitch/favicons/firefox_app_512x512.png"
+    "60": "/favicons/firefox_app_60x60.png",
+    "128": "/favicons/firefox_app_128x128.png",
+    "512": "/favicons/firefox_app_512x512.png"
   },
   "developer": {
     "name": "Daniel Hearn",
