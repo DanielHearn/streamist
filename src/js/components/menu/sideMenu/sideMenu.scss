@@ -11,7 +11,6 @@
   }
   .menu-content {
     background: $black-dark;
-    max-width: $menu-content-width;
   }
   &.visible {
     display: flex;
@@ -21,7 +20,7 @@
 }
 
 .button--menu {
-  @include transition(box-shadow $transition-time ease-in-out, background $transition-time ease-in-out);
+  @include transition(box-shadow $transition-time ease-in-out, background $transition-time ease-in-out, margin $transition-time ease-in-out);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -31,6 +30,7 @@
   padding: 1em 0.7em;
   width: 100%;
   .menu-icon {
+    @include transition(margin $transition-time ease-in-out);
     margin-right: 0.5em;
   }
   .button--menu__text {

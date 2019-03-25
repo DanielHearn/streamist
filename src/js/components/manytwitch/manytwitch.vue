@@ -1,6 +1,6 @@
 <template>
   <div id="manytwitch">
-    <nav :class="{'hidden': !navVisible}">
+    <nav class="nav" :class="{'hidden': !navVisible}">
       <icon-button
         :iconName="options.menuVisible ? $options.icons.leftArrow : $options.icons.menu"
         :title="options.menuVisible ? 'Close Menu' : 'Open Menu'"
