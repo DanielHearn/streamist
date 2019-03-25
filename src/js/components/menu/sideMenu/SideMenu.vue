@@ -11,7 +11,7 @@
           :iconClasses="'menu-icon'"
           :iconName="menuitem.iconName"
         >
-          <p>{{menuitem.itemName}}</p>
+          <p class="button--menu__text">{{menuitem.itemName}}</p>
         </icon-button>
       </div>
     </div>

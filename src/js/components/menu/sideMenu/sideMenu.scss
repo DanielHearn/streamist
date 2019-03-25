@@ -5,33 +5,8 @@
   display: none;
   background: $black-normal;
   .menu-bar {
-    width: $menu-width;
     .menu-bar-content {
       color: $white;
-      width: $menu-width;
-      button {
-        width: 100%;
-      }
-      .button--menu {
-        @include transition(box-shadow $transition-time ease-in-out, background $transition-time ease-in-out);
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        border-radius: unset;
-        box-shadow: 0.5em 0 0 0 $black-normal inset;
-        outline: none;
-        .menu-icon {
-          margin-right: 0.5em;
-        }
-        &:hover {
-          box-shadow: 0.5em 0 0 0 $accent-dark inset;
-          background: $black-darker;
-        }
-        &.active {
-          box-shadow: 0.5em 0 0 0 $accent-light inset;
-          background: $black-darkest;
-        }
-      }
     }
   }
   .menu-content {
@@ -42,5 +17,42 @@
     display: flex;
     justify-content: center;
     align-content: flex-start;
+  }
+}
+
+.button--menu {
+  @include transition(box-shadow $transition-time ease-in-out, background $transition-time ease-in-out);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: unset;
+  box-shadow: 0.4em 0 0 0 $black-normal inset;
+  outline: none;
+  padding: 1em 0.7em;
+  width: 100%;
+  .menu-icon {
+    margin-right: 0.5em;
+  }
+  .button--menu__text {
+    margin: 0;
+  }
+  &:hover {
+    box-shadow: 0.4em 0 0 0 $accent-dark inset;
+    background: $black-darker;
+  }
+  &.active {
+    box-shadow: 0.4em 0 0 0 $accent-light inset;
+    background: $black-darkest;
+  }
+}
+
+@media only screen and (max-width: $tablet-width) {
+  .button--menu {
+    .menu-icon {
+      margin: 0 0.4em;
+    }
+    .button--menu__text {
+      display: none;
+    }
   }
 }
