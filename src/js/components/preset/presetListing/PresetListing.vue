@@ -6,7 +6,7 @@
       </div>
       <div class="column">
         <standard-button
-          :buttonClasses="'button--accent'"
+          :buttonClasses="'button--accent button--text'"
           :disabled="!orderedStreams.length"
           @click.native="loadPreset"
         >Watch</standard-button>

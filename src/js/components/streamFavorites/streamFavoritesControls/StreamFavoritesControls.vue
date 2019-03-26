@@ -16,7 +16,7 @@
                 @click.native="$emit('unfavorite-channel', favorite.streamName)"
               />
               <standard-button
-                :buttonClasses="'button--accent'"
+                :buttonClasses="'button--accent button--text'"
                 @click.native="loadSelectedFavorite(favorite.streamName)"
               >Watch</standard-button>
             </div>

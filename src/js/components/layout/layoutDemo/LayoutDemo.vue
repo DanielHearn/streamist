@@ -5,7 +5,7 @@
         <p>{{ layout.name }}</p>
       </div>
       <div class="column">
-        <standard-button :buttonClasses="'button--accent'">Set Layout</standard-button>
+        <standard-button :buttonClasses="'button--accent button--text'">Set Layout</standard-button>
       </div>
     </template>
     <template slot="content">

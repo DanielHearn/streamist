@@ -5,7 +5,10 @@
         <p>{{ history.streamName }}</p>
       </div>
       <div class="column">
-        <standard-button :buttonClasses="'button--accent'" @click.native="loadSelectedHistory">Watch</standard-button>
+        <standard-button
+          :buttonClasses="'button--accent button--text'"
+          @click.native="loadSelectedHistory"
+        >Watch</standard-button>
       </div>
     </template>
     <p slot="content" class="sub-text">Watched: {{ timeAdded }}</p>

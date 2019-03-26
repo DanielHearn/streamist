@@ -16,7 +16,7 @@ input {
   color: $white;
   border: none;
   padding: 0.4em 0.8em;
-  line-height: 1.4em;
+  line-height: 1.5em;
 }
 
 button {
@@ -45,9 +45,15 @@ button {
   align-items: center;
   justify-content: center;
   background: $accent-light;
-  @include transition(background $transition-time ease-in-out);
+  @include transition(background $transition-time ease-in-out, border $transition-time ease-in-out);
   &:hover {
     background: $accent-dark;
+    &.button--text {
+      border: 2px solid $accent-dark;
+    }
+  }
+  &.button--text {
+    border: 2px solid $accent-light;
   }
 }
 
@@ -59,6 +65,14 @@ button {
   &:hover {
     background: $black-dark;
   }
+}
+
+.button--icon {
+  line-height: 1em;
+}
+
+.button--text {
+  line-height: 1.5em;
 }
 
 
