@@ -1,13 +1,17 @@
 <template>
-  <list-item
-    :itemName="presetName"
-    :actionName="'Watch'"
-    :actionDisabled="!orderedStreams.length"
-    :canEditTitle="true"
-    v-on:click="loadPreset"
-    v-on:test="nameChange"
-    class="preset-listing"
-  >
+  <list-item class="preset-listing">
+    <template slot="header">
+      <div class="column">
+        <input contenteditable="true" type="text" v-model="presetName">
+      </div>
+      <div class="column">
+        <standard-button
+          :buttonClasses="'button--accent'"
+          :disabled="!orderedStreams.length"
+          @click.native="loadPreset"
+        >Watch</standard-button>
+      </div>
+    </template>
     <template slot="content">
       <div class="input-container space-between">
         <icon-button
@@ -50,14 +54,23 @@
               v-for="(stream, index) in orderedStreams"
               class="preset-listing-item"
               :key="index"
-              :itemName="stream"
-              :actionName="$options.icons.remove"
-              :actionNameIsIcon="true"
-              :actionClass="'button--tertiary button--warning'"
               :class="{'drag--active': drag}"
               :handleActive="true"
-              v-on:click="deleteStreamFromPreset(index)"
-            />
+            >
+              <template slot="header">
+                <div class="column">
+                  <p>{{ stream }}</p>
+                </div>
+                <div class="column">
+                  <icon-button
+                    :iconName="$options.icons.remove"
+                    :buttonClasses="'button--tertiary button--warning'"
+                    title="Remove channel from favorites"
+                    @click.native="deleteStreamFromPreset(index)"
+                  />
+                </div>
+              </template>
+            </list-item>
           </draggable>
           <p v-else>No streams in preset</p>
         </list>

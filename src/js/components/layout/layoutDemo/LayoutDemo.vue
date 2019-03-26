@@ -1,9 +1,13 @@
 <template>
-  <list-item
-    :itemName="layout.name"
-    :actionName="'Set Layout'"
-    @click.native="$emit('change-layout', layout)"
-  >
+  <list-item @click.native="$emit('change-layout', layout)">
+    <template slot="header">
+      <div class="column">
+        <p>{{ layout.name }}</p>
+      </div>
+      <div class="column">
+        <standard-button :buttonClasses="'button--accent'">Set Layout</standard-button>
+      </div>
+    </template>
     <template slot="content">
       <div class="layout-demo" :class="[layoutClass, streamLengthClass]" v-if="streams.length > 1">
         <div

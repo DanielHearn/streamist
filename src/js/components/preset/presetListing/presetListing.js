@@ -3,6 +3,7 @@ import InputForm from 'Components/inputs/inputForm/InputForm.vue'
 import IconButton from 'Components/inputs/buttons/iconButton/IconButton.vue'
 import ListItem from 'Components/list/listItem/ListItem.vue'
 import List from 'Components/list/list/List.vue'
+import StandardButton from 'Components/inputs/buttons/standardButton/StandardButton.vue'
 
 import Icons from 'Js/icons/'
 
@@ -12,6 +13,7 @@ export default {
     draggable,
     InputForm,
     IconButton,
+    StandardButton,
     ListItem,
     List
   },

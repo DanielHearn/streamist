@@ -51,6 +51,11 @@ body {
   flex-direction: row;
 }
 
+.column {
+  display: flex;
+  flex-direction: row;
+}
+
 .space-between {
   justify-content: space-between;
 }

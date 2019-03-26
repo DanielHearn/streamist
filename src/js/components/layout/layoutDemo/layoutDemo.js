@@ -1,9 +1,11 @@
 import ListItem from 'Components/list/listItem/ListItem.vue'
+import StandardButton from 'Components/inputs/buttons/standardButton/StandardButton.vue'
 
 export default {
   name: 'layout-demo',
   components: {
-    ListItem
+    ListItem,
+    StandardButton
   },
   props: {
     streams: {

@@ -3,18 +3,23 @@
     <div class="menu-item-row">
       <p class="text" v-if="!favoritesAvailable">No channels in your favorites.</p>
       <list v-for="favorite in streamFavorites" :key="favorite.id">
-        <list-item
-          @click="loadSelectedFavorite(favorite.streamName)"
-          :itemName="favorite.streamName"
-          :actionName="'Watch'"
-        >
+        <list-item>
           <template slot="header">
-            <icon-button
-              :iconName="$options.icons.favorited"
-              :buttonClasses="'button--secondary'"
-              title="Remove channel from favorites"
-              @click.native="$emit('unfavorite-channel', favorite.streamName)"
-            />
+            <div class="column">
+              <p>{{ favorite.streamName }}</p>
+            </div>
+            <div class="column">
+              <icon-button
+                :iconName="$options.icons.favorited"
+                :buttonClasses="'button--secondary'"
+                title="Remove channel from favorites"
+                @click.native="$emit('unfavorite-channel', favorite.streamName)"
+              />
+              <standard-button
+                :buttonClasses="'button--accent'"
+                @click.native="loadSelectedFavorite(favorite.streamName)"
+              >Watch</standard-button>
+            </div>
           </template>
         </list-item>
       </list>
