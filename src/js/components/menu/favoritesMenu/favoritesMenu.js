@@ -20,6 +20,9 @@ export default {
     },
     unfavoriteChannel: function (streamName) {
       this.$emit('unfavorite-channel', streamName)
+    },
+    favoriteChannel: function (streamName) {
+      this.$emit('favorite-channel', streamName)
     }
   }
 }

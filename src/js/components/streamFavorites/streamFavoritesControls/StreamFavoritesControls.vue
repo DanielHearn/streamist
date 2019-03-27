@@ -1,6 +1,9 @@
 <template>
   <div class="stream-favorites" v-if="streamFavorites">
     <div class="menu-item-row">
+      <input-form placeholder="Twitch channel" :buttonText="'Favorite'" v-on:submit="addFavorite"></input-form>
+    </div>
+    <div class="menu-item-row">
       <p class="text" v-if="!favoritesAvailable">No channels in your favorites.</p>
       <list v-for="favorite in streamFavorites" :key="favorite.id">
         <list-item>

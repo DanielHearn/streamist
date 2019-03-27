@@ -2,6 +2,7 @@ import StandardButton from 'Components/inputs/buttons/standardButton/StandardBut
 import IconButton from 'Components/inputs/buttons/iconButton/IconButton.vue'
 import List from 'Components/list/list/List.vue'
 import ListItem from 'Components/list/listItem/ListItem.vue'
+import InputForm from 'Components/inputs/inputForm/InputForm.vue'
 
 import Icons from 'Js/icons'
 
@@ -11,7 +12,8 @@ export default {
     StandardButton,
     List,
     ListItem,
-    IconButton
+    IconButton,
+    InputForm
   },
   props: {
     streamFavorites: {
@@ -28,6 +30,12 @@ export default {
   methods: {
     loadSelectedFavorite: function (streamName) {
       this.$emit('load-selected-favorite', streamName)
+    },
+    addFavorite: function (e, streamName) {
+      e.preventDefault()
+      if (streamName) {
+        this.$emit('favorite-channel', streamName)
+      }
     }
   }
 }

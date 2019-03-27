@@ -162,6 +162,7 @@ export default {
     },
 
     addStreamToFavorites: function (streamName) {
+      console.log(streamName)
       let newFavorites = this.streamFavorites
       const stream = {
         id: generateID(8),

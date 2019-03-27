@@ -50,6 +50,7 @@
             :stream-favorites="streamFavorites"
             v-on:load-selected-favorite="loadSelectedFavorite"
             v-on:clear-favorites="clearFavorites"
+            v-on:favorite-channel="addStreamToFavorites"
             v-on:unfavorite-channel="unfavoriteStream"
             v-on:close-menu="closeMenu"
           ></favorites-menu>

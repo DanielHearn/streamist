@@ -9,6 +9,7 @@
         :stream-favorites="streamFavorites"
         v-on:load-selected-favorite="loadSelectedFavorite"
         v-on:unfavorite-channel="unfavoriteChannel"
+        v-on:favorite-channel="favoriteChannel"
         v-on:clear-favorites="$emit('clear-favorites')"
       />
     </div>

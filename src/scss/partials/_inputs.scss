@@ -36,6 +36,15 @@ button {
   }
 }
 
+select {
+  padding: 0.75em 1.25em;
+  background: $off-white;
+  &, option {
+    font-size: 1em;
+    font-weight: 600;
+  }
+}
+
 .button--fill {
   width: 100%;
 }
@@ -109,15 +118,6 @@ button {
   }
   &.active {
     background: $red;
-  }
-}
-
-select {
-  padding: 0.75em 1.25em;
-  background: $off-white;
-  &, option {
-    font-size: 1em;
-    font-weight: 600;
   }
 }
 
