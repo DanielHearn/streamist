@@ -1,0 +1,15 @@
+@import "variables";
+@import "mixins";
+
+.details-summary {
+  .details-summary__header {
+    display: list-item;
+    padding: .75em 0.25em;
+    background: $black-lightest;
+    cursor: pointer;
+  }
+  .details-summary__content {
+    padding: .75em 0.5em;
+    background: $black-normal;
+  }
+}
