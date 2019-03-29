@@ -13,7 +13,13 @@ import Streams from 'Components/stream/streamList/StreamList.vue'
 import Chats from 'Components/chat/chatList/ChatList.vue'
 
 import Icons from 'Js/icons/'
-import { generateID, log, getDefault, toggleFullscreen } from 'Js/utilities'
+import {
+  generateID,
+  log,
+  warn,
+  getDefault,
+  toggleFullscreen
+} from 'Js/utilities'
 import {
   testValidators,
   validateHistory,
@@ -112,7 +118,7 @@ export default {
     },
     updateStreams: function (updatedStreams) {
       this.streams = updatedStreams
-      this.insertURLParam()
+      this.insertURLStreamParams()
     },
     changeLayout: function (newLayout) {
       if (this.availableLayouts.includes(newLayout)) {
@@ -132,10 +138,17 @@ export default {
       this.navVisible = !this.navVisible
     },
 
+    setOptions: function (options) {
+      this.loadOptions(options)
+      this.storeOptions(options)
+    },
     storeOptions: function (options) {
       if (validateOptions(options)) {
         localStorage.setItem('manytwitch_options', JSON.stringify(options))
       }
+    },
+    loadOptions: function (options) {
+      this.options = options
     },
     getStoredOptions: function () {
       return localStorage.getItem('manytwitch_options')
@@ -155,9 +168,12 @@ export default {
         localStorage.setItem('manytwitch_presets', JSON.stringify(presets))
       }
     },
-    updatePresets: function (newPresets) {
+    loadPresets: function (newPresets) {
       this.streamPresets = newPresets
+    },
+    updatePresets: function (newPresets) {
       const presets = newPresets || []
+      this.loadPresets(presets)
       this.storePresets(presets)
     },
 
@@ -253,7 +269,7 @@ export default {
       this.storeHistory(streamHistory)
     },
 
-    insertURLParam: function () {
+    insertURLStreamParams: function () {
       let channelString = ''
       for (const channel in this.streams) {
         if (this.streams.hasOwnProperty(channel)) {
@@ -271,7 +287,7 @@ export default {
         window.history.pushState({ path: newurl }, '', newurl)
       }
     },
-    getURLParam: function () {
+    getURLStreamParam: function () {
       const urlParams = new URLSearchParams(window.location.search.substring(1))
       const urlStreams = urlParams.get('stream')
       if (urlStreams !== '' && urlStreams !== null) {
@@ -287,83 +303,62 @@ export default {
       return false
     },
     getStoredData: function () {
+      const storedDataFields = [
+        {
+          name: 'History',
+          getStored: this.getStoredHistory,
+          validate: validateHistory,
+          load: this.loadHistory,
+          default: getDefault('streamHistory'),
+          set: this.setHistory
+        },
+        {
+          name: 'Favorites',
+          getStored: this.getStoredFavorites,
+          validate: validateFavorites,
+          load: this.loadFavorites,
+          default: getDefault('streamFavorites'),
+          set: this.setFavorites
+        },
+        {
+          name: 'Options',
+          getStored: this.getStoredOptions,
+          validate: validateOptions,
+          load: this.loadOptions,
+          default: getDefault('options'),
+          set: this.setOptions
+        },
+        {
+          name: 'Presets',
+          getStored: this.getStoredPresets,
+          validate: validatePresets,
+          load: this.loadPresets,
+          default: getDefault('streamPresets'),
+          set: this.updatePresets
+        }
+      ]
+
       log('--- Getting Stored Data ---')
-      const rawHistory = this.getStoredHistory()
-      let historyLoaded = false
-      if (rawHistory) {
-        try {
-          const parsedHistory = JSON.parse(rawHistory)
-          if (validateHistory(parsedHistory)) {
-            log('History passed validation')
-            this.loadHistory(parsedHistory)
-            historyLoaded = true
-          }
-        } catch (error) {}
-      }
-      if (!historyLoaded) {
-        log('Loading default history')
-        const defaultHistory = getDefault('streamHistory')
-        this.streamHistory = defaultHistory
-        this.storeHistory(defaultHistory)
-      }
 
-      const rawFavorites = this.getStoredFavorites()
-      let favoritesLoaded = false
-      if (rawFavorites) {
-        try {
-          const parsedFavorites = JSON.parse(rawFavorites)
-          if (validateFavorites(parsedFavorites)) {
-            log('Favorites passed validation')
-            this.loadFavorites(parsedFavorites)
-            favoritesLoaded = true
-          }
-        } catch (error) {}
-      }
-      if (!favoritesLoaded) {
-        log('Loading default favorites')
-        const defaultFavorites = getDefault('streamFavorites')
-        this.streamFavorites = defaultFavorites
-        this.storeHistory(defaultFavorites)
-      }
-
-      const rawOptions = this.getStoredOptions()
-      let optionsLoaded = false
-      if (rawOptions) {
-        try {
-          const parsedOptions = JSON.parse(rawOptions)
-          if (validateOptions(parsedOptions)) {
-            log('Options passed validation')
-            optionsLoaded = true
-            this.options = parsedOptions
-          }
-        } catch (error) {}
-      }
-      if (!optionsLoaded) {
-        log('Loading default options')
-        const defaultOptions = getDefault('options')
-        this.options = defaultOptions
-        this.storeOptions(defaultOptions)
-      }
-
-      const rawPresets = this.getStoredPresets()
-      let presetsLoaded = false
-      if (rawPresets) {
-        try {
-          const parsedPresets = JSON.parse(rawPresets)
-          if (validatePresets(parsedPresets)) {
-            log('Streams passed validation')
-            presetsLoaded = true
-            this.streamPresets = parsedPresets
-          }
-        } catch (error) {}
-      }
-      if (!presetsLoaded) {
-        log('Loading default presets')
-        const defaultPresets = getDefault('streamPresets')
-        this.streamPresets = defaultPresets
-        this.storePresets(defaultPresets)
-      }
-      log('--- Completed Stored Data Collection ---')
+      storedDataFields.forEach(field => {
+        let fieldLoaded = false
+        const rawFieldData = field.getStored()
+        if (rawFieldData) {
+          try {
+            const parsedFieldData = JSON.parse(rawFieldData)
+            if (field.validate(parsedFieldData)) {
+              log(`${field.name} passed validation`)
+              field.load(parsedFieldData)
+              fieldLoaded = true
+            }
+          } catch (error) {}
+        }
+        if (!fieldLoaded) {
+          warn(`Loading default ${field.name}`)
+          const defaultFieldData = field.default
+          field.set(defaultFieldData)
+        }
+      })
     },
     checkMovement: function () {
       this.appHover = true
@@ -394,11 +389,14 @@ export default {
     )
   },
   created: function () {
+    log('--- Testing Data Validation ---')
+    // Test data validators
     testValidators()
 
+    // Load stored data and load default data if stored data isn't available
     this.getStoredData()
 
     // Get streams from url querystring
-    this.getURLParam()
+    this.getURLStreamParam()
   }
 }

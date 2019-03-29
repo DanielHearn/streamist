@@ -21,6 +21,12 @@ export const log = function (output) {
   }
 }
 
+export const warn = function (output) {
+  if (config.logging) {
+    console.warn(output)
+  }
+}
+
 export const copyToClipboard = function (str) {
   const el = document.createElement('textarea') // Create a <textarea> element
   el.value = str // Set its value to the string that you want copied
