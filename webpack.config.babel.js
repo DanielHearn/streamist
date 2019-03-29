@@ -11,7 +11,7 @@ const isProduction =
   process.argv[process.argv.indexOf('--mode') + 1] === 'production'
 
 module.exports = {
-  mode: 'development',
+  mode: isProduction ? 'production' : 'development',
   entry: {
     main: ['@babel/polyfill', './src/js/manytwitch.js']
   },
