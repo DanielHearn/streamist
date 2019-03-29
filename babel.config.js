@@ -7,6 +7,5 @@ module.exports = {
         debug: false
       }
     ]
-  ],
-  plugins: ['transform-es2015-modules-commonjs']
+  ]
 }

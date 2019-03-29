@@ -1,6 +1,5 @@
 import ControlBar from 'Components/controlBar/ControlBar.vue'
 import IconButton from 'Components/inputs/buttons/iconButton/IconButton.vue'
-import Twitch from 'Js/manytwitch.js'
 import Icons from 'Js/icons/'
 
 export default {

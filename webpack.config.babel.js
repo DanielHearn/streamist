@@ -6,6 +6,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const AppManifestWebpackPlugin = require('app-manifest-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const isProduction =
   process.argv[process.argv.indexOf('--mode') + 1] === 'production'
@@ -67,7 +68,8 @@ module.exports = {
         version: '1.0'
       }
     }),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new CopyWebpackPlugin([{ from: 'src/js/static' }])
   ],
   module: {
     rules: [
