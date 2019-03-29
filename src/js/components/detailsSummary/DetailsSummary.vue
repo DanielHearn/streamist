@@ -1,6 +1,10 @@
 <template>
-  <details class="details-summary">
-    <summary class="details-summary__header text-sub-heading" :class="headerClasses">
+  <details class="details-summary" :class="{'active': active}">
+    <summary
+      class="details-summary__header text-sub-heading"
+      :class="headerClasses"
+      @click="toggleActive"
+    >
       <slot name="header"></slot>
     </summary>
     <div class="details-summary__content">

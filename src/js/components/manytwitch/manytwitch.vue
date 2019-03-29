@@ -25,7 +25,7 @@
           :disabled="!streams.length"
           :iconName="options.chatVisible && streams.length ? $options.icons.rightArrow : $options.icons.chat"
           :buttonClasses="'button--secondary'"
-          title="Open Chat"
+          :title="options.chatVisible ? 'Close Chat' : 'Open Chat'"
           @click.native="toggleChat"
         />
       </div>
