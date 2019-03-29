@@ -1,5 +1,4 @@
 import { isValid } from 'date-fns'
-import { log } from 'Js/utilities'
 import { Validator, Rule } from '@cesium133/forgjs'
 
 function isValidDate (date) {
@@ -54,81 +53,6 @@ const optionsValidator = new Validator({
   }
 })
 
-const testOptionsValidator = function () {
-  const options = {
-    chatVisible: true,
-    menuVisible: true,
-    startMuted: false,
-    currentLayout: {
-      id: 'id',
-      name: 'Grid'
-    }
-  }
-  try {
-    log(`Options test validation: ${optionsValidator.test(options)}`)
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-const testHistoryValidator = function () {
-  const history = [
-    {
-      id: 'id',
-      streamName: 'stream',
-      dateAdded: 'Wed Feb 27 2019 21:33:28 GMT+0000'
-    },
-    {
-      id: 'id',
-      streamName: 'stream',
-      dateAdded: 'Wed Feb 27 2019 21:33:28 GMT+0000'
-    }
-  ]
-  try {
-    log(`History test validation: ${historyValidator.test(history)}`)
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-const testFavoritesValidator = function () {
-  const favorites = [
-    {
-      id: 'id',
-      streamName: 'stream'
-    },
-    {
-      id: 'id',
-      streamName: 'stream'
-    }
-  ]
-  try {
-    log(`Favorite test validation: ${favoritesValidator.test(favorites)}`)
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-const testPresetValidator = function () {
-  const presets = [
-    {
-      id: 'id',
-      name: 'preset',
-      streams: ['stream', 'stream']
-    },
-    {
-      id: 'id',
-      name: 'preset',
-      streams: ['stream', 'stream']
-    }
-  ]
-  try {
-    log(`Presets test validation: ${presetsValidator.test(presets)}`)
-  } catch (error) {
-    console.log(error)
-  }
-}
-
 export const validateHistory = function (history) {
   return historyValidator.test(history)
 }
@@ -143,11 +67,4 @@ export const validateOptions = function (options) {
 
 export const validateFavorites = function (favorites) {
   return favoritesValidator.test(favorites)
-}
-
-export const testValidators = function () {
-  testOptionsValidator()
-  testHistoryValidator()
-  testPresetValidator()
-  testFavoritesValidator()
 }

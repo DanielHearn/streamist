@@ -21,7 +21,6 @@ import {
   toggleFullscreen
 } from 'Js/utilities'
 import {
-  testValidators,
   validateHistory,
   validatePresets,
   validateOptions,
@@ -391,11 +390,6 @@ export default {
     )
   },
   created: function () {
-    console.group('Data Validation')
-    // Test data validators
-    testValidators()
-    console.groupEnd()
-
     // Load stored data and load default data if stored data isn't available
     this.getStoredData()
 

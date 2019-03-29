@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack --mode production",
     "watch": "webpack-dev-server --open --mode development",
-    "deploy": "webpack --mode production && gh-pages -d dist"
+    "deploy": "webpack --mode production && gh-pages -d dist",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -29,7 +30,9 @@
     "@babel/preset-env": "^7.3.1",
     "app-manifest-webpack-plugin": "^1.1.3",
     "autoprefixer": "^9.4.6",
+    "babel-jest": "^24.5.0",
     "babel-loader": "^8.0.5",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "browser-sync": "^2.26.3",
@@ -45,6 +48,7 @@
     "html-loader": "^0.5.5",
     "html-webpack-loader": "0.0.5",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.5.0",
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.11.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
