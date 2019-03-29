@@ -338,7 +338,7 @@ export default {
         }
       ]
 
-      log('--- Getting Stored Data ---')
+      console.group('Getting Stored Data')
 
       storedDataFields.forEach(field => {
         let fieldLoaded = false
@@ -359,6 +359,8 @@ export default {
           field.set(defaultFieldData)
         }
       })
+
+      console.groupEnd()
     },
     checkMovement: function () {
       this.appHover = true
@@ -389,9 +391,10 @@ export default {
     )
   },
   created: function () {
-    log('--- Testing Data Validation ---')
+    console.group('Data Validation')
     // Test data validators
     testValidators()
+    console.groupEnd()
 
     // Load stored data and load default data if stored data isn't available
     this.getStoredData()
