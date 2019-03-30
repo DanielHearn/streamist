@@ -388,6 +388,14 @@ export default {
       },
       true
     )
+
+    setTimeout(() => {
+      if (window.innerWidth < 800 || window.innerHeight < 600) {
+        window.alert(
+          'Manytwitch does not currently support mobile devices. Please use a device with a larger screen.'
+        )
+      }
+    }, 1000)
   },
   created: function () {
     // Load stored data and load default data if stored data isn't available
