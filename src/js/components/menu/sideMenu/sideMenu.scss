@@ -27,7 +27,7 @@
   border-radius: unset;
   box-shadow: 0.4em 0 0 0 $black-normal inset;
   outline: none;
-  padding: 1em 0.7em;
+  padding: 0.9em 0.7em;
   width: 100%;
   .menu-icon {
     @include transition(margin $transition-time ease-in-out);
@@ -52,7 +52,7 @@
 
 @media only screen and (max-width: $tablet-width) {
   .button--menu {
-    padding: 1em 0.5em;
+    padding: 0.9em 0.5em;
     .menu-icon {
       margin: 0 0.4em;
     }

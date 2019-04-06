@@ -98,7 +98,6 @@ export default {
   watch: {
     streams: function () {
       if (this.streams.length === 0 && this.homepageStreams.length === 0) {
-        console.log('no streams')
         this.getHomePageContent()
       }
     }
