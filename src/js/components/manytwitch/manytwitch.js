@@ -26,6 +26,7 @@ import {
   validateOptions,
   validateFavorites
 } from 'Js/validation'
+import { getTopStreams } from 'Js/twitch'
 
 export default {
   name: 'manytwitch',
@@ -82,6 +83,7 @@ export default {
       appHover: false,
       appHoverTracker: 0,
       navVisible: true,
+      homepageStreams: [],
       options: {
         chatVisible: true,
         menuVisible: true,
@@ -372,16 +374,24 @@ export default {
           app.appHover = false
         }
       }, 3000)
+    },
+    getHomePageContent: async function () {
+      this.homepageStreams = await getTopStreams()
+      log('Top streams: ', this.homepageStreams)
     }
   },
   mounted: function () {
     document.addEventListener('mousemove', this.checkMovement, false)
 
+    // Allow exit from hidden nav view
     const app = this
     window.addEventListener(
       'keydown',
       function (e) {
-        if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) {
+        if (
+          !app.navVisible &&
+          (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27)
+        ) {
           e.preventDefault()
           app.navVisible = true
         }
@@ -389,6 +399,7 @@ export default {
       true
     )
 
+    // Alert users with small screens about potential incompatibility
     setTimeout(() => {
       if (window.innerWidth < 800 || window.innerHeight < 600) {
         window.alert(
@@ -396,6 +407,8 @@ export default {
         )
       }
     }, 1000)
+
+    this.getHomePageContent()
   },
   created: function () {
     // Load stored data and load default data if stored data isn't available
