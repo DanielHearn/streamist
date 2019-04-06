@@ -1,7 +1,7 @@
 const clientID = 'w7r2pt1g7eqz2ctv34huqvpwzzcqvl'
 const apiRoot = 'https://api.twitch.tv/helix/'
 
-export async function getTopStreams () {
+export function getTopStreams () {
   const url = `${apiRoot}/streams`
   return fetch(url, {
     method: 'GET', // *GET, POST, PUT, DELETE, etc.

@@ -28,6 +28,10 @@ export default {
     streamFavorites: {
       type: Array,
       required: true
+    },
+    isFirstStream: {
+      type: Boolean,
+      required: true
     }
   },
   icons: Icons,
@@ -77,14 +81,21 @@ export default {
         const options = {
           channel: this.currentStream.streamName,
           layout: 'video',
-          allowfullscreen: false,
-          theme: 'dark'
+          autoplay: false
         }
-        this.playerEmbed = new Twitch.Embed(
+        const playerEmbed = new Twitch.Embed(
           this.currentStream.embedPlayerID,
           options
         )
-        this.player = this.playerEmbed.getPlayer()
+        playerEmbed.addEventListener(Twitch.Embed.VIDEO_READY, () => {
+          const player = playerEmbed.getPlayer()
+          player.play()
+          if (!this.isFirstStream) {
+            player.setMuted(true)
+          } else {
+            player.setMuted(false)
+          }
+        })
       } catch (error) {
         console.error('Twitch API script is not loaded')
       }

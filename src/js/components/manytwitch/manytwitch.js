@@ -95,6 +95,14 @@ export default {
       }
     }
   },
+  watch: {
+    streams: function () {
+      if (this.streams.length === 0 && this.homepageStreams.length === 0) {
+        console.log('no streams')
+        this.getHomePageContent()
+      }
+    }
+  },
   methods: {
     toggleFullscreen: toggleFullscreen,
     addStreamFromNav: function (e, streamName) {
@@ -376,8 +384,10 @@ export default {
       }, 3000)
     },
     getHomePageContent: async function () {
-      this.homepageStreams = await getTopStreams()
-      log('Top streams: ', this.homepageStreams)
+      const topStreams = await getTopStreams()
+      if (topStreams.length) {
+        this.homepageStreams = topStreams
+      }
     }
   },
   mounted: function () {
@@ -408,7 +418,9 @@ export default {
       }
     }, 1000)
 
-    this.getHomePageContent()
+    if (!this.streams.length) {
+      this.getHomePageContent()
+    }
   },
   created: function () {
     // Load stored data and load default data if stored data isn't available
