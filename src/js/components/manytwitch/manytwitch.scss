@@ -15,7 +15,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-content: center;
-  padding: $content-padding/2;
+  padding: $content-padding/4 $content-padding/2;
   flex: 1 auto;
   color: $white;
   background: $black-normal;

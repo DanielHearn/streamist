@@ -1,6 +1,6 @@
 @import "variables";
 
-.chats {
+.chat-list {
   display: flex;
   flex-direction: column;
   .add-chat-container {
@@ -8,5 +8,11 @@
     button {
       border-radius: 0;
     }
+  }
+}
+
+@media only screen and (max-width: $tablet-width) {
+  .chat-list {
+    width: 17em;
   }
 }

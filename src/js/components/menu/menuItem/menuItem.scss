@@ -15,7 +15,7 @@
     justify-content: space-between;
     align-items: center;
     padding: $content-padding/2 $content-padding;
-    background: $black-darker;
+    //background: $black-darker;
     .text-heading {
       text-align: center;
     }
@@ -41,5 +41,11 @@
   }
   button {
     margin: $content-padding/4;
+  }
+}
+
+@media only screen and (max-width: $tablet-width) {
+  .menu-item {
+    width: $menu-content-width*0.85;
   }
 }
