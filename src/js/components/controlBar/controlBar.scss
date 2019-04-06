@@ -29,6 +29,9 @@
       background: $accent-dark;
     }
   }
+  &:hover {
+    z-index: 20;
+  }
 }
 
 @media only screen and (max-width: $tablet-width) {
