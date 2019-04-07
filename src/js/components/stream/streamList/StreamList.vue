@@ -11,7 +11,7 @@
     <draggable
       v-if="streams.length"
       class="streams"
-      :class="[layoutClass, streamLengthClass]"
+      :class="[layoutClass, streamLengthClass, {'many-streams': streams.length >= 4}]"
       v-model="orderedStreams"
       @start="drag=true"
       @end="drag=false"

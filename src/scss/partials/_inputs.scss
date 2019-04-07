@@ -128,7 +128,7 @@ select {
 }
 
 .handle {
-  padding: $content-padding/2;
+  padding: $content-padding/2 $content-padding/4;
   cursor: grab;
 }
 
