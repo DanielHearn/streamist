@@ -37,7 +37,7 @@
         />
       </div>
       <div style="margin: 0.25em; margin-top: 0.5em;" v-if="!orderedStreams.length">
-        <p class="text-warning">Edit preset to add streams</p>
+        <p class="text-warning">No streams in preset, edit preset to add streams</p>
       </div>
       <div v-if="editMode" class="preset-listing-edit">
         <p style="margin-bottom: 0.25em;" class="text-sub-heading">Streams</p>

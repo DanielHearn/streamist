@@ -8,6 +8,7 @@ import HelpMenu from 'Components/menu/helpMenu/HelpMenu.vue'
 import AboutMenu from 'Components/menu/aboutMenu/AboutMenu.vue'
 import SideMenu from 'Components/menu/sideMenu/SideMenu.vue'
 import FavoritesMenu from 'Components/menu/favoritesMenu/FavoritesMenu.vue'
+import SettingsMenu from 'Components/menu/settingsMenu/SettingsMenu.vue'
 
 import Streams from 'Components/stream/streamList/StreamList.vue'
 import Chats from 'Components/chat/chatList/ChatList.vue'
@@ -41,7 +42,8 @@ export default {
     PresetMenu,
     HelpMenu,
     AboutMenu,
-    FavoritesMenu
+    FavoritesMenu,
+    SettingsMenu
   },
   icons: Icons,
   menuItems: [
@@ -68,6 +70,10 @@ export default {
     {
       itemName: 'About',
       iconName: Icons.about
+    },
+    {
+      itemName: 'Settings',
+      iconName: Icons.settings
     }
   ],
   data: function () {
@@ -388,6 +394,12 @@ export default {
       if (topStreams.length) {
         this.homepageStreams = topStreams
       }
+    },
+    clearData: function () {
+      this.setOptions(getDefault('options'))
+      this.setFavorites(getDefault('streamFavorites'))
+      this.setHistory(getDefault('streamHistory'))
+      this.updatePresets(getDefault('streamPresets'))
     }
   },
   mounted: function () {

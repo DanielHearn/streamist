@@ -60,9 +60,15 @@ select {
     &.button--text {
       border: 2px solid $accent-dark;
     }
+    &:disabled {
+      border: 2px solid $dark-grey;
+    }
   }
   &.button--text {
     border: 2px solid $accent-light;
+  }
+  &:disabled {
+    border: 2px solid $dark-grey;
   }
 }
 
