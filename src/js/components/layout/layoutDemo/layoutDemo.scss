@@ -85,5 +85,11 @@
 }
 
 .layout-demo--layout-column {
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.layout-demo--layout-rows {
+  flex-direction: column;
   flex-wrap: nowrap;
 }

@@ -78,7 +78,8 @@ export default {
       streamFavorites: [],
       availableLayouts: [
         { id: 'grid', name: 'Grid' },
-        { id: 'column', name: 'Column' }
+        { id: 'columns', name: 'Columns' },
+        { id: 'rows', name: 'Rows' }
       ],
       appHover: false,
       appHoverTracker: 0,

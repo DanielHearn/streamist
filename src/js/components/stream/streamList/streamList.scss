@@ -28,7 +28,12 @@
   }
 }
 
-.streams--layout-column {
+.streams--layout-columns {
+  flex-wrap: nowrap;
+}
+
+.streams--layout-rows {
+  flex-direction: column;
   flex-wrap: nowrap;
 }
 

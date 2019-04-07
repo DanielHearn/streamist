@@ -4,7 +4,7 @@ export default {
     layout: {
       default: 'column',
       type: String,
-      required: true
+      required: false
     }
   },
   computed: {

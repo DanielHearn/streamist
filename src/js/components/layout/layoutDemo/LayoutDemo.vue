@@ -9,7 +9,7 @@
       </div>
     </template>
     <template slot="content">
-      <div class="layout-demo" :class="[layoutClass, streamLengthClass]" v-if="streams.length > 1">
+      <div class="layout-demo" :class="[layoutClass, streamLengthClass]" v-if="streams.length > 2">
         <div
           class="layout-demo-stream"
           v-for="(stream, index) in streams"
@@ -21,8 +21,8 @@
           </div>
         </div>
       </div>
-      <div class="layout-demo" :class="[layoutClass, streamLengthClass]" v-else>
-        <div v-for="index in [1, 2, 3, 4]" :key="index" class="layout-demo-stream">
+      <div class="layout-demo streams--5" :class="[layoutClass]" v-else>
+        <div v-for="index in [1, 2, 3, 4, 5]" :key="index" class="layout-demo-stream">
           <div class="layout-demo-number">
             <p>{{ index }}</p>
           </div>
