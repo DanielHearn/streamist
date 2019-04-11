@@ -1,7 +1,12 @@
 <template>
   <div class="stream-favorites" v-if="streamFavorites">
     <div class="menu-item-row">
-      <input-form placeholder="Twitch channel" :buttonText="'Favorite'" v-on:submit="addFavorite"></input-form>
+      <input-form
+        placeholder="Twitch channel"
+        :buttonText="'Favorite'"
+        v-on:submit="addFavorite"
+        :buttonIconName="smallScreen ? 'favorite' : ''"
+      ></input-form>
     </div>
     <div class="menu-item-row">
       <p class="text" v-if="!favoritesAvailable">No channels in your favorites.</p>
@@ -13,7 +18,7 @@
             </div>
             <div class="column">
               <icon-button
-                :iconName="$options.icons.favorited"
+                :iconName="$options.icons.unfavorite"
                 :buttonClasses="'button--secondary'"
                 title="Remove channel from favorites"
                 @click.native="$emit('unfavorite-channel', favorite.streamName)"

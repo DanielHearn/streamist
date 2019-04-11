@@ -16,7 +16,7 @@ export default {
   refresh: 'refresh',
   remove: 'delete',
   menu: 'menu',
-  favorited: 'favorite',
-  unfavorited: 'favorite_border',
+  favorite: 'favorite',
+  unfavorite: 'favorite_border',
   settings: 'settings'
 }

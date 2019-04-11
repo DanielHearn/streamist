@@ -7,6 +7,7 @@
     <div class="menu-item-row">
       <stream-favorites-controls
         :stream-favorites="streamFavorites"
+        :small-screen="smallScreen"
         v-on:load-selected-favorite="loadSelectedFavorite"
         v-on:unfavorite-channel="unfavoriteChannel"
         v-on:favorite-channel="favoriteChannel"

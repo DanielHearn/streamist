@@ -19,6 +19,11 @@ export default {
     streamFavorites: {
       type: Array,
       required: true
+    },
+    smallScreen: {
+      default: false,
+      type: Boolean,
+      required: true
     }
   },
   icons: Icons,

@@ -12,6 +12,11 @@ export default {
       default: [],
       type: Array,
       required: true
+    },
+    smallScreen: {
+      default: false,
+      type: Boolean,
+      required: true
     }
   },
   methods: {

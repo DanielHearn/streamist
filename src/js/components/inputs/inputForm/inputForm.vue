@@ -7,7 +7,10 @@
       :placeholder="placeholder"
       v-model="inputValue"
     >
-    <standard-button type="submit">{{buttonText}}</standard-button>
+    <icon-button v-if="isIcon" :iconName="buttonIcon"/>
+    <standard-button v-else type="submit">
+      <template>{{buttonText}}</template>
+    </standard-button>
   </form>
 </template>
 

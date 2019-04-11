@@ -53,7 +53,7 @@ export default {
     },
     {
       itemName: 'Favorites',
-      iconName: Icons.favorited
+      iconName: Icons.favorite
     },
     {
       itemName: 'Presets',
@@ -90,6 +90,7 @@ export default {
       appHover: false,
       appHoverTracker: 0,
       navVisible: true,
+      smallScreen: false,
       homepageStreams: [],
       options: {
         chatVisible: true,
@@ -400,6 +401,9 @@ export default {
       this.setFavorites(getDefault('streamFavorites'))
       this.setHistory(getDefault('streamHistory'))
       this.updatePresets(getDefault('streamPresets'))
+    },
+    checkScreenSize: function () {
+      this.smallScreen = window.innerWidth <= 1000
     }
   },
   mounted: function () {
@@ -421,6 +425,8 @@ export default {
       true
     )
 
+    window.addEventListener('resize', this.checkScreenSize)
+
     // Alert users with small screens about potential incompatibility
     setTimeout(() => {
       if (window.innerWidth < 800 || window.innerHeight < 600) {
@@ -437,6 +443,8 @@ export default {
   created: function () {
     // Load stored data and load default data if stored data isn't available
     this.getStoredData()
+
+    this.checkScreenSize()
 
     // Get streams from url querystring
     this.getURLStreamParam()

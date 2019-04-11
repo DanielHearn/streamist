@@ -1,9 +1,12 @@
+import IconButton from 'Components/inputs/buttons/iconButton/IconButton.vue'
 import StandardButton from 'Components/inputs/buttons/standardButton/StandardButton.vue'
+import Icons from 'Js/icons'
 
 export default {
   name: 'input-form',
   components: {
-    StandardButton
+    StandardButton,
+    IconButton
   },
   props: {
     placeholder: {
@@ -14,11 +17,25 @@ export default {
       type: String,
       required: false,
       default: 'Add'
+    },
+    buttonIconName: {
+      type: String,
+      required: false,
+      default: ''
     }
   },
+  icons: Icons,
   data: function () {
     return {
       inputValue: ''
+    }
+  },
+  computed: {
+    isIcon: function () {
+      return this.buttonIconName && this.$options.icons[this.buttonIconName]
+    },
+    buttonIcon: function () {
+      return this.$options.icons[this.buttonIconName]
     }
   },
   methods: {
