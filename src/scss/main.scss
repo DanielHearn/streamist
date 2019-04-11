@@ -34,11 +34,11 @@ body {
 }
 
 .url {
-  color: $white;
+  color: $near-white;
   text-decoration: underline;
   padding: 0 0.5em;
   &:visited {
-    color: $white;
+    color: $near-white;
   }
 }
 

@@ -8,27 +8,27 @@
 .text {
     font-size: $text-size;
     font-weight: $text-weight;
-    color: rgba(254, 254, 254, 0.9);
+    color: $near-white;
 }
   
 .text-heading {
     font-size: $heading-size;
     font-weight: $heading-weight;
     margin: $content-padding/2 0;
-    color: rgba(254, 254, 254, 0.9);
+    color: $near-white;
 }
   
 .text-sub-heading {
     font-size: $sub-heading-size;
     font-weight: $sub-heading-weight;
     margin: $content-padding/2 0;
-    color: rgba(254, 254, 254, 0.9);
+    color: $near-white;
 }
   
 .sub-text {
     font-size: $sub-text-size;
     font-weight: $sub-text-weight;
-    color: rgba(254, 254, 254, 0.6);
+    color: $near-white;
 }
 
 .text--accent {
@@ -36,7 +36,7 @@
 }
 
 .text--white {
-    color: $white;
+    color: $near-white;
 }
 
 .text-link {

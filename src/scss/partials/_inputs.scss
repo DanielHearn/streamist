@@ -12,11 +12,14 @@ input, button {
 }
   
 input {
-  background: $black-darker;
-  color: $white;
+  background: $blue;
+  color: $blue-light;
   border: none;
   padding: 0.4em 0.8em;
   line-height: 1.5em;
+  &[type="text"]::placeholder {
+    color: $blue-light;
+  }
 }
 
 button {
