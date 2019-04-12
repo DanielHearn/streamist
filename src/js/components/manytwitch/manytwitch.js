@@ -90,7 +90,7 @@ export default {
       appHover: false,
       appHoverTracker: 0,
       navVisible: true,
-      smallScreen: false,
+      smallInterface: false,
       homepageStreams: [],
       options: {
         chatVisible: true,
@@ -403,7 +403,7 @@ export default {
       this.updatePresets(getDefault('streamPresets'))
     },
     checkScreenSize: function () {
-      this.smallScreen = window.innerWidth <= 1000
+      this.smallInterface = window.innerWidth <= 1000
     }
   },
   mounted: function () {

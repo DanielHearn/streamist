@@ -1,5 +1,5 @@
 <template>
-  <div id="manytwitch" :class="{'small-screen': smallScreen}">
+  <div id="manytwitch" :class="{'small-interface': smallInterface}">
     <nav class="nav" :class="{'hidden': !navVisible}">
       <icon-button
         :iconName="options.menuVisible ? $options.icons.leftArrow : $options.icons.menu"
@@ -12,7 +12,7 @@
           placeholder="Twitch channel"
           class="channel-input"
           :buttonText="'Watch'"
-          :buttonIconName="smallScreen ? 'play' : ''"
+          :buttonIconName="smallInterface ? 'play' : ''"
           v-on:submit="addStreamFromNav"
         ></input-form>
       </div>
@@ -50,7 +50,7 @@
           <favorites-menu
             v-if="currentMenu === 'Favorites'"
             :stream-favorites="streamFavorites"
-            :small-screen="smallScreen"
+            :small-interface="smallInterface"
             v-on:load-selected-favorite="loadSelectedFavorite"
             v-on:clear-favorites="clearFavorites"
             v-on:favorite-channel="addStreamToFavorites"

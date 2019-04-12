@@ -5,7 +5,7 @@
         placeholder="Twitch channel"
         :buttonText="'Favorite'"
         v-on:submit="addFavorite"
-        :buttonIconName="smallScreen ? 'favorite' : ''"
+        :buttonIconName="smallInterface ? 'favorite' : ''"
       ></input-form>
     </div>
     <div class="menu-item-row">

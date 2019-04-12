@@ -13,7 +13,7 @@ export default {
       type: Array,
       required: true
     },
-    smallScreen: {
+    smallInterface: {
       default: false,
       type: Boolean,
       required: true

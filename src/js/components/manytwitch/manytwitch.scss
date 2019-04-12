@@ -9,7 +9,7 @@
   height: 100%;
   overflow: hidden;
   background: $black-darkest;
-  &.small-screen {
+  &.small-interface {
     input[type="text"] {
       max-width: 6em;
   }
