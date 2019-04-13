@@ -60,15 +60,6 @@ select {
   @include transition(background $transition-time ease-in-out, border $transition-time ease-in-out);
   &:hover {
     background: $accent-dark;
-    &.button--text {
-      border: 2px solid $accent-dark;
-    }
-    &:disabled {
-      border: 2px solid $dark-grey;
-    }
-  }
-  &.button--text {
-    border: 2px solid $accent-light;
   }
   &:disabled {
     border: 2px solid $dark-grey;
@@ -93,10 +84,10 @@ select {
   line-height: 1.5em;
 }
 
-
 .button--secondary {
   background: transparent;
   border: 2px solid $orange;
+  padding: calc(0.5em - 2px) calc(0.7em - 2px);
   @include transition(background $transition-time ease-in-out);
   &:hover {
     background: $orange;
@@ -112,6 +103,7 @@ select {
 .button--tertiary {
   background: transparent;
   border: 2px solid transparent;
+  padding: calc(0.5em - 2px) calc(0.7em - 2px);
   @include transition(background $transition-time ease-in-out);
   &:hover {
     background: $orange;
