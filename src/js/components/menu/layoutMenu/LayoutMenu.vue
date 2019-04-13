@@ -13,6 +13,7 @@
             :class="{'active': selectedLayout.id === layout.id}"
             :layout="layout"
             :streams="indexedStreams"
+            :small-interface="smallInterface"
             v-on:change-layout="changeLayout"
           />
         </list>

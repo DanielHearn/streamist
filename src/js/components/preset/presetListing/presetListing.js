@@ -26,6 +26,11 @@ export default {
       type: Boolean,
       default: false,
       required: true
+    },
+    smallInterface: {
+      default: false,
+      type: Boolean,
+      required: true
     }
   },
   data: function () {

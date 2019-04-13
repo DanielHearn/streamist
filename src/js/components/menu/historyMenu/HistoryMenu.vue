@@ -7,6 +7,7 @@
     <div class="menu-item-row">
       <stream-history-controls
         :stream-history="streamHistory"
+        :small-interface="smallInterface"
         v-on:load-selected-history="loadSelectedHistory"
         v-on:clear-history="$emit('clear-history')"
       />

@@ -22,6 +22,11 @@ export default {
     streams: {
       type: Array,
       required: true
+    },
+    smallInterface: {
+      default: false,
+      type: Boolean,
+      required: true
     }
   },
   data: function () {

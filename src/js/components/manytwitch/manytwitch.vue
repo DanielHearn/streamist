@@ -44,6 +44,7 @@
             :options="options"
             :streams="streams"
             :available-layouts="availableLayouts"
+            :small-interface="smallInterface"
             v-on:change-layout="changeLayout"
             v-on:close-menu="closeMenu"
           ></layout-menu>
@@ -61,6 +62,7 @@
             v-if="currentMenu === 'Presets'"
             :stream-presets="streamPresets"
             :streams="streams"
+            :small-interface="smallInterface"
             v-on:update-presets="updatePresets"
             v-on:load-preset="loadStreamsFromPreset"
             v-on:close-menu="closeMenu"
@@ -68,6 +70,7 @@
           <history-menu
             v-if="currentMenu === 'History'"
             :stream-history="streamHistory"
+            :small-interface="smallInterface"
             v-on:load-selected-history="loadSelectedHistory"
             v-on:clear-history="clearHistory"
             v-on:close-menu="closeMenu"

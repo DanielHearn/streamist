@@ -5,7 +5,14 @@
         <input contenteditable="true" type="text" v-model="presetName">
       </div>
       <div class="column">
+        <icon-button
+          v-if="smallInterface"
+          :iconName="$options.icons.play"
+          :buttonClasses="'button--accent'"
+          @click.native="loadPreset"
+        />
         <standard-button
+          v-else
           :buttonClasses="'button--accent button--text'"
           :disabled="!orderedStreams.length"
           @click.native="loadPreset"
@@ -41,7 +48,12 @@
       </div>
       <div v-if="editMode" class="preset-listing-edit">
         <p style="margin-bottom: 0.25em;" class="text-sub-heading">Streams</p>
-        <input-form v-on:submit="newPresetStream" placeholder="Channel Name"></input-form>
+        <input-form
+          v-on:submit="newPresetStream"
+          placeholder="Channel Name"
+          :buttonText="'Add'"
+          :buttonIconName="smallInterface ? 'add' : ''"
+        ></input-form>
         <list>
           <draggable
             v-model="orderedStreams"

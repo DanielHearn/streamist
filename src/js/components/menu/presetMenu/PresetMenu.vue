@@ -5,7 +5,12 @@
     v-on:close-menu-item="$emit('close-menu')"
   >
     <div class="menu-item-row">
-      <input-form v-on:submit="createPreset" placeholder="Preset Name" buttonText="Create"></input-form>
+      <input-form
+        v-on:submit="createPreset"
+        placeholder="Preset Name"
+        :buttonText="'Create'"
+        :buttonIconName="smallInterface ? 'add' : ''"
+      ></input-form>
     </div>
     <div class="menu-item-row">
       <p class="text" v-if="presetsDisabled">No presets saved</p>
@@ -15,6 +20,7 @@
           :key="preset.id"
           :preset="preset"
           :editMode="currentlyEditedPreset == preset.id"
+          :small-interface="smallInterface"
           v-on:load-preset="loadPreset"
           v-on:update-preset="updatePreset"
           v-on:delete-preset="deletePreset"

@@ -8,6 +8,7 @@
           :key="history.id"
           :history="history"
           :current-date="currentDate"
+          :small-interface="smallInterface"
           v-on:load-selected-history="loadSelectedHistory"
         ></stream-history-item>
       </list>

@@ -18,5 +18,7 @@ export default {
   menu: 'menu',
   favorite: 'favorite',
   unfavorite: 'favorite_border',
-  settings: 'settings'
+  settings: 'settings',
+  apply: 'done',
+  add: 'add'
 }

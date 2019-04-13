@@ -3,8 +3,8 @@
     <div class="menu-item-row">
       <input-form
         placeholder="Twitch channel"
-        :buttonText="'Favorite'"
         v-on:submit="addFavorite"
+        :buttonText="'Favorite'"
         :buttonIconName="smallInterface ? 'favorite' : ''"
       ></input-form>
     </div>
@@ -23,7 +23,14 @@
                 title="Remove channel from favorites"
                 @click.native="$emit('unfavorite-channel', favorite.streamName)"
               />
+              <icon-button
+                v-if="smallInterface"
+                :iconName="$options.icons.play"
+                :buttonClasses="'button--accent'"
+                @click.native="loadSelectedFavorite(favorite.streamName)"
+              />
               <standard-button
+                v-else
                 :buttonClasses="'button--accent button--text'"
                 @click.native="loadSelectedFavorite(favorite.streamName)"
               >Watch</standard-button>
