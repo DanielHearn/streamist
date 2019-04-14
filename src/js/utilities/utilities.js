@@ -1,9 +1,9 @@
 import { config, defaultData } from 'Js/config'
 
-export const generateID = function (length) {
+export const generateID = function () {
   return Math.random()
     .toString(36)
-    .slice(-length)
+    .slice(5)
 }
 
 export const getDefault = function (field) {
@@ -24,6 +24,14 @@ export const log = function (output) {
 export const warn = function (output) {
   if (config.logging) {
     console.warn(output)
+  }
+}
+
+export const createStreamObject = function (streamName, id) {
+  return {
+    streamName: streamName,
+    embedPlayerID: `embed-player-${streamName}-${id}`,
+    index: id
   }
 }
 

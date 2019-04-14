@@ -19,7 +19,8 @@ import {
   log,
   warn,
   getDefault,
-  toggleFullscreen
+  toggleFullscreen,
+  createStreamObject
 } from 'Js/utilities'
 import {
   validateHistory,
@@ -76,6 +77,21 @@ export default {
       iconName: Icons.settings
     }
   ],
+  appName: {
+    formatted: 'Manytwitch',
+    lowercase: 'manytwitch'
+  },
+  config: {
+    maxHistoryLength: 20
+  },
+  storage: {
+    fields: {
+      options: 'options',
+      presets: 'stream_presets',
+      history: 'stream_history',
+      favorites: `channel_favorites`
+    }
+  },
   data: function () {
     return {
       streams: [],
@@ -97,9 +113,6 @@ export default {
         menuVisible: true,
         startMuted: true,
         currentLayout: { id: 'grid', name: 'Grid' }
-      },
-      config: {
-        maxHistoryLength: 20
       }
     }
   },
@@ -112,6 +125,8 @@ export default {
   },
   methods: {
     toggleFullscreen: toggleFullscreen,
+    createStreamObject: createStreamObject,
+
     addStreamFromNav: function (e, streamName) {
       e.preventDefault()
       if (!streamName) {
@@ -120,17 +135,10 @@ export default {
       this.addStream(streamName)
     },
     addStream: function (streamName) {
-      const stream = this.createStreamObject(streamName)
+      const stream = this.createStreamObject(streamName, generateID())
       this.updateStreams(this.streams.concat([stream]))
       this.addStreamToHistory(streamName)
       this.setHistory(this.streamHistory)
-    },
-    createStreamObject: function (streamName) {
-      return {
-        streamName: streamName,
-        embedPlayerID: `embed-player-${streamName}-${this.streams.length}`,
-        index: this.streams.length
-      }
     },
     updateStreams: function (updatedStreams) {
       this.streams = updatedStreams
@@ -160,18 +168,21 @@ export default {
     },
     storeOptions: function (options) {
       if (validateOptions(options)) {
-        localStorage.setItem('manytwitch_options', JSON.stringify(options))
+        localStorage.setItem(
+          this.$options.storage.fields.options,
+          JSON.stringify(options)
+        )
       }
     },
     loadOptions: function (options) {
       this.options = options
     },
     getStoredOptions: function () {
-      return localStorage.getItem('manytwitch_options')
+      return localStorage.getItem(this.$options.storage.fields.options)
     },
 
     getStoredPresets: function () {
-      return localStorage.getItem('manytwitch_presets')
+      return localStorage.getItem(this.$options.storage.fields.presets)
     },
     loadStreamsFromPreset: function (preset) {
       this.streams = []
@@ -181,7 +192,10 @@ export default {
     },
     storePresets: function (presets) {
       if (validatePresets(presets)) {
-        localStorage.setItem('manytwitch_presets', JSON.stringify(presets))
+        localStorage.setItem(
+          this.$options.storage.fields.presets,
+          JSON.stringify(presets)
+        )
       }
     },
     loadPresets: function (newPresets) {
@@ -196,7 +210,7 @@ export default {
     addStreamToFavorites: function (streamName) {
       let newFavorites = this.streamFavorites
       const stream = {
-        id: generateID(8),
+        id: generateID(),
         streamName: streamName
       }
       newFavorites = newFavorites.filter(streamFavoriteItem => {
@@ -217,11 +231,14 @@ export default {
       this.addStream(streamName)
     },
     getStoredFavorites: function () {
-      return localStorage.getItem('stream_favorites')
+      return localStorage.getItem(this.$options.storage.fields.favorites)
     },
     storeFavorites: function (favorites) {
       if (validateFavorites(favorites)) {
-        localStorage.setItem('stream_favorites', JSON.stringify(favorites))
+        localStorage.setItem(
+          this.$options.storage.fields.favorites,
+          JSON.stringify(favorites)
+        )
       }
     },
     loadFavorites: function (streamFavorites) {
@@ -237,14 +254,14 @@ export default {
     addStreamToHistory: function (streamName) {
       let newHistory = this.streamHistory
       const stream = {
-        id: generateID(8),
+        id: generateID(),
         streamName: streamName,
         dateAdded: new Date()
       }
       newHistory = newHistory.filter(streamHistoryItem => {
         return streamHistoryItem.streamName !== streamName
       })
-      if (newHistory.length < this.config.maxHistoryLength) {
+      if (newHistory.length < this.$options.config.maxHistoryLength) {
         newHistory = newHistory.concat([stream])
       } else {
         newHistory = newHistory.slice(1, newHistory.length).concat([stream])
@@ -258,7 +275,7 @@ export default {
       this.addStream(streamName)
     },
     getStoredHistory: function () {
-      return localStorage.getItem('stream_history')
+      return localStorage.getItem(this.$options.storage.fields.history)
     },
     storeHistory: function (history) {
       const formattedHistory = history
@@ -268,7 +285,10 @@ export default {
         }
       }
       if (validateHistory(formattedHistory)) {
-        localStorage.setItem('stream_history', JSON.stringify(formattedHistory))
+        localStorage.setItem(
+          this.$options.storage.fields.history,
+          JSON.stringify(formattedHistory)
+        )
       }
     },
     loadHistory: function (streamHistory) {

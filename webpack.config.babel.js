@@ -17,7 +17,7 @@ module.exports = {
     main: ['@babel/polyfill', './src/js/manytwitch.js']
   },
   output: {
-    filename: '[name].[hash].js',
+    filename: '[name].[hash].js?dh-1',
     path: path.resolve(__dirname, 'dist/js')
   },
   devServer: {

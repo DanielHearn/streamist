@@ -70,7 +70,7 @@ export default {
       return {
         name: presetName,
         streams: presetStreams,
-        id: generateID(8)
+        id: generateID()
       }
     },
     createEmptyPreset: function (presetName) {
