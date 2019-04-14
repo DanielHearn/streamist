@@ -23,6 +23,7 @@ input {
 }
 
 button {
+  display: flex;
   color: $white;
   border: 0;
   cursor: pointer;
@@ -53,9 +54,6 @@ select {
 }
   
 .button--accent {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background: $accent-light;
   @include transition(background $transition-time ease-in-out, border $transition-time ease-in-out);
   &:hover {
