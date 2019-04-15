@@ -95,7 +95,28 @@
         v-on:favorite-channel="addStreamToFavorites"
         v-on:unfavorite-channel="unfavoriteStream"
       >
-        <intro slot="placeholder"/>
+        <intro slot="placeholder">
+          <list slot="content" :layout="'column'">
+            <list-item
+              v-for="(channel, index) in homepageStreams.slice(0, 5)"
+              class="preset-listing-item"
+              :key="index"
+            >
+              <template slot="header">
+                <div class="column">
+                  <p>{{ channel.user_name }}</p>
+                </div>
+                <div class="column">
+                  <icon-button
+                    :iconName="$options.icons.play"
+                    :buttonClasses="'button--accent'"
+                    @click.native="addStream(channel.user_name.toLowerCase())"
+                  />
+                </div>
+              </template>
+            </list-item>
+          </list>
+        </intro>
       </streams>
       <chats :streams="streams" :options="options"></chats>
     </div>

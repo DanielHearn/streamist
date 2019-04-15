@@ -1,5 +1,7 @@
 import IconButton from 'Components/inputs/buttons/iconButton/IconButton.vue'
 import InputForm from 'Components/inputs/inputForm/InputForm.vue'
+import ListItem from 'Components/list/listItem/ListItem.vue'
+import List from 'Components/list/list/List.vue'
 
 import LayoutMenu from 'Components/menu/layoutMenu/LayoutMenu.vue'
 import HistoryMenu from 'Components/menu/historyMenu/HistoryMenu.vue'
@@ -48,7 +50,9 @@ export default {
     AboutMenu,
     FavoritesMenu,
     SettingsMenu,
-    Intro
+    Intro,
+    List,
+    ListItem
   },
   icons: Icons,
   menuItems: [
