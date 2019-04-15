@@ -30,6 +30,8 @@ import {
 } from 'Js/validation'
 import { getTopStreams } from 'Js/twitch'
 
+const localStorage = window.localStorage
+
 export default {
   name: 'manytwitch',
   components: {
@@ -127,27 +129,12 @@ export default {
     toggleFullscreen: toggleFullscreen,
     createStreamObject: createStreamObject,
 
-    addStreamFromNav: function (e, streamName) {
-      e.preventDefault()
-      if (!streamName) {
-        return false
-      }
-      this.addStream(streamName)
-    },
-    addStream: function (streamName) {
-      const stream = this.createStreamObject(streamName, generateID())
-      this.updateStreams(this.streams.concat([stream]))
-      this.addStreamToHistory(streamName)
-      this.setHistory(this.streamHistory)
-    },
-    updateStreams: function (updatedStreams) {
-      this.streams = updatedStreams
-      this.insertURLStreamParams()
-    },
     changeLayout: function (newLayout) {
       if (this.availableLayouts.includes(newLayout)) {
         this.options.currentLayout = newLayout
         this.storeOptions(this.options)
+      } else {
+        log('The specified layout does not exist')
       }
     },
     toggleChat: function () {
@@ -162,6 +149,19 @@ export default {
       this.navVisible = !this.navVisible
     },
 
+    // Stream methods
+    addStream: function (streamName) {
+      const stream = this.createStreamObject(streamName, generateID())
+      this.updateStreams(this.streams.concat([stream]))
+      this.addStreamToHistory(streamName)
+      this.setHistory(this.streamHistory)
+    },
+    updateStreams: function (updatedStreams) {
+      this.streams = updatedStreams
+      this.insertURLStreamParams()
+    },
+
+    // Option methods
     setOptions: function (options) {
       this.loadOptions(options)
       this.storeOptions(options)
@@ -181,6 +181,7 @@ export default {
       return localStorage.getItem(this.$options.storage.fields.options)
     },
 
+    // Preset methods
     getStoredPresets: function () {
       return localStorage.getItem(this.$options.storage.fields.presets)
     },
@@ -201,12 +202,13 @@ export default {
     loadPresets: function (newPresets) {
       this.streamPresets = newPresets
     },
-    updatePresets: function (newPresets) {
+    setPresets: function (newPresets) {
       const presets = newPresets || []
       this.loadPresets(presets)
       this.storePresets(presets)
     },
 
+    // Favorite methods
     addStreamToFavorites: function (streamName) {
       let newFavorites = this.streamFavorites
       const stream = {
@@ -251,6 +253,7 @@ export default {
       this.storeFavorites(streamFavorites)
     },
 
+    // History methods
     addStreamToHistory: function (streamName) {
       let newHistory = this.streamHistory
       const stream = {
@@ -258,9 +261,12 @@ export default {
         streamName: streamName,
         dateAdded: new Date()
       }
+      // Stop duplicate channels in history
       newHistory = newHistory.filter(streamHistoryItem => {
         return streamHistoryItem.streamName !== streamName
       })
+
+      // Limit the amount of history items
       if (newHistory.length < this.$options.config.maxHistoryLength) {
         newHistory = newHistory.concat([stream])
       } else {
@@ -305,6 +311,8 @@ export default {
       this.storeHistory(streamHistory)
     },
 
+    // Querystring methods
+    // Adds current channels into the querystring
     insertURLStreamParams: function () {
       let channelString = ''
       for (const channel in this.streams) {
@@ -323,6 +331,7 @@ export default {
         window.history.pushState({ path: newurl }, '', newurl)
       }
     },
+    // Gets the current channels from the querystring
     getURLStreamParam: function () {
       const urlParams = new URLSearchParams(window.location.search.substring(1))
       const urlStreams = urlParams.get('stream')
@@ -338,6 +347,8 @@ export default {
       }
       return false
     },
+
+    // Storage methods
     getStoredData: function () {
       const storedDataFields = [
         {
@@ -370,12 +381,14 @@ export default {
           validate: validatePresets,
           load: this.loadPresets,
           default: getDefault('streamPresets'),
-          set: this.updatePresets
+          set: this.setPresets
         }
       ]
 
       console.group('Getting Stored Data')
 
+      // Iterate through stored data and load to data if valid
+      // otherwise load the default data and store it
       storedDataFields.forEach(field => {
         let fieldLoaded = false
         const rawFieldData = field.getStored()
@@ -398,6 +411,14 @@ export default {
 
       console.groupEnd()
     },
+    clearData: function () {
+      this.setOptions(getDefault('options'))
+      this.setFavorites(getDefault('streamFavorites'))
+      this.setHistory(getDefault('streamHistory'))
+      this.setPresets(getDefault('streamPresets'))
+    },
+
+    // Other methods
     checkMovement: function () {
       this.appHover = true
       this.appHoverTracker += 1
@@ -415,12 +436,6 @@ export default {
       if (topStreams.length) {
         this.homepageStreams = topStreams
       }
-    },
-    clearData: function () {
-      this.setOptions(getDefault('options'))
-      this.setFavorites(getDefault('streamFavorites'))
-      this.setHistory(getDefault('streamHistory'))
-      this.updatePresets(getDefault('streamPresets'))
     },
     checkScreenSize: function () {
       this.smallInterface = window.innerWidth <= 1000
@@ -448,14 +463,16 @@ export default {
     window.addEventListener('resize', this.checkScreenSize)
 
     // Alert users with small screens about potential incompatibility
+    const mobileWarning = `${
+      this.$options.appName.formatted
+    } does not currently support mobile devices. Please use a device with a larger screen.`
     setTimeout(() => {
       if (window.innerWidth < 800 || window.innerHeight < 600) {
-        window.alert(
-          'Manytwitch does not currently support mobile devices. Please use a device with a larger screen.'
-        )
+        window.alert(mobileWarning)
       }
     }, 1000)
 
+    // Check if initial streams from querystring
     if (!this.streams.length) {
       this.getHomePageContent()
     }
@@ -464,6 +481,7 @@ export default {
     // Load stored data and load default data if stored data isn't available
     this.getStoredData()
 
+    // Set mobile interface on small screens
     this.checkScreenSize()
 
     // Get streams from url querystring

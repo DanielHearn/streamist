@@ -13,7 +13,7 @@
           class="channel-input"
           :buttonText="'Watch'"
           :buttonIconName="smallInterface ? 'play' : ''"
-          v-on:submit="addStreamFromNav"
+          v-on:submit="addStream"
         ></input-form>
       </div>
       <div class="nav-right">

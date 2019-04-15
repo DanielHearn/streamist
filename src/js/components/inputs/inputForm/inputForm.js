@@ -40,7 +40,8 @@ export default {
   },
   methods: {
     submit: function (e) {
-      this.$emit('submit', e, this.inputValue)
+      e.preventDefault()
+      this.$emit('submit', this.inputValue)
       this.inputValue = ''
     }
   }
