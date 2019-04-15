@@ -1,6 +1,5 @@
 import draggable from 'vuedraggable'
 import StreamItem from 'Components/stream/streamItem/StreamItem.vue'
-import Intro from 'Components/intro/Intro.vue'
 import IconButton from 'Components/inputs/buttons/iconButton/IconButton.vue'
 
 import Icons from 'Js/icons'
@@ -10,7 +9,6 @@ export default {
   components: {
     draggable,
     StreamItem,
-    Intro,
     IconButton
   },
   props: {

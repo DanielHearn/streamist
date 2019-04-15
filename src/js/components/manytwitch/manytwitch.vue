@@ -94,7 +94,9 @@
         v-on:toggle-nav="toggleNav"
         v-on:favorite-channel="addStreamToFavorites"
         v-on:unfavorite-channel="unfavoriteStream"
-      ></streams>
+      >
+        <intro slot="placeholder"/>
+      </streams>
       <chats :streams="streams" :options="options"></chats>
     </div>
   </div>

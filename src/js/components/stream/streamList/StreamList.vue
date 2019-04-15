@@ -32,7 +32,7 @@
         v-on:unfavorite-channel="unfavoriteChannel"
       />
     </draggable>
-    <intro v-if="!streams.length"/>
+    <slot v-else name="placeholder"></slot>
   </div>
 </template>
 
