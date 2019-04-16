@@ -96,22 +96,27 @@
         v-on:unfavorite-channel="unfavoriteStream"
       >
         <intro slot="placeholder">
-          <list slot="content" :layout="'column'">
+          <list slot="content" v-if="!smallInterface" :layout="'column'" class="intro-list">
             <list-item
-              v-for="(channel, index) in homepageStreams.slice(0, 5)"
-              class="preset-listing-item"
+              v-for="(stream, index) in homepageStreams.slice(0, 5)"
+              class="intro-list-item"
               :key="index"
             >
               <template slot="header">
                 <div class="column">
-                  <p>{{ channel.user_name }}</p>
+                  <p>{{ stream.user_name }}</p>
                 </div>
                 <div class="column">
                   <icon-button
                     :iconName="$options.icons.play"
                     :buttonClasses="'button--accent'"
-                    @click.native="addStream(channel.user_name.toLowerCase())"
+                    @click.native="addStream(stream.user_name.toLowerCase())"
                   />
+                </div>
+              </template>
+              <template slot="content" v-if="stream.game_name && stream.viewer_count">
+                <div class="column">
+                  <p>Playing {{stream.game_name}} with {{stream.viewer_count}} viewers</p>
                 </div>
               </template>
             </list-item>

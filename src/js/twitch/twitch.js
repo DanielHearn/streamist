@@ -1,8 +1,9 @@
 const clientID = 'w7r2pt1g7eqz2ctv34huqvpwzzcqvl'
 const apiRoot = 'https://api.twitch.tv/helix/'
+const fetch = window.fetch
 
-export function getTopStreams () {
-  const url = `${apiRoot}/streams`
+export function getTopStreams (quantity = 20) {
+  const url = `${apiRoot}streams?first=${quantity}`
   return fetch(url, {
     method: 'GET', // *GET, POST, PUT, DELETE, etc.
     mode: 'cors', // no-cors, cors, *same-origin
@@ -13,4 +14,17 @@ export function getTopStreams () {
   })
     .then(response => response.json())
     .then(response => response.data)
+}
+
+export function getGameInfo (ids) {
+  const url = `${apiRoot}games?id=${ids.join('&id=')}`
+  console.log(url)
+  return fetch(url, {
+    method: 'GET', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, cors, *same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    headers: {
+      'Client-id': clientID
+    }
+  }).then(response => response.json())
 }

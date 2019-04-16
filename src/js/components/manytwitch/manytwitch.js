@@ -31,7 +31,7 @@ import {
   validateOptions,
   validateFavorites
 } from 'Js/validation'
-import { getTopStreams } from 'Js/twitch'
+import { getTopStreams, getGameInfo } from 'Js/twitch'
 
 const localStorage = window.localStorage
 
@@ -438,9 +438,28 @@ export default {
       }, 3000)
     },
     getHomePageContent: async function () {
-      const topStreams = await getTopStreams()
+      const topStreams = await getTopStreams(20)
       if (topStreams.length) {
-        this.homepageStreams = topStreams
+        const gameIds = topStreams.map(stream => {
+          return stream.game_id
+        })
+        if (gameIds.length) {
+          // Get game info based on game ids
+          const gameInfo = await getGameInfo(gameIds)
+          if (gameInfo.data) {
+            // Map game info to streams
+            const streamInfo = topStreams.map((stream, index) => {
+              if (gameInfo.data.hasOwnProperty(index)) {
+                const game = gameInfo.data[index]
+                if (game.name) {
+                  stream.game_name = game.name
+                }
+              }
+              return stream
+            })
+            this.homepageStreams = streamInfo
+          }
+        }
       }
     },
     checkScreenSize: function () {
