@@ -116,6 +116,7 @@ export default {
       navVisible: true,
       smallInterface: false,
       homepageStreams: [],
+      twitchGameInfo: [],
       options: {
         chatVisible: true,
         menuVisible: true,
@@ -438,7 +439,7 @@ export default {
       }, 3000)
     },
     getHomePageContent: async function () {
-      const topStreams = await getTopStreams(20)
+      const topStreams = await getTopStreams(5)
       if (topStreams.length) {
         const gameIds = topStreams.map(stream => {
           return stream.game_id
@@ -447,10 +448,21 @@ export default {
           // Get game info based on game ids
           const gameInfo = await getGameInfo(gameIds)
           if (gameInfo.data) {
-            // Map game info to streams
-            const streamInfo = topStreams.map((stream, index) => {
+            // Make game info object mapped by id
+            const mappedGameinfo = {}
+            for (let index in gameInfo.data) {
               if (gameInfo.data.hasOwnProperty(index)) {
                 const game = gameInfo.data[index]
+                if (game.id) {
+                  mappedGameinfo[game.id] = { ...game }
+                }
+              }
+            }
+            this.twitchGameInfo = mappedGameinfo
+            // Map game info to streams if available
+            const streamInfo = topStreams.map(stream => {
+              if (mappedGameinfo.hasOwnProperty(stream.game_id)) {
+                const game = mappedGameinfo[stream.game_id]
                 if (game.name) {
                   stream.game_name = game.name
                 }
