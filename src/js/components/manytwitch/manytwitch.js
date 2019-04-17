@@ -439,7 +439,11 @@ export default {
       }, 3000)
     },
     getHomePageContent: async function () {
-      const topStreams = await getTopStreams(5)
+      const topStreams = await getTopStreams(4)
+      const thumbnailWidth = '480'
+      const thumbnailHeight = '270'
+      const twitchUrlRoot = 'https://twitch.tv/'
+
       if (topStreams.length) {
         const gameIds = topStreams.map(stream => {
           return stream.game_id
@@ -463,6 +467,12 @@ export default {
             const streamInfo = topStreams.map(stream => {
               if (mappedGameinfo.hasOwnProperty(stream.game_id)) {
                 const game = mappedGameinfo[stream.game_id]
+                if (stream.thumbnail_url) {
+                  stream.thumbnail = stream.thumbnail_url
+                    .replace('{width}', thumbnailWidth)
+                    .replace('{height}', thumbnailHeight)
+                  stream.url = `${twitchUrlRoot}${stream.user_name}`
+                }
                 if (game.name) {
                   stream.game_name = game.name
                 }

@@ -5,9 +5,9 @@ const fetch = window.fetch
 export function getTopStreams (quantity = 20) {
   const url = `${apiRoot}streams?first=${quantity}`
   return fetch(url, {
-    method: 'GET', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, cors, *same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    method: 'GET',
+    mode: 'cors',
+    cache: 'no-cache',
     headers: {
       'Client-id': clientID
     }
@@ -20,9 +20,9 @@ export function getGameInfo (ids) {
   const url = `${apiRoot}games?id=${ids.join('&id=')}`
   console.log(url)
   return fetch(url, {
-    method: 'GET', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, cors, *same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    method: 'GET',
+    mode: 'cors',
+    cache: 'no-cache',
     headers: {
       'Client-id': clientID
     }

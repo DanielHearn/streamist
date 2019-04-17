@@ -96,30 +96,33 @@
         v-on:unfavorite-channel="unfavoriteStream"
       >
         <intro slot="placeholder">
-          <list slot="content" v-if="!smallInterface" :layout="'column'" class="intro-list">
-            <list-item
+          <list slot="content" :layout="'grid'" class="intro-list">
+            <div
               v-for="(stream, index) in homepageStreams.slice(0, 5)"
-              class="intro-list-item"
               :key="index"
+              @click="addStream(stream.user_name.toLowerCase())"
+              class="intro-list-item-container"
             >
-              <template slot="header">
-                <div class="column">
-                  <p>{{ stream.user_name }}</p>
-                </div>
-                <div class="column">
-                  <icon-button
-                    :iconName="$options.icons.play"
-                    :buttonClasses="'button--accent'"
-                    @click.native="addStream(stream.user_name.toLowerCase())"
-                  />
-                </div>
-              </template>
-              <template slot="content" v-if="stream.game_name && stream.viewer_count">
-                <div class="column">
-                  <p>Playing {{stream.game_name}} with {{stream.viewer_count}} viewers</p>
-                </div>
-              </template>
-            </list-item>
+              <div v-if="!smallInterface && stream.thumbnail" class="intro-list-item-image">
+                <img :src="stream.thumbnail" alt>
+              </div>
+              <list-item class="intro-list-item">
+                <template slot="header">
+                  <div class="column">
+                    <p>{{ stream.user_name }}</p>
+                  </div>
+                  <div class="column">
+                    <icon-button :iconName="$options.icons.play" :buttonClasses="'button--accent'"/>
+                  </div>
+                </template>
+                <template slot="content" v-if="stream.game_name && stream.viewer_count">
+                  <div class="column stream-details">
+                    <span>{{stream.game_name}}</span>
+                    <span class="viewer">{{stream.viewer_count}} Viewers</span>
+                  </div>
+                </template>
+              </list-item>
+            </div>
           </list>
         </intro>
       </streams>

@@ -46,9 +46,21 @@ nav {
 }
 
 .intro-list {
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1em;
+  .intro-list-item-container {
+    cursor: pointer;
+  }
   .intro-list-item {
+    .intro-list-item-image {
+      background: $black-dark;
+    }
     .item-content {
-      p {
+      .stream-details{
+        display: flex;
+        justify-content: space-between;
+      }
+      span {
         margin: 0;
       }
     }
@@ -60,5 +72,9 @@ nav {
     .title {
       display: none;
     }
+  }
+  .intro-list {
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 0.5em;
   }
 }
