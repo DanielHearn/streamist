@@ -79,6 +79,11 @@
       width: 100%;
     }
   }
+  &.streams--3, &.streams--5, &.streams--7, &.streams--9, &.streams--11 {
+    .layout-demo-stream:first-of-type {
+      width: 100%;
+    }
+  }
   .layout-demo-stream {
     width: 50%;
   }

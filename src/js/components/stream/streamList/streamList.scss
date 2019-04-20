@@ -23,6 +23,11 @@
       width: 100%;
     }
   }
+  &.streams--3, &.streams--5, &.streams--7, &.streams--9, &.streams--11 {
+    .stream:first-of-type {
+      width: 100%;
+    }
+  }
   .stream {
     width: 50%;
   }
