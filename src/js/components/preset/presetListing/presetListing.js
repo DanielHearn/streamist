@@ -74,8 +74,7 @@ export default {
     toggleEditMode: function () {
       this.$emit('edit-preset', this.preset.id)
     },
-    newPresetStream: function (e, newPresetStreamName) {
-      e.preventDefault()
+    newPresetStream: function (newPresetStreamName) {
       if (!newPresetStreamName) {
         return false
       }

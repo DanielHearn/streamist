@@ -36,8 +36,7 @@ export default {
     loadSelectedFavorite: function (streamName) {
       this.$emit('load-selected-favorite', streamName)
     },
-    addFavorite: function (e, streamName) {
-      e.preventDefault()
+    addFavorite: function (streamName) {
       if (streamName) {
         this.$emit('favorite-channel', streamName)
       }

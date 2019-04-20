@@ -39,8 +39,8 @@ export default {
     }
   },
   methods: {
-    submit: function (e) {
-      e.preventDefault()
+    submit: function () {
+      // e.preventDefault()
       this.$emit('submit', this.inputValue)
       this.inputValue = ''
     }

@@ -90,7 +90,6 @@ export default {
       this.$emit('update-presets', newPresets)
     },
     createPreset: function (e, presetName) {
-      e.preventDefault()
       if (!presetName) {
         return false
       }

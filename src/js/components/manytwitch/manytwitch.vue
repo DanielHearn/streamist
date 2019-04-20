@@ -63,7 +63,7 @@
             :stream-presets="streamPresets"
             :streams="streams"
             :small-interface="smallInterface"
-            v-on:update-presets="updatePresets"
+            v-on:update-presets="setPresets"
             v-on:load-preset="loadStreamsFromPreset"
             v-on:close-menu="closeMenu"
           ></preset-menu>
