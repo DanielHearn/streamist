@@ -28,6 +28,7 @@ button {
   border: 0;
   cursor: pointer;
   letter-spacing: 0.04em;
+  justify-content: center;
   &:disabled {
     background: $dark-grey;
     cursor: not-allowed;
