@@ -89,7 +89,7 @@ export default {
     updatePresets: function (newPresets) {
       this.$emit('update-presets', newPresets)
     },
-    createPreset: function (e, presetName) {
+    createPreset: function (presetName) {
       if (!presetName) {
         return false
       }
