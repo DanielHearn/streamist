@@ -115,6 +115,7 @@ export default {
       appHoverTracker: 0,
       navVisible: true,
       smallInterface: false,
+      topStreams: [],
       homepageStreams: [],
       twitchGameInfo: [],
       options: {
@@ -439,12 +440,13 @@ export default {
       }, 3000)
     },
     getHomePageContent: async function () {
-      const topStreams = await getTopStreams(4)
+      const topStreams = await getTopStreams(20)
       const thumbnailWidth = '480'
       const thumbnailHeight = '270'
       const twitchUrlRoot = 'https://twitch.tv/'
 
       if (topStreams.length) {
+        this.topStreams = topStreams
         const gameIds = topStreams.map(stream => {
           return stream.game_id
         })
@@ -463,6 +465,7 @@ export default {
               }
             }
             this.twitchGameInfo = mappedGameinfo
+
             // Map game info to streams if available
             const streamInfo = topStreams.map(stream => {
               if (mappedGameinfo.hasOwnProperty(stream.game_id)) {
@@ -479,7 +482,7 @@ export default {
               }
               return stream
             })
-            this.homepageStreams = streamInfo
+            this.homepageStreams = streamInfo.slice(0, 4)
           }
         }
       }

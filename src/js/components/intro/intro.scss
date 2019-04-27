@@ -4,19 +4,30 @@
   text-align: center;
   color: $white;
   padding: 1em;
+}
+
+.intro-title {
+  font-size: $title-size;
+  font-weight: $title-weight;
+  margin: 0.25em 0;
+}
+.intro-subheading {
+  font-size: $heading-size;
+  font-weight: $heading-weight;
+  margin-top: 0.5em;
+  margin-bottom: 1.5em;
+}
+.intro-text {
+  font-size: $sub-heading-size;
+  font-weight: $sub-heading-weight;
+}
+
+
+@media only screen and (max-width: $tablet-width/1.5) {
   .intro-title {
-    font-size: $title-size;
-    font-weight: $title-weight;
-    margin: 0.25em 0;
+    font-size: 1.5em
   }
   .intro-subheading {
-    font-size: $heading-size;
-    font-weight: $heading-weight;
-    margin-top: 0.5em;
-    margin-bottom: 1.5em;
-  }
-  .intro-text {
-    font-size: $sub-heading-size;
-    font-weight: $sub-heading-weight;
+    display: none;
   }
 }

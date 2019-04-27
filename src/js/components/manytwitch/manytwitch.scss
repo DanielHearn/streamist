@@ -46,15 +46,17 @@ nav {
 }
 
 .intro-list {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 40%);
   grid-gap: 1em;
+  justify-content: center;
   .intro-list-item-container {
     cursor: pointer;
-  }
-  .intro-list-item {
     .intro-list-item-image {
       background: $black-dark;
+      width: 100%;
     }
+  }
+  .intro-list-item {
     .item-content {
       .stream-details{
         display: flex;
@@ -68,13 +70,21 @@ nav {
 }
 
 @media only screen and (max-width: $tablet-width) {
-  .nav {
-    .title {
-      display: none;
+  #manytwitch {
+    .nav {
+      .title {
+        display: none;
+      }
+      .channel-input input {
+        max-width: 5em;
+      }
     }
-  }
-  .intro-list {
-    grid-template-columns: repeat(1, 1fr);
-    grid-gap: 0.5em;
+    .intro-list {
+      grid-template-columns: repeat(1, 1fr);
+      grid-gap: 0.5em;
+    }
+    .button--accent, .button--secondary {
+      padding: 0.3em 0.5em;
+    }
   }
 }

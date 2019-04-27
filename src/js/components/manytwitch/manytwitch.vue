@@ -9,7 +9,7 @@
       <div class="nav-center">
         <h2 class="title">MT</h2>
         <input-form
-          placeholder="Twitch channel"
+          :placeholder="smallInterface ? 'Channel' : 'Twitch channel'"
           class="channel-input"
           :buttonText="'Watch'"
           :buttonIconName="smallInterface ? 'play' : ''"
@@ -98,14 +98,17 @@
         <intro slot="placeholder">
           <list slot="content" :layout="'grid'" class="intro-list">
             <div
-              v-for="(stream, index) in homepageStreams.slice(0, 5)"
+              v-for="(stream, index) in homepageStreams"
               :key="index"
               @click="addStream(stream.user_name.toLowerCase())"
               class="intro-list-item-container"
             >
-              <div v-if="!smallInterface && stream.thumbnail" class="intro-list-item-image">
-                <img :src="stream.thumbnail" alt>
-              </div>
+              <img
+                v-if="!smallInterface && stream.thumbnail"
+                class="intro-list-item-image"
+                :src="stream.thumbnail"
+                :alt="stream.user_name + '\'s stream thumbnail'"
+              >
               <list-item class="intro-list-item">
                 <template slot="header">
                   <div class="column">
