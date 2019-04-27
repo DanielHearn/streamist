@@ -78,12 +78,15 @@ nav {
       .channel-input input {
         max-width: 5em;
       }
+      button {
+        margin: 0 0.2em;
+      }
     }
     .intro-list {
       grid-template-columns: repeat(1, 1fr);
       grid-gap: 0.5em;
     }
-    .button--accent, .button--secondary {
+    .button--accent:not(.details-summary__header), .button--secondary {
       padding: 0.3em 0.5em;
     }
   }

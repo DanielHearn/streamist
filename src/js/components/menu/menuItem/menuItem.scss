@@ -49,3 +49,9 @@
     width: $menu-content-width*0.85;
   }
 }
+
+@media only screen and (max-width: $tablet-width*0.75) {
+  .menu-item {
+    width: $menu-content-width*0.75;
+  }
+}

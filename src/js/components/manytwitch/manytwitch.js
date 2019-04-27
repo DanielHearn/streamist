@@ -148,10 +148,18 @@ export default {
     toggleChat: function () {
       this.options.chatVisible = !this.options.chatVisible
       this.storeOptions(this.options)
+      if (this.smallInterface && this.options.menuVisible) {
+        this.options.menuVisible = !this.options.menuVisible
+        this.storeOptions(this.options)
+      }
     },
     toggleMenu: function () {
       this.options.menuVisible = !this.options.menuVisible
       this.storeOptions(this.options)
+      if (this.smallInterface && this.options.chatVisible) {
+        this.options.chatVisible = !this.options.chatVisible
+        this.storeOptions(this.options)
+      }
     },
     toggleNav: function () {
       this.navVisible = !this.navVisible
@@ -488,7 +496,7 @@ export default {
       }
     },
     checkScreenSize: function () {
-      this.smallInterface = window.innerWidth <= 1000
+      this.smallInterface = window.innerWidth <= 800
     }
   },
   mounted: function () {
@@ -512,6 +520,8 @@ export default {
 
     window.addEventListener('resize', this.checkScreenSize)
 
+    // Disable as mobile should be usable now as of 27/04/19
+    /*
     // Alert users with small screens about potential incompatibility
     const mobileWarning = `${
       this.$options.appName.formatted
@@ -520,7 +530,7 @@ export default {
       if (window.innerWidth < 800 || window.innerHeight < 600) {
         window.alert(mobileWarning)
       }
-    }, 1000)
+    }, 1000) */
 
     // Check if initial streams from querystring
     if (!this.streams.length) {
