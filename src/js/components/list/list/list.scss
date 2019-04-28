@@ -12,16 +12,10 @@
   &--layout-column, &--layout-column > .draggable {
     flex-wrap: nowrap;
     flex-direction: column;
-    .list-item:first-of-type {
-      margin-top: 0;
-    }
   }
   &--layout-row, &--layout-row > .draggable {
     flex-wrap: nowrap;
     flex-direction: row;
-    .list-item:first-of-type {
-      margin-top: 0;
-    }
   }
 }
 

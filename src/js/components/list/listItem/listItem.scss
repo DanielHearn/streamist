@@ -45,6 +45,9 @@
       margin-right: 0;
     }
   }
+  p {
+    word-break: break-word;
+  }
   .item-content {
     padding: 0.5em;
     .sub-text {
