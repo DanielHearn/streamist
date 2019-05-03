@@ -3,7 +3,6 @@
 
 .control-bar {
   @include border-radius;
-  position: absolute;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -12,14 +11,7 @@
   padding: $content-padding/4 $content-padding/2;
   cursor: default;
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.15);
-  right: 2em;
-  top: 2em;
-  opacity: 0;
   z-index: 10;
-  transition: opacity 0.5s ease-in-out;
-  &.active, &:hover {
-    opacity: 1;
-  }
   p, button {
     margin: 0;
   }
@@ -28,14 +20,5 @@
     &:hover {
       background: $accent-dark;
     }
-  }
-  &:hover {
-    z-index: 20;
-  }
-}
-
-@media only screen and (max-width: $tablet-width) {
-  .control-bar {
-    padding: $content-padding/6 $content-padding/4;
   }
 }
