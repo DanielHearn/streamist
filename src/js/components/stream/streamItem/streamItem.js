@@ -111,15 +111,9 @@ export default {
     },
     favoriteChannel: function () {
       if (this.favorited) {
-        this.$emit(
-          'unfavorite-channel',
-          this.currentStream.streamName.toLowerCase()
-        )
+        this.$emit('unfavorite-channel', this.stream.streamName.toLowerCase())
       } else {
-        this.$emit(
-          'favorite-channel',
-          this.currentStream.streamName.toLowerCase()
-        )
+        this.$emit('favorite-channel', this.stream.streamName.toLowerCase())
       }
     }
   },
