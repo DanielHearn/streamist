@@ -22,6 +22,11 @@ export default {
       type: String,
       required: false,
       default: ''
+    },
+    warning: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   icons: Icons,

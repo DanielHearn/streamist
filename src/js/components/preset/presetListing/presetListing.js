@@ -40,6 +40,11 @@ export default {
       drag: false
     }
   },
+  computed: {
+    emptyPresetName: function () {
+      return this.presetName.length === 0
+    }
+  },
   icons: Icons,
   watch: {
     presetName: function () {

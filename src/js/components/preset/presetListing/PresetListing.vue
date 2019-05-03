@@ -2,7 +2,12 @@
   <list-item class="preset-listing">
     <template slot="header">
       <div class="column">
-        <input contenteditable="true" type="text" v-model="presetName">
+        <input
+          contenteditable="true"
+          type="text"
+          v-model="presetName"
+          :class="{'input--warning': emptyPresetName}"
+        >
       </div>
       <div class="column">
         <icon-button
@@ -20,6 +25,9 @@
       </div>
     </template>
     <template slot="content">
+      <div style="margin: 0.25em; margin-top: 0.5em;" v-if="emptyPresetName">
+        <p class="text-warning">Enter a name for this preset.</p>
+      </div>
       <div class="input-container space-between">
         <icon-button
           class="button--secondary"
@@ -44,7 +52,7 @@
         />
       </div>
       <div style="margin: 0.25em; margin-top: 0.5em;" v-if="!orderedStreams.length">
-        <p class="text-warning">No streams in preset, edit preset to add streams</p>
+        <p class="text-warning">No streams in preset, edit preset to add streams.</p>
       </div>
       <div v-if="editMode" class="preset-listing-edit">
         <p style="margin-bottom: 0.25em;" class="text-sub-heading">Streams</p>

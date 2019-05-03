@@ -51,6 +51,10 @@ select {
   }
 }
 
+.input--warning {
+  box-shadow: inset 0px -3px 0 0 $red;
+}
+
 .button--fill {
   width: 100%;
 }
