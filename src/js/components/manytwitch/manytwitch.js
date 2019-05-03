@@ -448,10 +448,10 @@ export default {
       }, 3000)
     },
     getHomePageContent: async function () {
-      const topStreams = await getTopStreams(20)
       const thumbnailWidth = '480'
       const thumbnailHeight = '270'
       const twitchUrlRoot = 'https://twitch.tv/'
+      const topStreams = await getTopStreams(20)
 
       if (topStreams.length) {
         this.topStreams = topStreams

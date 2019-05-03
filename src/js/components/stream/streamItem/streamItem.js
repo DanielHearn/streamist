@@ -9,7 +9,7 @@ export default {
     IconButton
   },
   props: {
-    currentStream: {
+    stream: {
       type: Object,
       required: true
     },
@@ -46,24 +46,24 @@ export default {
   },
   computed: {
     streamUrl: function () {
-      return `https://www.twitch.tv/${this.currentStream.streamName}`
+      return `https://www.twitch.tv/${this.stream.streamName}`
     },
     favorited: function () {
       return !!this.streamFavorites.filter(favorite => {
         return (
           favorite.streamName.toLowerCase() ===
-          this.currentStream.streamName.toLowerCase()
+          this.stream.streamName.toLowerCase()
         )
       }).length
     }
   },
   methods: {
     remove: function () {
-      this.$emit('remove-stream', this.currentStream)
+      this.$emit('remove-stream', this.stream)
     },
     refresh: function () {
       const streamPlayer = document.querySelector(
-        `#${this.currentStream.embedPlayerID}`
+        `#${this.stream.embedPlayerID}`
       )
       streamPlayer.innerHTML = ''
       this.displayStream()
@@ -72,21 +72,18 @@ export default {
       try {
         this.displayControls = true
         const playerElement = document.querySelector(
-          `.stream--${this.currentStream.embedPlayerID}`
+          `.stream--${this.stream.embedPlayerID}`
         )
         if (playerElement) {
           playerElement.addEventListener('mousemove', this.checkMovement, false)
         }
 
         const options = {
-          channel: this.currentStream.streamName,
+          channel: this.stream.streamName,
           layout: 'video',
           autoplay: false
         }
-        const playerEmbed = new Twitch.Embed(
-          this.currentStream.embedPlayerID,
-          options
-        )
+        const playerEmbed = new Twitch.Embed(this.stream.embedPlayerID, options)
         playerEmbed.addEventListener(Twitch.Embed.VIDEO_READY, () => {
           const player = playerEmbed.getPlayer()
           player.play()

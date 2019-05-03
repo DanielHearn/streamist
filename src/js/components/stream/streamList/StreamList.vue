@@ -19,9 +19,9 @@
     >
       <stream-item
         class="draggable"
-        v-for="(currStream, index) in streams"
-        :key="currStream.embedPlayerID"
-        :currentStream="currStream"
+        v-for="(stream, index) in streams"
+        :key="stream.embedPlayerID"
+        :stream="stream"
         :numStreams="streams.length"
         :isFirstStream="index === 0"
         :options="options"

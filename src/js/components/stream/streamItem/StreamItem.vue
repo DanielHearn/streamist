@@ -1,5 +1,5 @@
 <template>
-  <div class="stream" :class="[{active: hover}, 'stream--' + currentStream.embedPlayerID]">
+  <div class="stream" :class="[{active: hover}, 'stream--' + stream.embedPlayerID]">
     <div v-if="displayControls">
       <control-bar :class="{active: componentHover || hover}">
         <span
@@ -12,7 +12,7 @@
           :href="streamUrl"
           target="_blank"
           title="Open Twitch stream"
-        >{{ currentStream.streamName }}</a>
+        >{{ stream.streamName }}</a>
         <icon-button
           :iconName="favorited ? $options.icons.favorite : $options.icons.unfavorite"
           :title="favorited ? 'Remove channel from favorites' : 'Add channel to favorites'"
@@ -32,7 +32,7 @@
     </div>
     <div class="stream-main">
       <div class="stream-overlay" :class="{active: hover}"></div>
-      <div class="stream-player" draggable="false" :id="currentStream.embedPlayerID"></div>
+      <div class="stream-player" draggable="false" :id="stream.embedPlayerID"></div>
     </div>
   </div>
 </template>
