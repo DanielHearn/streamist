@@ -23,7 +23,8 @@ import {
   warn,
   getDefault,
   toggleFullscreen,
-  createStreamObject
+  createStreamObject,
+  getUsernameFromThumbnail
 } from 'Js/utilities'
 import {
   validateHistory,
@@ -478,11 +479,18 @@ export default {
             const streamInfo = topStreams.map(stream => {
               if (mappedGameinfo.hasOwnProperty(stream.game_id)) {
                 const game = mappedGameinfo[stream.game_id]
+
                 if (stream.thumbnail_url) {
-                  stream.thumbnail = stream.thumbnail_url
+                  const thumbnailUrl = stream.thumbnail_url
+                  stream.thumbnail = thumbnailUrl
                     .replace('{width}', thumbnailWidth)
                     .replace('{height}', thumbnailHeight)
-                  stream.url = `${twitchUrlRoot}${stream.user_name}`
+
+                  const username = getUsernameFromThumbnail(thumbnailUrl)
+                  if (username) {
+                    stream.clean_username = username
+                    stream.url = `${twitchUrlRoot}${username}`
+                  }
                 }
                 if (game.name) {
                   stream.game_name = game.name

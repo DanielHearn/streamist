@@ -27,6 +27,14 @@ export const warn = function (output) {
   }
 }
 
+export const getUsernameFromThumbnail = function (url) {
+  const urlMatch = url.match(/live_user_(.+)-/)
+  if (urlMatch) {
+    return urlMatch.pop()
+  }
+  return ''
+}
+
 export const createStreamObject = function (streamName, id) {
   return {
     streamName: streamName,
