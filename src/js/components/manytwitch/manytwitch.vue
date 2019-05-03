@@ -100,7 +100,7 @@
             <div
               v-for="(stream, index) in homepageStreams"
               :key="index"
-              @click="addStream(stream.clean_username.toLowerCase())"
+              @click="stream.clean_username ? addStream(stream.clean_username.toLowerCase()) : addStream(stream.user_name.toLowerCase())"
               class="intro-list-item-container"
             >
               <img
