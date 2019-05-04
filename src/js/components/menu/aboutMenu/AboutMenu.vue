@@ -6,7 +6,7 @@
   >
     <div class="menu-item-row">
       <p class="text">
-        Developed by
+        Manytwitch is an open-source project developed by
         <a
           class="text-link"
           href="http://danielhearn.co.uk"
