@@ -97,12 +97,14 @@ export default {
       homepageStreams: []
     }
   },
+  computed: {
+    streamsLength () {
+      return this.$store.state.streams.length
+    }
+  },
   watch: {
-    streams: function () {
-      if (
-        this.$store.state.streams.length === 0 &&
-        this.homepageStreams.length === 0
-      ) {
+    streamsLength: function (oldLength, newLength) {
+      if (newLength === 0 && this.homepageStreams.length === 0) {
         this.getHomePageContent()
       }
     }
