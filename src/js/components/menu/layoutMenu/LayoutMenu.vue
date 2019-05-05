@@ -8,12 +8,11 @@
       <div class="layouts-demo-container">
         <list>
           <layout-demo
-            v-for="layout in availableLayouts"
+            v-for="layout in $options.config.availableLayouts"
             :key="layout.slug"
-            :class="{'active': selectedLayout.id === layout.id}"
+            :class="{'active': $store.state.options.currentLayout.id === layout.id}"
             :layout="layout"
             :streams="indexedStreams"
-            :small-interface="smallInterface"
             v-on:change-layout="changeLayout"
           />
         </list>

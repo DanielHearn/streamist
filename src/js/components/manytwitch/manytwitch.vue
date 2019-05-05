@@ -33,22 +33,17 @@
       </div>
     </nav>
     <div id="main">
-      <!--<side-menu
+      <side-menu
         :class="{'hidden': !$store.state.options.navVisible}"
-        :options="options"
         :menuItems="$options.menuItems"
       >
         <template slot-scope="{ currentMenu, closeMenu }">
           <layout-menu
             v-if="currentMenu === 'Layouts'"
-            :options="options"
-            :streams="streams"
-            :available-layouts="availableLayouts"
-            :small-interface="smallInterface"
-            v-on:change-layout="changeLayout"
+            :streams="$store.state.streams"
             v-on:close-menu="closeMenu"
           ></layout-menu>
-          <favorites-menu
+          <!--<favorites-menu
             v-if="currentMenu === 'Favorites'"
             :stream-favorites="streamFavorites"
             :small-interface="smallInterface"
@@ -81,9 +76,9 @@
             v-if="currentMenu === 'Settings'"
             v-on:close-menu="closeMenu"
             v-on:clear-data="clearData"
-          ></settings-menu>
+          ></settings-menu>-->
         </template>
-      </side-menu>-->
+      </side-menu>
       <streams
         :streams="$store.state.streams"
         :appHover="appHover"
