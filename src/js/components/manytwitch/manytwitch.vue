@@ -124,7 +124,7 @@
           </list>
         </intro>
       </streams>
-      <!--<chats :streams="streams" :options="options"></chats>-->
+      <chats :streams="$store.state.streams"></chats>
     </div>
   </div>
 </template>
