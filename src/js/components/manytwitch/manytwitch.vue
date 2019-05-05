@@ -70,14 +70,14 @@
             v-on:load-selected-history="loadSelectedHistory"
             v-on:clear-history="clearHistory"
             v-on:close-menu="closeMenu"
-          ></history-menu>
+          ></history-menu>-->
           <help-menu v-if="currentMenu === 'Help'" v-on:close-menu="closeMenu"></help-menu>
           <about-menu v-if="currentMenu === 'About'" v-on:close-menu="closeMenu"></about-menu>
           <settings-menu
             v-if="currentMenu === 'Settings'"
             v-on:close-menu="closeMenu"
             v-on:clear-data="clearData"
-          ></settings-menu>-->
+          ></settings-menu>
         </template>
       </side-menu>
       <streams
