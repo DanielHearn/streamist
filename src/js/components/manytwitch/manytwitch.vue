@@ -62,15 +62,12 @@
             v-on:update-presets="setPresets"
             v-on:load-preset="loadStreamsFromPreset"
             v-on:close-menu="closeMenu"
-          ></preset-menu>
+          ></preset-menu>-->
           <history-menu
             v-if="currentMenu === 'History'"
-            :stream-history="streamHistory"
-            :small-interface="smallInterface"
-            v-on:load-selected-history="loadSelectedHistory"
-            v-on:clear-history="clearHistory"
+            :stream-history="$store.state.streamHistory"
             v-on:close-menu="closeMenu"
-          ></history-menu>-->
+          ></history-menu>
           <help-menu v-if="currentMenu === 'Help'" v-on:close-menu="closeMenu"></help-menu>
           <about-menu v-if="currentMenu === 'About'" v-on:close-menu="closeMenu"></about-menu>
           <settings-menu

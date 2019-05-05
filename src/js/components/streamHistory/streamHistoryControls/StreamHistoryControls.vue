@@ -8,14 +8,12 @@
           :key="history.id"
           :history="history"
           :current-date="currentDate"
-          :small-interface="smallInterface"
-          v-on:load-selected-history="loadSelectedHistory"
         ></stream-history-item>
       </list>
     </div>
     <div class="menu-item-row">
       <standard-button
-        @click.native="$emit('clear-history')"
+        @click.native="clearHistory"
         :disabled="!historyAvailable"
         :buttonClasses="'button--secondary'"
       >Clear History</standard-button>
