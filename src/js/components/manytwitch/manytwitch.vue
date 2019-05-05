@@ -1,18 +1,18 @@
 <template>
-  <div id="manytwitch" :class="{'small-interface': smallInterface}">
-    <nav class="nav" :class="{'hidden': !navVisible}">
+  <div id="manytwitch" :class="{'small-interface': $store.state.smallInterface}">
+    <nav class="nav" :class="{'hidden': !$store.state.options.navVisible}">
       <icon-button
-        :iconName="options.menuVisible ? $options.icons.leftArrow : $options.icons.menu"
-        :title="options.menuVisible ? 'Close Menu' : 'Open Menu'"
+        :iconName="$store.state.options.menuVisible ? $options.icons.leftArrow : $options.icons.menu"
+        :title="$store.state.options.menuVisible ? 'Close Menu' : 'Open Menu'"
         @click.native="toggleMenu"
       />
       <div class="nav-center">
         <h2 class="title">MT</h2>
         <input-form
-          :placeholder="smallInterface ? 'Channel' : 'Twitch channel'"
+          :placeholder="$store.state.smallInterface ? 'Channel' : 'Twitch channel'"
           class="channel-input"
           :buttonText="'Watch'"
-          :buttonIconName="smallInterface ? 'play' : ''"
+          :buttonIconName="$store.state.smallInterface ? 'play' : ''"
           v-on:submit="addStream"
         ></input-form>
       </div>
@@ -24,17 +24,17 @@
           @click.native="toggleFullscreen"
         />
         <icon-button
-          :disabled="!streams.length"
-          :iconName="options.chatVisible && streams.length ? $options.icons.rightArrow : $options.icons.chat"
+          :disabled="!$store.state.streams.length"
+          :iconName="$store.state.options.chatVisible && $store.state.streams.length ? $options.icons.rightArrow : $options.icons.chat"
           :buttonClasses="'button--secondary'"
-          :title="options.chatVisible ? 'Close Chat' : 'Open Chat'"
+          :title="$store.state.options.chatVisible ? 'Close Chat' : 'Open Chat'"
           @click.native="toggleChat"
         />
       </div>
     </nav>
     <div id="main">
-      <side-menu
-        :class="{'hidden': !navVisible}"
+      <!--<side-menu
+        :class="{'hidden': !$store.state.options.navVisible}"
         :options="options"
         :menuItems="$options.menuItems"
       >
@@ -83,17 +83,12 @@
             v-on:clear-data="clearData"
           ></settings-menu>
         </template>
-      </side-menu>
+      </side-menu>-->
       <streams
-        :streams="streams"
-        :options="options"
-        :navVisible="navVisible"
+        :streams="$store.state.streams"
         :appHover="appHover"
-        :streamFavorites="streamFavorites"
-        v-on:update-streams="updateStreams"
         v-on:toggle-nav="toggleNav"
-        v-on:favorite-channel="addStreamToFavorites"
-        v-on:unfavorite-channel="unfavoriteStream"
+        v-on:update-streams="updateStreams"
       >
         <intro slot="placeholder">
           <list slot="content" :layout="'grid'" class="intro-list">
@@ -104,7 +99,7 @@
               class="intro-list-item-container"
             >
               <img
-                v-if="!smallInterface && stream.thumbnail"
+                v-if="!$store.state.smallInterface && stream.thumbnail"
                 class="intro-list-item-image"
                 :src="stream.thumbnail"
                 :alt="stream.user_name + '\'s stream thumbnail'"
@@ -129,7 +124,7 @@
           </list>
         </intro>
       </streams>
-      <chats :streams="streams" :options="options"></chats>
+      <!--<chats :streams="streams" :options="options"></chats>-->
     </div>
   </div>
 </template>

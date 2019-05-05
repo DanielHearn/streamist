@@ -5,28 +5,24 @@ function isValidDate (date) {
   return isValid(new Date(date))
 }
 
-const historyItemValidator = new Validator({
+const streamItemValidator = new Validator({
   id: new Rule('string'),
   streamName: new Rule('string'),
   dateAdded: new Rule({
     type: 'string',
     custom: isValidDate
-  })
+  }),
+  embedPlayerID: new Rule({ type: 'string', optional: true }, null)
 })
 
 const historyValidator = new Rule({
   type: 'array',
-  of: historyItemValidator
-})
-
-const favoriteItemValidator = new Validator({
-  id: new Rule('string'),
-  streamName: new Rule('string')
+  of: streamItemValidator
 })
 
 const favoritesValidator = new Rule({
   type: 'array',
-  of: favoriteItemValidator
+  of: streamItemValidator
 })
 
 const presetValidator = new Validator({
@@ -46,6 +42,7 @@ const presetsValidator = new Rule({
 const optionsValidator = new Validator({
   chatVisible: new Rule({ type: 'boolean' }),
   menuVisible: new Rule({ type: 'boolean' }),
+  navVisible: new Rule({ type: 'boolean' }),
   startMuted: new Rule({ type: 'boolean' }),
   currentLayout: {
     id: new Rule('string'),

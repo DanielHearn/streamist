@@ -46,12 +46,6 @@ export default {
     }
   },
   methods: {
-    deletePreset: function (removedPreset) {
-      const newPresets = this.streamPresets.filter(
-        preset => preset.id !== removedPreset.id
-      )
-      this.updatePresets(newPresets)
-    },
     loadPreset: function (preset) {
       this.$emit('load-preset', preset)
     },
@@ -85,9 +79,6 @@ export default {
         }
       }
       this.updatePresets(tempPresets)
-    },
-    updatePresets: function (newPresets) {
-      this.$emit('update-presets', newPresets)
     },
     createPreset: function (presetName) {
       if (!presetName) {
