@@ -15,6 +15,10 @@ export default {
     streams: {
       type: Array,
       required: true
+    },
+    currentLayout: {
+      type: Object,
+      required: true
     }
   },
   config: config,
@@ -28,7 +32,7 @@ export default {
   },
   methods: {
     changeLayout: function (newLayout) {
-      if (newLayout.id !== this.$store.state.options.currentLayout.id) {
+      if (newLayout.id !== this.currentLayout.id) {
         const options = this.$store.state.options
         options.currentLayout = newLayout
         this.$store.commit('setOptions', options)

@@ -41,6 +41,7 @@
           <layout-menu
             v-if="currentMenu === 'Layouts'"
             :streams="$store.state.streams"
+            :current-layout="$store.state.options.currentLayout"
             v-on:close-menu="closeMenu"
           ></layout-menu>
           <!--<favorites-menu

@@ -10,7 +10,7 @@
           <layout-demo
             v-for="layout in $options.config.availableLayouts"
             :key="layout.slug"
-            :class="{'active': $store.state.options.currentLayout.id === layout.id}"
+            :class="{'active': currentLayout.id === layout.id}"
             :layout="layout"
             :streams="indexedStreams"
             v-on:change-layout="changeLayout"
