@@ -5,14 +5,7 @@
     v-on:close-menu-item="$emit('close-menu')"
   >
     <div class="menu-item-row">
-      <stream-favorites-controls
-        :stream-favorites="streamFavorites"
-        :small-interface="smallInterface"
-        v-on:load-selected-favorite="loadSelectedFavorite"
-        v-on:unfavorite-channel="unfavoriteChannel"
-        v-on:favorite-channel="favoriteChannel"
-        v-on:clear-favorites="$emit('clear-favorites')"
-      />
+      <stream-favorites-controls :stream-favorites="streamFavorites"/>
     </div>
   </menu-item>
 </template>

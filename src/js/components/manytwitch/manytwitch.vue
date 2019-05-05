@@ -44,16 +44,12 @@
             :current-layout="$store.state.options.currentLayout"
             v-on:close-menu="closeMenu"
           ></layout-menu>
-          <!--<favorites-menu
+          <favorites-menu
             v-if="currentMenu === 'Favorites'"
-            :stream-favorites="streamFavorites"
-            :small-interface="smallInterface"
-            v-on:load-selected-favorite="loadSelectedFavorite"
-            v-on:clear-favorites="clearFavorites"
-            v-on:favorite-channel="addStreamToFavorites"
-            v-on:unfavorite-channel="unfavoriteStream"
+            :stream-favorites="$store.state.streamFavorites"
             v-on:close-menu="closeMenu"
           ></favorites-menu>
+          <!--
           <preset-menu
             v-if="currentMenu === 'Presets'"
             :stream-presets="streamPresets"

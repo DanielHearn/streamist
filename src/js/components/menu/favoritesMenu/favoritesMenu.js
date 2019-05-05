@@ -12,22 +12,6 @@ export default {
       default: [],
       type: Array,
       required: true
-    },
-    smallInterface: {
-      default: false,
-      type: Boolean,
-      required: true
-    }
-  },
-  methods: {
-    loadSelectedFavorite: function (streamName) {
-      this.$emit('load-selected-favorite', streamName)
-    },
-    unfavoriteChannel: function (streamName) {
-      this.$emit('unfavorite-channel', streamName)
-    },
-    favoriteChannel: function (streamName) {
-      this.$emit('favorite-channel', streamName)
     }
   }
 }
