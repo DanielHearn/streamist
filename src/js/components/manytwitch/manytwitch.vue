@@ -49,16 +49,12 @@
             :stream-favorites="$store.state.streamFavorites"
             v-on:close-menu="closeMenu"
           ></favorites-menu>
-          <!--
           <preset-menu
             v-if="currentMenu === 'Presets'"
-            :stream-presets="streamPresets"
-            :streams="streams"
-            :small-interface="smallInterface"
-            v-on:update-presets="setPresets"
-            v-on:load-preset="loadStreamsFromPreset"
+            :stream-presets="$store.state.streamPresets"
+            :streams="$store.state.streams"
             v-on:close-menu="closeMenu"
-          ></preset-menu>-->
+          ></preset-menu>
           <history-menu
             v-if="currentMenu === 'History'"
             :stream-history="$store.state.streamHistory"

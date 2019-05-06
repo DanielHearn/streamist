@@ -6,6 +6,7 @@ import List from 'Components/list/list/List.vue'
 import StandardButton from 'Components/inputs/buttons/standardButton/StandardButton.vue'
 
 import Icons from 'Js/icons/'
+import { createStreamObject, generateID } from 'Js/utilities'
 
 export default {
   name: 'preset-listing',
@@ -25,11 +26,6 @@ export default {
     editMode: {
       type: Boolean,
       default: false,
-      required: true
-    },
-    smallInterface: {
-      default: false,
-      type: Boolean,
       required: true
     }
   },
@@ -71,10 +67,16 @@ export default {
       this.$emit('update-preset', tempPreset)
     },
     loadPreset: function () {
-      this.$emit('load-preset', this.preset)
+      const streams = this.preset.streams
+      this.$store.commit('setStreams', [])
+      if (streams && streams.length) {
+        for (let i = 0; i < streams.length; i++) {
+          this.$store.commit('addStream', streams[i])
+        }
+      }
     },
     deletePreset: function () {
-      this.$emit('delete-preset', this.preset)
+      this.$store.commit('removePresetFromPresets', this.preset)
     },
     toggleEditMode: function () {
       this.$emit('edit-preset', this.preset.id)
@@ -85,7 +87,7 @@ export default {
       }
       const updatedPreset = this.preset
       updatedPreset.streams = updatedPreset.streams.concat([
-        newPresetStreamName
+        createStreamObject(newPresetStreamName, generateID())
       ])
       this.$emit('update-preset', updatedPreset)
     }

@@ -11,7 +11,7 @@
       </div>
       <div class="column">
         <icon-button
-          v-if="smallInterface"
+          v-if="$store.state.smallInterface"
           :iconName="$options.icons.play"
           :buttonClasses="'button--accent'"
           @click.native="loadPreset"
@@ -60,7 +60,7 @@
           v-on:submit="newPresetStream"
           placeholder="Channel Name"
           :buttonText="'Add'"
-          :buttonIconName="smallInterface ? 'add' : ''"
+          :buttonIconName="$store.state.smallInterface ? 'add' : ''"
         ></input-form>
         <list>
           <draggable
@@ -79,7 +79,7 @@
             >
               <template slot="header">
                 <div class="column">
-                  <p>{{ stream }}</p>
+                  <p>{{ stream.streamName }}</p>
                 </div>
                 <div class="column">
                   <icon-button

@@ -9,7 +9,7 @@
         v-on:submit="createPreset"
         placeholder="Preset Name"
         :buttonText="'Create'"
-        :buttonIconName="smallInterface ? 'add' : ''"
+        :buttonIconName="$store.state.smallInterface ? 'add' : ''"
       ></input-form>
     </div>
     <div class="menu-item-row">
@@ -20,11 +20,8 @@
           :key="preset.id"
           :preset="preset"
           :editMode="currentlyEditedPreset == preset.id"
-          :small-interface="smallInterface"
-          v-on:load-preset="loadPreset"
-          v-on:update-preset="updatePreset"
-          v-on:delete-preset="deletePreset"
           v-on:edit-preset="editPreset"
+          v-on:update-preset="updatePreset"
         ></preset-listing>
       </list>
     </div>
