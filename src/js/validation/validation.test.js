@@ -10,6 +10,7 @@ test('expect options validator to validate on correct options', () => {
   const options = {
     chatVisible: true,
     menuVisible: true,
+    navVisible: true,
     startMuted: false,
     currentLayout: {
       id: 'id',
@@ -37,12 +38,14 @@ test('expect history validator to validate on correct history', () => {
     {
       id: 'id',
       streamName: 'stream',
-      dateAdded: 'Wed Feb 27 2019 21:33:28 GMT+0000'
+      dateAdded: 'Wed Feb 27 2019 21:33:28 GMT+0000',
+      embedPlayerID: 'embed-player-stream-u4ggc52'
     },
     {
       id: 'id',
       streamName: 'stream',
-      dateAdded: 'Wed Feb 27 2019 21:33:28 GMT+0000'
+      dateAdded: 'Wed Feb 27 2019 21:33:28 GMT+0000',
+      embedPlayerID: 'embed-player-stream-ukdrt42'
     }
   ]
 
@@ -71,11 +74,15 @@ test('expect favorites validator to validate on correct favorites', () => {
   const favorites = [
     {
       id: 'id',
-      streamName: 'stream'
+      streamName: 'stream',
+      dateAdded: 'Wed Feb 27 2019 21:33:28 GMT+0000',
+      embedPlayerID: 'embed-player-stream-u4ggc52'
     },
     {
       id: 'id',
-      streamName: 'stream'
+      streamName: 'stream',
+      dateAdded: 'Wed Feb 27 2019 21:33:28 GMT+0000',
+      embedPlayerID: 'embed-player-stream-u4ggc52'
     }
   ]
 
@@ -86,7 +93,8 @@ test('expect favorites validator to not validate on incorrect favorites', () => 
   const favorites = [
     {
       id: 5,
-      streamName: false
+      streamName: false,
+      dateAdded: 5
     },
     {
       id: 6,
@@ -103,12 +111,38 @@ test('expect presets validator to validate on correct presets', () => {
     {
       id: 'id',
       name: 'preset',
-      streams: ['stream', 'stream']
+      streams: [
+        {
+          id: 'id',
+          streamName: 'stream',
+          dateAdded: 'Wed Feb 27 2019 21:33:28 GMT+0000',
+          embedPlayerID: 'embed-player-stream-u4ggc52'
+        },
+        {
+          id: 'id',
+          streamName: 'stream',
+          dateAdded: 'Wed Feb 27 2019 21:33:28 GMT+0000',
+          embedPlayerID: 'embed-player-stream-u4ggc52'
+        }
+      ]
     },
     {
       id: 'id',
       name: 'preset',
-      streams: ['stream', 'stream']
+      streams: [
+        {
+          id: 'id',
+          streamName: 'stream',
+          dateAdded: 'Wed Feb 27 2019 21:33:28 GMT+0000',
+          embedPlayerID: 'embed-player-stream-u4ggc52'
+        },
+        {
+          id: 'id',
+          streamName: 'stream',
+          dateAdded: 'Wed Feb 27 2019 21:33:28 GMT+0000',
+          embedPlayerID: 'embed-player-stream-u4ggc52'
+        }
+      ]
     }
   ]
 

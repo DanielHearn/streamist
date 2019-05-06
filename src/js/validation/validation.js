@@ -30,7 +30,7 @@ const presetValidator = new Validator({
   name: new Rule('string'),
   streams: new Rule({
     type: 'array',
-    of: new Rule('string')
+    of: streamItemValidator
   })
 })
 
