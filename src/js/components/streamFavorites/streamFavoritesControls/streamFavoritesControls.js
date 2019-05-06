@@ -30,7 +30,10 @@ export default {
   },
   methods: {
     loadFavorite: function (stream) {
-      this.$store.commit('addStream', stream)
+      this.$store.commit(
+        'addStream',
+        createStreamObject(stream.streamName, generateID())
+      )
     },
     favoriteChannel: function (streamName) {
       this.$store.commit(
