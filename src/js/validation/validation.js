@@ -11,8 +11,7 @@ const streamItemValidator = new Validator({
   dateAdded: new Rule({
     type: 'string',
     custom: isValidDate
-  }),
-  embedPlayerID: new Rule({ type: 'string', optional: true }, null)
+  })
 })
 
 const historyValidator = new Rule({
