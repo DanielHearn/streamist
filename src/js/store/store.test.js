@@ -68,3 +68,81 @@ test('set topStreams', () => {
 
   expect(state.topStreams).toBe(topStreams)
 })
+
+test('set setTwitchGameInfo', () => {
+  const state = defaultData
+
+  expect(state.topStreams).toBe(topStreams)
+})
+
+test('add stream', () => {
+  const state = defaultData
+
+  expect(state.topStreams).toBe(topStreams)
+})
+
+test('remove stream', () => {
+  const state = defaultData
+
+  expect(state.topStreams).toBe(topStreams)
+})
+
+test('set streams', () => {
+  const state = defaultData
+
+  expect(state.topStreams).toBe(topStreams)
+})
+
+test('set options', () => {
+  const state = defaultData
+
+  expect(state.topStreams).toBe(topStreams)
+})
+
+test('add stream to history', () => {
+  const state = defaultData
+
+  expect(state.topStreams).toBe(topStreams)
+})
+
+test('set history', () => {
+  const state = defaultData
+
+  expect(state.topStreams).toBe(topStreams)
+})
+
+test('add stream to favorites', () => {
+  const state = defaultData
+
+  expect(state.topStreams).toBe(topStreams)
+})
+
+test('remove stream from favorites', () => {
+  const state = defaultData
+
+  expect(state.topStreams).toBe(topStreams)
+})
+
+test('set favorites', () => {
+  const state = defaultData
+
+  expect(state.topStreams).toBe(topStreams)
+})
+
+test('set preset', () => {
+  const state = defaultData
+
+  expect(state.topStreams).toBe(topStreams)
+})
+
+test('add preset to presets', () => {
+  const state = defaultData
+
+  expect(state.topStreams).toBe(topStreams)
+})
+
+test('remove preset from presets', () => {
+  const state = defaultData
+
+  expect(state.topStreams).toBe(topStreams)
+})

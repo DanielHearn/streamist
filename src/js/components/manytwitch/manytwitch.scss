@@ -61,6 +61,12 @@ nav {
       .stream-details{
         display: flex;
         justify-content: space-between;
+        p:first-of-type {
+          text-align: left;
+        }
+        p:last-of-type {
+          text-align: right;
+        }
       }
       span {
         margin: 0;
