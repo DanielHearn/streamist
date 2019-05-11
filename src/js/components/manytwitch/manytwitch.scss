@@ -10,10 +10,20 @@
   overflow: hidden;
   background: $black-darkest;
   &.small-interface {
-    input[type="text"] {
-      max-width: 6em;
+      input[type="text"] {
+        max-width: 6em;
+    }
   }
-  }
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: $blue; 
+}
+*::-webkit-scrollbar-thumb {
+  background: $blue-medium;
 }
 
 nav {
