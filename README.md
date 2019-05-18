@@ -32,10 +32,6 @@ To specify a channel within the url use 'manytwitch/?stream=channel1,channel2' c
 - 'npm run build': Build production files 
 - 'npm run deploy': Build and deploy dist to gh-pages branch
 
-## Gulp tasks
-- Watch: Use browsersync to reload files and compiles pug and scss.
-- Build: Compiles pug and scss and builds files from src to dist, including compressing images, js, css
-
 ## Contributions
 
 Contributions are welcome especially those which improve functionality and user experience.
