@@ -20,6 +20,7 @@ export const defaultData = {
     navVisible: true,
     currentLayout: { id: 'grid', name: 'Grid' }
   },
+  streams: [],
   streamHistory: [],
   streamPresets: [],
   streamFavorites: []

@@ -20,11 +20,10 @@ export const mutations = {
   addStream (state, streamObj) {
     const stream = Object.assign({}, streamObj)
     stream.embedPlayerID = `embed-player-${stream.streamName}-${stream.id}`
-    stream.dateAdded = new Date()
     state.streams.push(stream)
   },
   removeStream (state, streamObj) {
-    state.streams = state.streams.filter(stream => stream !== streamObj)
+    state.streams = state.streams.filter(stream => stream.id !== streamObj.id)
   },
   setStreams (state, streams) {
     state.streams = streams
@@ -45,7 +44,6 @@ export const mutations = {
       return streamHistory.streamName !== stream.streamName
     })
 
-    stream.dateAdded = new Date()
     // Limit the amount of history items
     if (newHistory.length < config.maxHistoryLength) {
       newHistory = newHistory.concat([stream])
@@ -63,7 +61,6 @@ export const mutations = {
   addStreamToFavorites: function (state, streamObj) {
     const stream = Object.assign({}, streamObj)
     delete stream.embedPlayerID
-    stream.dateAdded = new Date()
 
     let newFavorites = state.streamFavorites
     newFavorites = newFavorites.filter(streamFavorite => {
@@ -91,6 +88,11 @@ export const mutations = {
     setStoredPresets(presets)
   },
   addPresetToPresets (state, preset) {
+    if (preset.streams) {
+      for (let i = 0; i < preset.streams.length; i++) {
+        delete preset.streams[i].embedPlayerID
+      }
+    }
     state.streamPresets = state.streamPresets.concat(preset)
     setStoredPresets(state.streamPresets)
   },

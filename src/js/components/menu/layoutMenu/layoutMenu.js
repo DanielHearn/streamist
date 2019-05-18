@@ -22,14 +22,6 @@ export default {
     }
   },
   config: config,
-  computed: {
-    indexedStreams: function () {
-      return this.streams.map((stream, index) => {
-        stream.index = index + 1
-        return stream
-      })
-    }
-  },
   methods: {
     changeLayout: function (newLayout) {
       if (newLayout.id !== this.currentLayout.id) {

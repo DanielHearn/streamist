@@ -46,6 +46,10 @@ export default {
       const presetName = `Preset ${this.streamPresets.length + 1}`
       const newPreset = this.createPresetObject(presetName, [])
       newPreset.streams = this.streams.slice()
+      for (let i = 0; i < newPreset.streams.length; i++) {
+        newPreset.streams[i] = Object.assign({}, newPreset.streams[i])
+        delete newPreset.streams[i].embedPlayerID
+      }
       const newPresets = this.streamPresets.concat(newPreset)
       this.$store.commit('setPresets', newPresets)
     },

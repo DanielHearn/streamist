@@ -12,7 +12,7 @@
             :key="layout.slug"
             :class="{'active': currentLayout.id === layout.id}"
             :layout="layout"
-            :streams="indexedStreams"
+            :streams="streams"
             v-on:change-layout="changeLayout"
           />
         </list>

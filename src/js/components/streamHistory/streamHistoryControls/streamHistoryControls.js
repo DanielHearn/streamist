@@ -35,9 +35,8 @@ export default {
     }
   },
   mounted: function () {
-    const self = this
     setInterval(() => {
-      self.currentDate = new Date()
+      this.currentDate = new Date()
     }, 1000)
   }
 }

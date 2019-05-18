@@ -1,25 +1,42 @@
 import { mutations } from './store'
 import { defaultData } from './../config'
 
-const { setSmallInterface, setTopStreams } = mutations
+const {
+  setSmallInterface,
+  setTopStreams,
+  setTwitchGameInfo,
+  addStream,
+  removeStream,
+  setStreams,
+  setOptions,
+  addStreamToHistory,
+  setHistory,
+  addStreamToFavorites,
+  removeStreamFromFavorites,
+  setFavorites,
+  setPresets,
+  addPresetToPresets,
+  removePresetFromPresets
+} = mutations
 
 test('set smallInterface to true', () => {
-  const state = defaultData
+  const state = _.cloneDeep(defaultData)
 
   setSmallInterface(state, true)
 
-  expect(state.smallInterface).toBe(true)
+  expect(state.smallInterface).toEqual(true)
 })
 
 test('set smallInterface to false', () => {
-  const state = defaultData
+  const state = _.cloneDeep(defaultData)
 
   setSmallInterface(state, false)
 
-  expect(state.smallInterface).toBe(false)
+  expect(state.smallInterface).toEqual(false)
 })
 
 test('set topStreams', () => {
+  const state = _.cloneDeep(defaultData)
   const topStreams = [
     {
       id: '34057836560',
@@ -62,87 +79,232 @@ test('set topStreams', () => {
       game_name: 'League of Legends'
     }
   ]
-  const state = defaultData
 
   setTopStreams(state, topStreams)
 
-  expect(state.topStreams).toBe(topStreams)
+  expect(state.topStreams).toEqual(topStreams)
 })
 
 test('set setTwitchGameInfo', () => {
-  const state = defaultData
+  const state = _.cloneDeep(defaultData)
+  const twitchGameInfo = {
+    '18122': {
+      id: '18122',
+      name: 'World of Warcraft',
+      box_art_url:
+        'https://static-cdn.jtvnw.net/ttv-boxart/World%20of%20Warcraft-{width}x{height}.jpg'
+    },
+    '21779': {
+      id: '21779',
+      name: 'League of Legends',
+      box_art_url:
+        'https://static-cdn.jtvnw.net/ttv-boxart/League%20of%20Legends-{width}x{height}.jpg'
+    },
+    '29595': {
+      id: '29595',
+      name: 'Dota 2',
+      box_art_url:
+        'https://static-cdn.jtvnw.net/ttv-boxart/Dota%202-{width}x{height}.jpg'
+    }
+  }
 
-  expect(state.topStreams).toBe(topStreams)
+  setTwitchGameInfo(state, twitchGameInfo)
+
+  expect(state.twitchGameInfo).toEqual(twitchGameInfo)
 })
 
 test('add stream', () => {
-  const state = defaultData
+  const state = _.cloneDeep(defaultData)
+  const stream = {
+    streamName: 'lirik',
+    id: 'jxvu1mhp',
+    dateAdded: 'Sat May 18 2019 11:16:23 GMT+0100 (British Summer Time)'
+  }
 
-  expect(state.topStreams).toBe(topStreams)
+  const expected = Object.assign({}, stream)
+  expected.embedPlayerID = `embed-player-${expected.streamName}-${expected.id}`
+
+  addStream(state, stream)
+  expect(state.streams).toEqual([expected])
 })
 
 test('remove stream', () => {
-  const state = defaultData
+  const state = _.cloneDeep(defaultData)
+  console.log(state.streams)
+  const stream = {
+    streamName: 'lirik',
+    id: 'jxvu1mhp',
+    dateAdded: 'Sat May 18 2019 11:16:23 GMT+0100 (British Summer Time)'
+  }
+  const expected = Object.assign({}, stream)
+  expected.embedPlayerID = `embed-player-${expected.streamName}-${expected.id}`
 
-  expect(state.topStreams).toBe(topStreams)
+  addStream(state, stream)
+  expect(state.streams).toEqual([expected])
+
+  removeStream(state, stream)
+  expect(state.streams).toEqual([])
 })
 
 test('set streams', () => {
-  const state = defaultData
+  const state = _.cloneDeep(defaultData)
+  const streams = [
+    {
+      streamName: 'lirik',
+      id: 'jxvu1mhp',
+      dateAdded: 'Sat May 18 2019 11:16:23 GMT+0100 (British Summer Time)'
+    }
+  ]
+  setStreams(state, streams)
 
-  expect(state.topStreams).toBe(topStreams)
+  expect(state.streams).toEqual(streams)
 })
 
 test('set options', () => {
-  const state = defaultData
+  const state = _.cloneDeep(defaultData)
+  const options = Object.assign({}, defaultData.options)
+  setOptions(state, options)
 
-  expect(state.topStreams).toBe(topStreams)
+  expect(state.options).toEqual(options)
 })
 
 test('add stream to history', () => {
-  const state = defaultData
+  const state = _.cloneDeep(defaultData)
+  const stream = {
+    streamName: 'lirik',
+    id: 'jxvu1mhp',
+    dateAdded: 'Sat May 18 2019 11:16:23 GMT+0100 (British Summer Time)'
+  }
+  addStreamToHistory(state, stream)
 
-  expect(state.topStreams).toBe(topStreams)
+  expect(state.streamHistory).toEqual([stream])
 })
 
 test('set history', () => {
-  const state = defaultData
+  const state = _.cloneDeep(defaultData)
+  const favorites = [
+    {
+      streamName: 'lirik',
+      id: 'jxvu1mhp',
+      dateAdded: 'Sat May 18 2019 11:16:23 GMT+0100 (British Summer Time)'
+    }
+  ]
+  setHistory(state, favorites)
 
-  expect(state.topStreams).toBe(topStreams)
+  expect(state.streamHistory).toEqual(favorites)
 })
 
 test('add stream to favorites', () => {
-  const state = defaultData
+  const state = _.cloneDeep(defaultData)
+  const stream = {
+    streamName: 'lirik',
+    id: 'jxvu1mhp',
+    dateAdded: 'Sat May 18 2019 11:16:23 GMT+0100 (British Summer Time)'
+  }
+  addStreamToFavorites(state, stream)
 
-  expect(state.topStreams).toBe(topStreams)
+  expect(state.streamFavorites).toEqual([stream])
 })
 
 test('remove stream from favorites', () => {
-  const state = defaultData
+  const state = _.cloneDeep(defaultData)
+  const stream = {
+    streamName: 'lirik',
+    id: 'jxvu1mhp',
+    dateAdded: 'Sat May 18 2019 11:16:23 GMT+0100 (British Summer Time)'
+  }
+  addStreamToFavorites(state, stream)
+  expect(state.streamFavorites).toEqual([stream])
 
-  expect(state.topStreams).toBe(topStreams)
+  removeStreamFromFavorites(state, stream)
+  expect(state.streamFavorites).toEqual([])
 })
 
 test('set favorites', () => {
-  const state = defaultData
+  const state = _.cloneDeep(defaultData)
+  const favorites = [
+    {
+      streamName: 'lirik',
+      id: 'jxvu1mhp',
+      dateAdded: 'Sat May 18 2019 11:16:23 GMT+0100 (British Summer Time)'
+    }
+  ]
+  setFavorites(state, favorites)
 
-  expect(state.topStreams).toBe(topStreams)
+  expect(state.streamFavorites).toEqual(favorites)
 })
 
-test('set preset', () => {
-  const state = defaultData
+test('set presets', () => {
+  const state = _.cloneDeep(defaultData)
+  const presets = [
+    {
+      name: 'Preset 1',
+      streams: [
+        {
+          streamName: 'lirik',
+          id: 'jxvu1mhp',
+          dateAdded: 'Sat May 18 2019 11:26:14 GMT+0100 (British Summer Time)',
+          embedPlayerID: 'embed-player-lirik-jxvu1mhp'
+        },
+        {
+          streamName: 'giantwaffle',
+          id: '69ybpjem',
+          dateAdded: 'Sat May 18 2019 11:26:14 GMT+0100 (British Summer Time)'
+        }
+      ],
+      id: 'brp5rig'
+    }
+  ]
+  setPresets(state, presets)
 
-  expect(state.topStreams).toBe(topStreams)
+  expect(state.streamPresets).toEqual(presets)
 })
 
 test('add preset to presets', () => {
-  const state = defaultData
+  const state = _.cloneDeep(defaultData)
+  const preset = {
+    name: 'Preset 1',
+    streams: [
+      {
+        streamName: 'lirik',
+        id: 'jxvu1mhp',
+        dateAdded: 'Sat May 18 2019 11:26:14 GMT+0100 (British Summer Time)',
+        embedPlayerID: 'embed-player-lirik-jxvu1mhp'
+      },
+      {
+        streamName: 'giantwaffle',
+        id: '69ybpjem',
+        dateAdded: 'Sat May 18 2019 11:26:14 GMT+0100 (British Summer Time)'
+      }
+    ],
+    id: 'brp5rig'
+  }
+  addPresetToPresets(state, preset)
 
-  expect(state.topStreams).toBe(topStreams)
+  expect(state.streamPresets).toEqual([preset])
 })
 
 test('remove preset from presets', () => {
-  const state = defaultData
+  const state = _.cloneDeep(defaultData)
+  const preset = {
+    name: 'Preset 1',
+    streams: [
+      {
+        streamName: 'lirik',
+        id: 'jxvu1mhp',
+        dateAdded: 'Sat May 18 2019 11:26:14 GMT+0100 (British Summer Time)'
+      },
+      {
+        streamName: 'giantwaffle',
+        id: '69ybpjem',
+        dateAdded: 'Sat May 18 2019 11:26:14 GMT+0100 (British Summer Time)'
+      }
+    ],
+    id: 'brp5rig'
+  }
+  addPresetToPresets(state, preset)
+  expect(state.streamPresets).toEqual([preset])
 
-  expect(state.topStreams).toBe(topStreams)
+  removePresetFromPresets(state, preset)
+  expect(state.streamPresets).toEqual([])
 })

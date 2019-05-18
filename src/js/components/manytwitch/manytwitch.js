@@ -240,10 +240,8 @@ export default {
           } catch (error) {}
         }
         if (!fieldLoaded) {
-          warn(
-            `Loading default ${field.name}, the invalid date was: `,
-            field.getStored()
-          )
+          warn(`Loading default ${field.name}, the invalid data was: `)
+          log(rawFieldData)
           const defaultFieldData = field.default
           this.$store.commit(field.set, defaultFieldData)
         }

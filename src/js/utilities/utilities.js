@@ -39,7 +39,7 @@ export const createStreamObject = function (streamName, id) {
   return {
     streamName: streamName,
     id: id,
-    dateAdded: new Date().toString()
+    dateAdded: new Date().toISOString()
   }
 }
 
