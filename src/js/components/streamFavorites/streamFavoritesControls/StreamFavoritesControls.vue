@@ -3,9 +3,9 @@
     <div class="menu-item-row">
       <input-form
         placeholder="Twitch channel"
-        v-on:submit="addFavorite"
+        v-on:submit="favoriteChannel"
         :buttonText="'Favorite'"
-        :buttonIconName="smallInterface ? 'favorite' : ''"
+        :buttonIconName="$store.state.smallInterface ? 'favorite' : ''"
       ></input-form>
     </div>
     <div class="menu-item-row">
@@ -21,18 +21,18 @@
                 :iconName="$options.icons.unfavorite"
                 :buttonClasses="'button--secondary'"
                 title="Remove channel from favorites"
-                @click.native="$emit('unfavorite-channel', favorite.streamName)"
+                @click.native="unfavoriteChannel(favorite)"
               />
               <icon-button
-                v-if="smallInterface"
+                v-if="$store.state.smallInterface"
                 :iconName="$options.icons.play"
                 :buttonClasses="'button--accent'"
-                @click.native="loadSelectedFavorite(favorite.streamName)"
+                @click.native="loadFavorite(favorite)"
               />
               <standard-button
                 v-else
                 :buttonClasses="'button--accent button--text'"
-                @click.native="loadSelectedFavorite(favorite.streamName)"
+                @click.native="loadFavorite(favorite)"
               >Watch</standard-button>
             </div>
           </template>
@@ -41,7 +41,7 @@
     </div>
     <div class="menu-item-row">
       <standard-button
-        @click.native="$emit('clear-favorites')"
+        @click.native="clearFavorites"
         :disabled="!favoritesAvailable"
         :buttonClasses="'button--secondary'"
       >Clear Favorites</standard-button>

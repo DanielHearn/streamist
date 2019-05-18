@@ -20,11 +20,6 @@ export default {
     currentDate: {
       type: Date,
       required: true
-    },
-    smallInterface: {
-      default: false,
-      type: Boolean,
-      required: true
     }
   },
   icons: Icons,
@@ -40,7 +35,7 @@ export default {
   },
   methods: {
     loadSelectedHistory: function () {
-      this.$emit('load-selected-history', this.history.streamName)
+      this.$store.commit('addStream', this.history)
     }
   }
 }

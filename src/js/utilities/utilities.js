@@ -38,8 +38,8 @@ export const getUsernameFromThumbnail = function (url) {
 export const createStreamObject = function (streamName, id) {
   return {
     streamName: streamName,
-    embedPlayerID: `embed-player-${streamName}-${id}`,
-    index: id
+    id: id,
+    dateAdded: new Date().toISOString()
   }
 }
 

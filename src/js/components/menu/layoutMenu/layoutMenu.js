@@ -2,6 +2,8 @@ import MenuItem from 'Components/menu/menuItem/MenuItem.vue'
 import LayoutDemo from 'Components/layout/layoutDemo/LayoutDemo.vue'
 import List from 'Components/list/list/List.vue'
 
+import { config } from 'Js/config'
+
 export default {
   name: 'layout-menu',
   components: {
@@ -14,38 +16,18 @@ export default {
       type: Array,
       required: true
     },
-    availableLayouts: {
-      type: Array,
-      required: true
-    },
-    options: {
+    currentLayout: {
       type: Object,
       required: true
-    },
-    smallInterface: {
-      default: false,
-      type: Boolean,
-      required: true
     }
   },
-  data: function () {
-    return {
-      selectedLayout: this.options.currentLayout
-    }
-  },
-  computed: {
-    indexedStreams: function () {
-      return this.streams.map((stream, index) => {
-        stream.index = index + 1
-        return stream
-      })
-    }
-  },
+  config: config,
   methods: {
     changeLayout: function (newLayout) {
-      if (newLayout !== this.selectedLayout) {
-        this.selectedLayout = newLayout
-        this.$emit('change-layout', newLayout)
+      if (newLayout.id !== this.currentLayout.id) {
+        const options = this.$store.state.options
+        options.currentLayout = newLayout
+        this.$store.commit('setOptions', options)
       }
     }
   }

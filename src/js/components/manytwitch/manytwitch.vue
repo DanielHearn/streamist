@@ -1,18 +1,18 @@
 <template>
-  <div id="manytwitch" :class="{'small-interface': smallInterface}">
-    <nav class="nav" :class="{'hidden': !navVisible}">
+  <div id="manytwitch" :class="{'small-interface': $store.state.smallInterface}">
+    <nav class="nav" :class="{'hidden': !$store.state.options.navVisible}">
       <icon-button
-        :iconName="options.menuVisible ? $options.icons.leftArrow : $options.icons.menu"
-        :title="options.menuVisible ? 'Close Menu' : 'Open Menu'"
+        :iconName="$store.state.options.menuVisible ? $options.icons.leftArrow : $options.icons.menu"
+        :title="$store.state.options.menuVisible ? 'Close Menu' : 'Open Menu'"
         @click.native="toggleMenu"
       />
       <div class="nav-center">
         <h2 class="title">MT</h2>
         <input-form
-          :placeholder="smallInterface ? 'Channel' : 'Twitch channel'"
+          :placeholder="$store.state.smallInterface ? 'Channel' : 'Twitch channel'"
           class="channel-input"
           :buttonText="'Watch'"
-          :buttonIconName="smallInterface ? 'play' : ''"
+          :buttonIconName="$store.state.smallInterface ? 'play' : ''"
           v-on:submit="addStream"
         ></input-form>
       </div>
@@ -24,76 +24,52 @@
           @click.native="toggleFullscreen"
         />
         <icon-button
-          :disabled="!streams.length"
-          :iconName="options.chatVisible && streams.length ? $options.icons.rightArrow : $options.icons.chat"
+          :disabled="!$store.state.streams.length"
+          :iconName="$store.state.options.chatVisible && $store.state.streams.length ? $options.icons.rightArrow : $options.icons.chat"
           :buttonClasses="'button--secondary'"
-          :title="options.chatVisible ? 'Close Chat' : 'Open Chat'"
+          :title="$store.state.options.chatVisible ? 'Close Chat' : 'Open Chat'"
           @click.native="toggleChat"
         />
       </div>
     </nav>
     <div id="main">
       <side-menu
-        :class="{'hidden': !navVisible}"
-        :options="options"
+        :class="{'hidden': !$store.state.options.navVisible}"
         :menuItems="$options.menuItems"
       >
         <template slot-scope="{ currentMenu, closeMenu }">
           <layout-menu
             v-if="currentMenu === 'Layouts'"
-            :options="options"
-            :streams="streams"
-            :available-layouts="availableLayouts"
-            :small-interface="smallInterface"
-            v-on:change-layout="changeLayout"
+            :streams="$store.state.streams"
+            :current-layout="$store.state.options.currentLayout"
             v-on:close-menu="closeMenu"
           ></layout-menu>
           <favorites-menu
             v-if="currentMenu === 'Favorites'"
-            :stream-favorites="streamFavorites"
-            :small-interface="smallInterface"
-            v-on:load-selected-favorite="loadSelectedFavorite"
-            v-on:clear-favorites="clearFavorites"
-            v-on:favorite-channel="addStreamToFavorites"
-            v-on:unfavorite-channel="unfavoriteStream"
+            :stream-favorites="$store.state.streamFavorites"
             v-on:close-menu="closeMenu"
           ></favorites-menu>
           <preset-menu
             v-if="currentMenu === 'Presets'"
-            :stream-presets="streamPresets"
-            :streams="streams"
-            :small-interface="smallInterface"
-            v-on:update-presets="setPresets"
-            v-on:load-preset="loadStreamsFromPreset"
+            :stream-presets="$store.state.streamPresets"
+            :streams="$store.state.streams"
             v-on:close-menu="closeMenu"
           ></preset-menu>
           <history-menu
             v-if="currentMenu === 'History'"
-            :stream-history="streamHistory"
-            :small-interface="smallInterface"
-            v-on:load-selected-history="loadSelectedHistory"
-            v-on:clear-history="clearHistory"
+            :stream-history="$store.state.streamHistory"
             v-on:close-menu="closeMenu"
           ></history-menu>
           <help-menu v-if="currentMenu === 'Help'" v-on:close-menu="closeMenu"></help-menu>
           <about-menu v-if="currentMenu === 'About'" v-on:close-menu="closeMenu"></about-menu>
-          <settings-menu
-            v-if="currentMenu === 'Settings'"
-            v-on:close-menu="closeMenu"
-            v-on:clear-data="clearData"
-          ></settings-menu>
+          <settings-menu v-if="currentMenu === 'Settings'" v-on:close-menu="closeMenu"></settings-menu>
         </template>
       </side-menu>
       <streams
-        :streams="streams"
-        :options="options"
-        :navVisible="navVisible"
+        :streams="$store.state.streams"
         :appHover="appHover"
-        :streamFavorites="streamFavorites"
-        v-on:update-streams="updateStreams"
         v-on:toggle-nav="toggleNav"
-        v-on:favorite-channel="addStreamToFavorites"
-        v-on:unfavorite-channel="unfavoriteStream"
+        v-on:update-streams="updateStreams"
       >
         <intro slot="placeholder">
           <list slot="content" :layout="'grid'" class="intro-list">
@@ -104,7 +80,7 @@
               class="intro-list-item-container"
             >
               <img
-                v-if="!smallInterface && stream.thumbnail"
+                v-if="!$store.state.smallInterface && stream.thumbnail"
                 class="intro-list-item-image"
                 :src="stream.thumbnail"
                 :alt="stream.user_name + '\'s stream thumbnail'"
@@ -129,7 +105,7 @@
           </list>
         </intro>
       </streams>
-      <chats :streams="streams" :options="options"></chats>
+      <chats :streams="$store.state.streams"></chats>
     </div>
   </div>
 </template>

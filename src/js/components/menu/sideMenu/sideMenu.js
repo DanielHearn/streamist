@@ -9,10 +9,6 @@ export default {
     menuItems: {
       type: Array,
       required: true
-    },
-    options: {
-      type: Object,
-      required: true
     }
   },
   data: function () {

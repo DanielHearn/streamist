@@ -12,10 +12,6 @@ export default {
       default: [],
       type: Array,
       required: true
-    },
-    options: {
-      type: Object,
-      required: true
     }
   },
   data: function () {
@@ -28,7 +24,7 @@ export default {
       return this.streams.length === this.chats.length
     },
     chatsAvailable: function () {
-      return this.streams.length >= 1 && this.options.chatVisible
+      return this.streams.length >= 1 && this.$store.state.options.chatVisible
     },
     removeAvailable: function () {
       return this.chats.length > 1

@@ -52,9 +52,9 @@ export default {
     },
     refresh: function () {
       this.chatVisible = false
-      const data = this
-      setTimeout(function () {
-        data.chatVisible = true
+
+      setTimeout(() => {
+        this.chatVisible = true
       }, 10)
     }
   },

@@ -5,7 +5,7 @@ function isValidDate (date) {
   return isValid(new Date(date))
 }
 
-const historyItemValidator = new Validator({
+const streamItemValidator = new Validator({
   id: new Rule('string'),
   streamName: new Rule('string'),
   dateAdded: new Rule({
@@ -16,17 +16,12 @@ const historyItemValidator = new Validator({
 
 const historyValidator = new Rule({
   type: 'array',
-  of: historyItemValidator
-})
-
-const favoriteItemValidator = new Validator({
-  id: new Rule('string'),
-  streamName: new Rule('string')
+  of: streamItemValidator
 })
 
 const favoritesValidator = new Rule({
   type: 'array',
-  of: favoriteItemValidator
+  of: streamItemValidator
 })
 
 const presetValidator = new Validator({
@@ -34,7 +29,7 @@ const presetValidator = new Validator({
   name: new Rule('string'),
   streams: new Rule({
     type: 'array',
-    of: new Rule('string')
+    of: streamItemValidator
   })
 })
 
@@ -46,6 +41,7 @@ const presetsValidator = new Rule({
 const optionsValidator = new Validator({
   chatVisible: new Rule({ type: 'boolean' }),
   menuVisible: new Rule({ type: 'boolean' }),
+  navVisible: new Rule({ type: 'boolean' }),
   startMuted: new Rule({ type: 'boolean' }),
   currentLayout: {
     id: new Rule('string'),

@@ -1,12 +1,12 @@
 <template>
   <div class="streams-container">
     <icon-button
-      :iconName="navVisible ? $options.icons.upArrow : $options.icons.downArrow"
+      :iconName="$store.state.options.navVisible ? $options.icons.upArrow : $options.icons.downArrow"
       :class="{'fade': !appHover && streams.length}"
       :buttonClasses="'button--secondary'"
       class="nav-toggle-button"
-      :title="navVisible ? 'Hide Interface' : 'Show Interface'"
-      @click.native="toggleNav"
+      :title="$store.state.options.navVisible ? 'Hide Interface' : 'Show Interface'"
+      @click.native="$emit('toggle-nav')"
     />
     <draggable
       v-if="streams.length"
@@ -24,12 +24,7 @@
         :stream="stream"
         :numStreams="streams.length"
         :isFirstStream="index === 0"
-        :options="options"
         :hover="drag"
-        :streamFavorites="streamFavorites"
-        v-on:remove-stream="removeStream"
-        v-on:favorite-channel="favoriteChannel"
-        v-on:unfavorite-channel="unfavoriteChannel"
       />
     </draggable>
     <slot v-else name="placeholder"></slot>

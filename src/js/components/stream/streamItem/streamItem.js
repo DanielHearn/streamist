@@ -17,16 +17,8 @@ export default {
       type: Number,
       required: true
     },
-    options: {
-      type: Object,
-      required: true
-    },
     hover: {
       type: Boolean,
-      required: true
-    },
-    streamFavorites: {
-      type: Array,
       required: true
     },
     isFirstStream: {
@@ -49,7 +41,7 @@ export default {
       return `https://www.twitch.tv/${this.stream.streamName}`
     },
     favorited: function () {
-      return !!this.streamFavorites.filter(favorite => {
+      return !!this.$store.state.streamFavorites.filter(favorite => {
         return (
           favorite.streamName.toLowerCase() ===
           this.stream.streamName.toLowerCase()
@@ -59,7 +51,7 @@ export default {
   },
   methods: {
     remove: function () {
-      this.$emit('remove-stream', this.stream)
+      this.$store.commit('removeStream', this.stream)
     },
     refresh: function () {
       const streamPlayer = document.querySelector(
@@ -101,19 +93,18 @@ export default {
       this.componentHover = true
       this.componentHoverTracker += 1
 
-      const component = this
-      setTimeout(function () {
-        component.componentHoverTracker -= 1
-        if (component.componentHoverTracker === 0) {
-          component.componentHover = false
+      setTimeout(() => {
+        this.componentHoverTracker -= 1
+        if (this.componentHoverTracker === 0) {
+          this.componentHover = false
         }
       }, 3000)
     },
     favoriteChannel: function () {
       if (this.favorited) {
-        this.$emit('unfavorite-channel', this.stream.streamName.toLowerCase())
+        this.$store.commit('removeStreamFromFavorites', this.stream)
       } else {
-        this.$emit('favorite-channel', this.stream.streamName.toLowerCase())
+        this.$store.commit('addStreamToFavorites', this.stream)
       }
     }
   },

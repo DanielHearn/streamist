@@ -5,6 +5,7 @@ import ListItem from 'Components/list/listItem/ListItem.vue'
 import InputForm from 'Components/inputs/inputForm/InputForm.vue'
 
 import Icons from 'Js/icons'
+import { generateID, createStreamObject } from 'Js/utilities'
 
 export default {
   name: 'stream-favorites-controls',
@@ -19,11 +20,6 @@ export default {
     streamFavorites: {
       type: Array,
       required: true
-    },
-    smallInterface: {
-      default: false,
-      type: Boolean,
-      required: true
     }
   },
   icons: Icons,
@@ -33,13 +29,20 @@ export default {
     }
   },
   methods: {
-    loadSelectedFavorite: function (streamName) {
-      this.$emit('load-selected-favorite', streamName)
+    loadFavorite: function (stream) {
+      this.$store.commit(
+        'addStream',
+        createStreamObject(stream.streamName, generateID())
+      )
     },
-    addFavorite: function (streamName) {
-      if (streamName) {
-        this.$emit('favorite-channel', streamName)
-      }
+    favoriteChannel: function (streamName) {
+      this.$store.commit(
+        'addStreamToFavorites',
+        createStreamObject(streamName, generateID())
+      )
+    },
+    unfavoriteChannel: function (stream) {
+      this.$store.commit('removeStreamFromFavorites', stream)
     }
   }
 }
