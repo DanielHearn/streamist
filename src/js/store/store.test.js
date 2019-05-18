@@ -16,7 +16,8 @@ const {
   setFavorites,
   setPresets,
   addPresetToPresets,
-  removePresetFromPresets
+  removePresetFromPresets,
+  updatePreset
 } = mutations
 
 test('set smallInterface to true', () => {
@@ -130,7 +131,6 @@ test('add stream', () => {
 
 test('remove stream', () => {
   const state = _.cloneDeep(defaultData)
-  console.log(state.streams)
   const stream = {
     streamName: 'lirik',
     id: 'jxvu1mhp',
@@ -258,6 +258,36 @@ test('set presets', () => {
   setPresets(state, presets)
 
   expect(state.streamPresets).toEqual(presets)
+})
+
+test('update presets', () => {
+  const state = _.cloneDeep(defaultData)
+  const preset = {
+    name: 'Preset 1',
+    streams: [
+      {
+        streamName: 'lirik',
+        id: 'jxvu1mhp',
+        dateAdded: 'Sat May 18 2019 11:26:14 GMT+0100 (British Summer Time)',
+        embedPlayerID: 'embed-player-lirik-jxvu1mhp'
+      },
+      {
+        streamName: 'giantwaffle',
+        id: '69ybpjem',
+        dateAdded: 'Sat May 18 2019 11:26:14 GMT+0100 (British Summer Time)'
+      }
+    ],
+    id: 'brp5rig'
+  }
+  const presets = [preset]
+  const updatedpreset = _.cloneDeep(preset)
+  updatedpreset.name = 'Preset 2'
+
+  setPresets(state, presets)
+  expect(state.streamPresets).toEqual(presets)
+
+  updatePreset(state, updatedpreset)
+  expect(state.streamPresets).toEqual([updatedpreset])
 })
 
 test('add preset to presets', () => {

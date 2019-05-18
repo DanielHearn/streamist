@@ -101,6 +101,18 @@ export const mutations = {
       streamPreset => streamPreset.id !== preset.id
     )
     setStoredPresets(state.streamPresets)
+  },
+  updatePreset (state, updatedPreset) {
+    const updatedPresets = state.streamPresets
+    for (let i = 0; i < updatedPresets.length; i++) {
+      const preset = updatedPresets[i]
+      if (preset.id === updatedPreset.id) {
+        preset.name = updatedPreset.name
+        preset.streams = updatedPreset.streams
+      }
+    }
+    state.streamPresets = updatedPresets
+    setStoredPresets(updatedPresets)
   }
 }
 

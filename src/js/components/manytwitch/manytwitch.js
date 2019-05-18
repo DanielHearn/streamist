@@ -183,13 +183,6 @@ export default {
       return false
     },
 
-    clearData: function () {
-      this.$store.commit('setOptions', getDefault('options'))
-      this.$store.commit('setFavorites', getDefault('streamFavorites'))
-      this.$store.commit('setHistory', getDefault('streamHistory'))
-      this.$store.commit('setPresets', getDefault('streamPresets'))
-    },
-
     loadStoredData: function () {
       const storedDataFields = [
         {

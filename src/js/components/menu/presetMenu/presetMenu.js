@@ -60,16 +60,6 @@ export default {
         id: generateID()
       }
     },
-    updatePreset: function (updatedPreset) {
-      const tempPresets = this.streamPresets
-      for (const preset in tempPresets) {
-        if (preset.id === updatedPreset.id) {
-          preset.name = updatedPreset.name
-          preset.streams = updatedPreset.streams
-        }
-      }
-      this.$store.commit('setPresets', tempPresets)
-    },
     createPreset: function (presetName) {
       if (!presetName) {
         return false

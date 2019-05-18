@@ -44,17 +44,17 @@ export default {
   icons: Icons,
   watch: {
     presetName: function () {
-      const tempPreset = this.preset
-      tempPreset.name = this.presetName
-      this.$emit('update-preset', tempPreset)
+      const updatedPreset = this.preset
+      updatedPreset.name = this.presetName
+      this.$store.commit('updatePreset', updatedPreset)
     },
     'preset.streams': function () {
       this.orderedStreams = this.preset.streams
     },
     orderedStreams: function () {
-      const tempPreset = this.preset
-      tempPreset.streams = this.orderedStreams
-      this.$emit('update-preset', tempPreset)
+      const updatedPreset = this.preset
+      updatedPreset.streams = this.orderedStreams
+      this.$store.commit('updatePreset', updatedPreset)
     }
   },
   methods: {
@@ -62,9 +62,9 @@ export default {
       this.presetName = newName
     },
     deleteStreamFromPreset: function (index) {
-      const tempPreset = this.preset
-      tempPreset.streams.splice(index, 1)
-      this.$emit('update-preset', tempPreset)
+      const updatedPreset = this.preset
+      updatedPreset.streams.splice(index, 1)
+      this.$store.commit('updatePreset', updatedPreset)
     },
     loadPreset: function () {
       const streams = this.preset.streams
@@ -89,7 +89,7 @@ export default {
       updatedPreset.streams = updatedPreset.streams.concat([
         createStreamObject(newPresetStreamName, generateID())
       ])
-      this.$emit('update-preset', updatedPreset)
+      this.$store.commit('updatePreset', updatedPreset)
     }
   }
 }

@@ -62,11 +62,7 @@
           ></history-menu>
           <help-menu v-if="currentMenu === 'Help'" v-on:close-menu="closeMenu"></help-menu>
           <about-menu v-if="currentMenu === 'About'" v-on:close-menu="closeMenu"></about-menu>
-          <settings-menu
-            v-if="currentMenu === 'Settings'"
-            v-on:close-menu="closeMenu"
-            v-on:clear-data="clearData"
-          ></settings-menu>
+          <settings-menu v-if="currentMenu === 'Settings'" v-on:close-menu="closeMenu"></settings-menu>
         </template>
       </side-menu>
       <streams

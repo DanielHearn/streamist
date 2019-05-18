@@ -21,7 +21,6 @@
           :preset="preset"
           :editMode="currentlyEditedPreset == preset.id"
           v-on:edit-preset="editPreset"
-          v-on:update-preset="updatePreset"
         ></preset-listing>
       </list>
     </div>
