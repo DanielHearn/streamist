@@ -79,5 +79,9 @@
     "staticpath": "dist",
     "commit": "Deploy to gh-pages",
     "noprompt": false
+  },
+  "jest": {
+    "rootDir": "./src",
+    "cacheDirectory": "./node_modules/.cache/jest"
   }
 }
