@@ -12,16 +12,6 @@ export default {
       default: [],
       type: Array,
       required: true
-    },
-    smallInterface: {
-      default: false,
-      type: Boolean,
-      required: true
-    }
-  },
-  methods: {
-    loadSelectedHistory: function (streamName) {
-      this.$emit('load-selected-history', streamName)
     }
   }
 }

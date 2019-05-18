@@ -8,10 +8,7 @@
       <p
         class="text"
       >Clears all local data, this includes: favorites, presets, history, and settings.</p>
-      <standard-button
-        @click.native="$emit('clear-data')"
-        :buttonClasses="'button--secondary'"
-      >Clear All Data</standard-button>
+      <standard-button @click.native="clearData" :buttonClasses="'button--secondary'">Clear All Data</standard-button>
     </div>
   </menu-item>
 </template>

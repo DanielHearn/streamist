@@ -5,7 +5,11 @@
         <p>{{ layout.name }}</p>
       </div>
       <div class="column">
-        <icon-button v-if="smallInterface" :iconName="$options.icons.apply" title="Set Layout"/>
+        <icon-button
+          v-if="$store.state.smallInterface"
+          :iconName="$options.icons.apply"
+          title="Set Layout"
+        />
         <standard-button v-else :buttonClasses="'button--accent button--text'">Set Layout</standard-button>
       </div>
     </template>

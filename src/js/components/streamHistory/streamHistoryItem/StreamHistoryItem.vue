@@ -6,7 +6,7 @@
       </div>
       <div class="column">
         <icon-button
-          v-if="smallInterface"
+          v-if="$store.state.smallInterface"
           :iconName="$options.icons.play"
           :buttonClasses="'button--accent'"
           @click.native="loadSelectedHistory"

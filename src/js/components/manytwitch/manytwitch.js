@@ -26,15 +26,19 @@ import {
   createStreamObject,
   getUsernameFromThumbnail
 } from 'Js/utilities'
+import { getTopStreams, getGameInfo } from 'Js/twitch'
 import {
   validateHistory,
   validatePresets,
   validateOptions,
   validateFavorites
 } from 'Js/validation'
-import { getTopStreams, getGameInfo } from 'Js/twitch'
-
-const localStorage = window.localStorage
+import {
+  getStoredOptions,
+  getStoredPresets,
+  getStoredFavorites,
+  getStoredHistory
+} from 'Js/storage'
 
 export default {
   name: 'manytwitch',
@@ -86,255 +90,69 @@ export default {
       iconName: Icons.settings
     }
   ],
-  appName: {
-    formatted: 'Manytwitch',
-    lowercase: 'manytwitch'
-  },
-  config: {
-    maxHistoryLength: 20
-  },
-  storage: {
-    fields: {
-      options: 'options',
-      presets: 'stream_presets',
-      history: 'stream_history',
-      favorites: `channel_favorites`
-    }
-  },
   data: function () {
     return {
-      streams: [],
-      streamHistory: [],
-      streamPresets: [],
-      streamFavorites: [],
-      availableLayouts: [
-        { id: 'grid', name: 'Grid' },
-        { id: 'columns', name: 'Columns' },
-        { id: 'rows', name: 'Rows' }
-      ],
       appHover: false,
       appHoverTracker: 0,
-      navVisible: true,
-      smallInterface: false,
-      topStreams: [],
-      homepageStreams: [],
-      twitchGameInfo: [],
-      options: {
-        chatVisible: true,
-        menuVisible: true,
-        startMuted: true,
-        currentLayout: { id: 'grid', name: 'Grid' }
-      }
+      homepageStreams: []
+    }
+  },
+  computed: {
+    streamsLength () {
+      return this.$store.state.streams.length
     }
   },
   watch: {
-    streams: function () {
-      if (this.streams.length === 0 && this.homepageStreams.length === 0) {
+    streamsLength: function (oldLength, newLength) {
+      if (newLength === 0 && this.homepageStreams.length === 0) {
         this.getHomePageContent()
       }
     }
   },
   methods: {
     toggleFullscreen: toggleFullscreen,
-    createStreamObject: createStreamObject,
 
-    changeLayout: function (newLayout) {
-      if (this.availableLayouts.includes(newLayout)) {
-        this.options.currentLayout = newLayout
-        this.storeOptions(this.options)
-      } else {
-        log('The specified layout does not exist')
-      }
-    },
     toggleChat: function () {
-      this.options.chatVisible = !this.options.chatVisible
-      this.storeOptions(this.options)
-      if (this.smallInterface && this.options.menuVisible) {
-        this.options.menuVisible = !this.options.menuVisible
-        this.storeOptions(this.options)
+      const options = this.$store.state.options
+      options.chatVisible = !options.chatVisible
+      if (this.$store.state.smallInterface && options.menuVisible) {
+        options.menuVisible = !options.menuVisible
       }
+      this.$store.commit('setOptions', options)
     },
     toggleMenu: function () {
-      this.options.menuVisible = !this.options.menuVisible
-      this.storeOptions(this.options)
-      if (this.smallInterface && this.options.chatVisible) {
-        this.options.chatVisible = !this.options.chatVisible
-        this.storeOptions(this.options)
+      const options = this.$store.state.options
+      options.menuVisible = !options.menuVisible
+      if (this.$store.state.smallInterface && options.chatVisible) {
+        options.chatVisible = !options.chatVisible
       }
+      this.$store.commit('setOptions', options)
     },
     toggleNav: function () {
-      this.navVisible = !this.navVisible
+      const options = this.$store.state.options
+      options.navVisible = !options.navVisible
+      this.$store.commit('setOptions', options)
     },
 
-    // Stream methods
     addStream: function (streamName) {
-      const stream = this.createStreamObject(streamName, generateID())
-      this.updateStreams(this.streams.concat([stream]))
-      this.addStreamToHistory(streamName)
-      this.setHistory(this.streamHistory)
-    },
-    updateStreams: function (updatedStreams) {
-      this.streams = updatedStreams
+      const streamObj = createStreamObject(streamName, generateID())
+      this.$store.commit('addStream', streamObj)
+      this.$store.commit('addStreamToHistory', streamObj)
       this.insertURLStreamParams()
     },
-
-    // Option methods
-    setOptions: function (options) {
-      this.loadOptions(options)
-      this.storeOptions(options)
-    },
-    storeOptions: function (options) {
-      if (validateOptions(options)) {
-        localStorage.setItem(
-          this.$options.storage.fields.options,
-          JSON.stringify(options)
-        )
-      }
-    },
-    loadOptions: function (options) {
-      this.options = options
-    },
-    getStoredOptions: function () {
-      return localStorage.getItem(this.$options.storage.fields.options)
-    },
-
-    // Preset methods
-    getStoredPresets: function () {
-      return localStorage.getItem(this.$options.storage.fields.presets)
-    },
-    loadStreamsFromPreset: function (preset) {
-      this.streams = []
-      for (const stream of preset.streams) {
-        this.addStream(stream)
-      }
-    },
-    storePresets: function (presets) {
-      if (validatePresets(presets)) {
-        localStorage.setItem(
-          this.$options.storage.fields.presets,
-          JSON.stringify(presets)
-        )
-      }
-    },
-    loadPresets: function (newPresets) {
-      this.streamPresets = newPresets
-    },
-    setPresets: function (newPresets) {
-      const presets = newPresets || []
-      this.loadPresets(presets)
-      this.storePresets(presets)
-    },
-
-    // Favorite methods
-    addStreamToFavorites: function (streamName) {
-      let newFavorites = this.streamFavorites
-      const stream = {
-        id: generateID(),
-        streamName: streamName
-      }
-      newFavorites = newFavorites.filter(streamFavoriteItem => {
-        return streamFavoriteItem.streamName !== streamName
-      })
-      this.setFavorites([].concat([stream], newFavorites))
-    },
-    unfavoriteStream: function (streamName) {
-      const newFavorites = this.streamFavorites.filter(streamFavoriteItem => {
-        return streamFavoriteItem.streamName !== streamName
-      })
-      this.setFavorites(newFavorites)
-    },
-    clearFavorites: function () {
-      this.setFavorites([])
-    },
-    loadSelectedFavorite: function (streamName) {
-      this.addStream(streamName)
-    },
-    getStoredFavorites: function () {
-      return localStorage.getItem(this.$options.storage.fields.favorites)
-    },
-    storeFavorites: function (favorites) {
-      if (validateFavorites(favorites)) {
-        localStorage.setItem(
-          this.$options.storage.fields.favorites,
-          JSON.stringify(favorites)
-        )
-      }
-    },
-    loadFavorites: function (streamFavorites) {
-      if (streamFavorites) {
-        this.streamFavorites = streamFavorites
-      }
-    },
-    setFavorites: function (streamFavorites) {
-      this.streamFavorites = streamFavorites
-      this.storeFavorites(streamFavorites)
-    },
-
-    // History methods
-    addStreamToHistory: function (streamName) {
-      let newHistory = this.streamHistory
-      const stream = {
-        id: generateID(),
-        streamName: streamName,
-        dateAdded: new Date()
-      }
-      // Stop duplicate channels in history
-      newHistory = newHistory.filter(streamHistoryItem => {
-        return streamHistoryItem.streamName !== streamName
-      })
-
-      // Limit the amount of history items
-      if (newHistory.length < this.$options.config.maxHistoryLength) {
-        newHistory = newHistory.concat([stream])
-      } else {
-        newHistory = newHistory.slice(1, newHistory.length).concat([stream])
-      }
-      this.streamHistory = newHistory
-    },
-    clearHistory: function () {
-      this.setHistory([])
-    },
-    loadSelectedHistory: function (streamName) {
-      this.addStream(streamName)
-    },
-    getStoredHistory: function () {
-      return localStorage.getItem(this.$options.storage.fields.history)
-    },
-    storeHistory: function (history) {
-      const formattedHistory = history
-      for (const stream of history) {
-        if (stream.dateAdded) {
-          stream.dateAdded = String(stream.dateAdded)
-        }
-      }
-      if (validateHistory(formattedHistory)) {
-        localStorage.setItem(
-          this.$options.storage.fields.history,
-          JSON.stringify(formattedHistory)
-        )
-      }
-    },
-    loadHistory: function (streamHistory) {
-      if (streamHistory) {
-        const formattedHistory = streamHistory
-        for (const stream of formattedHistory) {
-          stream.dateAdded = new Date(stream.dateAdded)
-        }
-        this.streamHistory = formattedHistory
-      }
-    },
-    setHistory: function (streamHistory) {
-      this.streamHistory = streamHistory
-      this.storeHistory(streamHistory)
+    updateStreams: function (streams) {
+      this.$store.commit('setStreams', streams)
+      this.insertURLStreamParams()
     },
 
     // Querystring methods
     // Adds current channels into the querystring
     insertURLStreamParams: function () {
       let channelString = ''
-      for (const channel in this.streams) {
-        if (this.streams.hasOwnProperty(channel)) {
-          channelString += String(this.streams[channel].streamName) + ','
+      const streams = this.$store.state.streams
+      for (const channel in streams) {
+        if (streams.hasOwnProperty(channel)) {
+          channelString += String(streams[channel].streamName) + ','
         }
       }
       channelString = channelString.replace('undefined', '')
@@ -365,40 +183,35 @@ export default {
       return false
     },
 
-    // Storage methods
-    getStoredData: function () {
+    loadStoredData: function () {
       const storedDataFields = [
         {
           name: 'History',
-          getStored: this.getStoredHistory,
+          getStored: getStoredHistory,
           validate: validateHistory,
-          load: this.loadHistory,
           default: getDefault('streamHistory'),
-          set: this.setHistory
+          set: 'setHistory'
         },
         {
           name: 'Favorites',
-          getStored: this.getStoredFavorites,
+          getStored: getStoredFavorites,
           validate: validateFavorites,
-          load: this.loadFavorites,
           default: getDefault('streamFavorites'),
-          set: this.setFavorites
+          set: 'setFavorites'
         },
         {
           name: 'Options',
-          getStored: this.getStoredOptions,
+          getStored: getStoredOptions,
           validate: validateOptions,
-          load: this.loadOptions,
           default: getDefault('options'),
-          set: this.setOptions
+          set: 'setOptions'
         },
         {
           name: 'Presets',
-          getStored: this.getStoredPresets,
+          getStored: getStoredPresets,
           validate: validatePresets,
-          load: this.loadPresets,
           default: getDefault('streamPresets'),
-          set: this.setPresets
+          set: 'setPresets'
         }
       ]
 
@@ -414,25 +227,20 @@ export default {
             const parsedFieldData = JSON.parse(rawFieldData)
             if (field.validate(parsedFieldData)) {
               log(`${field.name} passed validation`)
-              field.load(parsedFieldData)
+              this.$store.commit(field.set, parsedFieldData)
               fieldLoaded = true
             }
           } catch (error) {}
         }
         if (!fieldLoaded) {
-          warn(`Loading default ${field.name}`)
+          warn(`Loading default ${field.name}, the invalid data was: `)
+          log(rawFieldData)
           const defaultFieldData = field.default
-          field.set(defaultFieldData)
+          this.$store.commit(field.set, defaultFieldData)
         }
       })
 
       console.groupEnd()
-    },
-    clearData: function () {
-      this.setOptions(getDefault('options'))
-      this.setFavorites(getDefault('streamFavorites'))
-      this.setHistory(getDefault('streamHistory'))
-      this.setPresets(getDefault('streamPresets'))
     },
 
     // Other methods
@@ -440,14 +248,14 @@ export default {
       this.appHover = true
       this.appHoverTracker += 1
 
-      const app = this
-      setTimeout(function () {
-        app.appHoverTracker -= 1
-        if (app.appHoverTracker === 0) {
-          app.appHover = false
+      setTimeout(() => {
+        this.appHoverTracker -= 1
+        if (this.appHoverTracker === 0) {
+          this.appHover = false
         }
       }, 3000)
     },
+
     getHomePageContent: async function () {
       const thumbnailWidth = '480'
       const thumbnailHeight = '270'
@@ -455,7 +263,8 @@ export default {
       const topStreams = await getTopStreams(20)
 
       if (topStreams.length) {
-        this.topStreams = topStreams
+        this.$store.commit('setTopStreams', topStreams)
+
         const gameIds = topStreams.map(stream => {
           return stream.game_id
         })
@@ -473,7 +282,7 @@ export default {
                 }
               }
             }
-            this.twitchGameInfo = mappedGameinfo
+            this.$store.commit('setTwitchGameInfo', mappedGameinfo)
 
             // Map game info to streams if available
             const streamInfo = topStreams.map(stream => {
@@ -504,23 +313,24 @@ export default {
       }
     },
     checkScreenSize: function () {
-      this.smallInterface = window.innerWidth <= 800
+      this.$store.commit('setSmallInterface', window.innerWidth <= 800)
     }
   },
   mounted: function () {
     document.addEventListener('mousemove', this.checkMovement, false)
 
     // Allow exit from hidden nav view
-    const app = this
     window.addEventListener(
       'keydown',
-      function (e) {
+      e => {
+        const options = this.$store.state.options
         if (
-          !app.navVisible &&
+          !options.navVisible &&
           (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27)
         ) {
           e.preventDefault()
-          app.navVisible = true
+          options.navVisible = true
+          this.$store.commit('setOptions', options)
         }
       },
       true
@@ -541,13 +351,13 @@ export default {
     }, 1000) */
 
     // Check if initial streams from querystring
-    if (!this.streams.length) {
+    if (!this.$store.state.streams.length) {
       this.getHomePageContent()
     }
   },
   created: function () {
     // Load stored data and load default data if stored data isn't available
-    this.getStoredData()
+    this.loadStoredData()
 
     // Set mobile interface on small screens
     this.checkScreenSize()

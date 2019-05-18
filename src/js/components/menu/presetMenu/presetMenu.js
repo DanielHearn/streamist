@@ -22,11 +22,6 @@ export default {
     streams: {
       type: Array,
       required: true
-    },
-    smallInterface: {
-      default: false,
-      type: Boolean,
-      required: true
     }
   },
   data: function () {
@@ -40,31 +35,23 @@ export default {
     },
     presetsDisabled: function () {
       return !this.streamPresets.length
-    },
-    stringifiedPresets: function () {
-      return JSON.stringify(this.streamPresets)
     }
   },
   methods: {
-    deletePreset: function (removedPreset) {
-      const newPresets = this.streamPresets.filter(
-        preset => preset.id !== removedPreset.id
-      )
-      this.updatePresets(newPresets)
-    },
-    loadPreset: function (preset) {
-      this.$emit('load-preset', preset)
-    },
     editPreset: function (presetId) {
       this.currentlyEditedPreset =
         this.currentlyEditedPreset === presetId ? '' : presetId
     },
     saveCurrentAsPreset: function () {
       const presetName = `Preset ${this.streamPresets.length + 1}`
-      const newPreset = this.createEmptyPreset(presetName, [])
-      newPreset.streams = this.streams.map(stream => stream.streamName)
+      const newPreset = this.createPresetObject(presetName, [])
+      newPreset.streams = this.streams.slice()
+      for (let i = 0; i < newPreset.streams.length; i++) {
+        newPreset.streams[i] = Object.assign({}, newPreset.streams[i])
+        delete newPreset.streams[i].embedPlayerID
+      }
       const newPresets = this.streamPresets.concat(newPreset)
-      this.updatePresets(newPresets)
+      this.$store.commit('setPresets', newPresets)
     },
     createPresetObject: function (presetName, presetStreams) {
       return {
@@ -73,32 +60,16 @@ export default {
         id: generateID()
       }
     },
-    createEmptyPreset: function (presetName) {
-      return this.createPresetObject(presetName, [])
-    },
-    updatePreset: function (updatedPreset) {
-      const tempPresets = this.streamPresets
-      for (const preset in tempPresets) {
-        if (preset.id === updatedPreset.id) {
-          preset.name = updatedPreset.name
-          preset.streams = updatedPreset.streams
-        }
-      }
-      this.updatePresets(tempPresets)
-    },
-    updatePresets: function (newPresets) {
-      this.$emit('update-presets', newPresets)
-    },
     createPreset: function (presetName) {
       if (!presetName) {
         return false
       }
-      const newPreset = this.createEmptyPreset(presetName)
+      const newPreset = this.createPresetObject(presetName, [])
       const newPresets = this.streamPresets.concat(newPreset)
-      this.updatePresets(newPresets)
+      this.$store.commit('setPresets', newPresets)
     },
     clearPresets: function () {
-      this.updatePresets([])
+      this.$store.commit('setPresets', [])
     }
   }
 }

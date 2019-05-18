@@ -16,20 +16,8 @@ export default {
       type: Array,
       required: true
     },
-    options: {
-      type: Object,
-      required: true
-    },
-    navVisible: {
-      type: Boolean,
-      required: true
-    },
     appHover: {
       type: Boolean,
-      required: true
-    },
-    streamFavorites: {
-      type: Array,
       required: true
     }
   },
@@ -52,26 +40,10 @@ export default {
   },
   computed: {
     layoutClass: function () {
-      return `streams--layout-${this.options.currentLayout.id}`
+      return `streams--layout-${this.$store.state.options.currentLayout.id}`
     },
     streamLengthClass: function () {
-      return `streams--${this.streams.length}`
-    }
-  },
-  methods: {
-    removeStream: function (removedStream) {
-      // Remove stream with matching streamIndex from streams
-      const newStreams = this.streams.filter(stream => stream !== removedStream)
-      this.$emit('update-streams', newStreams)
-    },
-    toggleNav: function () {
-      this.$emit('toggle-nav')
-    },
-    favoriteChannel: function (streamName) {
-      this.$emit('favorite-channel', streamName)
-    },
-    unfavoriteChannel: function (streamName) {
-      this.$emit('unfavorite-channel', streamName)
+      return `streams--${this.$store.state.streams.length}`
     }
   }
 }
