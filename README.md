@@ -1,4 +1,4 @@
-## manytwitch
+## manytwitch ![](https://travis-ci.org/DanielHearn/manytwitch.svg?branch=master)
 ### Multiple Twitch stream viewer
 
 Live at www.danielhearn.co.uk/manytwitch
