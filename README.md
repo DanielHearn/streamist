@@ -30,6 +30,7 @@ To specify a channel within the url use 'manytwitch/?stream=channel1,channel2' c
 ## Tasks
 - 'npm run watch': Watch with webpack dev server
 - 'npm run build': Build production files 
+- 'npm run test': Run tests
 - 'npm run deploy': Build and deploy dist to gh-pages branch
 
 ## Contributions
