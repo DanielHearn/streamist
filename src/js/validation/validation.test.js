@@ -6,7 +6,9 @@ import {
 } from './validation'
 
 // Options Validator
-test('expect options validator to validate on correct options', () => {
+test('expect options validator to validate on correct options', async () => {
+  expect.assertions(1)
+
   const options = {
     chatVisible: true,
     menuVisible: true,
@@ -18,10 +20,12 @@ test('expect options validator to validate on correct options', () => {
     }
   }
 
-  expect(validateOptions(options)).toBe(true)
+  expect(await validateOptions(options)).toBe(true)
 })
 
-test('expect options validator to not validate on incorrect options', () => {
+test('expect options validator to not validate on incorrect options', async () => {
+  expect.assertions(1)
+
   const options = {
     chatVisible: 'true',
     menuVisible: 'true',
@@ -29,11 +33,13 @@ test('expect options validator to not validate on incorrect options', () => {
     currentLayout: [2]
   }
 
-  expect(validateOptions(options)).toBe(false)
+  expect(await validateOptions(options)).toBe(false)
 })
 
 // History Validator
-test('expect history validator to validate on correct history', () => {
+test('expect history validator to validate on correct history', async () => {
+  expect.assertions(1)
+
   const history = [
     {
       id: 'id',
@@ -47,28 +53,32 @@ test('expect history validator to validate on correct history', () => {
     }
   ]
 
-  expect(validateHistory(history)).toBe(true)
+  expect(await validateHistory(history)).toBe(true)
 })
 
-test('expect history validator to not validate on incorrect history', () => {
+test('expect history validator to not validate on incorrect history', async () => {
+  expect.assertions(1)
+
   const history = [
     {
-      id: 2,
-      streamName: true,
+      id: 5,
+      streamName: false,
       dateAdded: 5
     },
     {
-      id: 2,
+      id: 6,
       streamName: false,
       dateAdded: 5
     }
   ]
 
-  expect(validateHistory(history)).toBe(false)
+  expect(await validateHistory(history)).toBe(false)
 })
 
 // Favorites Validator
-test('expect favorites validator to validate on correct favorites', () => {
+test('expect favorites validator to validate on correct favorites', async () => {
+  expect.assertions(1)
+
   const favorites = [
     {
       id: 'id',
@@ -82,10 +92,12 @@ test('expect favorites validator to validate on correct favorites', () => {
     }
   ]
 
-  expect(validateFavorites(favorites)).toBe(true)
+  expect(await validateFavorites(favorites)).toBe(true)
 })
 
-test('expect favorites validator to not validate on incorrect favorites', () => {
+test('expect favorites validator to not validate on incorrect favorites', async () => {
+  expect.assertions(1)
+
   const favorites = [
     {
       id: 5,
@@ -98,11 +110,13 @@ test('expect favorites validator to not validate on incorrect favorites', () => 
     }
   ]
 
-  expect(validateFavorites(favorites)).toBe(false)
+  expect(await validateFavorites(favorites)).toBe(false)
 })
 
 // Presets Validator
-test('expect presets validator to validate on correct presets', () => {
+test('expect presets validator to validate on correct presets', async () => {
+  expect.assertions(1)
+
   const presets = [
     {
       id: 'id',
@@ -138,10 +152,12 @@ test('expect presets validator to validate on correct presets', () => {
     }
   ]
 
-  expect(validatePresets(presets)).toBe(true)
+  expect(await validatePresets(presets)).toBe(true)
 })
 
-test('expect presets validator to not validate on incorrect presets', () => {
+test('expect presets validator to not validate on incorrect presets', async () => {
+  expect.assertions(1)
+
   const presets = [
     {
       id: 4,
@@ -155,5 +171,5 @@ test('expect presets validator to not validate on incorrect presets', () => {
     }
   ]
 
-  expect(validatePresets(presets)).toBe(false)
+  expect(await validatePresets(presets)).toBe(false)
 })
