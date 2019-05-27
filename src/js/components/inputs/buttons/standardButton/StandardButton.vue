@@ -4,4 +4,4 @@
   </button>
 </template>
 
-<script src="./StandardButton.js"></script>
+<script src="./standardButton.js"></script>
