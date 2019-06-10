@@ -1,6 +1,6 @@
 import draggable from 'vuedraggable'
-import StreamItem from 'Components/stream/streamItem/StreamItem.vue'
-import IconButton from 'Components/inputs/buttons/iconButton/IconButton.vue'
+import StreamItem from './../streamItem/StreamItem.vue'
+import IconButton from './../../inputs/buttons/iconButton/IconButton.vue'
 
 import Icons from './../../../icons'
 

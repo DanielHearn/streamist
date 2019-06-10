@@ -1,5 +1,5 @@
-import StandardButton from 'Components/inputs/buttons/standardButton/StandardButton.vue'
-import IconButton from 'Components/inputs/buttons/iconButton/IconButton.vue'
+import StandardButton from './../../inputs/buttons/standardButton/StandardButton.vue'
+import IconButton from './../../inputs/buttons/iconButton/IconButton.vue'
 
 export default {
   name: 'list-item',

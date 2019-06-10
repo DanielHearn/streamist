@@ -1,6 +1,6 @@
-import StreamHistoryItem from 'Components/streamHistory/streamHistoryItem/StreamHistoryItem.vue'
-import StandardButton from 'Components/inputs/buttons/standardButton/StandardButton.vue'
-import List from 'Components/list/list/List.vue'
+import StreamHistoryItem from './../streamHistoryItem/StreamHistoryItem.vue'
+import StandardButton from './../../inputs/buttons/standardButton/StandardButton.vue'
+import List from './../../list/list/List.vue'
 
 export default {
   name: 'stream-history-controls',

@@ -1,8 +1,8 @@
-import StandardButton from 'Components/inputs/buttons/standardButton/StandardButton.vue'
-import IconButton from 'Components/inputs/buttons/iconButton/IconButton.vue'
-import List from 'Components/list/list/List.vue'
-import ListItem from 'Components/list/listItem/ListItem.vue'
-import InputForm from 'Components/inputs/inputForm/InputForm.vue'
+import StandardButton from './../../inputs/buttons/standardButton/StandardButton.vue'
+import IconButton from './../../inputs/buttons/iconButton/IconButton.vue'
+import List from './../../list/list/List.vue'
+import ListItem from './../../list/listItem/ListItem.vue'
+import InputForm from './../../inputs/inputForm/InputForm.vue'
 
 import Icons from './../../../icons'
 import { generateID, createStreamObject } from './../../../utilities'

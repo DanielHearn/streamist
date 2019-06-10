@@ -1,5 +1,5 @@
-import MenuItem from 'Components/menu/menuItem/MenuItem.vue'
-import StreamHistoryControls from 'Components/streamHistory/streamHistoryControls/StreamHistoryControls.vue'
+import MenuItem from './../../menu/menuItem/MenuItem.vue'
+import StreamHistoryControls from './../../streamHistory/streamHistoryControls/StreamHistoryControls.vue'
 
 export default {
   name: 'history-menu',

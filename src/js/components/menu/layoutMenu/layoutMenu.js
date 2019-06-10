@@ -1,6 +1,6 @@
-import MenuItem from 'Components/menu/menuItem/MenuItem.vue'
-import LayoutDemo from 'Components/layout/layoutDemo/LayoutDemo.vue'
-import List from 'Components/list/list/List.vue'
+import MenuItem from './../../menu/menuItem/MenuItem.vue'
+import LayoutDemo from './../../layout/layoutDemo/LayoutDemo.vue'
+import List from './../../list/list/List.vue'
 
 import { config } from './../../../config'
 

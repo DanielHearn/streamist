@@ -94,12 +94,7 @@ module.exports = {
           MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
-          {
-            loader: 'sass-loader',
-            options: {
-              includePaths: [path.resolve(__dirname, './src/scss')]
-            }
-          }
+          'sass-loader'
         ]
       },
       {
@@ -114,11 +109,5 @@ module.exports = {
         ]
       }
     ]
-  },
-  resolve: {
-    alias: {
-      Js: path.resolve(__dirname, 'src/js/'),
-      Components: path.resolve(__dirname, 'src/js/components/')
-    }
   }
 }

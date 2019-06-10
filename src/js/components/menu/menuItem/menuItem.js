@@ -1,4 +1,4 @@
-import IconButton from 'Components/inputs/buttons/iconButton/IconButton.vue'
+import IconButton from './../../inputs/buttons/iconButton/IconButton.vue'
 import Icons from './../../../icons'
 
 export default {

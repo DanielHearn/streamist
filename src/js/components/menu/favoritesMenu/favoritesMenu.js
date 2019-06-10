@@ -1,5 +1,5 @@
-import MenuItem from 'Components/menu/menuItem/MenuItem.vue'
-import StreamFavoritesControls from 'Components/streamFavorites/streamFavoritesControls/StreamFavoritesControls.vue'
+import MenuItem from './../../menu/menuItem/MenuItem.vue'
+import StreamFavoritesControls from './../../streamFavorites/streamFavoritesControls/StreamFavoritesControls.vue'
 
 export default {
   name: 'favorites-menu',

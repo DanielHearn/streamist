@@ -1,4 +1,4 @@
-import StandardButton from 'Components/inputs/buttons/standardButton/StandardButton.vue'
+import StandardButton from './../standardButton/StandardButton.vue'
 
 export default {
   name: 'icon-button',

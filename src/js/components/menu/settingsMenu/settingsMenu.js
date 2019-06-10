@@ -1,5 +1,5 @@
-import MenuItem from 'Components/menu/menuItem/MenuItem.vue'
-import StandardButton from 'Components/inputs/buttons/standardButton/StandardButton.vue'
+import MenuItem from './../../menu/menuItem/MenuItem.vue'
+import StandardButton from './../../inputs/buttons/standardButton/StandardButton.vue'
 
 import { getDefault } from './../../../utilities'
 

@@ -1,5 +1,5 @@
-import ControlBar from 'Components/controlBar/ControlBar.vue'
-import IconButton from 'Components/inputs/buttons/iconButton/IconButton.vue'
+import ControlBar from './../../controlBar/ControlBar.vue'
+import IconButton from './../../inputs/buttons/iconButton/IconButton.vue'
 import Icons from './../../../icons'
 
 export default {
