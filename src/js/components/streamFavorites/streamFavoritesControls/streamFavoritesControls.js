@@ -43,6 +43,9 @@ export default {
     },
     unfavoriteChannel: function (stream) {
       this.$store.commit('removeStreamFromFavorites', stream)
+    },
+    clearFavorites: function () {
+      this.$store.commit('setFavorites', [])
     }
   }
 }
