@@ -5,3 +5,7 @@
 </template>
 
 <script src="./standardButton.js"></script>
+
+<style lang="scss">
+@import "./standardButton.scss";
+</style>

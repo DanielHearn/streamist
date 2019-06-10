@@ -3,7 +3,7 @@ import StandardButton from 'Components/inputs/buttons/standardButton/StandardBut
 import IconButton from 'Components/inputs/buttons/iconButton/IconButton.vue'
 import ListItem from 'Components/list/listItem/ListItem.vue'
 
-import Icons from 'Js/icons/'
+import Icons from './../../../icons'
 
 export default {
   name: 'stream-history-item',

@@ -4,8 +4,8 @@ import List from 'Components/list/list/List.vue'
 import ListItem from 'Components/list/listItem/ListItem.vue'
 import InputForm from 'Components/inputs/inputForm/InputForm.vue'
 
-import Icons from 'Js/icons'
-import { generateID, createStreamObject } from 'Js/utilities'
+import Icons from './../../../icons'
+import { generateID, createStreamObject } from './../../../utilities'
 
 export default {
   name: 'stream-favorites-controls',

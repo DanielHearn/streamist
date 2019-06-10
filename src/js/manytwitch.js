@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import Manytwitch from './components/manytwitch/manytwitch.vue'
 import './../scss/main.scss'
 
-import { storeConfig } from 'Js/store'
+import { storeConfig } from './store'
 
 Vue.use(Vuex)
 

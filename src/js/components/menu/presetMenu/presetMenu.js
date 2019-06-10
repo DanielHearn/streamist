@@ -3,7 +3,7 @@ import PresetListing from 'Components/preset/presetListing/PresetListing.vue'
 import InputForm from 'Components/inputs/inputForm/InputForm.vue'
 import StandardButton from 'Components/inputs/buttons/standardButton/StandardButton.vue'
 import List from 'Components/list/list/List.vue'
-import { generateID } from 'Js/utilities'
+import { generateID } from './../../../utilities'
 
 export default {
   name: 'preset-menu',

@@ -16,7 +16,7 @@ import Streams from 'Components/stream/streamList/StreamList.vue'
 import Chats from 'Components/chat/chatList/ChatList.vue'
 import Intro from 'Components/intro/Intro.vue'
 
-import Icons from 'Js/icons/'
+import Icons from './../../icons'
 import {
   generateID,
   log,
@@ -25,20 +25,20 @@ import {
   toggleFullscreen,
   createStreamObject,
   getUsernameFromThumbnail
-} from 'Js/utilities'
-import { getTopStreams, getGameInfo } from 'Js/twitch'
+} from './../../utilities'
+import { getTopStreams, getGameInfo } from './../../twitch'
 import {
   validateHistory,
   validatePresets,
   validateOptions,
   validateFavorites
-} from 'Js/validation'
+} from './../../validation'
 import {
   getStoredOptions,
   getStoredPresets,
   getStoredFavorites,
   getStoredHistory
-} from 'Js/storage'
+} from './../../storage'
 
 export default {
   name: 'manytwitch',

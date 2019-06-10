@@ -2,7 +2,7 @@ import ListItem from 'Components/list/listItem/ListItem.vue'
 import StandardButton from 'Components/inputs/buttons/standardButton/StandardButton.vue'
 import IconButton from 'Components/inputs/buttons/iconButton/IconButton.vue'
 
-import Icons from 'Js/icons'
+import Icons from './../../../icons'
 
 export default {
   name: 'layout-demo',

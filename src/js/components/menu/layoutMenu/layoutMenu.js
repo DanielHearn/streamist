@@ -2,7 +2,7 @@ import MenuItem from 'Components/menu/menuItem/MenuItem.vue'
 import LayoutDemo from 'Components/layout/layoutDemo/LayoutDemo.vue'
 import List from 'Components/list/list/List.vue'
 
-import { config } from 'Js/config'
+import { config } from './../../../config'
 
 export default {
   name: 'layout-menu',

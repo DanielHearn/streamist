@@ -1,4 +1,4 @@
-import { config, defaultData } from 'Js/config'
+import { config, defaultData } from './../config'
 
 export const generateID = function () {
   return Math.random()

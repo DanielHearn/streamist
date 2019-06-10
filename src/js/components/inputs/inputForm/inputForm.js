@@ -1,6 +1,6 @@
 import IconButton from 'Components/inputs/buttons/iconButton/IconButton.vue'
 import StandardButton from 'Components/inputs/buttons/standardButton/StandardButton.vue'
-import Icons from 'Js/icons'
+import Icons from './../../../icons'
 
 export default {
   name: 'input-form',

@@ -2,7 +2,7 @@ import draggable from 'vuedraggable'
 import StreamItem from 'Components/stream/streamItem/StreamItem.vue'
 import IconButton from 'Components/inputs/buttons/iconButton/IconButton.vue'
 
-import Icons from 'Js/icons'
+import Icons from './../../../icons'
 
 export default {
   name: 'stream-list',
