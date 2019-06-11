@@ -9,8 +9,11 @@
         :iconName="$options.icons.close"
       ></icon-button>
     </div>
-    <div class="menu-item-content">
-      <slot></slot>
+    <div class="menu-item-actions" v-if="$slots.actions">
+      <slot name="actions"></slot>
+    </div>
+    <div class="menu-item-content" v-if="$slots.content">
+      <slot name="content"></slot>
     </div>
   </div>
 </template>

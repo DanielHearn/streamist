@@ -11,13 +11,6 @@
         ></stream-history-item>
       </list>
     </div>
-    <div class="menu-item-row">
-      <standard-button
-        @click.native="clearHistory"
-        :disabled="!historyAvailable"
-        :buttonClasses="'button--secondary'"
-      >Clear History</standard-button>
-    </div>
   </div>
 </template>
 

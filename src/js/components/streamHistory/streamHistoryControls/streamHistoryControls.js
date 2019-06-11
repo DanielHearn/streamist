@@ -1,12 +1,10 @@
 import StreamHistoryItem from './../streamHistoryItem/StreamHistoryItem.vue'
-import StandardButton from './../../inputs/buttons/standardButton/StandardButton.vue'
 import List from './../../list/list/List.vue'
 
 export default {
   name: 'stream-history-controls',
   components: {
     StreamHistoryItem,
-    StandardButton,
     List
   },
   props: {
@@ -27,11 +25,6 @@ export default {
     },
     historyAvailable: function () {
       return this.streamHistory.length > 0
-    }
-  },
-  methods: {
-    clearHistory: function () {
-      this.$store.commit('setHistory', [])
     }
   },
   mounted: function () {

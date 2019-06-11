@@ -4,7 +4,7 @@
     :closeTitle="'Close Layout Options'"
     v-on:close-menu-item="$emit('close-menu')"
   >
-    <div class="menu-item-row">
+    <div class="menu-item-row" slot="content">
       <div class="layouts-demo-container">
         <list>
           <layout-demo

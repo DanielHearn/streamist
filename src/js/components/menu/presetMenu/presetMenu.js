@@ -50,7 +50,7 @@ export default {
         newPreset.streams[i] = Object.assign({}, newPreset.streams[i])
         delete newPreset.streams[i].embedPlayerID
       }
-      const newPresets = this.streamPresets.concat(newPreset)
+      const newPresets = [newPreset].concat(this.streamPresets)
       this.$store.commit('setPresets', newPresets)
     },
     createPresetObject: function (presetName, presetStreams) {
@@ -65,7 +65,7 @@ export default {
         return false
       }
       const newPreset = this.createPresetObject(presetName, [])
-      const newPresets = this.streamPresets.concat(newPreset)
+      const newPresets = [newPreset].concat(this.streamPresets)
       this.$store.commit('setPresets', newPresets)
     },
     clearPresets: function () {

@@ -20,6 +20,13 @@
       text-align: center;
     }
   }
+  .menu-item-actions {
+    padding: $content-padding;
+    display: flex;
+    flex: 1 auto;
+    box-sizing: border-box;
+    flex-direction: column;
+  }
   .menu-item-content {
     height: 100%;
     padding: $content-padding;
@@ -40,6 +47,9 @@
     box-sizing: border-box;
   }
   button {
+    margin: $content-padding/4 0;
+  }
+  .list button {
     margin: $content-padding/4;
   }
 }

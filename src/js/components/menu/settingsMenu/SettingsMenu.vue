@@ -4,12 +4,14 @@
     :closeTitle="'Close Settings'"
     v-on:close-menu-item="$emit('close-menu')"
   >
-    <div class="menu-item-row">
-      <standard-button
-        @click.native="clearData"
-        :buttonClasses="'button--secondary'"
-      >Clear Application Data</standard-button>
-    </div>
+    <template slot="content">
+      <div class="menu-item-row">
+        <standard-button
+          @click.native="clearData"
+          :buttonClasses="'button--secondary'"
+        >Clear Application Data</standard-button>
+      </div>
+    </template>
   </menu-item>
 </template>
 
