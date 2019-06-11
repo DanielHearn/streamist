@@ -3,6 +3,7 @@
 .chat-list {
   display: flex;
   flex-direction: column;
+  min-width: 16em;
   .add-chat-container {
     background: $grey;
     button {
