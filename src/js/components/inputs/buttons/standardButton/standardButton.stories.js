@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/vue'
 import StandardButton from './StandardButton.vue'
 
 storiesOf('Standard Button', module)
-  .add('With text', () => ({
+  .add('Normal', () => ({
     components: { StandardButton },
     template: `
       <standard-button
