@@ -14,7 +14,7 @@ export default {
     iconName: {
       default: 'mouse',
       type: String,
-      required: true
+      required: false
     },
     buttonClasses: {
       default: 'button--accent',

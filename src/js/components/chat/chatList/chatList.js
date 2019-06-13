@@ -23,9 +23,6 @@ export default {
     maxChats: function () {
       return this.streams.length === this.chats.length
     },
-    chatsAvailable: function () {
-      return this.streams.length >= 1 && this.$store.state.options.chatVisible
-    },
     removeAvailable: function () {
       return this.chats.length > 1
     },

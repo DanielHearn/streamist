@@ -338,18 +338,6 @@ export default {
 
     window.addEventListener('resize', this.checkScreenSize)
 
-    // Disable as mobile should be usable now as of 27/04/19
-    /*
-    // Alert users with small screens about potential incompatibility
-    const mobileWarning = `${
-      this.$options.appName.formatted
-    } does not currently support mobile devices. Please use a device with a larger screen.`
-    setTimeout(() => {
-      if (window.innerWidth < 800 || window.innerHeight < 600) {
-        window.alert(mobileWarning)
-      }
-    }, 1000) */
-
     // Check if initial streams from querystring
     if (!this.$store.state.streams.length) {
       this.getHomePageContent()

@@ -105,7 +105,7 @@
           </list>
         </intro>
       </streams>
-      <chats :streams="$store.state.streams"></chats>
+      <chats :streams="$store.state.streams" v-if="$store.state.streams.length"></chats>
     </div>
   </div>
 </template>
