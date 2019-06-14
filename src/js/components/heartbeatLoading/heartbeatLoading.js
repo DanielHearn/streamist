@@ -4,7 +4,7 @@ export default {
     active: {
       type: Boolean,
       default: true,
-      required: true
+      required: false
     }
   }
 }
