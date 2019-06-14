@@ -2,6 +2,7 @@
 @import "./../../../scss/mixins";
 
 .details-summary {
+  color: $white;
   .details-summary__header {
     display: list-item;
     padding: 0.75em 0.25em 0.75em 0.5em;

@@ -3,7 +3,7 @@ export default {
   props: {
     headerClasses: {
       type: String,
-      required: true
+      required: false
     }
   },
   data: function () {
