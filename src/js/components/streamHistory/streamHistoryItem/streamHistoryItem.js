@@ -4,6 +4,7 @@ import IconButton from './../../inputs/buttons/iconButton/IconButton.vue'
 import ListItem from './../../list/listItem/ListItem.vue'
 
 import Icons from './../../../icons'
+import { generateID, createStreamObject } from './../../../utilities'
 
 export default {
   name: 'stream-history-item',
@@ -35,7 +36,12 @@ export default {
   },
   methods: {
     loadSelectedHistory: function () {
-      this.$store.commit('addStream', this.history)
+      const streamObj = createStreamObject(
+        this.history.streamName,
+        generateID()
+      )
+      this.$store.commit('addStream', streamObj)
+      this.$store.commit('addStreamToHistory', streamObj)
     }
   }
 }
