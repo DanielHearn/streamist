@@ -12,6 +12,11 @@ export default {
       default: [],
       type: Array,
       required: true
+    },
+    chatsVisible: {
+      default: true,
+      type: Boolean,
+      required: false
     }
   },
   data: function () {

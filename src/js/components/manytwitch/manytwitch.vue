@@ -105,7 +105,11 @@
           </list>
         </intro>
       </streams>
-      <chats :streams="$store.state.streams" v-if="$store.state.streams.length"></chats>
+      <chats
+        v-if="$store.state.streams.length"
+        :streams="$store.state.streams"
+        :chats-visible="$store.state.options.chatVisible"
+      ></chats>
     </div>
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div class="chat-list">
+  <div class="chat-list" v-if="chatsVisible">
     <div class="add-chat-container">
       <standard-button
         class="button--fill"
