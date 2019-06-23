@@ -71,10 +71,10 @@ nav {
       .stream-details{
         display: flex;
         justify-content: space-between;
-        p:first-of-type {
+        .stream-name {
           text-align: left;
         }
-        p:last-of-type {
+        .viewer {
           text-align: right;
         }
       }

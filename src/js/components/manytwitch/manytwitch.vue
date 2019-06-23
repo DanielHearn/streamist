@@ -96,7 +96,7 @@
                 </template>
                 <template slot="content" v-if="stream.game_name && stream.viewer_count">
                   <div class="column stream-details">
-                    <span>{{stream.game_name}}</span>
+                    <span class="stream-name">{{stream.game_name}}</span>
                     <span class="viewer">{{stream.viewer_count}} Viewers</span>
                   </div>
                 </template>
