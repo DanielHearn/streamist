@@ -14,7 +14,6 @@ import SettingsMenu from './../menu/settingsMenu/SettingsMenu.vue'
 
 import Streams from './../stream/streamList/StreamList.vue'
 import Chats from './../chat/chatList/ChatList.vue'
-import Intro from './../intro/Intro.vue'
 
 import Icons from './../../icons'
 import {
@@ -55,7 +54,6 @@ export default {
     AboutMenu,
     FavoritesMenu,
     SettingsMenu,
-    Intro,
     List,
     ListItem
   },

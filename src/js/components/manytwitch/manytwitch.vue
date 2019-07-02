@@ -71,7 +71,10 @@
         v-on:toggle-nav="toggleNav"
         v-on:update-streams="updateStreams"
       >
-        <intro slot="placeholder">
+        <section slot="placeholder" class="intro-content">
+          <h1 class="intro-title">MANYTWITCH</h1>
+          <h2 class="intro-subheading">Multiple Twitch Stream Viewer</h2>
+          <p class="intro-text">Enter a twitch channel to start or watch one of the streams below.</p>
           <list slot="content" :layout="'grid'" class="intro-list">
             <div
               v-for="(stream, index) in homepageStreams"
@@ -84,14 +87,14 @@
                 class="intro-list-item-image"
                 :src="stream.thumbnail"
                 :alt="stream.user_name + '\'s stream thumbnail'"
-              >
+              />
               <list-item class="intro-list-item">
                 <template slot="header">
                   <div class="column">
                     <p>{{ stream.user_name }}</p>
                   </div>
                   <div class="column">
-                    <icon-button :iconName="$options.icons.play" :buttonClasses="'button--accent'"/>
+                    <icon-button :iconName="$options.icons.play" :buttonClasses="'button--accent'" />
                   </div>
                 </template>
                 <template slot="content" v-if="stream.game_name && stream.viewer_count">
@@ -103,7 +106,7 @@
               </list-item>
             </div>
           </list>
-        </intro>
+        </section>
       </streams>
       <chats
         v-if="$store.state.streams.length"
