@@ -83,9 +83,9 @@
               class="intro-list-item-container"
             >
               <img
-                v-if="!$store.state.smallInterface && stream.thumbnail"
+                v-if="!$store.state.smallInterface"
                 class="intro-list-item-image"
-                :src="stream.thumbnail"
+                :src="stream.thumbnail || '/img/placeholderStreamThumbnail.png'"
                 :alt="stream.user_name + '\'s stream thumbnail'"
               />
               <list-item class="intro-list-item">
