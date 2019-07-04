@@ -20,6 +20,11 @@ export default {
     layout: {
       type: Object,
       required: true
+    },
+    smallInterface: {
+      type: Boolean,
+      default: false,
+      required: false
     }
   },
   computed: {
