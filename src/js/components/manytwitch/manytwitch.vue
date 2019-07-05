@@ -67,9 +67,11 @@
           <settings-menu v-if="currentMenu === 'Settings'" v-on:close-menu="closeMenu"></settings-menu>
         </template>
       </side-menu>
-      <streams
+      <stream-list
         :streams="$store.state.streams"
         :appHover="appHover"
+        :favorites="$store.state.streamFavorites"
+        :options="$store.state.options"
         v-on:toggle-nav="toggleNav"
         v-on:update-streams="updateStreams"
       >
@@ -109,7 +111,7 @@
             </div>
           </list>
         </section>
-      </streams>
+      </stream-list>
       <chats
         v-if="$store.state.streams.length"
         :streams="$store.state.streams"

@@ -12,7 +12,7 @@ import SideMenu from './../menu/sideMenu/SideMenu.vue'
 import FavoritesMenu from './../menu/favoritesMenu/FavoritesMenu.vue'
 import SettingsMenu from './../menu/settingsMenu/SettingsMenu.vue'
 
-import Streams from './../stream/streamList/StreamList.vue'
+import StreamList from './../stream/streamList/StreamList.vue'
 import Chats from './../chat/chatList/ChatList.vue'
 
 import Icons from './../../icons'
@@ -45,7 +45,7 @@ export default {
     IconButton,
     InputForm,
     SideMenu,
-    Streams,
+    StreamList,
     Chats,
     LayoutMenu,
     HistoryMenu,

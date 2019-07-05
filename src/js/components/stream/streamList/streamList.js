@@ -19,6 +19,14 @@ export default {
     appHover: {
       type: Boolean,
       required: true
+    },
+    favorites: {
+      type: Array,
+      required: true
+    },
+    options: {
+      type: Object,
+      required: true
     }
   },
   icons: Icons,
@@ -40,10 +48,10 @@ export default {
   },
   computed: {
     layoutClass: function () {
-      return `streams--layout-${this.$store.state.options.currentLayout.id}`
+      return `streams--layout-${this.options.currentLayout.id}`
     },
     streamLengthClass: function () {
-      return `streams--${this.$store.state.streams.length}`
+      return `streams--${this.streams.length}`
     }
   }
 }

@@ -24,3 +24,24 @@ export const preset = {
   ],
   id: 'ffyir7b'
 }
+
+export const favorites = [
+  {
+    streamName: 'twitch',
+    id: 'wu77vf6i',
+    dateAdded: '2019-05-18T11:55:24.780Z'
+  },
+  {
+    streamName: 'twitchpresents',
+    id: 'g1d9s6nj',
+    dateAdded: '2019-05-18T11:40:07.903Z'
+  }
+]
+
+export const options = {
+  chatVisible: true,
+  menuVisible: true,
+  startMuted: true,
+  navVisible: true,
+  currentLayout: { id: 'grid', name: 'Grid' }
+}

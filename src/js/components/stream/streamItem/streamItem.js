@@ -24,6 +24,11 @@ export default {
     isFirstStream: {
       type: Boolean,
       required: true
+    },
+    favorites: {
+      type: Array,
+      required: true,
+      default: []
     }
   },
   icons: Icons,
@@ -41,7 +46,7 @@ export default {
       return `https://www.twitch.tv/${this.stream.streamName}`
     },
     favorited: function () {
-      return !!this.$store.state.streamFavorites.filter(favorite => {
+      return !!this.favorites.filter(favorite => {
         return (
           favorite.streamName.toLowerCase() ===
           this.stream.streamName.toLowerCase()
