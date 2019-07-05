@@ -15,7 +15,12 @@
       v-model="orderedStreams"
       @start="drag=true"
       @end="drag=false"
-      :options="{ghostClass:'ghost', handle:'.handle', filter:'.stream-player', forceFallback:'true', fallbackTolerance:'1', removeCloneOnHide: true}"
+      ghostClass="ghost"
+      handle=".handle"
+      filter=".stream-player"
+      forceFallback="true"
+      fallbackTolerance="1"
+      removeCloneOnHide="false"
     >
       <stream-item
         class="draggable"
