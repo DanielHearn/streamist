@@ -11,6 +11,11 @@ export default {
     streamHistory: {
       type: Array,
       required: true
+    },
+    smallInterface: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   data: function () {

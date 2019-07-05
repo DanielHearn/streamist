@@ -8,6 +8,7 @@
           :key="history.id"
           :history="history"
           :current-date="currentDate"
+          :smallInterface="smallInterface"
         ></stream-history-item>
       </list>
     </div>

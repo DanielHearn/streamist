@@ -15,7 +15,10 @@
     </template>
     <template slot="content">
       <div class="menu-item-row">
-        <stream-history-controls :stream-history="streamHistory"/>
+        <stream-history-controls
+          :stream-history="streamHistory"
+          :small-interface="$store.state.smallInterface"
+        />
       </div>
     </template>
   </menu-item>

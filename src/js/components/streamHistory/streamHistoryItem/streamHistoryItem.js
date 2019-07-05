@@ -21,6 +21,11 @@ export default {
     currentDate: {
       type: Date,
       required: true
+    },
+    smallInterface: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   icons: Icons,
