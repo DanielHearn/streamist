@@ -7,11 +7,11 @@
           type="text"
           v-model="presetName"
           :class="{'input--warning': emptyPresetName}"
-        >
+        />
       </div>
       <div class="column">
         <icon-button
-          v-if="$store.state.smallInterface"
+          v-if="smallInterface"
           :iconName="$options.icons.play"
           :buttonClasses="'button--accent'"
           @click.native="loadPreset"
@@ -60,7 +60,7 @@
           v-on:submit="newPresetStream"
           placeholder="Channel Name"
           :buttonText="'Add'"
-          :buttonIconName="$store.state.smallInterface ? 'add' : ''"
+          :buttonIconName="smallInterface ? 'add' : ''"
         ></input-form>
         <list>
           <draggable
@@ -68,7 +68,7 @@
             v-if="orderedStreams.length"
             @start="drag=true"
             @end="drag=false"
-            :options="{ghostClass:'ghost', removeCloneOnHide: true}"
+            ghostClass="ghost"
           >
             <list-item
               v-for="(stream, index) in orderedStreams"

@@ -1,5 +1,5 @@
 <template>
-  <div class="menu" :class="{visible: $store.state.options.menuVisible}">
+  <div class="menu" :class="{visible: menuVisible}">
     <div class="menu-bar">
       <div class="menu-bar-content">
         <icon-button

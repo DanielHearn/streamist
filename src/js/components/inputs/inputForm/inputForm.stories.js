@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/vue'
 
-import InputForm from './inputForm.vue'
+import InputForm from './InputForm.vue'
 
 storiesOf('Input Form', module)
   .add('Normal', () => ({

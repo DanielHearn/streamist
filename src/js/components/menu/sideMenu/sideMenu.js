@@ -9,6 +9,11 @@ export default {
     menuItems: {
       type: Array,
       required: true
+    },
+    menuVisible: {
+      type: Boolean,
+      required: false,
+      default: true
     }
   },
   data: function () {

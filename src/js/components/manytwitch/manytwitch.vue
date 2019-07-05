@@ -36,6 +36,7 @@
       <side-menu
         :class="{'hidden': !$store.state.options.navVisible}"
         :menuItems="$options.menuItems"
+        :menuVisible="$store.state.options.menuVisible"
       >
         <template slot-scope="{ currentMenu, closeMenu }">
           <layout-menu
@@ -53,6 +54,7 @@
             v-if="currentMenu === 'Presets'"
             :stream-presets="$store.state.streamPresets"
             :streams="$store.state.streams"
+            :smallInterface="$store.state.smallInterface"
             v-on:close-menu="closeMenu"
           ></preset-menu>
           <history-menu

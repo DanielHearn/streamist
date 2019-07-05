@@ -12,3 +12,15 @@ export const streams = [
     embedPlayerID: 'embed-player-twitchpresents-7ja1htp'
   }
 ]
+
+export const preset = {
+  name: 'Preset 1',
+  streams: [
+    {
+      streamName: 'twitch',
+      id: 'wracsvst',
+      dateAdded: '2019-07-05T09:31:06.497Z'
+    }
+  ],
+  id: 'ffyir7b'
+}
