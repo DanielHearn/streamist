@@ -19,6 +19,9 @@ $heartbeatTiming: 1.2s;
       animation-delay: 0.22s;
     }
   }
+  &.hidden {
+    opacity: 0;
+  }
 }
 
 @keyframes heartbeatanim {
