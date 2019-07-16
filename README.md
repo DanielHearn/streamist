@@ -20,7 +20,9 @@ To specify a channel within the url use 'manytwitch/?stream=channel1,channel2' c
 - Mobile/ Tablet support
   - Compact nav bar
 - Notifications - E.g. preset saved, stream add or deleted, history cleared
-- Improve chat selection => Allow for channels that are currently being watch, more compact / allow for more chat iframe 
+- Improve chat selection => Allow for channels that are currently being watch, more compact / allow for more chat iframe
+- Unit tests
+- Rename to avoid issues with using "Twitch"
 
 ## Dependencies
 - vue draggable to handle model updating on list reorder with drag and drop.
