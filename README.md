@@ -35,6 +35,9 @@ To specify a channel within the url use 'manytwitch/?stream=channel1,channel2' c
 - 'npm run test': Run tests
 - 'npm run deploy': Build and deploy dist to gh-pages branch
 
+## CI
+https://travis-ci.org/DanielHearn/manytwitch
+
 ## Contributions
 
 Contributions are welcome especially those which improve functionality and user experience.
