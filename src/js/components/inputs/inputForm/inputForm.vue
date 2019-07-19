@@ -7,8 +7,8 @@
       :placeholder="placeholder"
       v-model="inputValue"
       :class="{'input--warning': warning}"
-    >
-    <icon-button v-if="isIcon" :iconName="buttonIcon" type="submit"/>
+    />
+    <icon-button v-if="isIcon" :iconName="buttonIcon" type="submit" />
     <standard-button v-else type="submit">
       <template>{{buttonText}}</template>
     </standard-button>
