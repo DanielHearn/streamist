@@ -10,7 +10,7 @@ Hosted on github pages.
 - Watch multiple twitch streams and chats
 - Recent channel history
 - Favorite channels
-- Channel presets -> For quick acess to regularly watched sets of channels
+- Channel presets -> For quick access to regularly watched groups of channels
 
 To specify a channel within the url use 'manytwitch/?stream=channel1,channel2' creating a list of the channels seperated with commas.
 
