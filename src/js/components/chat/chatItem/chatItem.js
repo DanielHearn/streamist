@@ -20,7 +20,7 @@ export default {
     removeAvailable: {
       default: false,
       type: Boolean,
-      required: true
+      required: false
     }
   },
   icons: Icons,

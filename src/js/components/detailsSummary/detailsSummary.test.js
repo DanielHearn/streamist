@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import DetailsSummary from './DetailsSummary.vue'
 
-describe('Details Summary', () => {
+describe('DetailsSummary', () => {
   test('Toggles once clicked', () => {
     const wrapper = mount(DetailsSummary)
 
@@ -44,8 +44,6 @@ describe('Details Summary', () => {
 
     const summary = wrapper.find('summary')
 
-    expect(summary.html()).toContain(
-      '<summary class="details-summary__header text-sub-heading custom-header-class"></summary>'
-    )
+    expect(summary.attributes('class')).toContain('custom-header-class')
   })
 })
