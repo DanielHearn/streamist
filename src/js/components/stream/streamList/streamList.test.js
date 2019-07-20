@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import Streamlist from './Streamlist.vue'
+import Streamlist from './StreamList.vue'
 import { streams, options, favorites } from '../../../mockData/mockData'
 
 describe('Streamlist', () => {
