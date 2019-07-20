@@ -34,9 +34,8 @@
     </nav>
     <div id="main">
       <side-menu
-        :class="{'hidden': !$store.state.options.navVisible}"
+        :class="{'hidden': !$store.state.options.navVisible, 'visible': $store.state.options.menuVisible}"
         :menuItems="$options.menuItems"
-        :menuVisible="$store.state.options.menuVisible"
       >
         <template slot-scope="{ currentMenu, closeMenu }">
           <layout-menu
