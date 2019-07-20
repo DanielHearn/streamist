@@ -23,7 +23,7 @@
       removeCloneOnHide="false"
     >
       <stream-item
-        class="draggable"
+        class="draggable stream"
         v-for="(stream, index) in streams"
         :key="stream.embedPlayerID"
         :stream="stream"
@@ -33,7 +33,9 @@
         :favorites="favorites"
       />
     </draggable>
-    <slot v-else name="placeholder"></slot>
+    <div v-else class="placeholder">
+      <slot name="placeholder"></slot>
+    </div>
   </div>
 </template>
 

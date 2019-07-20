@@ -1,6 +1,6 @@
 import { storiesOf } from '@storybook/vue'
 
-import { streams, options } from '../../../mockData/mockData'
+import { streams, options, favorites } from '../../../mockData/mockData'
 
 import StreamList from './StreamList.vue'
 
@@ -9,13 +9,15 @@ storiesOf('Stream List', module).add('Normal', () => ({
   data () {
     return {
       streams,
-      options
+      options,
+      favorites
     }
   },
   template: ` 
     <stream-list
     :streams="streams"
     :options="options"
+    :favorites="favorites"
     :appHover="false"
   >
     <section slot="placeholder">
