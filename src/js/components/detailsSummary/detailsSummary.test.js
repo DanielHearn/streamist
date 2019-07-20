@@ -17,22 +17,20 @@ describe('DetailsSummary', () => {
   })
 
   test('Slots', () => {
+    const headerContent = '<p>Header Content</p>'
+    const mainContent = '<p>Main Content</p>'
     const wrapper = mount(DetailsSummary, {
-      scopedSlots: {
-        header: '<p>Header Content</p>',
-        content: '<p>Main Content</p>'
+      slots: {
+        header: headerContent,
+        content: mainContent
       }
     })
 
     const summary = wrapper.find('summary')
     const content = wrapper.find('.details-summary__content')
 
-    expect(summary.html()).toContain(
-      '<summary class="details-summary__header text-sub-heading"><p>Header Content</p></summary>'
-    )
-    expect(content.html()).toContain(
-      '<div class="details-summary__content"><p>Main Content</p></div>'
-    )
+    expect(summary.html()).toContain(headerContent)
+    expect(content.html()).toContain(mainContent)
   })
 
   test('Header classes', () => {

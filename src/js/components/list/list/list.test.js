@@ -19,7 +19,7 @@ describe('List', () => {
   test('Slots', () => {
     const content = '<p>Content</p>'
     const wrapper = mount(List, {
-      scopedSlots: {
+      slots: {
         default: content
       }
     })
