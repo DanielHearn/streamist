@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils'
 import MenuItem from './MenuItem.vue'
 
 describe('MenuItem', () => {
-  const title = '<p>Menu Title</p>'
+  const title = 'Menu Title'
   const actionsContent = '<p>Actions Content</p>'
   const mainContent = '<p>Main Content</p>'
 
