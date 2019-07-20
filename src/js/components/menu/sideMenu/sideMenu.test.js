@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import SideMenu from './SideMenu.vue'
-import Icons from './../../../Icons'
+import Icons from './../../../icons'
 
 describe('SideMenu', () => {
   const menuItems = [
