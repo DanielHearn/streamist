@@ -35,7 +35,7 @@ beforeEach(() => {
     store,
     localVue
   })
-  store.commit('setPresets', _.cloneDeep(preset))
+  store.commit('setPresets', _.cloneDeep([preset]))
 })
 
 afterEach(() => {
@@ -69,9 +69,36 @@ describe('PresetListing', () => {
 
   test('deleteStreamFromPreset', () => {
     wrapper.setProps({ editMode: true })
+
+    // Click stream delete button
     wrapper.find('.preset-listing-item .button--tertiary').trigger('click')
     expect(wrapper.vm.preset.streams).toStrictEqual(
       _.cloneDeep([preset.streams[1]])
+    )
+  })
+
+  test('loadPreset', () => {
+    expect(store.state.streams.length).toStrictEqual(0)
+
+    // Click preset delete button
+    wrapper.find('.button--accent').trigger('click')
+    expect(store.state.streams.length).toStrictEqual(preset.streams.length)
+  })
+
+  test('deletePreset', () => {
+    expect(store.state.streamPresets).toStrictEqual(_.cloneDeep([preset]))
+
+    // Click preset delete button
+    wrapper.find('.input-container .button--tertiary').trigger('click')
+    expect(store.state.streamPresets).toStrictEqual([])
+  })
+
+  test('newPresetStream', () => {
+    expect(store.state.streamPresets).toStrictEqual(_.cloneDeep([preset]))
+
+    wrapper.vm.newPresetStream('twitch')
+    expect(store.state.streamPresets[0].streams.length).toBe(
+      _.cloneDeep(preset.streams).length + 1
     )
   })
 })
