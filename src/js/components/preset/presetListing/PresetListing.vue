@@ -85,7 +85,7 @@
                   <icon-button
                     :iconName="$options.icons.remove"
                     :buttonClasses="'button--tertiary button--warning'"
-                    title="Remove channel from favorites"
+                    title="Remove channel from preset"
                     @click.native="deleteStreamFromPreset(index)"
                   />
                 </div>

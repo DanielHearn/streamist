@@ -156,13 +156,43 @@ describe('ChatList', () => {
   test('filteredStreams', () => {
     const wrapper = mount(ChatList, {
       propsData: {
-        streams: [streams].concat([
-          createStreamObject(generateID(), streams[0].streamName)
-        ]),
+        streams: [
+          {
+            streamName: 'twitch',
+            id: '7ja1htp',
+            dateAdded: '2019-06-12T15:14:10.051Z',
+            embedPlayerID: 'embed-player-twitch-7ja1htp'
+          },
+          {
+            streamName: 'twitch',
+            id: '8ja1hth',
+            dateAdded: '2019-06-12T15:14:15.051Z',
+            embedPlayerID: 'embed-player-twitch-8ja1hth'
+          },
+          {
+            streamName: 'twitchpresents',
+            id: '7ja1htd',
+            dateAdded: '2019-06-12T15:16:10.051Z',
+            embedPlayerID: 'embed-player-twitchpresents-7ja1htp'
+          }
+        ],
         chatsVisible: true
       }
     })
 
-    expect(wrapper.vm.filteredStreams).toStrictEqual[(streams[0], streams[1])]
+    expect(wrapper.vm.filteredStreams).toStrictEqual([
+      {
+        streamName: 'twitch',
+        id: '7ja1htp',
+        dateAdded: '2019-06-12T15:14:10.051Z',
+        embedPlayerID: 'embed-player-twitch-7ja1htp'
+      },
+      {
+        streamName: 'twitchpresents',
+        id: '7ja1htd',
+        dateAdded: '2019-06-12T15:16:10.051Z',
+        embedPlayerID: 'embed-player-twitchpresents-7ja1htp'
+      }
+    ])
   })
 })
