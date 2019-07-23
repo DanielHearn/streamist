@@ -1,5 +1,5 @@
 <template>
-  <list-item>
+  <list-item class="stream-history-item">
     <template slot="header">
       <div class="column">
         <p>{{ history.streamName }}</p>
