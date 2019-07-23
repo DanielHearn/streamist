@@ -1,7 +1,6 @@
 import { mount } from '@vue/test-utils'
 import ChatList from './ChatList.vue'
 import { streams } from '../../../mockData'
-import { createStreamObject, generateID } from '../../../utilities'
 
 const chats = [
   {

@@ -17,16 +17,19 @@
           :iconName="favorited ? $options.icons.favorite : $options.icons.unfavorite"
           :title="favorited ? 'Remove channel from favorites' : 'Add channel to favorites'"
           @click.native="favoriteChannel"
+          :class="['button--favorite']"
         />
         <icon-button
           :iconName="$options.icons.refresh"
           title="Refresh Stream"
           @click.native="refresh"
+          :class="['button--refresh']"
         />
         <icon-button
           :iconName="$options.icons.remove"
           title="Remove Stream"
           @click.native="remove"
+          :class="['button--remove']"
         />
       </control-bar>
     </div>
