@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import IconButton from './IconButton.vue'
-import Icon from './../../../../Icons'
+import Icon from './../../../../icons'
 
 describe('IconButton', () => {
   test('Slots', () => {
