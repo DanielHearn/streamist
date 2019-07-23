@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import ControlBar from './ControlBar.vue'
 
-describe('DetailsSummary', () => {
+describe('ControlBar', () => {
   test('Slots', () => {
     const content = '<p>Main Content</p>'
     const wrapper = mount(ControlBar, {

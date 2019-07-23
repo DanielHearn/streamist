@@ -3,7 +3,8 @@ export default {
   props: {
     disabled: {
       default: false,
-      type: Boolean
+      type: Boolean,
+      required: false
     },
     buttonClasses: {
       default: 'button--accent',
