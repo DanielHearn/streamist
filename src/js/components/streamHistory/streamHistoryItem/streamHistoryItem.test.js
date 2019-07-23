@@ -25,6 +25,7 @@ beforeEach(() => {
     localVue
   })
   store.commit('setHistory', _.cloneDeep([historyItem]))
+  store.commit('setStreams', _.cloneDeep([]))
 })
 
 afterEach(() => {
@@ -62,5 +63,15 @@ describe('StreamHistoryItem', () => {
 
     expect(wrapper.find('.button--icon').exists()).toBe(true)
     expect(wrapper.find('.button--text').exists()).toBe(false)
+  })
+
+  test('loadSelectedHistory', () => {
+    expect(store.state.streamHistory).toStrictEqual([historyItem])
+    wrapper.find('button').trigger('click')
+
+    expect(store.state.streams[0].streamName).toBe(historyItem.streamName)
+    expect(store.state.streamHistory[0].streamName).toStrictEqual(
+      historyItem.streamName
+    )
   })
 })
