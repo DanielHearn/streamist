@@ -14,7 +14,7 @@ const isProduction =
 module.exports = {
   mode: isProduction ? 'production' : 'development',
   entry: {
-    main: ['@babel/polyfill', './src/js/manytwitch.js']
+    main: ['@babel/polyfill', './src/js/app.js']
   },
   output: {
     filename: '[name].[hash].js?dh-1',
@@ -54,10 +54,10 @@ module.exports = {
       logo: './src/favicons/Icon.png',
       persistentCache: true,
       inject: true,
-      prefix: isProduction ? '/manytwitch/favicons/' : '/favicons/',
+      prefix: isProduction ? '/streamist/favicons/' : '/favicons/',
       output: '../favicons/',
       config: {
-        appName: 'Manytwitch',
+        appName: 'Streamist',
         appDescription: 'Multiple Twitch Stream Viewer',
         developerName: 'Daniel Hearn',
         developerURL: 'https://danielhearn.co.uk',

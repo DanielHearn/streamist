@@ -1,10 +1,6 @@
 export const config = {
   logging: true,
   maxHistoryLength: 20,
-  appName: {
-    formatted: 'Manytwitch',
-    lowercase: 'manytwitch'
-  },
   availableLayouts: [
     { id: 'grid', name: 'Grid' },
     { id: 'columns', name: 'Columns' },

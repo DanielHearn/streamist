@@ -1,7 +1,7 @@
-## manytwitch ![](https://travis-ci.org/DanielHearn/manytwitch.svg?branch=master)
+## streamist ![](https://travis-ci.org/DanielHearn/streamist.svg?branch=master)
 ### Multiple Twitch stream viewer
 
-Live at www.danielhearn.co.uk/manytwitch
+Live at www.danielhearn.co.uk/streamist
 
 Built with VueJS, SCSS, webpack for workflow automation.
 Hosted on github pages.
@@ -12,9 +12,9 @@ Hosted on github pages.
 - Favorite channels
 - Channel presets -> For quick access to regularly watched groups of channels
 
-To specify a channel within the url use 'manytwitch/?stream=channel1,channel2' creating a list of the channels seperated with commas.
+To specify a channel within the url use 'streamist/?stream=channel1,channel2' creating a list of the channels seperated with commas.
 
-![Example image of app](readme-assets/manytwitch1.png)
+![Example image of app](readme-assets/streamist1.png)
 
 ## TODO
 - Mobile/ Tablet support
@@ -36,7 +36,7 @@ To specify a channel within the url use 'manytwitch/?stream=channel1,channel2' c
 - 'npm run deploy': Build and deploy dist to gh-pages branch
 
 ## CI
-https://travis-ci.org/DanielHearn/manytwitch
+https://travis-ci.org/DanielHearn/streamist
 
 ## Contributions
 

@@ -1,5 +1,5 @@
 {
-  "name": "manytwitch",
+  "name": "streamist",
   "version": "1.0.0",
   "description": "Multiple Twitch stream viewer built with AngularJS and CSS variables.",
   "main": "index.html",
@@ -13,19 +13,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DanielHearn/manytwitch.git"
+    "url": "git+https://github.com/DanielHearn/streamist.git"
   },
   "author": "Daniel Hearn",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/DanielHearn/manytwitch/issues"
+    "url": "https://github.com/DanielHearn/streamist/issues"
   },
   "browserslist": [
     "> 0.25%",
     "maintained node versions",
     "not dead"
   ],
-  "homepage": "https://github.com/DanielHearn/manytwitch#readme",
+  "homepage": "https://github.com/DanielHearn/streamist#readme",
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/polyfill": "^7.4.4",

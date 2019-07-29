@@ -1,5 +1,5 @@
 <template>
-  <div id="manytwitch" :class="{'small-interface': $store.state.smallInterface}">
+  <div id="streamist" :class="{'small-interface': $store.state.smallInterface}">
     <nav class="nav" :class="{'hidden': !$store.state.options.navVisible}">
       <icon-button
         :iconName="$store.state.options.menuVisible ? $options.icons.leftArrow : $options.icons.menu"
@@ -75,7 +75,7 @@
         v-on:update-streams="updateStreams"
       >
         <section slot="placeholder" class="intro-content">
-          <h1 class="intro-title">MANYTWITCH</h1>
+          <h1 class="intro-title">Streamist</h1>
           <h2 class="intro-subheading">Multiple Twitch Stream Viewer</h2>
           <p class="intro-text">Enter a twitch channel to start or watch one of the streams below.</p>
           <list slot="content" :layout="'grid'" class="intro-list">
@@ -120,9 +120,9 @@
   </div>
 </template>
 
-<script src="./manytwitch.js"></script>
+<script src="./streamist.js"></script>
 
 
 <style lang="scss">
-@import "./manytwitch.scss";
+@import "./streamist.scss";
 </style>

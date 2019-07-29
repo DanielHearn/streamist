@@ -62,6 +62,7 @@ nav {
   .intro-title {
     font-size: $title-size;
     font-weight: $title-weight;
+    text-transform: uppercase;
     margin: 0.25em 0;
   }
   .intro-subheading {
@@ -120,7 +121,7 @@ nav {
 }
 
 @media only screen and (max-width: $tablet-width) {
-  #manytwitch {
+  #streamist {
     .nav {
       .title {
         display: none;

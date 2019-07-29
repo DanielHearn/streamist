@@ -7,7 +7,7 @@
     <template slot="content">
       <div class="menu-item-row">
         <p class="text">
-          Manytwitch is an open-source project developed by
+          Streamist is an open-source project developed by
           <a
             class="text-link"
             href="http://danielhearn.co.uk"
@@ -15,7 +15,7 @@
           >Daniel Hearn</a>, source available on
           <a
             class="text-link"
-            href="https://github.com/DanielHearn/manytwitch"
+            href="https://github.com/DanielHearn/streamist"
             target="_blank"
           >GitHub</a> (contributions welcome!).
         </p>
@@ -23,12 +23,12 @@
           For feature suggestions and bug reports, email them to
           <a
             class="text-link"
-            href="mailto:manytwitch@danielhearn.co.uk"
+            href="mailto:streamist@danielhearn.co.uk"
             target="_blank"
-          >manytwitch@danielhearn.co.uk</a> or create an issue on
+          >streamist@danielhearn.co.uk</a> or create an issue on
           <a
             class="text-link"
-            href="https://github.com/DanielHearn/manytwitch/issues"
+            href="https://github.com/DanielHearn/streamist/issues"
             target="_blank"
           >Github</a>.
         </p>
