@@ -1,13 +1,15 @@
 <template>
   <div id="streamist" :class="{'small-interface': $store.state.smallInterface}">
     <nav class="nav" :class="{'hidden': !$store.state.options.navVisible}">
-      <icon-button
-        :iconName="$store.state.options.menuVisible ? $options.icons.leftArrow : $options.icons.menu"
-        :title="$store.state.options.menuVisible ? 'Close Menu' : 'Open Menu'"
-        @click.native="toggleMenu"
-      />
+      <div>
+        <icon-button
+          :iconName="$store.state.options.menuVisible ? $options.icons.leftArrow : $options.icons.menu"
+          :title="$store.state.options.menuVisible ? 'Close Menu' : 'Open Menu'"
+          @click.native="toggleMenu"
+        />
+        <h2 class="title">Streamist</h2>
+      </div>
       <div class="nav-center">
-        <h2 class="title">MT</h2>
         <input-form
           :placeholder="$store.state.smallInterface ? 'Channel' : 'Twitch channel'"
           class="channel-input"

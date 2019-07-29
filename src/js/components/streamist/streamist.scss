@@ -27,9 +27,8 @@
 }
 
 nav {
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   padding: $content-padding/4 $content-padding/2;
   flex: 1 auto;
   color: $white;
@@ -44,8 +43,10 @@ nav {
   }
   .nav-center {
     align-items: center;
+    justify-content: center;
   }
   .nav-right {
+    justify-content: flex-end;
     button {
       margin: 0 0.5em;
     }
