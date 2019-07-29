@@ -1,4 +1,4 @@
-## streamist ![](https://travis-ci.org/DanielHearn/streamist.svg?branch=master)
+## Streamist ![](https://travis-ci.org/DanielHearn/streamist.svg?branch=master)
 ### Multiple Twitch stream viewer
 
 Live at www.danielhearn.co.uk/streamist
