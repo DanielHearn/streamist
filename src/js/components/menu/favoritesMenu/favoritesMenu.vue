@@ -26,7 +26,7 @@
         <div class="menu-item-row">
           <p class="text" v-if="!favoritesAvailable">No channels in your favorites.</p>
           <list>
-            <list-item v-for="favorite in streamFavorites" :key="favorite.id">
+            <list-item v-for="favorite in orderedFavorites" :key="favorite.id">
               <template slot="header">
                 <div class="column">
                   <p>{{ favorite.streamName }}</p>

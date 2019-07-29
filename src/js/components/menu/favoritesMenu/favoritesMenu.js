@@ -29,6 +29,9 @@ export default {
   computed: {
     favoritesAvailable: function () {
       return this.streamFavorites.length > 0
+    },
+    orderedFavorites: function () {
+      return this.streamFavorites.slice().reverse()
     }
   },
   methods: {
