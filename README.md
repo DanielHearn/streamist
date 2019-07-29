@@ -14,7 +14,7 @@ Hosted on github pages.
 
 To specify a channel within the url use 'streamist/?stream=channel1,channel2' creating a list of the channels seperated with commas.
 
-![Example image of app](readme-assets/streamist1.png)
+![Example image of app](readme-assets/streamist1.jpg)
 
 ## TODO
 - Mobile/ Tablet support
