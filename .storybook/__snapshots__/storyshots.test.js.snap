@@ -1,0 +1,1250 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots Chat Item Normal 1`] = `
+<div
+  class="stream-chat"
+>
+  <select>
+    <option>
+      twitch
+    </option>
+     
+    <option>
+      twitchpresents
+    </option>
+  </select>
+   
+  <div
+    class="chat-controls"
+  >
+    <button
+      class="button--icon button--accent"
+      title="Refresh Chat"
+    >
+      <i
+        class="material-icons"
+      >
+        refresh
+      </i>
+       
+    </button>
+     
+    <!---->
+  </div>
+   
+  <!---->
+</div>
+`;
+
+exports[`Storyshots Chat List Normal 1`] = `
+<div
+  class="chat-list"
+>
+  <div
+    class="add-chat-container"
+  >
+    <button
+      class="button--fill button--accent"
+      title="Add Chat"
+    >
+      Add Chat
+    </button>
+  </div>
+   
+</div>
+`;
+
+exports[`Storyshots Control Bar No Content 1`] = `
+<div
+  class="control-bar"
+/>
+`;
+
+exports[`Storyshots Control Bar With Content 1`] = `
+<div
+  class="control-bar"
+>
+  <a>
+    Text
+  </a>
+   
+  <button
+    class="button--icon button--accent"
+  >
+    <i
+      class="material-icons"
+    >
+      favorite
+    </i>
+     
+  </button>
+   
+  <button
+    class="button--icon button--accent"
+  >
+    <i
+      class="material-icons"
+    >
+      refresh
+    </i>
+     
+  </button>
+   
+  <button
+    class="button--icon button--accent"
+  >
+    <i
+      class="material-icons"
+    >
+      delete
+    </i>
+     
+  </button>
+</div>
+`;
+
+exports[`Storyshots Details Summary Multiple 1`] = `
+<div>
+  <details
+    class="details-summary"
+  >
+    <summary
+      class="details-summary__header text-sub-heading"
+    >
+      Header text
+    </summary>
+     
+    <div
+      class="details-summary__content"
+    >
+      <p
+        class="text"
+      >
+        This is the content text.
+      </p>
+    </div>
+  </details>
+   
+  <details
+    class="details-summary"
+  >
+    <summary
+      class="details-summary__header text-sub-heading"
+    >
+      Header text
+    </summary>
+     
+    <div
+      class="details-summary__content"
+    >
+      <p
+        class="text"
+      >
+        This is the content text.
+      </p>
+    </div>
+  </details>
+   
+  <details
+    class="details-summary"
+  >
+    <summary
+      class="details-summary__header text-sub-heading"
+    >
+      Header text
+    </summary>
+     
+    <div
+      class="details-summary__content"
+    >
+      <p
+        class="text"
+      >
+        This is the content text.
+      </p>
+    </div>
+  </details>
+</div>
+`;
+
+exports[`Storyshots Details Summary Normal 1`] = `
+<details
+  class="details-summary"
+>
+  <summary
+    class="details-summary__header text-sub-heading"
+  >
+    Header text
+  </summary>
+   
+  <div
+    class="details-summary__content"
+  >
+    <p
+      class="text"
+    >
+      This is the content text.
+    </p>
+  </div>
+</details>
+`;
+
+exports[`Storyshots Heartbeat Loading Custom Color 1`] = `
+<div
+  class="heartbeatLoading"
+>
+  <div
+    class="pulse"
+    style="background-color: red;"
+  />
+   
+  <div
+    class="pulse"
+    style="background-color: red;"
+  />
+</div>
+`;
+
+exports[`Storyshots Heartbeat Loading Hidden 1`] = `
+<div
+  style="background: rgb(33, 175, 137); display: flex; justify-content: center;"
+>
+  <div
+    class="heartbeatLoading hidden"
+  >
+    <div
+      class="pulse"
+      style="background-color: white;"
+    />
+     
+    <div
+      class="pulse"
+      style="background-color: white;"
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Heartbeat Loading In Container 1`] = `
+<div
+  style="background: rgb(33, 175, 137); display: flex; justify-content: center;"
+>
+  <div
+    class="heartbeatLoading"
+  >
+    <div
+      class="pulse"
+      style="background-color: white;"
+    />
+     
+    <div
+      class="pulse"
+      style="background-color: white;"
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Heartbeat Loading Normal 1`] = `
+<div
+  class="heartbeatLoading"
+>
+  <div
+    class="pulse"
+    style="background-color: white;"
+  />
+   
+  <div
+    class="pulse"
+    style="background-color: white;"
+  />
+</div>
+`;
+
+exports[`Storyshots Icon Button Default icon 1`] = `
+<button
+  class="button--icon button--accent"
+>
+  <i
+    class="material-icons"
+  >
+    mouse
+  </i>
+   
+</button>
+`;
+
+exports[`Storyshots Icon Button Disabled 1`] = `
+<button
+  class="button--icon button--accent"
+  disabled="disabled"
+>
+  <i
+    class="material-icons"
+  >
+    mouse
+  </i>
+   
+</button>
+`;
+
+exports[`Storyshots Icon Button Normal 1`] = `
+<button
+  class="button--icon button--accent"
+>
+  <i
+    class="material-icons"
+  >
+    edit
+  </i>
+   
+</button>
+`;
+
+exports[`Storyshots Input Form Normal 1`] = `
+<form
+  class="input-form"
+  name="input"
+>
+  <input
+    class=""
+    name="input"
+    placeholder="Type here"
+    required="required"
+    type="text"
+  />
+   
+  <button
+    class="button--icon button--accent"
+    type="submit"
+  >
+    <i
+      class="material-icons"
+    >
+      play_arrow
+    </i>
+     
+  </button>
+</form>
+`;
+
+exports[`Storyshots Input Form Warning 1`] = `
+<form
+  class="input-form"
+  name="input"
+>
+  <input
+    class="input--warning"
+    name="input"
+    placeholder="Type here"
+    required="required"
+    type="text"
+  />
+   
+  <button
+    class="button--icon button--accent"
+    type="submit"
+  >
+    <i
+      class="material-icons"
+    >
+      play_arrow
+    </i>
+     
+  </button>
+</form>
+`;
+
+exports[`Storyshots Layout Demo Normal 1`] = `
+<div
+  class="list-item"
+>
+  <div
+    class="item-header"
+  >
+    <!---->
+     
+    <div
+      class="item-header-content"
+    >
+      <div
+        class="column"
+      >
+        <p>
+          Grid
+        </p>
+      </div>
+       
+      <div
+        class="column"
+      >
+        <button
+          class="button--accent button--text"
+        >
+          Set Layout
+        </button>
+      </div>
+    </div>
+  </div>
+   
+  <div
+    class="item-content"
+  >
+    <div
+      class="layout-demo streams--5 layout-demo--layout-grid"
+    >
+      <div
+        class="layout-demo-stream"
+      >
+        <div
+          class="layout-demo-number"
+        >
+          <p>
+            1
+          </p>
+        </div>
+      </div>
+      <div
+        class="layout-demo-stream"
+      >
+        <div
+          class="layout-demo-number"
+        >
+          <p>
+            2
+          </p>
+        </div>
+      </div>
+      <div
+        class="layout-demo-stream"
+      >
+        <div
+          class="layout-demo-number"
+        >
+          <p>
+            3
+          </p>
+        </div>
+      </div>
+      <div
+        class="layout-demo-stream"
+      >
+        <div
+          class="layout-demo-number"
+        >
+          <p>
+            4
+          </p>
+        </div>
+      </div>
+      <div
+        class="layout-demo-stream"
+      >
+        <div
+          class="layout-demo-number"
+        >
+          <p>
+            5
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots List Grid Layout 1`] = `
+<ul
+  class="list list--layout-grid"
+>
+  <li>
+    Item 1
+  </li>
+   
+  <li>
+    Item 2
+  </li>
+   
+  <li>
+    Item 3
+  </li>
+   
+  <li>
+    Item 4
+  </li>
+</ul>
+`;
+
+exports[`Storyshots List Item Normal 1`] = `
+<div
+  class="list-item"
+>
+  <div
+    class="item-header"
+  >
+    <!---->
+     
+    <div
+      class="item-header-content"
+    >
+      <p>
+        Header
+      </p>
+    </div>
+  </div>
+   
+  <div
+    class="item-content"
+  >
+    <p>
+      Content
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Storyshots List Item With Handle 1`] = `
+<div
+  class="list-item"
+>
+  <div
+    class="item-header"
+  >
+    <span
+      class="material-icons handle text--accent"
+    >
+      drag_handle
+    </span>
+     
+    <div
+      class="item-header-content"
+    >
+      <p>
+        Header
+      </p>
+    </div>
+  </div>
+   
+  <div
+    class="item-content"
+  >
+    <p>
+      Content
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Storyshots List Normal 1`] = `
+<ul
+  class="list list--layout-column"
+>
+  <li>
+    Item 1
+  </li>
+   
+  <li>
+    Item 2
+  </li>
+   
+  <li>
+    Item 3
+  </li>
+   
+  <li>
+    Item 4
+  </li>
+</ul>
+`;
+
+exports[`Storyshots List Row Layout 1`] = `
+<ul
+  class="list list--layout-row"
+>
+  <li>
+    Item 1
+  </li>
+   
+  <li>
+    Item 2
+  </li>
+   
+  <li>
+    Item 3
+  </li>
+   
+  <li>
+    Item 4
+  </li>
+</ul>
+`;
+
+exports[`Storyshots Menu Item Normal 1`] = `
+<div
+  class="menu-item"
+>
+  <div
+    class="menu-item-header"
+  >
+    <p
+      class="text-heading"
+    >
+      Menu Item Title
+    </p>
+     
+    <button
+      class="button--icon button--secondary button--accent"
+      title="Close Title"
+    >
+      <i
+        class="material-icons"
+      >
+        close
+      </i>
+       
+    </button>
+  </div>
+   
+  <div
+    class="menu-item-actions"
+  >
+    <div
+      class="menu-item-row"
+    >
+      <p>
+        Actions Slot
+      </p>
+    </div>
+  </div>
+   
+  <div
+    class="menu-item-content"
+  >
+    <div
+      class="menu-item-row"
+    >
+      <p>
+        Content Slot
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Preset Listing Edit Active 1`] = `
+<div
+  class="list-item preset-listing"
+>
+  <div
+    class="item-header"
+  >
+    <!---->
+     
+    <div
+      class="item-header-content"
+    >
+      <div
+        class="column"
+      >
+        <input
+          class=""
+          contenteditable="true"
+          type="text"
+        />
+      </div>
+       
+      <div
+        class="column"
+      >
+        <button
+          class="button--accent button--text"
+        >
+          Watch
+        </button>
+      </div>
+    </div>
+  </div>
+   
+  <div
+    class="item-content"
+  >
+    <!---->
+     
+    <div
+      class="input-container space-between"
+    >
+      <button
+        class="button--icon button--secondary active button--accent"
+        title="Close Preset Editing"
+      >
+        <i
+          class="material-icons"
+        >
+          close
+        </i>
+         
+      </button>
+       
+      <button
+        class="button--icon button--tertiary button--accent button--warning"
+        title="Delete Preset"
+      >
+        <i
+          class="material-icons"
+        >
+          delete
+        </i>
+         
+      </button>
+    </div>
+     
+    <!---->
+     
+    <div
+      class="preset-listing-edit"
+    >
+      <p
+        class="text-sub-heading"
+        style="margin-bottom: 0.25em;"
+      >
+        Streams
+      </p>
+       
+      <form
+        class="input-form"
+        name="input"
+      >
+        <input
+          class=""
+          name="input"
+          placeholder="Channel Name"
+          required="required"
+          type="text"
+        />
+         
+        <button
+          class="button--accent"
+          type="submit"
+        >
+          Add
+        </button>
+      </form>
+       
+      <ul
+        class="list list--layout-column"
+      >
+        <div>
+          <div
+            class="list-item preset-listing-item"
+          >
+            <div
+              class="item-header"
+            >
+              <span
+                class="material-icons handle text--accent"
+              >
+                drag_handle
+              </span>
+               
+              <div
+                class="item-header-content"
+              >
+                <div
+                  class="column"
+                >
+                  <p>
+                    twitch
+                  </p>
+                </div>
+                 
+                <div
+                  class="column"
+                >
+                  <button
+                    class="button--icon button--tertiary button--warning"
+                    title="Remove channel from preset"
+                  >
+                    <i
+                      class="material-icons"
+                    >
+                      delete
+                    </i>
+                     
+                  </button>
+                </div>
+              </div>
+            </div>
+             
+            <!---->
+          </div>
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Preset Listing Normal 1`] = `
+<div
+  class="list-item preset-listing"
+>
+  <div
+    class="item-header"
+  >
+    <!---->
+     
+    <div
+      class="item-header-content"
+    >
+      <div
+        class="column"
+      >
+        <input
+          class=""
+          contenteditable="true"
+          type="text"
+        />
+      </div>
+       
+      <div
+        class="column"
+      >
+        <button
+          class="button--accent button--text"
+        >
+          Watch
+        </button>
+      </div>
+    </div>
+  </div>
+   
+  <div
+    class="item-content"
+  >
+    <!---->
+     
+    <div
+      class="input-container space-between"
+    >
+      <button
+        class="button--icon button--secondary button--accent"
+        title="Edit Preset"
+      >
+        <i
+          class="material-icons"
+        >
+          edit
+        </i>
+         
+      </button>
+       
+      <button
+        class="button--icon button--tertiary button--accent button--warning"
+        title="Delete Preset"
+      >
+        <i
+          class="material-icons"
+        >
+          delete
+        </i>
+         
+      </button>
+    </div>
+     
+    <!---->
+     
+    <!---->
+  </div>
+</div>
+`;
+
+exports[`Storyshots Side Menu Normal 1`] = `
+<div
+  class="menu"
+>
+  <div
+    class="menu-bar"
+  >
+    <div
+      class="menu-bar-content"
+    >
+      <button
+        class="button--icon button--dark button--menu"
+      >
+        <i
+          class="material-icons menu-icon"
+        >
+          view_module
+        </i>
+         
+        <p
+          class="button--menu__text"
+        >
+          Layouts
+        </p>
+      </button>
+      <button
+        class="button--icon button--dark button--menu"
+      >
+        <i
+          class="material-icons menu-icon"
+        >
+          favorite
+        </i>
+         
+        <p
+          class="button--menu__text"
+        >
+          Favorites
+        </p>
+      </button>
+      <button
+        class="button--icon button--dark button--menu"
+      >
+        <i
+          class="material-icons menu-icon"
+        >
+          view_list
+        </i>
+         
+        <p
+          class="button--menu__text"
+        >
+          Presets
+        </p>
+      </button>
+    </div>
+  </div>
+   
+  <div
+    class="menu-content"
+  >
+    <div
+      style="color: white;"
+    >
+      <!---->
+       
+      <!---->
+       
+      <!---->
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Standard Button Disabled 1`] = `
+<button
+  class="button--accent"
+  disabled="disabled"
+  title="Button"
+>
+  Button
+</button>
+`;
+
+exports[`Storyshots Standard Button Normal 1`] = `
+<button
+  class="button--accent"
+  title="Button"
+>
+  Button
+</button>
+`;
+
+exports[`Storyshots Standard Button With ButtonClasses 1`] = `
+<button
+  class="button--fill button--accent"
+  title="Button"
+>
+  Button
+</button>
+`;
+
+exports[`Storyshots Stream History Controls Normal 1`] = `
+<div
+  class="stream-history"
+>
+  <div
+    class="menu-item-row"
+  >
+    <!---->
+     
+    <ul
+      class="list list--layout-column"
+    >
+      <div
+        class="list-item stream-history-item"
+      >
+        <div
+          class="item-header"
+        >
+          <!---->
+           
+          <div
+            class="item-header-content"
+          >
+            <div
+              class="column"
+            >
+              <p>
+                twitchpresents
+              </p>
+            </div>
+             
+            <div
+              class="column"
+            >
+              <button
+                class="button--accent button--text"
+              >
+                Watch
+              </button>
+            </div>
+          </div>
+        </div>
+         
+        <div
+          class="item-content"
+        >
+          <p
+            class="sub-text"
+          >
+            Watched: 1 month ago
+          </p>
+        </div>
+      </div>
+      <div
+        class="list-item stream-history-item"
+      >
+        <div
+          class="item-header"
+        >
+          <!---->
+           
+          <div
+            class="item-header-content"
+          >
+            <div
+              class="column"
+            >
+              <p>
+                twitch
+              </p>
+            </div>
+             
+            <div
+              class="column"
+            >
+              <button
+                class="button--accent button--text"
+              >
+                Watch
+              </button>
+            </div>
+          </div>
+        </div>
+         
+        <div
+          class="item-content"
+        >
+          <p
+            class="sub-text"
+          >
+            Watched: 1 month ago
+          </p>
+        </div>
+      </div>
+      <div
+        class="list-item stream-history-item"
+      >
+        <div
+          class="item-header"
+        >
+          <!---->
+           
+          <div
+            class="item-header-content"
+          >
+            <div
+              class="column"
+            >
+              <p>
+                nintendo
+              </p>
+            </div>
+             
+            <div
+              class="column"
+            >
+              <button
+                class="button--accent button--text"
+              >
+                Watch
+              </button>
+            </div>
+          </div>
+        </div>
+         
+        <div
+          class="item-content"
+        >
+          <p
+            class="sub-text"
+          >
+            Watched: 1 month ago
+          </p>
+        </div>
+      </div>
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Stream History Item Normal 1`] = `
+<div
+  class="list-item stream-history-item"
+>
+  <div
+    class="item-header"
+  >
+    <!---->
+     
+    <div
+      class="item-header-content"
+    >
+      <div
+        class="column"
+      >
+        <p>
+          nintendo
+        </p>
+      </div>
+       
+      <div
+        class="column"
+      >
+        <button
+          class="button--accent button--text"
+        >
+          Watch
+        </button>
+      </div>
+    </div>
+  </div>
+   
+  <div
+    class="item-content"
+  >
+    <p
+      class="sub-text"
+    >
+      Watched: 1 month ago
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Stream Item Controls Active 1`] = `
+<div
+  class="stream draggable active stream--embed-player-twitch-7ja1htp"
+>
+  <!---->
+   
+  <div
+    class="stream-main"
+  >
+    <div
+      class="stream-overlay active"
+    />
+     
+    <div
+      class="stream-player"
+      draggable="false"
+      id="embed-player-twitch-7ja1htp"
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Stream Item Normal 1`] = `
+<div
+  class="stream draggable stream--embed-player-twitch-7ja1htp"
+>
+  <!---->
+   
+  <div
+    class="stream-main"
+  >
+    <div
+      class="stream-overlay"
+    />
+     
+    <div
+      class="stream-player"
+      draggable="false"
+      id="embed-player-twitch-7ja1htp"
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Stream List Normal 1`] = `
+<div
+  class="streams-container"
+>
+  <button
+    class="button--icon nav-toggle-button button--secondary fade"
+    title="Hide Interface"
+  >
+    <i
+      class="material-icons"
+    >
+      arrow_upward
+    </i>
+     
+  </button>
+   
+  <div
+    class="streams streams--layout-grid streams--2"
+  >
+    <div
+      class="stream draggable stream stream--embed-player-twitch-7ja1htp"
+    >
+      <!---->
+       
+      <div
+        class="stream-main"
+      >
+        <div
+          class="stream-overlay"
+        />
+         
+        <div
+          class="stream-player"
+          draggable="false"
+          id="embed-player-twitch-7ja1htp"
+        />
+      </div>
+    </div>
+    <div
+      class="stream draggable stream stream--embed-player-twitchpresents-7ja1htp"
+    >
+      <!---->
+       
+      <div
+        class="stream-main"
+      >
+        <div
+          class="stream-overlay"
+        />
+         
+        <div
+          class="stream-player"
+          draggable="false"
+          id="embed-player-twitchpresents-7ja1htp"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
