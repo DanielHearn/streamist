@@ -19,10 +19,8 @@ To specify a channel within the url use 'streamist/?stream=channel1,channel2' cr
 ## TODO
 - Mobile/ Tablet support
   - Compact nav bar
-- Notifications - E.g. preset saved, stream add or deleted, history cleared
+- Stream management menu for mobile use
 - Improve chat selection => Allow for channels that are currently being watch, more compact / allow for more chat iframe
-- Unit tests
-- Rename to avoid issues with using "Twitch"
 
 ## Dependencies
 - vue draggable to handle model updating on list reorder with drag and drop.
