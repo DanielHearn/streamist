@@ -38,7 +38,7 @@ export default {
   },
   watch: {
     orderedStreams: function () {
-      this.$emit('update-streams', this.orderedStreams)
+      this.$store.commit('setStreams', this.orderedStreams)
     },
     streams: function () {
       if (this.orderedStreams !== this.streams) {

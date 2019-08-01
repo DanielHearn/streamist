@@ -43,6 +43,27 @@ export const createStreamObject = function (streamName, id) {
   }
 }
 
+export const insertURLStreamParams = function (streams) {
+  if (window) {
+    let channelString = ''
+    for (const channel in streams) {
+      if (streams.hasOwnProperty(channel)) {
+        channelString += String(streams[channel].streamName) + ','
+      }
+    }
+    channelString = channelString.replace('undefined', '')
+    const newurl = `${window.location.protocol}//${window.location.host}${
+      window.location.pathname
+    }`
+    if (channelString) {
+      const queryUrl = `${newurl}?stream=${channelString}`
+      window.history.pushState({ path: queryUrl }, '', queryUrl)
+    } else {
+      window.history.pushState({ path: newurl }, '', newurl)
+    }
+  }
+}
+
 export const copyToClipboard = function (str) {
   const el = document.createElement('textarea') // Create a <textarea> element
   el.value = str // Set its value to the string that you want copied

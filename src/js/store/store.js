@@ -5,6 +5,7 @@ import {
   setStoredFavorites,
   setStoredHistory
 } from './../storage'
+import { insertURLStreamParams } from './../utilities'
 
 export const mutations = {
   setSmallInterface (state, value) {
@@ -21,12 +22,15 @@ export const mutations = {
     const stream = Object.assign({}, streamObj)
     stream.embedPlayerID = `embed-player-${stream.streamName}-${stream.id}`
     state.streams.push(stream)
+    insertURLStreamParams(state.streams)
   },
   removeStream (state, streamObj) {
     state.streams = state.streams.filter(stream => stream.id !== streamObj.id)
+    insertURLStreamParams(state.streams)
   },
   setStreams (state, streams) {
     state.streams = streams
+    insertURLStreamParams(state.streams)
   },
 
   setOptions (state, options) {

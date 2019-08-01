@@ -27,7 +27,7 @@
         />
         <icon-button
           :disabled="!$store.state.streams.length"
-          :iconName="$store.state.options.chatVisible && $store.state.streams.length ? $options.icons.rightArrow : $options.icons.chat"
+          :iconName="$store.state.options.chatVisible && $store.state.streams.length ? $options.icons.chat_closed : $options.icons.chat"
           :buttonClasses="'button--secondary'"
           :title="$store.state.options.chatVisible ? 'Close Chat' : 'Open Chat'"
           @click.native="toggleChat"
@@ -40,6 +40,13 @@
         :menuItems="$options.menuItems"
       >
         <template slot-scope="{ currentMenu, closeMenu }">
+          <stream-menu
+            v-if="currentMenu === 'Streams'"
+            :streams="$store.state.streams"
+            :small-interface="$store.state.smallInterface"
+            :favorites="$store.state.streamFavorites"
+            v-on:close-menu="closeMenu"
+          ></stream-menu>
           <layout-menu
             v-if="currentMenu === 'Layouts'"
             :streams="$store.state.streams"
@@ -74,7 +81,6 @@
         :favorites="$store.state.streamFavorites"
         :options="$store.state.options"
         v-on:toggle-nav="toggleNav"
-        v-on:update-streams="updateStreams"
       >
         <section slot="placeholder" class="intro-content">
           <h1 class="intro-title">Streamist</h1>

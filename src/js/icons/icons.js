@@ -20,5 +20,7 @@ export default {
   unfavorite: 'favorite_border',
   settings: 'settings',
   apply: 'done',
-  add: 'add'
+  add: 'add',
+  streams: 'view_stream',
+  chat_closed: 'chat_bubble_outline'
 }

@@ -11,6 +11,7 @@ import AboutMenu from './../menu/aboutMenu/AboutMenu.vue'
 import SideMenu from './../menu/sideMenu/SideMenu.vue'
 import FavoritesMenu from './../menu/favoritesMenu/FavoritesMenu.vue'
 import SettingsMenu from './../menu/settingsMenu/SettingsMenu.vue'
+import StreamMenu from './../menu/streamMenu/StreamMenu.vue'
 
 import StreamList from './../stream/streamList/StreamList.vue'
 import Chats from './../chat/chatList/ChatList.vue'
@@ -54,11 +55,16 @@ export default {
     AboutMenu,
     FavoritesMenu,
     SettingsMenu,
+    StreamMenu,
     List,
     ListItem
   },
   icons: Icons,
   menuItems: [
+    {
+      itemName: 'Streams',
+      iconName: Icons.streams
+    },
     {
       itemName: 'Layouts',
       iconName: Icons.layouts
@@ -136,34 +142,11 @@ export default {
       const streamObj = createStreamObject(streamName, generateID())
       this.$store.commit('addStream', streamObj)
       this.$store.commit('addStreamToHistory', streamObj)
-      this.insertURLStreamParams()
     },
     updateStreams: function (streams) {
       this.$store.commit('setStreams', streams)
-      this.insertURLStreamParams()
     },
 
-    // Querystring methods
-    // Adds current channels into the querystring
-    insertURLStreamParams: function () {
-      let channelString = ''
-      const streams = this.$store.state.streams
-      for (const channel in streams) {
-        if (streams.hasOwnProperty(channel)) {
-          channelString += String(streams[channel].streamName) + ','
-        }
-      }
-      channelString = channelString.replace('undefined', '')
-      const newurl = `${window.location.protocol}//${window.location.host}${
-        window.location.pathname
-      }`
-      if (channelString) {
-        const queryUrl = `${newurl}?stream=${channelString}`
-        window.history.pushState({ path: queryUrl }, '', queryUrl)
-      } else {
-        window.history.pushState({ path: newurl }, '', newurl)
-      }
-    },
     // Gets the current channels from the querystring
     getURLStreamParam: function () {
       const urlParams = new URLSearchParams(window.location.search.substring(1))
