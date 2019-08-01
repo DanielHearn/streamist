@@ -137,6 +137,42 @@ select {
   cursor: grab;
 }
 
+.radio-container {
+  display: flex;
+  flex-direction: column;
+  .radio-option {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0.25em 0;
+    label {
+      display: flex;
+      width: 8em;
+      align-items: center;
+      justify-content: space-between;
+      &:hover .input {
+        background: $blue-medium;
+      }
+    }
+    .input {
+      width: 2.5em;
+      height: 2.5em;
+      background: $blue;
+      cursor: pointer;
+      transition: $transition-time background ease-in-out;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .radio {
+      display: none;
+      &:checked ~ .input {
+        background: $accent-light;
+      }
+    }
+  }
+}
+
 /*
 .button-menu {
     padding: 0.6em 0.8em;

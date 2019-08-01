@@ -37,14 +37,14 @@
                   <icon-button
                     v-if="favorited[stream.streamName]"
                     @click.native="unfavoriteStream(stream)"
-                    :iconName="$options.icons.unfavorite"
+                    :iconName="$options.icons.favorite"
                     :title="'Remove channel from favorites'"
                     :class="['button--unfavorite button--secondary']"
                   />
                   <icon-button
                     v-else
                     @click.native="favoriteStream(stream)"
-                    :iconName="$options.icons.favorite"
+                    :iconName="$options.icons.unfavorite"
                     :title="'Add channel to favorites'"
                     :class="['button--favorite button--secondary']"
                   />

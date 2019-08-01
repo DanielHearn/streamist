@@ -43,6 +43,7 @@ export const options = {
   menuVisible: true,
   startMuted: true,
   navVisible: true,
+  chatLocation: 'right',
   currentLayout: { id: 'grid', name: 'Grid' }
 }
 

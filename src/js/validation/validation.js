@@ -46,6 +46,7 @@ const optionsValidator = yup.object().shape({
   menuVisible: yup.boolean().required(),
   navVisible: yup.boolean().required(),
   startMuted: yup.boolean().required(),
+  chatLocation: yup.string().required(),
   currentLayout: yup
     .object()
     .shape({

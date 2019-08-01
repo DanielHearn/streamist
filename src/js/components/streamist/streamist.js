@@ -200,13 +200,14 @@ export default {
 
       // Iterate through stored data and load to data if valid
       // otherwise load the default data and store it
-      storedDataFields.forEach(field => {
+      storedDataFields.forEach(async field => {
         let fieldLoaded = false
         const rawFieldData = field.getStored()
         if (rawFieldData) {
           try {
             const parsedFieldData = JSON.parse(rawFieldData)
-            if (field.validate(parsedFieldData)) {
+            const valid = await field.validate(parsedFieldData)
+            if (valid === true) {
               log(`${field.name} passed validation`)
               this.$store.commit(field.set, parsedFieldData)
               fieldLoaded = true

@@ -134,6 +134,7 @@ export const storeConfig = {
       menuVisible: true,
       navVisible: true,
       startMuted: true,
+      chatLocation: 'right',
       currentLayout: { id: 'grid', name: 'Grid' }
     }
   },

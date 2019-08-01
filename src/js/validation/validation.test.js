@@ -14,6 +14,7 @@ test('expect options validator to validate on correct options', async () => {
     menuVisible: true,
     navVisible: true,
     startMuted: false,
+    chatLocation: 'right',
     currentLayout: {
       id: 'id',
       name: 'Grid'

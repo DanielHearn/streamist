@@ -112,6 +112,14 @@ nav {
   
 }
 
+.stream-chat-container {
+  display: flex;
+  flex: 1 auto;
+  &.chat--left {
+    flex-direction: row-reverse;
+  }
+}
+
 @media only screen and (max-width: $tablet-width/1.5) {
   .intro-title {
     font-size: 1.5em
