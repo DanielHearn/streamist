@@ -44,7 +44,6 @@ export default {
   watch: {
     chatLocation: function () {
       if (this.options.chatLocation !== this.chatLocation) {
-        console.log(this.chatLocation)
         this.options.chatLocation = this.chatLocation
         this.$store.commit('setOptions', this.options)
       }

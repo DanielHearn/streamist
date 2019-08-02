@@ -16,7 +16,7 @@
     </template>
     <template slot="content">
       <div class="menu-item-row">
-        <p class="text" v-if="!streams.length">Add streams to start.</p>
+        <p class="text" v-if="!streams.length">Add streams to start watching.</p>
         <list class="stream-list">
           <draggable
             v-if="streams.length"

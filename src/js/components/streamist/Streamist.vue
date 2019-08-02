@@ -38,6 +38,7 @@
       <side-menu
         :class="{'hidden': !$store.state.options.navVisible, 'visible': $store.state.options.menuVisible}"
         :menuItems="$options.menuItems"
+        v-on:current-menu="checkMenu"
       >
         <template slot-scope="{ currentMenu, closeMenu }">
           <stream-menu
@@ -64,7 +65,7 @@
             v-if="currentMenu === 'Presets'"
             :stream-presets="$store.state.streamPresets"
             :streams="$store.state.streams"
-            :smallInterface="$store.state.smallInterface"
+            :small-interface="$store.state.smallInterface"
             v-on:close-menu="closeMenu"
           ></preset-menu>
           <history-menu
@@ -77,7 +78,10 @@
           <settings-menu v-if="currentMenu === 'Settings'" v-on:close-menu="closeMenu"></settings-menu>
         </template>
       </side-menu>
-      <div class="stream-chat-container" :class="[`chat--${$store.state.options.chatLocation}`]">
+      <div
+        class="stream-chat-container"
+        :class="[`chat--${$store.state.options.chatLocation}`, {'hidden': $store.state.smallInterface && $store.state.options.menuVisible && menuItemActive}]"
+      >
         <stream-list
           :streams="$store.state.streams"
           :appHover="appHover"
@@ -88,41 +92,74 @@
           <section slot="placeholder" class="intro-content">
             <h1 class="intro-title">Streamist</h1>
             <h2 class="intro-subheading">Multiple Twitch Stream Viewer</h2>
-            <p class="intro-text">Enter a twitch channel to start or watch one of the streams below.</p>
-            <list slot="content" :layout="'grid'" class="intro-list">
-              <div
-                v-for="(stream, index) in homepageStreams"
-                :key="index"
-                @click="stream.clean_username ? addStream(stream.clean_username.toLowerCase()) : addStream(stream.user_name.toLowerCase())"
-                class="intro-list-item-container"
-              >
-                <img
-                  v-if="!$store.state.smallInterface"
-                  class="intro-list-item-image"
-                  :src="stream.thumbnail || '/img/placeholderStreamThumbnail.png'"
-                  :alt="stream.user_name + '\'s stream thumbnail'"
-                />
-                <list-item class="intro-list-item">
-                  <template slot="header">
-                    <div class="column">
-                      <p>{{ stream.user_name }}</p>
-                    </div>
-                    <div class="column">
-                      <icon-button
-                        :iconName="$options.icons.play"
-                        :buttonClasses="'button--accent'"
-                      />
-                    </div>
-                  </template>
-                  <template slot="content" v-if="stream.game_name && stream.viewer_count">
-                    <div class="column stream-details">
-                      <span class="stream-name">{{stream.game_name}}</span>
-                      <span class="viewer">{{stream.viewer_count}} Viewers</span>
-                    </div>
-                  </template>
-                </list-item>
-              </div>
-            </list>
+            <p
+              class="intro-text"
+              v-if="!$store.state.smallInterface"
+            >Enter a twitch channel or watch one of the streams below to start.</p>
+            <div v-if="homepageStreams.length">
+              <list :layout="'grid'" class="intro-list">
+                <div
+                  v-for="(stream, index) in homepageStreams"
+                  :key="index"
+                  @click="stream.clean_username ? addStream(stream.clean_username.toLowerCase()) : addStream(stream.user_name.toLowerCase())"
+                  class="intro-list-item-container"
+                >
+                  <img
+                    v-if="!$store.state.smallInterface"
+                    class="intro-list-item-image"
+                    :src="stream.thumbnail || '/img/placeholderStreamThumbnail.png'"
+                    :alt="stream.user_name + '\'s stream thumbnail'"
+                  />
+                  <list-item class="intro-list-item">
+                    <template slot="header">
+                      <div class="column">
+                        <p>{{ stream.user_name }}</p>
+                      </div>
+                      <div class="column">
+                        <icon-button
+                          :iconName="$options.icons.play"
+                          :buttonClasses="'button--accent'"
+                        />
+                      </div>
+                    </template>
+                    <template slot="content" v-if="stream.game_name && stream.viewer_count">
+                      <div class="column stream-details">
+                        <span class="stream-name">{{stream.game_name}}</span>
+                        <span
+                          class="viewer"
+                          v-if="!$store.state.smallInterface"
+                        >{{stream.viewer_count}} Viewers</span>
+                      </div>
+                    </template>
+                  </list-item>
+                </div>
+              </list>
+            </div>
+            <div v-else>
+              <list :layout="'grid'" class="intro-list intro-list--placeholder">
+                <div v-for="(i) in [1,2,3,4]" :key="i" class="intro-list-item-container">
+                  <img
+                    v-if="!$store.state.smallInterface"
+                    class="intro-list-item-image"
+                    :src="'/img/placeholderStreamThumbnail.png'"
+                  />
+                  <list-item class="intro-list-item">
+                    <template slot="header">
+                      <div class="column">
+                        <p></p>
+                      </div>
+                      <div class="column"></div>
+                    </template>
+                    <template slot="content">
+                      <div class="column stream-details">
+                        <span class="stream-name"></span>
+                        <span></span>
+                      </div>
+                    </template>
+                  </list-item>
+                </div>
+              </list>
+            </div>
           </section>
         </stream-list>
         <chats

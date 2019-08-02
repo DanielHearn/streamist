@@ -16,6 +16,11 @@ export default {
       currentMenu: ''
     }
   },
+  watch: {
+    currentMenu: function () {
+      this.$emit('current-menu', this.currentMenu)
+    }
+  },
   methods: {
     closeMenu: function () {
       this.currentMenu = ''

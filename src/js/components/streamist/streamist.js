@@ -16,6 +16,8 @@ import StreamMenu from './../menu/streamMenu/StreamMenu.vue'
 import StreamList from './../stream/streamList/StreamList.vue'
 import Chats from './../chat/chatList/ChatList.vue'
 
+import HeartbeatLoading from './../heartbeatLoading/HeartbeatLoading.vue'
+
 import Icons from '../../icons/icons'
 import {
   generateID,
@@ -57,7 +59,8 @@ export default {
     SettingsMenu,
     StreamMenu,
     List,
-    ListItem
+    ListItem,
+    HeartbeatLoading
   },
   icons: Icons,
   menuItems: [
@@ -98,7 +101,8 @@ export default {
     return {
       appHover: false,
       appHoverTracker: 0,
-      homepageStreams: []
+      homepageStreams: [],
+      menuItemActive: false
     }
   },
   computed: {
@@ -296,6 +300,9 @@ export default {
     },
     checkScreenSize: function () {
       this.$store.commit('setSmallInterface', window.innerWidth <= 800)
+    },
+    checkMenu: function (currentMenu) {
+      this.menuItemActive = currentMenu.length > 0
     }
   },
   mounted: function () {

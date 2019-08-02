@@ -56,6 +56,21 @@ nav {
   }
 }
 
+.small-interface {
+  .menu.active {
+    flex: 1 auto;
+    .menu-content {
+      display: flex;
+      flex: 1 auto;
+      .menu-item {
+        display: flex;
+        flex: 1 auto;
+        width: initial;
+      }
+    }
+  }
+}
+
 .intro-content {
   text-align: center;
   color: $white;
@@ -81,8 +96,13 @@ nav {
     grid-gap: 1em;
     justify-content: center;
     .intro-list-item-container {
+      display: flex;
+      flex: 1 auto;
+      flex-direction: column;
       cursor: pointer;
       .intro-list-item-image {
+        display: flex;
+        flex: 1 auto;
         background: $black-dark;
         width: 100%;
       }
@@ -121,11 +141,13 @@ nav {
 }
 
 @media only screen and (max-width: $tablet-width/1.5) {
-  .intro-title {
-    font-size: 1.5em
-  }
-  .intro-subheading {
-    display: none;
+  .intro-content {
+    .intro-title {
+      font-size: 1.4em
+    }
+    .intro-subheading {
+      font-size: 1.1em
+    }
   }
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="menu">
+  <div class="menu" :class="{active: currentMenu.length}">
     <div class="menu-bar">
       <div class="menu-bar-content">
         <icon-button

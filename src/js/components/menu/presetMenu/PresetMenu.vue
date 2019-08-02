@@ -35,8 +35,8 @@
             v-for="preset in streamPresets"
             :key="preset.id"
             :preset="preset"
-            :editMode="currentlyEditedPreset === preset.id"
-            :smallInteface="$store.state.smallInterface"
+            :edit-mode="currentlyEditedPreset === preset.id"
+            :small-interface="$store.state.smallInterface"
             v-on:edit-preset="editPreset"
           ></preset-listing>
         </list>
