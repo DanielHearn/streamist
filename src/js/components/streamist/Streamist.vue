@@ -107,7 +107,7 @@
                   <img
                     v-if="!$store.state.smallInterface"
                     class="intro-list-item-image"
-                    :src="stream.thumbnail || '/img/placeholderStreamThumbnail.png'"
+                    :src="stream.thumbnail || 'img/placeholderStreamThumbnail.png'"
                     :alt="stream.user_name + '\'s stream thumbnail'"
                   />
                   <list-item class="intro-list-item">
