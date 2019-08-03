@@ -40,7 +40,8 @@ export default {
   },
   data: function () {
     return {
-      orderedStreams: this.streams.slice()
+      orderedStreams: this.streams.slice(),
+      drag: false
     }
   },
   computed: {

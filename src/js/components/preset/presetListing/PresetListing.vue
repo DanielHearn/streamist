@@ -68,7 +68,7 @@
             v-if="orderedStreams.length"
             @start="drag=true"
             @end="drag=false"
-            ghostClass="ghost"
+            handle=".handle"
           >
             <list-item
               v-for="(stream, index) in orderedStreams"

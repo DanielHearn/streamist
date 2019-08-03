@@ -23,12 +23,15 @@
             v-model="orderedStreams"
             @start="drag=true"
             @end="drag=false"
-            handle=".handle"
-            forceFallback="true"
-            fallbackTolerance="1"
-            removeCloneOnHide="false"
+            :handle="'.handle'"
+            :removeCloneOnHide="false"
           >
-            <list-item v-for="stream in streams" :key="stream.id" :handleActive="true">
+            <list-item
+              v-for="stream in streams"
+              :key="stream.id"
+              :handleActive="true"
+              :class="{'drag--active': drag}"
+            >
               <template slot="header">
                 <div class="column">
                   <p>{{ stream.streamName }}</p>
