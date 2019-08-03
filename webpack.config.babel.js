@@ -69,10 +69,7 @@ module.exports = {
       }
     }),
     new VueLoaderPlugin(),
-    new CopyWebpackPlugin([
-      { from: 'src/js/static' },
-      { from: 'src/img', to: 'img' }
-    ])
+    new CopyWebpackPlugin([{ from: 'src/img', to: '../img' }])
   ],
   module: {
     rules: [
