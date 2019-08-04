@@ -29,13 +29,6 @@ describe('Streamlist', () => {
     expect(wrapper.vm.streamLengthClass).toBe(`streams--${streams.length}`)
   })
 
-  test('appHover', () => {
-    expect(navButton.attributes('class')).toContain('fade')
-
-    wrapper.setProps({ appHover: true })
-    expect(navButton.attributes('class')).not.toContain('fade')
-  })
-
   test('placeholder slot', () => {
     expect(wrapper.find('.placeholder').exists()).toBe(false)
 

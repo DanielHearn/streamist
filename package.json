@@ -9,6 +9,7 @@
     "deploy": "webpack --mode production && gh-pages -d dist",
     "test": "jest",
     "storybook": "start-storybook -p 6006",
+    "update-snapshots": "jest --updateSnapshot",
     "build-storybook": "build-storybook"
   },
   "repository": {

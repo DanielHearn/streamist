@@ -1192,18 +1192,6 @@ exports[`Storyshots Stream List Normal 1`] = `
 <div
   class="streams-container"
 >
-  <button
-    class="button--icon nav-toggle-button button--secondary fade"
-    title="Hide Interface"
-  >
-    <i
-      class="material-icons"
-    >
-      arrow_upward
-    </i>
-     
-  </button>
-   
   <div
     class="streams streams--layout-grid streams--2"
   >
