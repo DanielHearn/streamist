@@ -1,23 +1,15 @@
 import draggable from 'vuedraggable'
 import StreamItem from './../streamItem/StreamItem.vue'
-import IconButton from './../../inputs/buttons/iconButton/IconButton.vue'
-
-import Icons from './../../../icons'
 
 export default {
   name: 'stream-list',
   components: {
     draggable,
-    StreamItem,
-    IconButton
+    StreamItem
   },
   props: {
     streams: {
       type: Array,
-      required: true
-    },
-    appHover: {
-      type: Boolean,
       required: true
     },
     favorites: {
@@ -29,7 +21,6 @@ export default {
       required: true
     }
   },
-  icons: Icons,
   data: function () {
     return {
       orderedStreams: this.streams.slice(),

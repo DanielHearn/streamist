@@ -1,13 +1,5 @@
 <template>
   <div class="streams-container">
-    <icon-button
-      :iconName="options.navVisible ? $options.icons.upArrow : $options.icons.downArrow"
-      :class="{'fade': !appHover && streams.length}"
-      :buttonClasses="'button--secondary'"
-      class="nav-toggle-button"
-      :title="options.navVisible ? 'Hide Interface' : 'Show Interface'"
-      @click.native="$emit('toggle-nav')"
-    />
     <draggable
       v-if="streams.length"
       class="streams"

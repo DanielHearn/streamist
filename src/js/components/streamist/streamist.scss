@@ -1,5 +1,15 @@
 @import "./../../../scss/variables";
 
+#streamist {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex: 1fr;
+  flex-direction: column;
+  align-items: center;
+}
+
+
 #main {
   display: flex;
   flex: 1 auto;
@@ -34,6 +44,7 @@ nav {
   color: $white;
   background: $black-normal;
   max-height: $nav-height;
+  width: 100%;
   input[type="text"] {
       max-width: 10em;
   }
@@ -68,6 +79,29 @@ nav {
         width: initial;
       }
     }
+  }
+}
+
+.nav-toggle-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  position: absolute;
+  top: 0;
+  z-index: 5;
+  padding: 0.25em 1em;
+  transition: opacity 0.5s ease-in-out;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.15);
+  opacity: 1;
+  &:hover {
+    opacity: 1;
+  }
+  &.fade {
+    opacity: 0.25;
+  }
+  &.nav-visible {
+    top: $nav-height;
   }
 }
 

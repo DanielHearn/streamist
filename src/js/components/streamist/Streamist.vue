@@ -34,6 +34,14 @@
         />
       </div>
     </nav>
+    <icon-button
+      :iconName="$store.state.options.navVisible ? $options.icons.upArrow : $options.icons.downArrow"
+      :class="{'fade': !appHover && $store.state.streams.length, 'nav-visible': $store.state.options.navVisible}"
+      :buttonClasses="'button--secondary'"
+      class="nav-toggle-button"
+      :title="$store.state.options.navVisible ? 'Hide Interface' : 'Show Interface'"
+      @click.native="toggleNav"
+    />
     <div id="main">
       <side-menu
         :class="{'hidden': !$store.state.options.navVisible, 'visible': $store.state.options.menuVisible}"
@@ -84,10 +92,8 @@
       >
         <stream-list
           :streams="$store.state.streams"
-          :appHover="appHover"
           :favorites="$store.state.streamFavorites"
           :options="$store.state.options"
-          v-on:toggle-nav="toggleNav"
         >
           <section slot="placeholder" class="intro-content">
             <h1 class="intro-title">Streamist</h1>

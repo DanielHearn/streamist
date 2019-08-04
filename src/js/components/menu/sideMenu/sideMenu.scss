@@ -4,6 +4,7 @@
 .menu {
   display: none;
   background: $black-normal;
+  z-index: 10;
   .menu-bar {
     .menu-bar-content {
       color: $white;

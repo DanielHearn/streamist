@@ -44,26 +44,6 @@
   flex-wrap: nowrap;
 }
 
-.nav-toggle-button.button--secondary {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  position: absolute;
-  top: 0;
-  z-index: 20;
-  padding: 0.25em 1em;
-  transition: opacity 0.5s ease-in-out;
-  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.15);
-  opacity: 1;
-  &.fade {
-    opacity: 0.25;
-  }
-  &:hover {
-    opacity: 1;
-  }
-}
-
 .many-streams {
   .control-bar {
     padding: $content-padding/4;
