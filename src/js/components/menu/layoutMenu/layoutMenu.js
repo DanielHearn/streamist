@@ -1,7 +1,7 @@
 import MenuItem from './../../menu/menuItem/MenuItem.vue'
 import LayoutDemo from './../../layout/layoutDemo/LayoutDemo.vue'
 import List from './../../list/list/List.vue'
-import ListItem from './../../list/ListItem/ListItem.vue'
+import ListItem from './../../list/listItem/ListItem.vue'
 import StandardButton from './../../inputs/buttons/standardButton/StandardButton.vue'
 import Icons from './../../../icons'
 
