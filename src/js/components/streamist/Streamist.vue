@@ -138,11 +138,6 @@
             <div v-else>
               <list :layout="'grid'" class="intro-list intro-list--placeholder">
                 <div v-for="(i) in [1,2,3,4]" :key="i" class="intro-list-item-container">
-                  <img
-                    v-if="!$store.state.smallInterface"
-                    class="intro-list-item-image"
-                    :src="'/img/placeholderStreamThumbnail.png'"
-                  />
                   <list-item class="intro-list-item">
                     <template slot="header">
                       <div class="column">
