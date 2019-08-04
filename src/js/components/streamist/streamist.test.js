@@ -1,5 +1,4 @@
-/**
-import { mount, createLocalVue } from '@vue/test-utils'
+import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import Streamist from './Streamist.vue'
 import { storeConfig } from './../../store'
@@ -12,7 +11,7 @@ localVue.use(Vuex)
 
 beforeEach(() => {
   store = new Vuex.Store(_.cloneDeep(storeConfig))
-  wrapper = mount(Streamist, {
+  wrapper = shallowMount(Streamist, {
     store,
     localVue
   })
@@ -33,4 +32,3 @@ describe('Streamist', () => {
     expect(navButton.attributes('class')).not.toContain('fade')
   })
 })
-**/
