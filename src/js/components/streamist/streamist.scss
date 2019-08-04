@@ -45,6 +45,7 @@ nav {
   background: $black-normal;
   max-height: $nav-height;
   width: 100%;
+  box-sizing: border-box;
   input[type="text"] {
       max-width: 10em;
   }
