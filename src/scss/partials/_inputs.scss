@@ -156,11 +156,12 @@ select {
       }
     }
     .input {
-      width: 2.5em;
-      height: 2.5em;
+      width: 1.8em;
+      height: 1.8em;
       background: $blue;
+      border: solid 2px $grey;
       cursor: pointer;
-      transition: $transition-time background ease-in-out;
+      transition: $transition-time background ease-in-out, $transition-time border-color ease-in-out;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -169,6 +170,7 @@ select {
       display: none;
       &:checked ~ .input {
         background: $accent-light;
+        border-color: $accent-light;
       }
     }
   }
