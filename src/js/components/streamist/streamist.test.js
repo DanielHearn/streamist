@@ -1,3 +1,4 @@
+/**
 import { mount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import Streamist from './Streamist.vue'
@@ -8,7 +9,7 @@ let wrapper
 let store
 const localVue = createLocalVue()
 localVue.use(Vuex)
-/**
+
 beforeEach(() => {
   store = new Vuex.Store(_.cloneDeep(storeConfig))
   wrapper = mount(Streamist, {
