@@ -12,7 +12,6 @@ describe('Streamlist', () => {
     }
   })
 
-  const navButton = wrapper.find('.nav-toggle-button')
   const streamsElts = wrapper.findAll('.stream')
 
   test('streams', () => {
