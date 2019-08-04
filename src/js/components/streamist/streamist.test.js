@@ -8,7 +8,7 @@ let wrapper
 let store
 const localVue = createLocalVue()
 localVue.use(Vuex)
-
+/**
 beforeEach(() => {
   store = new Vuex.Store(_.cloneDeep(storeConfig))
   wrapper = mount(Streamist, {
@@ -32,3 +32,4 @@ describe('Streamist', () => {
     expect(navButton.attributes('class')).not.toContain('fade')
   })
 })
+**/
