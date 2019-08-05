@@ -109,7 +109,11 @@ nav {
 .intro-content {
   text-align: center;
   color: $white;
-  padding: 1em;
+  padding: 3em 1em;
+  flex: 1 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 6fr;
   .intro-title {
     font-size: $title-size;
     font-weight: $title-weight;
@@ -127,14 +131,17 @@ nav {
     font-weight: $sub-heading-weight;
   }
   .intro-list {
-    grid-template-columns: repeat(2, 40%);
-    grid-gap: 1em;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    max-width: 80em;
+    margin: 0 auto;
     .intro-list-item-container {
-      display: flex;
-      flex: 1 auto;
+      max-width: 25em;
+      width: inherit;
       flex-direction: column;
       cursor: pointer;
+      margin: 0.5em;
       .intro-list-item-image {
         display: flex;
         flex: 1 auto;
@@ -151,11 +158,18 @@ nav {
         .stream-details{
           display: flex;
           justify-content: space-between;
+          i {
+            margin-right: 0.25em;
+          }
           .stream-name {
             text-align: left;
+            display: flex;
+            align-items: center;
           }
           .viewer {
             text-align: right;
+            display: flex;
+            align-items: center;
           }
         }
         span {
@@ -163,8 +177,15 @@ nav {
         }
       }
     }
+    &.intro-list--placeholder {
+      display: flex;
+      flex: 1 auto;
+      user-select: none;
+      .list-item {
+        color: transparent;
+      }
+    }
   }
-  
 }
 
 .stream-chat-container {
@@ -172,6 +193,9 @@ nav {
   flex: 1 auto;
   &.chat--left {
     flex-direction: row-reverse;
+  }
+  .placeholder {
+    overflow-y: scroll;
   }
 }
 
@@ -198,10 +222,6 @@ nav {
       button {
         margin: 0 0.2em;
       }
-    }
-    .intro-list {
-      grid-template-columns: repeat(1, 1fr);
-      grid-gap: 1em;
     }
     .button--accent:not(.details-summary__header), .button--secondary {
       padding: 0.3em 0.5em;

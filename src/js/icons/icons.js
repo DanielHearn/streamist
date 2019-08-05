@@ -23,5 +23,7 @@ export default {
   add: 'add',
   streams: 'view_stream',
   chat_closed: 'chat_bubble_outline',
-  copy: 'file_copy'
+  copy: 'file_copy',
+  group: 'group',
+  game: 'videogame_asset'
 }

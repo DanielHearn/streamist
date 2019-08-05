@@ -103,12 +103,11 @@
           :options="$store.state.options"
         >
           <section slot="placeholder" class="intro-content">
-            <h1 class="intro-title">Streamist</h1>
-            <h2 class="intro-subheading">Multiple Twitch Stream Viewer</h2>
-            <p
-              class="intro-text"
-              v-if="!$store.state.smallInterface"
-            >Enter a twitch channel or watch one of the streams below to start.</p>
+            <div>
+              <h1 class="intro-title">Streamist</h1>
+              <h2 class="intro-subheading">Multiple Twitch Stream Viewer</h2>
+              <p class="intro-text">Enter a twitch channel or watch one of the streams below.</p>
+            </div>
             <div v-if="homepageStreams.length">
               <list :layout="'grid'" class="intro-list">
                 <div
@@ -118,7 +117,6 @@
                   class="intro-list-item-container"
                 >
                   <img
-                    v-if="!$store.state.smallInterface"
                     class="intro-list-item-image"
                     :src="stream.thumbnail || 'img/placeholderStreamThumbnail.png'"
                     :alt="stream.user_name + '\'s stream thumbnail'"
@@ -137,11 +135,14 @@
                     </template>
                     <template slot="content" v-if="stream.game_name && stream.viewer_count">
                       <div class="column stream-details">
-                        <span class="stream-name">{{stream.game_name}}</span>
-                        <span
-                          class="viewer"
-                          v-if="!$store.state.smallInterface"
-                        >{{stream.viewer_count}} Viewers</span>
+                        <span class="stream-name">
+                          <i class="material-icons">{{ $options.icons.game }}</i>
+                          {{stream.game_name}}
+                        </span>
+                        <span class="viewer">
+                          <i class="material-icons">{{ $options.icons.group }}</i>
+                          {{stream.formatted_viewer_count}}k
+                        </span>
                       </div>
                     </template>
                   </list-item>
@@ -150,18 +151,19 @@
             </div>
             <div v-else>
               <list :layout="'grid'" class="intro-list intro-list--placeholder">
-                <div v-for="(i) in [1,2,3,4]" :key="i" class="intro-list-item-container">
+                <div v-for="i in 12" :key="i" class="intro-list-item-container">
+                  <img class="intro-list-item-image" :src="'img/placeholderStreamThumbnail.png'" />
                   <list-item class="intro-list-item">
                     <template slot="header">
                       <div class="column">
-                        <p></p>
+                        <p>.</p>
                       </div>
                       <div class="column"></div>
                     </template>
                     <template slot="content">
                       <div class="column stream-details">
-                        <span class="stream-name"></span>
-                        <span></span>
+                        <span class="stream-name">.</span>
+                        <span>.</span>
                       </div>
                     </template>
                   </list-item>

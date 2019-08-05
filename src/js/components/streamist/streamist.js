@@ -295,7 +295,18 @@ export default {
               }
               return stream
             })
-            this.homepageStreams = streamInfo.slice(0, 4)
+
+            for (let stream of streamInfo) {
+              console.log(stream.viewer_count)
+              if (stream.viewer_count) {
+                stream.formatted_viewer_count = (
+                  stream.viewer_count / 1000
+                ).toFixed(1)
+                console.log(stream.formatted_viewer_count)
+              }
+            }
+
+            this.homepageStreams = streamInfo.slice(0, 12)
           }
         }
       }
