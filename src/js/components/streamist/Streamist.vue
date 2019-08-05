@@ -103,12 +103,12 @@
           :options="$store.state.options"
         >
           <section slot="placeholder" class="intro-content">
-            <div>
+            <div class="intro-info">
               <h1 class="intro-title">Streamist</h1>
               <h2 class="intro-subheading">Multiple Twitch Stream Viewer</h2>
               <p class="intro-text">Enter a twitch channel or watch one of the streams below.</p>
             </div>
-            <div v-if="homepageStreams.length">
+            <div class="intro-streams" v-if="homepageStreams.length">
               <list :layout="'grid'" class="intro-list">
                 <div
                   v-for="(stream, index) in homepageStreams"
