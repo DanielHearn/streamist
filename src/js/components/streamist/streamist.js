@@ -18,6 +18,8 @@ import Chats from './../chat/chatList/ChatList.vue'
 
 import HeartbeatLoading from './../heartbeatLoading/HeartbeatLoading.vue'
 
+import { copyToClipboard } from './../../utilities'
+
 import Icons from '../../icons/icons'
 import {
   generateID,
@@ -303,6 +305,9 @@ export default {
     },
     checkMenu: function (currentMenu) {
       this.menuItemActive = currentMenu.length > 0
+    },
+    copyUrl: function () {
+      copyToClipboard(window.location.href)
     }
   },
   mounted: function () {

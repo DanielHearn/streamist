@@ -22,5 +22,6 @@ export default {
   apply: 'done',
   add: 'add',
   streams: 'view_stream',
-  chat_closed: 'chat_bubble_outline'
+  chat_closed: 'chat_bubble_outline',
+  copy: 'file_copy'
 }

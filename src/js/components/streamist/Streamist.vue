@@ -20,6 +20,13 @@
       </div>
       <div class="nav-right">
         <icon-button
+          v-if="!$store.state.smallInterface"
+          :iconName="$options.icons.copy"
+          :buttonClasses="'button--secondary button--copy'"
+          title="Copy Page Link"
+          @click.native="copyUrl"
+        />
+        <icon-button
           :iconName="$options.icons.fullscreen"
           :buttonClasses="'button--secondary'"
           title="Toggle Fullscreen"
