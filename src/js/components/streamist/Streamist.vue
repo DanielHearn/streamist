@@ -139,7 +139,7 @@
                           <i class="material-icons">{{ $options.icons.game }}</i>
                           {{stream.game_name}}
                         </span>
-                        <span class="viewer">
+                        <span class="viewer" v-if="!$store.state.smallInterface">
                           <i class="material-icons">{{ $options.icons.group }}</i>
                           {{stream.formatted_viewer_count}}k
                         </span>
