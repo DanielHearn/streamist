@@ -28,7 +28,8 @@ import {
   getDefault,
   toggleFullscreen,
   createStreamObject,
-  getUsernameFromThumbnail
+  getUsernameFromThumbnail,
+  shuffleArray
 } from '../../utilities/utilities'
 import { getTopStreams, getGameInfo } from '../../twitch/twitch'
 import {
@@ -304,7 +305,10 @@ export default {
               }
             }
 
-            this.homepageStreams = streamInfo.slice(0, 12)
+            const homepageStreams = streamInfo.slice(0, 12)
+            if (homepageStreams && homepageStreams.length) {
+              this.homepageStreams = shuffleArray(homepageStreams)
+            }
           }
         }
       }
