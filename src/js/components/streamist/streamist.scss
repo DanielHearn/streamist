@@ -159,6 +159,9 @@ nav {
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
+      .item-header p {
+        letter-spacing: $letter-spacing;
+      }
       .item-content {
         .stream-details{
           display: flex;
@@ -170,11 +173,14 @@ nav {
             text-align: left;
             display: flex;
             align-items: center;
+            color: $very-off-white;
           }
           .viewer {
             text-align: right;
             display: flex;
             align-items: center;
+            color: $very-off-white;
+            letter-spacing: $letter-spacing;
           }
         }
         span {

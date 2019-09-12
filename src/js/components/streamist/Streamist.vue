@@ -162,7 +162,7 @@
                     </template>
                     <template slot="content">
                       <div class="column stream-details">
-                        <span class="stream-name">.</span>
+                        <span class="stream-name"></span>
                         <span>.</span>
                       </div>
                     </template>
