@@ -64,7 +64,7 @@
 .layout-demo-number {
   display: flex;
   flex: 1 auto;
-  font-weight: bold;
+  font-weight: $text-weight;
   color: $white;
   background: $black-normal;
   width: 100%;
