@@ -305,9 +305,9 @@ export default {
               }
             }
 
-            const homepageStreams = streamInfo.slice(0, 12)
-            if (homepageStreams && homepageStreams.length) {
-              this.homepageStreams = shuffleArray(homepageStreams)
+            if (streamInfo && streamInfo.length) {
+              const homepageStreams = shuffleArray(streamInfo)
+              this.homepageStreams = homepageStreams.slice(0, 12)
             }
           }
         }
