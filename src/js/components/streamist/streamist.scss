@@ -118,17 +118,19 @@ nav {
     font-size: $title-size;
     font-weight: $title-weight;
     text-transform: uppercase;
+    letter-spacing: $letter-spacing;
     margin: 0.25em 0;
   }
   .intro-subheading {
-    font-size: $heading-size;
-    font-weight: $heading-weight;
+    font-size: $sub-heading-size;
+    font-weight: $sub-heading-weight;
+    letter-spacing: $letter-spacing;
     margin-top: 0.5em;
     margin-bottom: 1.5em;
   }
   .intro-text {
-    font-size: $sub-heading-size;
-    font-weight: $sub-heading-weight;
+    font-size: $text-size;
+    font-weight: $text-weight;
   }
   .intro-streams {
     padding-bottom: 3em;

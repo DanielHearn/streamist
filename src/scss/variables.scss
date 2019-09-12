@@ -2,6 +2,7 @@
 $white: #FEFEFE;
 $near-white: #f0f0f0;
 $off-white: #e2e1e1;
+$very-off-white: rgba(240, 240, 240, 0.85);
 $grey: #5c5c5c;
 $dark-grey: #3b3b3b;
 $orange: #d35f21;
@@ -34,9 +35,11 @@ $heading-weight: 700;
 $sub-heading-size: 1em;
 $sub-heading-weight: 600;
 $text-size: 1em;
-$text-weight: 500;
+$text-weight: 400;
 $sub-text-size: 1em;
-$sub-text-weight: 500;
+$sub-text-weight: 400;
+
+$letter-spacing: 0.025em;
 
 // TRANSITION
 $transition-time: 0.15s;

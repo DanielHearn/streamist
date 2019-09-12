@@ -18,7 +18,6 @@ export function getTopStreams (quantity = 20) {
 
 export function getGameInfo (ids) {
   const url = `${apiRoot}games?id=${ids.join('&id=')}`
-  console.log(url)
   return fetch(url, {
     method: 'GET',
     mode: 'cors',

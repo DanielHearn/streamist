@@ -5,6 +5,7 @@ input, button {
   padding: 0.5em 0.7em;
   font-size: 1em;
   font-weight: 600;
+  letter-spacing:$letter-spacing;
   p {
     font-size: 1em;
     font-weight: 600;
@@ -27,7 +28,6 @@ button {
   color: $white;
   border: 0;
   cursor: pointer;
-  letter-spacing: 0.04em;
   justify-content: center;
   user-select: none;
   &:disabled {

@@ -1,7 +1,7 @@
 .title {
     font-size: $heading-size;
     font-weight: $heading-weight;
-    margin: 0;
+    letter-spacing:$letter-spacing;
     margin: 0;
     padding-left: 0.5em;
     align-self: center;
@@ -18,6 +18,7 @@
     font-size: $heading-size;
     font-weight: $heading-weight;
     margin: $content-padding/2 0;
+    letter-spacing:$letter-spacing;
     color: $near-white;
 }
   
@@ -26,12 +27,13 @@
     font-weight: $sub-heading-weight;
     margin: $content-padding/2 0;
     color: $near-white;
+    letter-spacing: $letter-spacing;
 }
   
 .sub-text {
     font-size: $sub-text-size;
     font-weight: $sub-text-weight;
-    color: $near-white;
+    color: $very-off-white;
 }
 
 .text--accent {

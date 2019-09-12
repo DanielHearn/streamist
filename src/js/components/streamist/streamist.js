@@ -297,12 +297,10 @@ export default {
             })
 
             for (let stream of streamInfo) {
-              console.log(stream.viewer_count)
               if (stream.viewer_count) {
                 stream.formatted_viewer_count = (
                   stream.viewer_count / 1000
                 ).toFixed(1)
-                console.log(stream.formatted_viewer_count)
               }
             }
 
