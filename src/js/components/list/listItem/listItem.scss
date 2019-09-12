@@ -27,6 +27,9 @@
       flex: 1 auto;
       flex-direction: row;
       justify-content: space-between;
+      p {
+          letter-spacing: $letter-spacing;
+      }
     }
     .handle {
       padding: 0.9em 0.25em;

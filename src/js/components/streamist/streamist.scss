@@ -159,9 +159,6 @@ nav {
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      .item-header p {
-        letter-spacing: $letter-spacing;
-      }
       .item-content {
         .stream-details{
           display: flex;
