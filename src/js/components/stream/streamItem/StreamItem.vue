@@ -1,6 +1,6 @@
 <template>
   <div class="stream" :class="[{active: hover}, 'stream--' + stream.embedPlayerID]">
-    <div v-if="displayControls">
+    <div v-if="displayControls && !smallInterface">
       <control-bar :class="{active: componentHover || hover}">
         <span
           v-if="numStreams > 1"

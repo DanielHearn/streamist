@@ -23,6 +23,7 @@
         :isFirstStream="index === 0"
         :hover="drag"
         :favorites="favorites"
+        :smallInterface="$store.state.smallInterface"
       />
     </draggable>
     <div v-else class="placeholder">

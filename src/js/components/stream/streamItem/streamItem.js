@@ -29,6 +29,11 @@ export default {
       type: Array,
       required: true,
       default: []
+    },
+    smallInterface: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   icons: Icons,
