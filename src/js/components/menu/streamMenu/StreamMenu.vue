@@ -1,6 +1,6 @@
 <template>
   <menu-item
-    :title="'Streams'"
+    :title="'Streams Management'"
     :closeTitle="'Close Streams'"
     v-on:close-menu-item="$emit('close-menu')"
   >
