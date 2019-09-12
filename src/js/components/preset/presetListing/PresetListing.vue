@@ -72,7 +72,7 @@
           >
             <list-item
               v-for="(stream, index) in orderedStreams"
-              class="preset-listing-item"
+              class="preset-listing-item dark"
               :key="index"
               :class="{'drag--active': drag}"
               :handleActive="true"

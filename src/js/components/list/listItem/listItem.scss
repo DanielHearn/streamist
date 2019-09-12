@@ -2,25 +2,26 @@
 
 .list-item {
   margin-bottom: 1em;
-  background: $black-lightest;
+  background: $black-normal;
   color: $white;
   &[draggable="true"] .item-header {
-    background: $black-dark;
-    box-shadow: inset -4px 0px 0px $accent-dark !important;
+    background: $black-darkest;
+    box-shadow: inset -4px 0px 0px $accent-light !important;
   }
   &.drag--active .item-header {
-    box-shadow: inset -4px 0px 0px #7c8185;
+    box-shadow: inset -4px 0px 0px $grey;
+  }
+  &.dark {
+    background: $black-dark;
   }
   .ghost {
-    background: $black-dark;
-    //display: none;
+    background: $black-darkest;
   }
   .item-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background: $black-normal;
     .item-header-content {
       padding: 0.5em;
       display: flex;

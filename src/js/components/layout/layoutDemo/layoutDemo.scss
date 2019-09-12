@@ -3,6 +3,9 @@
 
 .layouts-demo-container .list-item {
   cursor: pointer;
+  .item-content {
+    background: $dark-grey;
+  }
   &.active {
     .item-content {
       background: $accent-dark;
@@ -11,7 +14,7 @@
   &:hover:not(.active) {
     .item-content {
       @include transition(background $transition-time ease-in-out);
-      background: $dark-grey;
+      background: $grey;
     }
   }
 }

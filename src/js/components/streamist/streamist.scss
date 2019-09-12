@@ -147,6 +147,11 @@ nav {
       flex-direction: column;
       cursor: pointer;
       margin: 0.5em;
+      &:hover {
+        .item-header, .item-content {
+          background: $dark-grey;
+        }
+      }
       .intro-list-item-image {
         display: flex;
         flex: 1 auto;
