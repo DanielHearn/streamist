@@ -735,7 +735,7 @@ exports[`Storyshots Preset Listing Edit Active 1`] = `
       >
         <div>
           <div
-            class="list-item preset-listing-item"
+            class="list-item preset-listing-item dark"
           >
             <div
               class="item-header"
@@ -1009,7 +1009,7 @@ exports[`Storyshots Stream History Controls Normal 1`] = `
           <p
             class="sub-text"
           >
-            Watched: 1 month ago
+            Watched: 3 months ago
           </p>
         </div>
       </div>
@@ -1050,7 +1050,7 @@ exports[`Storyshots Stream History Controls Normal 1`] = `
           <p
             class="sub-text"
           >
-            Watched: 1 month ago
+            Watched: 3 months ago
           </p>
         </div>
       </div>
@@ -1091,7 +1091,7 @@ exports[`Storyshots Stream History Controls Normal 1`] = `
           <p
             class="sub-text"
           >
-            Watched: 1 month ago
+            Watched: 3 months ago
           </p>
         </div>
       </div>
@@ -1138,7 +1138,7 @@ exports[`Storyshots Stream History Item Normal 1`] = `
     <p
       class="sub-text"
     >
-      Watched: 1 month ago
+      Watched: 3 months ago
     </p>
   </div>
 </div>

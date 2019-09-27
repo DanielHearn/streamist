@@ -1,7 +1,7 @@
 {
   "name": "streamist",
   "version": "1.0.0",
-  "description": "Multiple Twitch stream viewer built with AngularJS and CSS variables.",
+  "description": "Multiple Twitch stream viewer built with Vue",
   "main": "index.html",
   "scripts": {
     "build": "webpack --mode production",
