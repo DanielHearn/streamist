@@ -1,7 +1,7 @@
 <template>
   <div class="list-item">
     <div class="item-header">
-      <span v-if="handleActive" class="material-icons handle text--accent">drag_handle</span>
+      <span v-if="handleActive" class="material-icons handle">drag_handle</span>
       <div class="item-header-content">
         <slot name="header"></slot>
       </div>
