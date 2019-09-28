@@ -152,13 +152,13 @@ select {
       align-items: center;
       justify-content: space-between;
       &:hover .input {
-        background: $blue-medium;
+        background: $grey;
       }
     }
     .input {
       width: 1.8em;
       height: 1.8em;
-      background: $blue;
+      background: $dark-grey;
       border: solid 2px $grey;
       cursor: pointer;
       transition: $transition-time background ease-in-out, $transition-time border-color ease-in-out;
