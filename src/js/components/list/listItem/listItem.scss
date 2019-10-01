@@ -4,6 +4,7 @@
   margin-bottom: 1em;
   background: $black-normal;
   color: $white;
+  border-radius: 3px;
   &[draggable="true"] .item-header {
     background: $black-darkest;
     box-shadow: inset -4px 0px 0px $accent-light !important;
@@ -57,6 +58,7 @@
   }
   .item-content {
     padding: 0.5em 0.75em;
+    border-radius: 0 0 3px 3px;
     .sub-text {
       margin: 0;
     }

@@ -8,6 +8,12 @@
   }
   .preset-listing-item {
     margin: 0.5em 0;
+    .handle {
+      border-radius: 3px 0 0 3px;
+    }
+    .item-header-content {
+      border-radius: 0 3px 3px 0;
+    }
     p {
       font-weight: 500;
     }

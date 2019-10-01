@@ -1,4 +1,5 @@
 @import "./../../../scss/variables";
+@import "./../../../scss/mixins";
 
 #streamist {
   width: 100vw;
@@ -148,7 +149,7 @@ nav {
       cursor: pointer;
       margin: 0.5em;
       &:hover {
-        .item-header, .item-content {
+        .intro-list-item {
           background: $dark-grey;
         }
       }
@@ -157,6 +158,7 @@ nav {
         flex: 1 auto;
         background: $black-dark;
         width: 100%;
+        border-radius: 3px 3px 0 0;
       }
     }
     .intro-list-item {
@@ -164,6 +166,8 @@ nav {
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
+      border-radius: 0 0 3px 3px;
+      @include transition(background $transition-time ease-in-out);
       .item-content {
         .stream-details{
           display: flex;

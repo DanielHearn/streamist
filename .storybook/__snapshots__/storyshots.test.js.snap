@@ -511,7 +511,7 @@ exports[`Storyshots List Item With Handle 1`] = `
     class="item-header"
   >
     <span
-      class="material-icons handle text--accent"
+      class="material-icons handle"
     >
       drag_handle
     </span>
@@ -741,7 +741,7 @@ exports[`Storyshots Preset Listing Edit Active 1`] = `
               class="item-header"
             >
               <span
-                class="material-icons handle text--accent"
+                class="material-icons handle"
               >
                 drag_handle
               </span>

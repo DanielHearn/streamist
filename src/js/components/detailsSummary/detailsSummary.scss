@@ -10,14 +10,20 @@
     background: $black-normal;
     cursor: pointer;
     user-select: none;
+    border-radius: 3px;
   }
   .details-summary__content {
     padding: .75em 0.5em;
     background: $black-normal;
+    border-radius: 0 0 3px 3px;
   }
   &.active {
-    .details-summary__header.button--accent {
-      background: $accent-dark;
+    
+    .details-summary__header {
+    border-radius: 3px 3px 0 0;
+      &.button--accent {
+        background: $accent-dark;
+      }
     }
   }
 }
