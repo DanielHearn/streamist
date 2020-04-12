@@ -31,7 +31,7 @@ import {
   getUsernameFromThumbnail,
   shuffleArray
 } from '../../utilities/utilities'
-import { getTopStreams, getGameInfo } from '../../twitch/twitch'
+import { getTopStreams, getGameInfo, getAccessToken } from '../../twitch/twitch'
 import {
   validateHistory,
   validatePresets,
@@ -249,8 +249,10 @@ export default {
       const thumbnailWidth = '480'
       const thumbnailHeight = '270'
       const twitchUrlRoot = 'https://twitch.tv/'
-      const topStreams = await getTopStreams(20)
+      const accessToken = this.$store.state.accessToken
+      if(!accessToken) return false
 
+      const topStreams = await getTopStreams(accessToken, 20)
       if (topStreams.length) {
         this.$store.commit('setTopStreams', topStreams)
 
@@ -259,7 +261,7 @@ export default {
         })
         if (gameIds.length) {
           // Get game info based on game ids
-          const gameInfo = await getGameInfo(gameIds)
+          const gameInfo = await getGameInfo(accessToken, gameIds)
           if (gameInfo.data) {
             // Make game info object mapped by id
             const mappedGameinfo = {}
@@ -321,6 +323,13 @@ export default {
     },
     copyUrl: function () {
       copyToClipboard(window.location.href)
+    },
+    loadAPI: async function () {
+      const accessData = await getAccessToken()
+      if (accessData.access_token && accessData.expires_in > 0) {
+        this.$store.commit('setAccessToken', accessData.access_token)
+        this.getHomePageContent()
+      }
     }
   },
   mounted: function () {
@@ -351,6 +360,8 @@ export default {
     }
   },
   created: function () {
+    this.loadAPI()
+
     // Load stored data and load default data if stored data isn't available
     this.loadStoredData()
 

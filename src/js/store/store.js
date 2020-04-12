@@ -17,6 +17,9 @@ export const mutations = {
   setTwitchGameInfo (state, twitchGameInfo) {
     state.twitchGameInfo = twitchGameInfo
   },
+  setAccessToken (state, accessToken) {
+    state.accessToken = accessToken
+  },
 
   addStream (state, streamObj) {
     const stream = Object.assign({}, streamObj)
@@ -126,6 +129,7 @@ export const storeConfig = {
     streamHistory: [],
     streamPresets: [],
     streamFavorites: [],
+    accessToken: '',
     topStreams: [],
     twitchGameInfo: [],
     smallInterface: false,
