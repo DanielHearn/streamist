@@ -51,16 +51,16 @@ export const history = [
   {
     streamName: 'nintendo',
     id: 'c24vfsba',
-    dateAdded: '2019-06-11T16:46:15.181Z'
+    dateAdded: new Date()
   },
   {
     streamName: 'twitch',
     id: 'fg1ei0cr',
-    dateAdded: '2019-06-12T15:14:07.958Z'
+    dateAdded: new Date()
   },
   {
     streamName: 'twitchpresents',
     id: '8a3a06y4',
-    dateAdded: '2019-06-12T15:14:16.414Z'
+    dateAdded: new Date()
   }
 ]
