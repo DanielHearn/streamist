@@ -108,7 +108,7 @@
               <h2 class="intro-subheading">Multiple Twitch Stream Viewer</h2>
               <p
                 class="intro-text"
-              >Enter a twitch channel above or click to watch one of the popular streams below.</p>
+              >Click one of the popular streams below or enter a twitch channel above.</p>
             </div>
             <div class="intro-streams" v-if="homepageStreams.length">
               <list :layout="'grid'" class="intro-list">
