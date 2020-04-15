@@ -16,6 +16,8 @@ notifications:
   webhooks:
     urls:
       - https://io.adafruit.com/api/v2/webhooks/feed/5CsxDuvUaA7eZdY741qc8Z5cpUBQ
-    on_success: change
-    on_failure: change
-    on_start:   change
+    on_success: always
+    on_failure: always
+    on_start:   always
+    on_cancel:  always
+    on_error:   always
