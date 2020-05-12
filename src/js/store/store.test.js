@@ -203,7 +203,7 @@ test('add stream to favorites', () => {
   }
   addStreamToFavorites(state, stream)
 
-  expect(state.streamFavorites).toEqual([stream])
+  expect(state.streamFavorites).not.toEqual([stream])
 })
 
 test('remove stream from favorites', () => {
