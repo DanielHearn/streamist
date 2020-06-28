@@ -35,7 +35,7 @@ export default {
       return `embed-chat-${this.chat.streamName}`
     },
     src: function () {
-      return `https://www.twitch.tv/embed/${this.chat.streamName}/chat`
+      return `https://www.twitch.tv/embed/${this.chat.streamName}/chat?parent=danielhearn.co.uk"`
     },
     filteredStreams: function () {
       return this.streams.filter(stream => {
