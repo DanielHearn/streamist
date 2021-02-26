@@ -31,7 +31,7 @@ describe('ChatItem', () => {
 
   test('src', () => {
     expect(wrapper.vm.src).toBe(
-      `https://www.twitch.tv/embed/${chat.streamName}/chat`
+      `https://www.twitch.tv/embed/${chat.streamName}/chat?parent=danielhearn.co.uk`
     )
   })
 
