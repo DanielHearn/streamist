@@ -11,6 +11,7 @@ import AboutMenu from './../menu/aboutMenu/AboutMenu.vue'
 import SideMenu from './../menu/sideMenu/SideMenu.vue'
 import FavoritesMenu from './../menu/favoritesMenu/FavoritesMenu.vue'
 import SettingsMenu from './../menu/settingsMenu/SettingsMenu.vue'
+import PopularStreamsMenu from './../menu/popularStreamsMenu/PopularStreamsMenu.vue'
 import StreamMenu from './../menu/streamMenu/StreamMenu.vue'
 import StreamList from './../stream/streamList/StreamList.vue'
 import Chats from './../chat/chatList/ChatList.vue'
@@ -21,12 +22,10 @@ import { copyToClipboard } from './../../utilities'
 
 import Icons from '../../icons/icons'
 import {
-  generateID,
   log,
   warn,
   getDefault,
   toggleFullscreen,
-  createStreamObject,
   getUsernameFromThumbnail,
   shuffleArray
 } from '../../utilities/utilities'
@@ -59,6 +58,7 @@ export default {
     AboutMenu,
     FavoritesMenu,
     SettingsMenu,
+    PopularStreamsMenu,
     StreamMenu,
     List,
     ListItem,
@@ -84,6 +84,10 @@ export default {
       iconName: Icons.presets
     },
     {
+      itemName: 'Popular',
+      iconName: Icons.group
+    },
+    {
       itemName: 'History',
       iconName: Icons.history
     },
@@ -104,7 +108,6 @@ export default {
     return {
       appHover: false,
       appHoverTracker: 0,
-      homepageStreams: [],
       menuItemActive: false
     }
   },
@@ -115,7 +118,7 @@ export default {
   },
   watch: {
     streamsLength: function (oldLength, newLength) {
-      if (newLength === 0 && this.homepageStreams.length === 0) {
+      if (newLength === 0 && this.$store.state.popularStreams.length === 0) {
         this.getHomePageContent()
       }
     }
@@ -145,9 +148,7 @@ export default {
       this.$store.commit('setOptions', options)
     },
     addStream: function (streamName) {
-      const streamObj = createStreamObject(streamName, generateID())
-      this.$store.commit('addStream', streamObj)
-      this.$store.commit('addStreamToHistory', streamObj)
+      this.$store.commit('addStreamFromName', streamName)
     },
     updateStreams: function (streams) {
       this.$store.commit('setStreams', streams)
@@ -307,8 +308,8 @@ export default {
             }
 
             if (streamInfo && streamInfo.length) {
-              const homepageStreams = shuffleArray(streamInfo)
-              this.homepageStreams = homepageStreams.slice(0, 12)
+              const popularStreams = shuffleArray(streamInfo)
+              this.$store.commit('setPopularStreams', popularStreams.slice(0, 12))
             }
           }
         }

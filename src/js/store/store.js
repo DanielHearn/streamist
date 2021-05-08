@@ -5,7 +5,8 @@ import {
   setStoredFavorites,
   setStoredHistory
 } from './../storage'
-import { insertURLStreamParams } from './../utilities'
+import { insertURLStreamParams, generateID, createStreamObject } from './../utilities'
+
 
 export const mutations = {
   setSmallInterface (state, value) {
@@ -21,6 +22,11 @@ export const mutations = {
     state.accessToken = accessToken
   },
 
+  addStreamFromName (state, streamName) {
+    const streamObj = createStreamObject(streamName, generateID())
+    this.commit('addStream', streamObj)
+    this.commit('addStreamToHistory', streamObj)
+  },
   addStream (state, streamObj) {
     const stream = Object.assign({}, streamObj)
     stream.embedPlayerID = `embed-player-${stream.streamName}-${stream.id}`
@@ -120,6 +126,9 @@ export const mutations = {
     }
     state.streamPresets = updatedPresets
     setStoredPresets(updatedPresets)
+  },
+  setPopularStreams (state, streams) {
+    state.popularStreams = streams
   }
 }
 
@@ -132,6 +141,7 @@ export const storeConfig = {
     accessToken: '',
     topStreams: [],
     twitchGameInfo: [],
+    popularStreams: [],
     smallInterface: false,
     options: {
       chatVisible: true,

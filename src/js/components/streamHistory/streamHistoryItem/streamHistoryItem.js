@@ -41,12 +41,7 @@ export default {
   },
   methods: {
     loadSelectedHistory: function () {
-      const streamObj = createStreamObject(
-        this.history.streamName,
-        generateID()
-      )
-      this.$store.commit('addStream', streamObj)
-      this.$store.commit('addStreamToHistory', streamObj)
+      this.$store.commit('addStreamFromName', this.history.streamName)
     }
   }
 }

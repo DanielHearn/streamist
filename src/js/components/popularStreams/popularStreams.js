@@ -4,22 +4,17 @@ import List from './../list/list/List.vue'
 import Icons from '../../icons/icons'
 
 export default {
-  name: 'popular-streams',
-  components: {
-    List,
-    ListItem,
-    IconButton,
-  },
-  props: {
-    homepageStreams: {
-      default: [],
-      type: Array,
-      required: true
+    name: 'popular-streams',
+    components: {
+        List,
+        ListItem,
+        IconButton,
     },
-    addStream: {
-      type: Function,
-      required: true
-    },
-  },
-  icons: Icons,
+    icons: Icons,
+    methods: {
+        addPopularStream: function (stream) {
+            const name = stream.clean_username ? stream.clean_username.toLowerCase() : stream.user_name.toLowerCase()
+            this.$store.commit('addStreamFromName', name)
+        },
+    }
 }

@@ -83,6 +83,10 @@
             :small-interface="$store.state.smallInterface"
             v-on:close-menu="closeMenu"
           ></preset-menu>
+          <popular-streams-menu
+            v-if="currentMenu === 'Popular'"
+            v-on:close-menu="closeMenu"
+          ></popular-streams-menu>
           <history-menu
             v-if="currentMenu === 'History'"
             :stream-history="$store.state.streamHistory"
@@ -110,10 +114,7 @@
                 class="intro-text"
               >Click one of the popular streams below or enter a twitch channel above.</p>
             </div>
-            <popular-streams
-              :homepageStreams="homepageStreams"
-              :addStream="addStream"
-            />
+            <popular-streams/>
           </section>
         </stream-list>
         <chats
