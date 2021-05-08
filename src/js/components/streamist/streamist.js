@@ -12,10 +12,9 @@ import SideMenu from './../menu/sideMenu/SideMenu.vue'
 import FavoritesMenu from './../menu/favoritesMenu/FavoritesMenu.vue'
 import SettingsMenu from './../menu/settingsMenu/SettingsMenu.vue'
 import StreamMenu from './../menu/streamMenu/StreamMenu.vue'
-
 import StreamList from './../stream/streamList/StreamList.vue'
 import Chats from './../chat/chatList/ChatList.vue'
-
+import PopularStreams from './../popularStreams/PopularStreams.vue'
 import HeartbeatLoading from './../heartbeatLoading/HeartbeatLoading.vue'
 
 import { copyToClipboard } from './../../utilities'
@@ -63,7 +62,8 @@ export default {
     StreamMenu,
     List,
     ListItem,
-    HeartbeatLoading
+    HeartbeatLoading,
+    PopularStreams
   },
   icons: Icons,
   menuItems: [
@@ -144,7 +144,6 @@ export default {
       options.navVisible = !options.navVisible
       this.$store.commit('setOptions', options)
     },
-
     addStream: function (streamName) {
       const streamObj = createStreamObject(streamName, generateID())
       this.$store.commit('addStream', streamObj)
