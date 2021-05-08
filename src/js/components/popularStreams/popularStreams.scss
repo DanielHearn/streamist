@@ -1,68 +1,71 @@
 @import "./../../../scss/variables";
 @import "./../../../scss/mixins";
 
-.popular-streams-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 0 auto;
-    .popular-streams-item-container {
-      width: inherit;
-      flex-direction: column;
-      cursor: pointer;
-      margin: 0.5em;
-      &:hover {
-        .popular-streams-item {
-          background: $dark-grey;
-        }
-      }
-      .popular-streams-item-image {
+.popular-streams {
+    .popular-streams-list {
         display: flex;
-        flex: 1 auto;
-        background: $black-dark;
-        width: 100%;
-        border-radius: 3px 3px 0 0;
-      }
-    }
-    .popular-streams-item {
-      margin-bottom: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      border-radius: 0 0 3px 3px;
-      @include transition(background $transition-time ease-in-out);
-      .item-content {
-        .stream-details{
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 0 auto;
+        .popular-streams-item-container {
+          width: inherit;
+          flex-direction: column;
+          cursor: pointer;
+          margin: 0.5em;
+          &:hover {
+            .popular-streams-item {
+              background: $dark-grey;
+            }
+          }
+          .popular-streams-item-image {
+            display: flex;
+            flex: 1 auto;
+            background: $black-dark;
+            width: 100%;
+            border-radius: 3px 3px 0 0;
+          }
+        }
+        .popular-streams-item {
+          margin-bottom: 0;
           display: flex;
-          justify-content: space-between;
-          i {
-            margin-right: 0.25em;
-          }
-          .stream-name {
-            text-align: left;
-            display: flex;
-            align-items: center;
-            color: $very-off-white;
-          }
-          .viewer {
-            text-align: right;
-            display: flex;
-            align-items: center;
-            color: $very-off-white;
-            letter-spacing: $letter-spacing;
+          flex-direction: column;
+          justify-content: flex-end;
+          border-radius: 0 0 3px 3px;
+          @include transition(background $transition-time ease-in-out);
+          .item-content {
+            .stream-details{
+              display: flex;
+              justify-content: space-between;
+              i {
+                margin-right: 0.25em;
+              }
+              .stream-name {
+                text-align: left;
+                display: flex;
+                align-items: center;
+                color: $very-off-white;
+              }
+              .viewer {
+                text-align: right;
+                display: flex;
+                align-items: center;
+                color: $very-off-white;
+                letter-spacing: $letter-spacing;
+              }
+            }
+            span {
+              margin: 0;
+            }
           }
         }
-        span {
-          margin: 0;
-        }
-      }
     }
     &.popular-streams--placeholder {
-      display: flex;
-      flex: 1 auto;
-      user-select: none;
-      .list-item {
+        display: flex;
+        flex: 1 auto;
+        user-select: none;
         color: transparent;
-      }
+        p, span {
+            color: transparent
+        }
     }
-  }
+}

@@ -40,8 +40,8 @@
             </div>
             </list>
         </div>
-        <div v-else>
-            <list :layout="'grid'" class="popular-streams popular-streams--placeholder">
+    <div v-else class="popular-streams popular-streams--placeholder">
+        <list :layout="'grid'" class="popular-streams-list">
             <div v-for="i in 12" :key="i" class="popular-streams-item-container">
                 <img class="popular-streams-item-image" :src="'img/placeholderStreamThumbnail.png'" />
                 <list-item class="popular-streams-item">
