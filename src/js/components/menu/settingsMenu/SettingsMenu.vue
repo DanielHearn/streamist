@@ -6,6 +6,7 @@
   >
     <template slot="content">
       <div class="menu-item-row">
+        <p>This will clear stored options, history, favorites, and presets.</p>
         <standard-button
           @click.native="clearData"
           :buttonClasses="'button--secondary'"
