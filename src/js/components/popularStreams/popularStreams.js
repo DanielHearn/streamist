@@ -2,6 +2,7 @@ import IconButton from './../inputs/buttons/iconButton/IconButton.vue'
 import ListItem from './../list/listItem/ListItem.vue'
 import List from './../list/list/List.vue'
 import Icons from '../../icons/icons'
+import LanguageSelection from './../languageSelection/LanguageSelection.vue'
 
 export default {
     name: 'popular-streams',
@@ -9,6 +10,7 @@ export default {
         List,
         ListItem,
         IconButton,
+        LanguageSelection,
     },
     icons: Icons,
     methods: {

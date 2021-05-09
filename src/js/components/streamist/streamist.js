@@ -42,6 +42,7 @@ import {
   getStoredFavorites,
   getStoredHistory
 } from '../../storage/storage'
+import { mapState } from 'vuex';
 
 export default {
   name: 'streamist',
@@ -121,6 +122,12 @@ export default {
       if (newLength === 0 && this.$store.state.popularStreams.length === 0) {
         this.getHomePageContent()
       }
+    },
+    "$store.state.options.popularStreamLanguages": {
+      handler: function() {
+        this.getHomePageContent()
+      },
+      immediate: false
     }
   },
   methods: {
@@ -252,10 +259,12 @@ export default {
       const accessToken = this.$store.state.accessToken
       if(!accessToken) return false
 
-      const topStreams = await getTopStreams(accessToken, 20)
+      const formattedLanguages = this.$store.state.options.popularStreamLanguages.map(language => language.value)
+      const topStreams = await getTopStreams(accessToken, 20, formattedLanguages)
+      this.$store.commit('setTopStreamsRetrieved', topStreams.length)
       if (topStreams.length) {
         this.$store.commit('setTopStreams', topStreams)
-
+        
         const gameIds = topStreams.map(stream => {
           return stream.game_id
         })
@@ -360,10 +369,10 @@ export default {
     }
   },
   created: function () {
-    this.loadAPI()
-
     // Load stored data and load default data if stored data isn't available
     this.loadStoredData()
+
+    this.loadAPI()
 
     // Set mobile interface on small screens
     this.checkScreenSize()

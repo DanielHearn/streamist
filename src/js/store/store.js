@@ -43,6 +43,9 @@ export const mutations = {
   },
 
   setOptions (state, options) {
+    if(!options.popularStreamLanguages) {
+      options.popularStreamLanguages = [{value: 'en', label: 'English'}]
+    }
     state.options = options
     setStoredOptions(options)
   },
@@ -129,6 +132,9 @@ export const mutations = {
   },
   setPopularStreams (state, streams) {
     state.popularStreams = streams
+  },
+  setTopStreamsRetrieved (state, value) {
+    state.topStreamsRetrieved = value
   }
 }
 
@@ -140,6 +146,7 @@ export const storeConfig = {
     streamFavorites: [],
     accessToken: '',
     topStreams: [],
+    topStreamsRetrieved: false,
     twitchGameInfo: [],
     popularStreams: [],
     smallInterface: false,
@@ -149,7 +156,8 @@ export const storeConfig = {
       navVisible: true,
       startMuted: true,
       chatLocation: 'right',
-      currentLayout: { id: 'grid', name: 'Grid' }
+      currentLayout: { id: 'grid', name: 'Grid' },
+      popularStreamLanguages: [{ "value": "en", "label": "English" }]
     }
   },
   mutations

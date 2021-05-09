@@ -2,6 +2,8 @@
 @import "./../../../scss/mixins";
 
 .popular-streams {
+    display: flex;
+    flex-direction: column;
     .popular-streams-list {
         display: flex;
         flex-wrap: wrap;
@@ -60,12 +62,12 @@
         }
     }
     &.popular-streams--placeholder {
-        display: flex;
-        flex: 1 auto;
-        user-select: none;
-        color: transparent;
+      user-select: none;
+      color: transparent;
+      .popular-streams-list {
         p, span {
-            color: transparent
+          color: transparent
         }
+      }
     }
 }

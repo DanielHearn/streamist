@@ -15,7 +15,8 @@ export const defaultData = {
     startMuted: true,
     navVisible: true,
     chatLocation: 'right',
-    currentLayout: { id: 'grid', name: 'Grid' }
+    currentLayout: { id: 'grid', name: 'Grid' },
+    popularStreamLanguages: [{value: 'en', label: 'English'}]
   },
   streams: [],
   streamHistory: [],

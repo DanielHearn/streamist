@@ -1,0 +1,20 @@
+@import "./../../../scss/variables";
+@import "./../../../scss/mixins";
+
+.language-selection {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding-bottom: $content-padding;
+    .v-select {
+        @include border-radius;
+        background: grey;
+        min-width: 170px;
+        .vs__selected-options {
+            input {
+                background: $dark-grey;
+            }
+        }
+    }
+}

@@ -20,6 +20,14 @@ const streamItem = yup
   })
   .required()
 
+const language = yup
+  .object()
+  .shape({
+    value: yup.string().required(),
+    label: yup.string().required(),
+  })
+  .required()
+
 const historyValidator = yup
   .array()
   .of(streamItem)
@@ -53,7 +61,10 @@ const optionsValidator = yup.object().shape({
       id: yup.string().required(),
       name: yup.string().required()
     })
-    .required()
+    .required(),
+  popularStreamLanguages: yup
+    .array()
+    .of(language).required()
 })
 
 // TODO - Clean up

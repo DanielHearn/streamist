@@ -14,8 +14,11 @@ export function getAccessToken () {
     .then(response => response.json())
 }
 
-export function getTopStreams (accessToken, quantity = 20) {
-  const url = `${apiRoot}streams?first=${quantity}`
+export function getTopStreams (accessToken, quantity = 20, languages = []) {
+  let url = `${apiRoot}streams?first=${quantity}`
+  if(languages.length) {
+    url = `${url}&language=${languages.join('&language=')}`
+  }
   return fetch(url, {
     method: 'GET',
     mode: 'cors',

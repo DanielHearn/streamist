@@ -1,0 +1,18 @@
+<template>
+    <div class="language-selection">
+        <v-select
+            :value="languages"
+            :options="$options.availableLanguages"
+            :multiple="true"
+            placeholder="All Languages"
+            v-on:input="changeLanguages"
+        />
+    </div>
+</template>
+
+<script src="./languageSelection.js"></script>
+
+<style lang="scss">
+@import "vue-select/src/scss/vue-select.scss";
+@import "./languageSelection.scss";
+</style>

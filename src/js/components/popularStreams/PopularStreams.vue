@@ -1,6 +1,7 @@
 <template>
-    <div class="popular-streams" v-if="$store.state.popularStreams.length">
-        <list :layout="'grid'" class="popular-streams-list">
+    <div class="popular-streams" v-bind:class="{ 'popular-streams--placeholder': !$store.state.popularStreams.length }" >
+        <language-selection />
+        <list :layout="'grid'" class="popular-streams-list" v-if="$store.state.popularStreams.length">
             <div
                 v-for="(stream, index) in $store.state.popularStreams"
                 :key="index"
@@ -38,10 +39,8 @@
                 </template>
                 </list-item>
             </div>
-            </list>
-        </div>
-    <div v-else class="popular-streams popular-streams--placeholder">
-        <list :layout="'grid'" class="popular-streams-list">
+        </list>
+        <list v-else :layout="'grid'" class="popular-streams-list">
             <div v-for="i in 12" :key="i" class="popular-streams-item-container">
                 <img class="popular-streams-item-image" :src="'img/placeholderStreamThumbnail.png'" />
                 <list-item class="popular-streams-item">
