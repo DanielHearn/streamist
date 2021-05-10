@@ -18,7 +18,11 @@ test('expect options validator to validate on correct options', async () => {
     currentLayout: {
       id: 'id',
       name: 'Grid'
-    }
+    },
+    popularStreamLanguages: [{
+      "value": "en",
+      "label": "English"
+    }]
   }
 
   expect(await validateOptions(options)).toBe(true)
@@ -31,7 +35,8 @@ test('expect options validator to not validate on incorrect options', async () =
     chatVisible: 'true',
     menuVisible: 'true',
     startMuted: 'false',
-    currentLayout: [2]
+    currentLayout: [2],
+    popularStreamLanguages: 'test'
   }
 
   expect(await validateOptions(options)).toBe(false)
