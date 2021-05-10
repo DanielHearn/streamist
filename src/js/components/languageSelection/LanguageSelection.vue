@@ -4,8 +4,11 @@
             :value="languages"
             :options="$options.availableLanguages"
             :multiple="true"
+            :appendToBody="true"
+            autocomplete="on"
             placeholder="All Languages"
             v-on:input="changeLanguages"
+            :components="{Deselect}"
         />
     </div>
 </template>

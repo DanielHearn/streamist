@@ -10,11 +10,21 @@
     .v-select {
         @include border-radius;
         background: grey;
-        min-width: 170px;
+        min-width: 240px;
         .vs__selected-options {
             input {
                 background: $dark-grey;
             }
         }
+    }
+    .material-icons {
+        color: $black-dark;
+    }
+    .vs__open-indicator {
+        fill: $black-dark;
+    }
+    .vs__search {
+        width: 100px;
+        margin: 4px 2px 0px 2px;
     }
 }
