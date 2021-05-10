@@ -9,22 +9,30 @@
     padding-bottom: $content-padding;
     .v-select {
         @include border-radius;
-        background: grey;
+        background: $blue;
         min-width: 240px;
-        .vs__selected-options {
-            input {
-                background: $dark-grey;
-            }
-        }
     }
     .material-icons {
-        color: $black-dark;
+        color: $white;
     }
     .vs__open-indicator {
-        fill: $black-dark;
+        fill: $white;
     }
     .vs__search {
         width: 100px;
         margin: 4px 2px 0px 2px;
+        color: $blue-light;
+        background: $black-normal;
+    }
+    .vs__selected {
+        color: $blue-light;
+        background: $blue-medium;
+    }
+    .vs__dropdown-menu {
+        color: $blue-light;
+        background: $blue;
+        li {
+            color: $blue-light;
+        }
     }
 }
