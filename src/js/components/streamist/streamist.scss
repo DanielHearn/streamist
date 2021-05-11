@@ -135,8 +135,13 @@ nav {
   }
   .popular-streams {
     padding-bottom: 3em;
+    max-width: 78em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
     .popular-streams-list {
-      max-width: 80em;
+      max-width: 78em;
       .popular-streams-item-container {
         max-width: 25em;
       }
