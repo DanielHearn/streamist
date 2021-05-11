@@ -26,7 +26,6 @@ const language = yup
     value: yup.string().required(),
     label: yup.string().required(),
   })
-  .required()
 
 const historyValidator = yup
   .array()
@@ -64,7 +63,7 @@ const optionsValidator = yup.object().shape({
     .required(),
   popularStreamLanguages: yup
     .array()
-    .of(language).required()
+    .of(language)
 })
 
 // TODO - Clean up
