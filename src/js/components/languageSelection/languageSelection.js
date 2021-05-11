@@ -8,9 +8,13 @@ export default {
     components: {
         vSelect
     },
-    availableLanguages: Languages,
     computed: mapState({
-        languages: state => state.options.popularStreamLanguages
+        languages: state => state.options.popularStreamLanguages,
+        unusedLanguages: state => Languages.filter(
+            language => {
+                return !state.options.popularStreamLanguages.some(chosenLanguage => chosenLanguage.value === language.value)}
+
+        )
     }),
     data: () => ({
         Deselect: {

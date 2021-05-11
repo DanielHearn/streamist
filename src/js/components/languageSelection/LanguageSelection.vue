@@ -2,7 +2,7 @@
     <div class="language-selection">
         <v-select
             :value="languages"
-            :options="$options.availableLanguages"
+            :options="unusedLanguages"
             :multiple="true"
             autocomplete="on"
             placeholder="All Languages"
