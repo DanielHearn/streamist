@@ -17,7 +17,3 @@
 </template>
 
 <script src="./settingsMenu.js"></script>
-
-<style lang="scss">
-@import "./settingsMenu.scss";
-</style>

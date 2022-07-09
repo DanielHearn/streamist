@@ -54,7 +54,3 @@
 </template>
 
 <script src="./layoutMenu.js"></script>
-
-<style lang="scss">
-@import "./layoutMenu.scss";
-</style>
