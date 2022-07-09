@@ -2,7 +2,7 @@ import draggable from 'vuedraggable'
 import MenuItem from './../../menu/menuItem/MenuItem.vue'
 import StandardButton from './../../inputs/buttons/standardButton/StandardButton.vue'
 import IconButton from './../../inputs/buttons/iconButton/IconButton.vue'
-import List from './../../list/list/List.vue'
+import ItemList from './../../list/list/ItemList.vue'
 import ListItem from './../../list/listItem/ListItem.vue'
 import InputForm from './../../inputs/inputForm/InputForm.vue'
 
@@ -14,7 +14,7 @@ export default {
   components: {
     MenuItem,
     StandardButton,
-    List,
+    ItemList,
     ListItem,
     IconButton,
     InputForm,

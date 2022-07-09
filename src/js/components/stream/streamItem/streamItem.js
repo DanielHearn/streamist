@@ -85,7 +85,10 @@ export default {
           layout: 'video',
           autoplay: false
         }
+
+        // eslint-disable-next-line 
         const playerEmbed = new Twitch.Embed(this.stream.embedPlayerID, options)
+        // eslint-disable-next-line 
         playerEmbed.addEventListener(Twitch.Embed.VIDEO_READY, () => {
           const player = playerEmbed.getPlayer()
           player.play()

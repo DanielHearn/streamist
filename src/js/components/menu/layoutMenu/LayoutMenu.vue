@@ -6,7 +6,7 @@
   >
     <div class="menu-item-row" slot="content">
       <div class="layouts-demo-container">
-        <list>
+        <item-list>
           <layout-demo
             v-for="layout in $options.config.availableLayouts"
             :key="layout.slug"
@@ -16,7 +16,7 @@
             :streams="streams"
             v-on:change-layout="changeLayout"
           />
-        </list>
+        </item-list>
       </div>
       <div class="menu-item-row" style="margin-top: 1em;">
         <p class="text-heading">Chat Location</p>

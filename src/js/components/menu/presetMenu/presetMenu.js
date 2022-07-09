@@ -2,7 +2,7 @@ import MenuItem from './../../menu/menuItem/MenuItem.vue'
 import PresetListing from './../../preset/presetListing/PresetListing.vue'
 import InputForm from './../../inputs/inputForm/InputForm.vue'
 import StandardButton from './../../inputs/buttons/standardButton/StandardButton.vue'
-import List from './../../list/list/List.vue'
+import ItemList from './../../list/list/ItemList.vue'
 import { generateID } from './../../../utilities'
 
 export default {
@@ -12,7 +12,7 @@ export default {
     PresetListing,
     InputForm,
     StandardButton,
-    List
+    ItemList
   },
   props: {
     streamPresets: {

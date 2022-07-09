@@ -1,6 +1,3 @@
-import 'core-js/es6/promise'
-import 'core-js/es6/set'
-import 'core-js/es6/map'
 import * as yup from 'yup'
 
 const streamItem = yup
@@ -71,7 +68,7 @@ export const validateHistory = async function (history) {
   try {
     return await historyValidator
       .validate(history)
-      .then(function (value) {
+      .then(function () {
         return true
       })
       .catch(function (err) {
@@ -88,7 +85,7 @@ export const validatePresets = async function (presets) {
   try {
     return await presetsValidator
       .validate(presets)
-      .then(function (value) {
+      .then(function () {
         return true
       })
       .catch(function (err) {
@@ -105,7 +102,7 @@ export const validateOptions = async function (options) {
   try {
     return await optionsValidator
       .validate(options)
-      .then(function (value) {
+      .then(function () {
         return true
       })
       .catch(function (err) {
@@ -122,7 +119,7 @@ export const validateFavorites = async function (favorites) {
   try {
     return await favoritesValidator
       .validate(favorites)
-      .then(function (value) {
+      .then(function () {
         return true
       })
       .catch(function (err) {

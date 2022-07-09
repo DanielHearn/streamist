@@ -1,5 +1,5 @@
 export default {
-  name: 'list',
+  name: 'item-list',
   props: {
     layout: {
       default: 'column',

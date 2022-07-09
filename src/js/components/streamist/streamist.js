@@ -1,7 +1,7 @@
 import IconButton from './../inputs/buttons/iconButton/IconButton.vue'
 import InputForm from './../inputs/inputForm/InputForm.vue'
 import ListItem from './../list/listItem/ListItem.vue'
-import List from './../list/list/List.vue'
+import ItemList from './../list/list/ItemList.vue'
 
 import LayoutMenu from './../menu/layoutMenu/LayoutMenu.vue'
 import HistoryMenu from './../menu/historyMenu/HistoryMenu.vue'
@@ -42,10 +42,9 @@ import {
   getStoredFavorites,
   getStoredHistory
 } from '../../storage/storage'
-import { mapState } from 'vuex';
 
 export default {
-  name: 'streamist',
+  name: 'streamist-app',
   components: {
     IconButton,
     InputForm,
@@ -61,7 +60,7 @@ export default {
     SettingsMenu,
     PopularStreamsMenu,
     StreamMenu,
-    List,
+    ItemList,
     ListItem,
     HeartbeatLoading,
     PopularStreams
@@ -226,7 +225,9 @@ export default {
               this.$store.commit(field.set, parsedFieldData)
               fieldLoaded = true
             }
-          } catch (error) {}
+          } catch (error) {
+            console.log(error)
+          }
         }
         if (!fieldLoaded) {
           warn(`Loading default ${field.name}, the invalid data was: `)
@@ -275,7 +276,7 @@ export default {
             // Make game info object mapped by id
             const mappedGameinfo = {}
             for (let index in gameInfo.data) {
-              if (gameInfo.data.hasOwnProperty(index)) {
+              if (gameInfo.data[index]) {
                 const game = gameInfo.data[index]
                 if (game.id) {
                   mappedGameinfo[game.id] = { ...game }
@@ -286,7 +287,7 @@ export default {
 
             // Map game info to streams if available
             const streamInfo = topStreams.map(stream => {
-              if (mappedGameinfo.hasOwnProperty(stream.game_id)) {
+              if (mappedGameinfo[stream.game_id]) {
                 const game = mappedGameinfo[stream.game_id]
 
                 if (stream.thumbnail_url) {

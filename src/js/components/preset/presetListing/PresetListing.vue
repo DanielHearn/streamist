@@ -62,7 +62,7 @@
           :buttonText="'Add'"
           :buttonIconName="smallInterface ? 'add' : ''"
         ></input-form>
-        <list>
+        <item-list>
           <draggable
             v-model="orderedStreams"
             v-if="orderedStreams.length"
@@ -93,7 +93,7 @@
             </list-item>
           </draggable>
           <p v-else>No streams in preset</p>
-        </list>
+        </item-list>
       </div>
     </template>
   </list-item>

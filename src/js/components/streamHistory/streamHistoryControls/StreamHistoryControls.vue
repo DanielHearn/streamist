@@ -2,7 +2,7 @@
   <div class="stream-history" v-if="streamHistory">
     <div class="menu-item-row">
       <p class="text" v-if="!historyAvailable">No channels in your history.</p>
-      <list>
+      <item-list>
         <stream-history-item
           v-for="history in orderedHistory"
           :key="history.id"
@@ -10,7 +10,7 @@
           :current-date="currentDate"
           :smallInterface="smallInterface"
         ></stream-history-item>
-      </list>
+      </item-list>
     </div>
   </div>
 </template>

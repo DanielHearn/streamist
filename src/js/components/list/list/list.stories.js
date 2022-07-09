@@ -1,35 +1,35 @@
 import { storiesOf } from '@storybook/vue'
 
-import List from './List.vue'
+import ItemList from './ItemList.vue'
 
 storiesOf('List', module)
   .add('Normal', () => ({
-    components: { List },
+    components: { ItemList },
     template: `
-    <list>
+    <item-list>
       <li>Item 1</li>
       <li>Item 2</li>
       <li>Item 3</li>
       <li>Item 4</li>
-    </list>`
+    </item-list>`
   }))
   .add('Row Layout', () => ({
-    components: { List },
+    components: { ItemList },
     template: `
-    <list :layout="'row'">
+    <item-list :layout="'row'">
       <li>Item 1</li>
       <li>Item 2</li>
       <li>Item 3</li>
       <li>Item 4</li>
-    </list>`
+    </item-list>`
   }))
   .add('Grid Layout', () => ({
-    components: { List },
+    components: { ItemList },
     template: `
-    <list :layout="'grid'">
+    <item-list :layout="'grid'">
       <li>Item 1</li>
       <li>Item 2</li>
       <li>Item 3</li>
       <li>Item 4</li>
-    </list>`
+    </item-list>`
   }))

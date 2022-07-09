@@ -25,7 +25,7 @@
       <div class="stream-favorites" v-if="streamFavorites">
         <div class="menu-item-row">
           <p class="text" v-if="!favoritesAvailable">No channels in your favorites.</p>
-          <list>
+          <item-list>
             <list-item v-for="favorite in orderedFavorites" :key="favorite.id">
               <template slot="header">
                 <div class="column">
@@ -52,7 +52,7 @@
                 </div>
               </template>
             </list-item>
-          </list>
+          </item-list>
         </div>
       </div>
     </template>

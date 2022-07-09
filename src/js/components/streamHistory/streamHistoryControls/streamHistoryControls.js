@@ -1,11 +1,11 @@
 import StreamHistoryItem from './../streamHistoryItem/StreamHistoryItem.vue'
-import List from './../../list/list/List.vue'
+import ItemList from './../../list/list/ItemList.vue'
 
 export default {
   name: 'stream-history-controls',
   components: {
     StreamHistoryItem,
-    List
+    ItemList
   },
   props: {
     streamHistory: {

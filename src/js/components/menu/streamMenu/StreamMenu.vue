@@ -17,7 +17,7 @@
     <template slot="content">
       <div class="menu-item-row">
         <p class="text" v-if="!streams.length">Add streams to start watching.</p>
-        <list class="stream-list" :small-interface="smallInterface">
+        <item-list class="stream-list" :small-interface="smallInterface">
           <draggable
             v-if="streams.length"
             v-model="orderedStreams"
@@ -61,7 +61,7 @@
               </template>
             </list-item>
           </draggable>
-        </list>
+        </item-list>
       </div>
     </template>
   </menu-item>

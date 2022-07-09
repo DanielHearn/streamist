@@ -18,7 +18,7 @@ export const shuffleArray = function (array) {
 }
 
 export const getDefault = function (field) {
-  if (defaultData.hasOwnProperty(field)) {
+  if (defaultData[field]) {
     // Naive deepclone that won't clone functions
     return JSON.parse(JSON.stringify(defaultData[field]))
   } else {
@@ -58,7 +58,7 @@ export const insertURLStreamParams = function (streams) {
   if (window) {
     let channelString = ''
     for (const channel in streams) {
-      if (streams.hasOwnProperty(channel)) {
+      if (streams[channel]) {
         channelString += String(streams[channel].streamName) + ','
       }
     }

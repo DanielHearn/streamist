@@ -1,6 +1,6 @@
 import MenuItem from './../../menu/menuItem/MenuItem.vue'
 import LayoutDemo from './../../layout/layoutDemo/LayoutDemo.vue'
-import List from './../../list/list/List.vue'
+import ItemList from './../../list/list/ItemList.vue'
 import ListItem from './../../list/listItem/ListItem.vue'
 import StandardButton from './../../inputs/buttons/standardButton/StandardButton.vue'
 import Icons from './../../../icons'
@@ -12,7 +12,7 @@ export default {
   components: {
     MenuItem,
     LayoutDemo,
-    List,
+    ItemList,
     ListItem,
     StandardButton
   },

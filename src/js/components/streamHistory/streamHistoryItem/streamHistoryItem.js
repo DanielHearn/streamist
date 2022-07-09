@@ -4,7 +4,6 @@ import IconButton from './../../inputs/buttons/iconButton/IconButton.vue'
 import ListItem from './../../list/listItem/ListItem.vue'
 
 import Icons from './../../../icons'
-import { generateID, createStreamObject } from './../../../utilities'
 
 export default {
   name: 'stream-history-item',
