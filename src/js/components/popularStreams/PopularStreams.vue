@@ -42,7 +42,7 @@
         </item-list>
         <item-list v-else :layout="'grid'" class="popular-streams-list">
             <div v-for="i in 12" :key="i" class="popular-streams-item-container">
-                <img class="popular-streams-item-image" :src="'img/placeholderStreamThumbnail.png'" />
+                <div class="popular-streams-item-image" />
                 <list-item class="popular-streams-item">
                 <template slot="header">
                     <div class="column">

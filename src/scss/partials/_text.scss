@@ -17,7 +17,7 @@
 .text-heading {
     font-size: $heading-size;
     font-weight: $heading-weight;
-    margin: $content-padding/2 0;
+    margin: calc($content-padding/2) 0;
     letter-spacing:$letter-spacing;
     color: $near-white;
 }
@@ -25,7 +25,7 @@
 .text-sub-heading {
     font-size: $sub-heading-size;
     font-weight: $sub-heading-weight;
-    margin: $content-padding/2 0;
+    margin: calc($content-padding/2) 0;
     color: $near-white;
     letter-spacing: $letter-spacing;
 }

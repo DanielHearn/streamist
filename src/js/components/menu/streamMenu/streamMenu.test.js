@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import StreamMenu from './StreamMenu.vue'
 import { storeConfig } from '../../../store/store'
 import { streams, favorites } from '../../../mockData'
+import { cloneDeep } from 'lodash'
 
 let wrapper
 let store
@@ -10,18 +11,18 @@ const localVue = createLocalVue()
 localVue.use(Vuex)
 
 beforeEach(() => {
-  store = new Vuex.Store(_.cloneDeep(storeConfig))
+  store = new Vuex.Store(cloneDeep(storeConfig))
   wrapper = mount(StreamMenu, {
     propsData: {
-      streams: _.cloneDeep(streams),
-      favorites: _.cloneDeep(favorites),
+      streams: cloneDeep(streams),
+      favorites: cloneDeep(favorites),
       smallInterface: false
     },
     store,
     localVue
   })
-  store.commit('setStreams', _.cloneDeep(streams))
-  store.commit('setFavorites', _.cloneDeep(favorites))
+  store.commit('setStreams', cloneDeep(streams))
+  store.commit('setFavorites', cloneDeep(favorites))
 })
 
 afterEach(() => {

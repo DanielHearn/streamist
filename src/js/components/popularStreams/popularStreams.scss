@@ -4,11 +4,15 @@
 .popular-streams {
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
     .popular-streams-list {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         margin: 0 auto;
+        overflow: auto;
         .popular-streams-item-container {
           width: inherit;
           flex-direction: column;
@@ -68,6 +72,10 @@
         p, span {
           color: transparent
         }
+      }
+      .popular-streams-item-image {
+        width: 420px;
+        height: 270px;
       }
     }
 }

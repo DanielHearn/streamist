@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils'
 import ChatList from './ChatList.vue'
 import { streams } from '../../../mockData'
+import { cloneDeep } from 'lodash'
 
 const chats = [
   {
@@ -51,7 +52,7 @@ describe('ChatList', () => {
 
     expect(wrapper.vm.removeAvailable).toBe(false)
 
-    wrapper.vm.chats = _.cloneDeep(chats)
+    wrapper.vm.chats = cloneDeep(chats)
 
     expect(wrapper.vm.removeAvailable).toBe(true)
   })
@@ -66,7 +67,7 @@ describe('ChatList', () => {
 
     expect(wrapper.vm.maxChats).toBe(false)
 
-    wrapper.vm.chats = _.cloneDeep(chats)
+    wrapper.vm.chats = cloneDeep(chats)
 
     expect(wrapper.vm.maxChats).toBe(true)
   })
@@ -106,7 +107,7 @@ describe('ChatList', () => {
         chatsVisible: true
       }
     })
-    wrapper.vm.chats = _.cloneDeep(chats)
+    wrapper.vm.chats = cloneDeep(chats)
     wrapper.vm.removeChat(wrapper.vm.chats[1])
 
     expect(wrapper.findAll('.stream-chat').length).toBe(1)

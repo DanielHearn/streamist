@@ -1,9 +1,9 @@
 import { mount, createLocalVue } from '@vue/test-utils'
-import { distanceInWordsStrict, isValid } from 'date-fns'
 import Vuex from 'vuex'
 import StreamHistoryItem from './StreamHistoryItem.vue'
 import { storeConfig } from '../../../store/store'
 import { history } from '../../../mockData'
+import {cloneDeep} from 'lodash'
 
 let wrapper
 let store
@@ -11,32 +11,33 @@ const localVue = createLocalVue()
 localVue.use(Vuex)
 const historyItem = history[0]
 
-beforeEach(() => {
-  store = new Vuex.Store(_.cloneDeep(storeConfig))
-  wrapper = mount(StreamHistoryItem, {
-    propsData: {
-      history: _.cloneDeep(historyItem),
-      currentDate: new Date(
-        'Sat Jun 05 2010 00:00:00 GMT+0100 (British Summer Time)'
-      ),
-      smallInterface: false
-    },
-    store,
-    localVue
-  })
-  store.commit('setHistory', _.cloneDeep([historyItem]))
-  store.commit('setStreams', _.cloneDeep([]))
-})
-
-afterEach(() => {
-  wrapper.destroy()
-})
-
 describe('StreamHistoryItem', () => {
-  test('history', () => {
+  beforeEach(() => {
+    store = new Vuex.Store(cloneDeep(storeConfig))
+    wrapper = mount(StreamHistoryItem, {
+      propsData: {
+        history: cloneDeep(historyItem),
+        currentDate: new Date(
+          'Sat Jun 05 2010 00:00:00 GMT+0100 (British Summer Time)'
+        ),
+        smallInterface: false
+      },
+      store,
+      localVue
+    })
+    store.commit('setHistory', cloneDeep([historyItem]))
+    store.commit('setStreams', cloneDeep([]))
+  })
+  
+  afterEach(() => {
+    wrapper.destroy()
+  })
+  
+
+  test.only('history', () => {
     expect(wrapper.find('.column p').text()).toBe(historyItem.streamName)
   })
-
+  
   test('currentDate', () => {
     expect(isValid(wrapper.vm.currentDate)).toBe(true)
     expect(wrapper.vm.currentDate.toISOString()).toBe(
@@ -45,8 +46,8 @@ describe('StreamHistoryItem', () => {
   })
 
   test('timeAdded', () => {
-    const timeDifference = distanceInWordsStrict(
-      historyItem.dateAdded,
+    const timeDifference = formatDistance(
+      parseISO(historyItem.dateAdded),
       wrapper.vm.currentDate
     )
 

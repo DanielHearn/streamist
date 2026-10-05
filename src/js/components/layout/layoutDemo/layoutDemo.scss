@@ -25,8 +25,8 @@
   background: #b3b3b3;
   color: $white;
   font-weight: $sub-heading-weight;
-  margin: $content-padding/2 0;
-  padding: $content-padding/2;
+  margin: calc($content-padding/2) 0;
+  padding: calc($content-padding/2);
   box-sizing: border-box;
   cursor: pointer;
   &:hover {

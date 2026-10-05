@@ -2,6 +2,7 @@ import { mount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import PresetListing from './PresetListing.vue'
 import { storeConfig } from './../../../store'
+import { cloneDeep } from 'lodash'
 
 let wrapper
 let store
@@ -25,17 +26,17 @@ const preset = {
 }
 
 beforeEach(() => {
-  store = new Vuex.Store(_.cloneDeep(storeConfig))
+  store = new Vuex.Store(cloneDeep(storeConfig))
   wrapper = mount(PresetListing, {
     propsData: {
-      preset: _.cloneDeep(preset),
+      preset: cloneDeep(preset),
       editMode: false,
       smallInterface: false
     },
     store,
     localVue
   })
-  store.commit('setPresets', _.cloneDeep([preset]))
+  store.commit('setPresets', cloneDeep([preset]))
 })
 
 afterEach(() => {
@@ -73,7 +74,7 @@ describe('PresetListing', () => {
     // Click stream delete button
     wrapper.find('.preset-listing-item .button--tertiary').trigger('click')
     expect(wrapper.vm.preset.streams).toStrictEqual(
-      _.cloneDeep([preset.streams[1]])
+      cloneDeep([preset.streams[1]])
     )
   })
 
@@ -86,7 +87,7 @@ describe('PresetListing', () => {
   })
 
   test('deletePreset', () => {
-    expect(store.state.streamPresets).toStrictEqual(_.cloneDeep([preset]))
+    expect(store.state.streamPresets).toStrictEqual(cloneDeep([preset]))
 
     // Click preset delete button
     wrapper.find('.input-container .button--tertiary').trigger('click')
@@ -94,11 +95,11 @@ describe('PresetListing', () => {
   })
 
   test('newPresetStream', () => {
-    expect(store.state.streamPresets).toStrictEqual(_.cloneDeep([preset]))
+    expect(store.state.streamPresets).toStrictEqual(cloneDeep([preset]))
 
     wrapper.vm.newPresetStream('twitch')
     expect(store.state.streamPresets[0].streams.length).toBe(
-      _.cloneDeep(preset.streams).length + 1
+      cloneDeep(preset.streams).length + 1
     )
   })
 })

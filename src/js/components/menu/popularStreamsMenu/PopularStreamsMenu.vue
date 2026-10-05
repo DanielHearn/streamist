@@ -5,7 +5,7 @@
     v-on:close-menu-item="$emit('close-menu')"
   >
     <template slot="content">
-      <div class="menu-item-row">
+      <div class="menu-item-row no-scroll">
         <popular-streams/>
       </div>
     </template>

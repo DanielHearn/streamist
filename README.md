@@ -5,6 +5,7 @@ Live at www.danielhearn.co.uk/streamist
 
 Built with VueJS, SCSS, webpack for workflow automation.
 Hosted on github pages.
+Production builds use `/streamist/` as their base path for GitHub Pages.
 
 ## Features
 - Watch multiple twitch streams and chats

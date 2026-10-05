@@ -16,7 +16,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: $content-padding/2 $content-padding;
+    padding: calc($content-padding/2) calc($content-padding);
     .text-heading {
       text-align: center;
     }
@@ -43,15 +43,15 @@
     }
   }
   input {
-    margin: $content-padding/4;
+    margin: calc($content-padding/4);
     width: 100%;
     box-sizing: border-box;
   }
   button {
-    margin: $content-padding/4 0;
+    margin: calc($content-padding/4) 0;
   }
   .list button {
-    margin: $content-padding/4;
+    margin: calc($content-padding/4);
   }
   .language-selection {
     width: 100%;
@@ -68,7 +68,7 @@
   }
 }
 
-@media only screen and (max-width: $tablet-width*0.75) {
+@media only screen and (max-width: calc($tablet-width*0.75)) {
   .menu-item {
     width: $menu-content-width*0.75;
   }

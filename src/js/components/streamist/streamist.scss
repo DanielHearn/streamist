@@ -40,7 +40,7 @@
 nav {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  padding: $content-padding/4 $content-padding/2;
+  padding: calc($content-padding/4) calc($content-padding/2);
   flex: 1 auto;
   color: $white;
   background: $black-normal;
@@ -110,7 +110,7 @@ nav {
 .intro-content {
   text-align: center;
   color: $white;
-  padding: 3em 1em;
+  padding: 3em 1em 0 1em;
   flex: 1 auto;
   display: grid;
   grid-template-columns: 1fr;
@@ -134,14 +134,13 @@ nav {
     font-weight: $text-weight;
   }
   .popular-streams {
-    padding-bottom: 3em;
-    max-width: 78em;
+    max-width: 80em;
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 0 auto;
     .popular-streams-list {
-      max-width: 78em;
+      width: 100%;
       .popular-streams-item-container {
         max-width: 25em;
       }
@@ -155,12 +154,13 @@ nav {
   &.chat--left {
     flex-direction: row-reverse;
   }
-  .placeholder {
-    overflow-y: scroll;
-  }
 }
 
-@media only screen and (max-width: $tablet-width/1.5) {
+.no-scroll {
+  overflow: hidden;
+}
+
+@media only screen and (max-width: calc($tablet-width/1.5)) {
   .intro-content {
     .intro-title {
       font-size: 1.4em

@@ -3,38 +3,40 @@ import Vuex from 'vuex'
 import StreamHistoryControls from './StreamHistoryControls.vue'
 import { storeConfig } from '../../../store/store'
 import { history } from '../../../mockData'
+import {cloneDeep} from 'lodash'
 
 let wrapper
 let store
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
-beforeEach(() => {
-  store = new Vuex.Store(_.cloneDeep(storeConfig))
-  wrapper = mount(StreamHistoryControls, {
-    propsData: {
-      streamHistory: _.cloneDeep(history),
-      smallInterface: false
-    },
-    store,
-    localVue
-  })
-  store.commit('setHistory', _.cloneDeep([history]))
-})
-
-afterEach(() => {
-  wrapper.destroy()
-})
-
 describe('StreamHistoryControls', () => {
-  test('streamHistory', () => {
+  beforeEach(() => {
+    store = new Vuex.Store(cloneDeep(storeConfig))
+    wrapper = mount(StreamHistoryControls, {
+      propsData: {
+        streamHistory: cloneDeep(history),
+        smallInterface: false
+      },
+      store,
+      localVue
+    })
+    store.commit('setHistory', cloneDeep([history]))
+  })
+  
+  afterEach(() => {
+    wrapper.destroy()
+  })
+
+  test.only('streamHistory', () => {
     expect(wrapper.findAll('.stream-history-item').length).toBe(history.length)
   })
 
-  test('historyAvailable', () => {
+  test('historyAvailable', async () => {
     expect(wrapper.findAll('.stream-history-item').length).toBe(history.length)
 
-    wrapper.setProps({ streamHistory: [] })
+    await wrapper.setProps({ streamHistory: [] })
+    await wrapper.vm.$nextTick();
     expect(wrapper.find('.text').exists()).toBe(true)
     expect(wrapper.findAll('.stream-history-item').length).toBe(0)
   })

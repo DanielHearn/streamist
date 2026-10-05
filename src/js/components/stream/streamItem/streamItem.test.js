@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import StreamItem from './StreamItem.vue'
 import { storeConfig } from '../../../store/store'
 import { streams, favorites } from '../../../mockData/mockData'
+import {cloneDeep} from 'lodash'
 
 let wrapper
 let store
@@ -11,10 +12,10 @@ localVue.use(Vuex)
 const streamItem = streams[0]
 
 beforeEach(() => {
-  store = new Vuex.Store(_.cloneDeep(storeConfig))
+  store = new Vuex.Store(cloneDeep(storeConfig))
   wrapper = mount(StreamItem, {
     propsData: {
-      stream: _.cloneDeep(streamItem),
+      stream: cloneDeep(streamItem),
       numStreams: 1,
       hover: false,
       isFirstStream: true,
@@ -23,7 +24,7 @@ beforeEach(() => {
     store,
     localVue
   })
-  store.commit('setStreams', _.cloneDeep([streamItem]))
+  store.commit('setStreams', cloneDeep([streamItem]))
   store.commit('setFavorites', [])
 })
 
@@ -42,6 +43,7 @@ describe('StreamItem', () => {
     expect(wrapper.vm.favorited).toBe(false)
 
     wrapper.setProps({ favorites: favorites })
+    
     expect(wrapper.vm.favorited).toBe(true)
   })
 
@@ -53,7 +55,7 @@ describe('StreamItem', () => {
     expect(store.state.streamFavorites[0].streamName).toBe(
       streamItem.streamName
     )
-    wrapper.setProps({ favorites: _.cloneDeep(favorites) })
+    wrapper.setProps({ favorites: cloneDeep(favorites) })
 
     // Unfavorite channel
     wrapper.find('.button--favorite').trigger('click')

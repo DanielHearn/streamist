@@ -1,5 +1,6 @@
 import { mutations } from './store'
 import { defaultData } from './../config'
+import {cloneDeep} from 'lodash'
 
 const {
   setSmallInterface,
@@ -21,7 +22,7 @@ const {
 } = mutations
 
 test('set smallInterface to true', () => {
-  const state = _.cloneDeep(defaultData)
+  const state = cloneDeep(defaultData)
 
   setSmallInterface(state, true)
 
@@ -29,7 +30,7 @@ test('set smallInterface to true', () => {
 })
 
 test('set smallInterface to false', () => {
-  const state = _.cloneDeep(defaultData)
+  const state = cloneDeep(defaultData)
 
   setSmallInterface(state, false)
 
@@ -37,7 +38,7 @@ test('set smallInterface to false', () => {
 })
 
 test('set topStreams', () => {
-  const state = _.cloneDeep(defaultData)
+  const state = cloneDeep(defaultData)
   const topStreams = [
     {
       id: '34057836560',
@@ -87,7 +88,7 @@ test('set topStreams', () => {
 })
 
 test('set setTwitchGameInfo', () => {
-  const state = _.cloneDeep(defaultData)
+  const state = cloneDeep(defaultData)
   const twitchGameInfo = {
     '18122': {
       id: '18122',
@@ -115,7 +116,7 @@ test('set setTwitchGameInfo', () => {
 })
 
 test('add stream', () => {
-  const state = _.cloneDeep(defaultData)
+  const state = cloneDeep(defaultData)
   const stream = {
     streamName: 'lirik',
     id: 'jxvu1mhp',
@@ -130,7 +131,7 @@ test('add stream', () => {
 })
 
 test('remove stream', () => {
-  const state = _.cloneDeep(defaultData)
+  const state = cloneDeep(defaultData)
   const stream = {
     streamName: 'lirik',
     id: 'jxvu1mhp',
@@ -147,7 +148,7 @@ test('remove stream', () => {
 })
 
 test('set streams', () => {
-  const state = _.cloneDeep(defaultData)
+  const state = cloneDeep(defaultData)
   const streams = [
     {
       streamName: 'lirik',
@@ -161,7 +162,7 @@ test('set streams', () => {
 })
 
 test('set options', () => {
-  const state = _.cloneDeep(defaultData)
+  const state = cloneDeep(defaultData)
   const options = Object.assign({}, defaultData.options)
   setOptions(state, options)
 
@@ -169,7 +170,7 @@ test('set options', () => {
 })
 
 test('add stream to history', () => {
-  const state = _.cloneDeep(defaultData)
+  const state = cloneDeep(defaultData)
   const stream = {
     streamName: 'lirik',
     id: 'jxvu1mhp',
@@ -181,7 +182,7 @@ test('add stream to history', () => {
 })
 
 test('set history', () => {
-  const state = _.cloneDeep(defaultData)
+  const state = cloneDeep(defaultData)
   const favorites = [
     {
       streamName: 'lirik',
@@ -195,7 +196,7 @@ test('set history', () => {
 })
 
 test('add stream to favorites', () => {
-  const state = _.cloneDeep(defaultData)
+  const state = cloneDeep(defaultData)
   const stream = {
     streamName: 'lirik',
     id: 'jxvu1mhp',
@@ -207,7 +208,7 @@ test('add stream to favorites', () => {
 })
 
 test('remove stream from favorites', () => {
-  const state = _.cloneDeep(defaultData)
+  const state = cloneDeep(defaultData)
   const stream = {
     streamName: 'lirik',
     id: 'jxvu1mhp',
@@ -221,7 +222,7 @@ test('remove stream from favorites', () => {
 })
 
 test('set favorites', () => {
-  const state = _.cloneDeep(defaultData)
+  const state = cloneDeep(defaultData)
   const favorites = [
     {
       streamName: 'lirik',
@@ -235,7 +236,7 @@ test('set favorites', () => {
 })
 
 test('set presets', () => {
-  const state = _.cloneDeep(defaultData)
+  const state = cloneDeep(defaultData)
   const presets = [
     {
       name: 'Preset 1',
@@ -261,7 +262,7 @@ test('set presets', () => {
 })
 
 test('update presets', () => {
-  const state = _.cloneDeep(defaultData)
+  const state = cloneDeep(defaultData)
   const preset = {
     name: 'Preset 1',
     streams: [
@@ -280,7 +281,7 @@ test('update presets', () => {
     id: 'brp5rig'
   }
   const presets = [preset]
-  const updatedpreset = _.cloneDeep(preset)
+  const updatedpreset = cloneDeep(preset)
   updatedpreset.name = 'Preset 2'
 
   setPresets(state, presets)
@@ -291,7 +292,7 @@ test('update presets', () => {
 })
 
 test('add preset to presets', () => {
-  const state = _.cloneDeep(defaultData)
+  const state = cloneDeep(defaultData)
   const preset = {
     name: 'Preset 1',
     streams: [
@@ -315,7 +316,7 @@ test('add preset to presets', () => {
 })
 
 test('remove preset from presets', () => {
-  const state = _.cloneDeep(defaultData)
+  const state = cloneDeep(defaultData)
   const preset = {
     name: 'Preset 1',
     streams: [
