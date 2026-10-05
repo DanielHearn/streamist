@@ -17,12 +17,6 @@ To specify a channel within the url use 'streamist/?stream=channel1,channel2' cr
 
 ![Example image of app](readme-assets/streamist1.jpg)
 
-## TODO
-- Mobile/ Tablet support
-  - Compact nav bar
-- Stream management menu for mobile use
-- Improve chat selection => Allow for channels that are currently being watch, more compact / allow for more chat iframe
-
 ## Dependencies
 - vue draggable to handle model updating on list reorder with drag and drop.
 - date fns for readable relative date for stream history.
@@ -33,9 +27,6 @@ To specify a channel within the url use 'streamist/?stream=channel1,channel2' cr
 - 'npm run build': Build production files 
 - 'npm run test': Run tests
 - 'npm run deploy': Build and deploy dist to gh-pages branch
-
-## CI
-https://travis-ci.org/DanielHearn/streamist
 
 ## Contributions
 
