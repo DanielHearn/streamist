@@ -1,11 +1,11 @@
-@import "./../../../../scss/variables";
+@import './../../../../scss/variables';
 
 .list-item {
   margin-bottom: 1em;
   background: $black-normal;
   color: $white;
   border-radius: 3px;
-  &[draggable="true"] .item-header {
+  &[draggable='true'] .item-header {
     background: $black-darkest;
     box-shadow: inset -4px 0px 0px $accent-light !important;
   }
@@ -30,13 +30,13 @@
       flex-direction: row;
       justify-content: space-between;
       p {
-          letter-spacing: $letter-spacing;
+        letter-spacing: $letter-spacing;
       }
     }
     .handle {
-      padding: 0.9em 0.25em;
+      padding: 0.9em 0.1em;
       background: $blue;
-      width: 1em;
+      width: 1.3em;
     }
     .row {
       align-items: center;

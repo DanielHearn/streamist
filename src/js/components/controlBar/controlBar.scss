@@ -7,18 +7,21 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  background: $accent-light;
-  padding: calc($content-padding/4) calc($content-padding/2);
+  background: $black-normal;
+  border-bottom: 1px solid $blue-medium;
+  padding: calc($content-padding/3) calc($content-padding/2);
   cursor: default;
-  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
   z-index: 10;
   p, button {
     margin: 0;
   }
   button {
-    background: $accent-light;
+    background: transparent;
+    color: $near-white;
     &:hover {
-      background: $accent-dark;
+      background: rgba(53, 198, 162, 0.16);
+      color: $accent-light;
     }
   }
 }

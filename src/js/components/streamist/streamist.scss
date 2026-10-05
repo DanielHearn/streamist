@@ -8,6 +8,7 @@
   flex: 1fr;
   flex-direction: column;
   align-items: center;
+  background: $black-darkest;
 }
 
 
@@ -20,35 +21,33 @@
   height: 100%;
   overflow: hidden;
   background: $black-darkest;
-  &.small-interface {
-      input[type="text"] {
-        max-width: 6em;
-    }
-  }
 }
 
 *::-webkit-scrollbar {
   width: 12px;
 }
 *::-webkit-scrollbar-track {
-  background: $blue; 
+  background: $black-dark;
 }
 *::-webkit-scrollbar-thumb {
   background: $blue-medium;
+  border: 3px solid $black-dark;
+  border-radius: 999px;
 }
 
 nav {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  padding: calc($content-padding/4) calc($content-padding/2);
+  padding: 0.55rem 0.9rem;
   flex: 1 auto;
   color: $white;
   background: $black-normal;
+  border-bottom: 1px solid rgba(99, 115, 138, 0.35);
   max-height: $nav-height;
   width: 100%;
   box-sizing: border-box;
   input[type="text"] {
-      max-width: 10em;
+      max-width: 16rem;
   }
   div {
       display: flex;
@@ -57,12 +56,18 @@ nav {
   .nav-center {
     align-items: center;
     justify-content: center;
+    min-width: 0;
   }
   .nav-right {
     justify-content: flex-end;
+    align-items: center;
     button {
-      margin: 0 0.5em;
+      margin: 0 0.25em;
     }
+  }
+  .title {
+    font-size: 1.15rem;
+    letter-spacing: 0.09em;
   }
   .hidden { 
     display: none;
@@ -92,9 +97,9 @@ nav {
   position: absolute;
   top: 0;
   z-index: 5;
-  padding: 0.25em 1em;
+  padding: 0.25em 0.8em;
   transition: opacity 0.5s ease-in-out;
-  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
   opacity: 1;
   &:hover {
     opacity: 1;
@@ -110,7 +115,7 @@ nav {
 .intro-content {
   text-align: center;
   color: $white;
-  padding: 3em 1em 0 1em;
+  padding: clamp(2rem, 6vh, 4rem) 1.5rem 2rem;
   flex: 1 auto;
   display: grid;
   grid-template-columns: 1fr;
@@ -119,7 +124,7 @@ nav {
     font-size: $title-size;
     font-weight: $title-weight;
     text-transform: uppercase;
-    letter-spacing: $letter-spacing;
+    letter-spacing: 0.08em;
     margin: 0.25em 0;
   }
   .intro-subheading {
@@ -132,6 +137,7 @@ nav {
   .intro-text {
     font-size: $text-size;
     font-weight: $text-weight;
+    color: $very-off-white;
   }
   .popular-streams {
     max-width: 80em;
@@ -174,18 +180,40 @@ nav {
 @media only screen and (max-width: $tablet-width) {
   #streamist {
     .nav {
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: 0.35rem;
+      padding: 0.45rem 0.5rem;
       .title {
         display: none;
       }
+      .channel-input {
+        width: 100%;
+        max-width: 16rem;
+      }
       .channel-input input {
-        max-width: 5em;
+        max-width: none;
       }
       button {
-        margin: 0 0.2em;
+        margin: 0 0.15em;
       }
     }
     .button--accent:not(.details-summary__header), .button--secondary {
-      padding: 0.3em 0.5em;
+      padding: 0.45em 0.6em;
+      min-height: 2.5rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  #streamist .nav {
+    .nav-right button {
+      margin: 0 0.1em;
+    }
+    .channel-input {
+      min-width: 0;
+      .material-icons {
+        margin: 0;
+      }
     }
   }
 }

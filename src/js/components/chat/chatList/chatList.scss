@@ -5,9 +5,18 @@
   flex-direction: column;
   min-width: 16em;
   .add-chat-container {
-    background: $grey;
+    padding: 0.4rem;
+    background: $black-normal;
+    border-bottom: 1px solid $blue-medium;
     button {
-      border-radius: 0;
+      width: 100%;
+      background: $accent-light;
+      color: $black-darkest;
+      border-radius: $content-border-radius;
+      &:hover {
+        background: $accent-dark;
+        color: $white;
+      }
     }
   }
 }

@@ -1,17 +1,36 @@
 @import "./../../../../scss/variables";
 
 .input-form {
-  display: flex;  
+  display: flex;
+  align-items: stretch;
   margin: 0;
+  background: $black-dark;
+  border: 1px solid $blue-medium;
+  border-radius: $content-border-radius;
+  overflow: hidden;
+  transition: border-color $transition-time ease-in-out, box-shadow $transition-time ease-in-out;
+  &:focus-within {
+    border-color: $accent-light;
+    box-shadow: 0 0 0 3px rgba(53, 198, 162, 0.18);
+  }
   input, button {
     margin-left: 0 !important;
     margin-right: 0 !important;
   }
   input {
-    border-radius: $content-border-radius 0 0 $content-border-radius;
-    
+    flex: 1 1 auto;
+    min-width: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    &:focus-visible {
+      outline: none;
+    }
   }
   button {
-    border-radius: 0 $content-border-radius $content-border-radius 0;
+    flex: 0 0 auto;
+    min-width: 3rem;
+    border-radius: 0;
   }
 }
