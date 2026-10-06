@@ -1,4 +1,4 @@
-@import "./../../../../scss/variables";
+@import './../../../../scss/variables';
 
 .input-form {
   display: flex;
@@ -13,7 +13,8 @@
     border-color: $accent-light;
     box-shadow: 0 0 0 3px rgba(53, 198, 162, 0.18);
   }
-  input, button {
+  input,
+  button {
     margin-left: 0 !important;
     margin-right: 0 !important;
   }
@@ -32,5 +33,6 @@
     flex: 0 0 auto;
     min-width: 3rem;
     border-radius: 0;
+    margin: 0 !important;
   }
 }
