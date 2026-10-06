@@ -94,13 +94,14 @@ input:focus-visible {
 
 .button--accent {
   background: $accent-light;
+  color: $black-darkest;
   @include transition(background $transition-time ease-in-out, border $transition-time ease-in-out);
   &:hover {
     background: $accent-dark;
-    color: $white;
   }
   &:disabled {
     border: 2px solid $dark-grey;
+    color: $near-white;
   }
 }
 
@@ -124,6 +125,7 @@ input:focus-visible {
 
 .button--secondary {
   background: transparent;
+  color: $near-white;
   border: 1px solid $orange;
   padding: calc(0.55em - 1px) calc(0.8em - 1px);
   @include transition(background $transition-time ease-in-out);
@@ -142,6 +144,7 @@ input:focus-visible {
 
 .button--tertiary {
   background: transparent;
+  color: $near-white;
   border: 2px solid transparent;
   padding: calc(0.55em - 2px) calc(0.8em - 2px);
   @include transition(background $transition-time ease-in-out);
