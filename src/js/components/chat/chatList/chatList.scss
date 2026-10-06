@@ -1,4 +1,4 @@
-@import "./../../../../scss/variables";
+@import './../../../../scss/variables';
 
 .chat-list {
   display: flex;
@@ -11,7 +11,6 @@
     button {
       width: 100%;
       background: $accent-light;
-      color: $black-darkest;
       border-radius: $content-border-radius;
       &:hover {
         background: $accent-dark;
